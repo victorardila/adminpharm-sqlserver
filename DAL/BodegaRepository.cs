@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity
+namespace DAL
 {
-    public class Bodega
+    class BodegaRepository
     {
-
     }
 }

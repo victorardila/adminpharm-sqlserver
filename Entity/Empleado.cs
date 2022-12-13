@@ -42,7 +42,7 @@ namespace Entity
         /*Metodos de la clase*/
         public void GenerarCodigoCliente()
         {
-            string a = "#En";
+            string a = "#Em";
             int b;
             string codigo;
             Random aleatorio = new Random();

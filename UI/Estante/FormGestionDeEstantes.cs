@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class FormGestionarEmpleados : Form
+    public partial class FormGestionDeEstantes : Form
     {
-        public FormGestionarEmpleados()
+        public FormGestionDeEstantes()
         {
             InitializeComponent();
         }

@@ -9,11 +9,11 @@ namespace Entity
     public class Producto
     {
         //Constructor
-        public Producto(string referencia, string nombre, string descripcion, DateTime fechaDeRegistro, DateTime fechaDeVencimiento, string lote, string estado, double precioDeVenta, double precioDeNegocio)
+        public Producto(string referencia, string nombre, string detalle, DateTime fechaDeRegistro, DateTime fechaDeVencimiento, string lote, string estado, double precioDeVenta, double precioDeNegocio)
         {
             Referencia = referencia;
             Nombre = nombre;
-            Descripcion = descripcion;
+            Detalle = detalle;
             FechaDeRegistro = fechaDeRegistro;
             FechaDeVencimiento = fechaDeVencimiento;
             Lote = lote;
@@ -29,7 +29,7 @@ namespace Entity
         /*Atributos de la clase*/
         public string Referencia { get; set; }
         public string Nombre { get; set; }
-        public string Descripcion { get; set; }
+        public string Detalle { get; set; }
         public DateTime FechaDeRegistro { get; set; }
         public DateTime FechaDeVencimiento { get; set; }
         public string Lote { get; set; }

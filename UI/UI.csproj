@@ -39,6 +39,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -59,11 +60,30 @@
     <Compile Include="Cliente\FormGestionClientes.Designer.cs">
       <DependentUpon>FormGestionClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfigConection.cs" />
     <Compile Include="Empleado\FormGestionarEmpleados.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Empleado\FormGestionarEmpleados.Designer.cs">
       <DependentUpon>FormGestionarEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Caja\FormGestionCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Caja\FormGestionCaja.Designer.cs">
+      <DependentUpon>FormGestionCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bodega\FormGestionBodega.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bodega\FormGestionBodega.Designer.cs">
+      <DependentUpon>FormGestionBodega.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Caja\FormAbrirCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Caja\FormAbrirCaja.Designer.cs">
+      <DependentUpon>FormAbrirCaja.cs</DependentUpon>
     </Compile>
     <Compile Include="Principal\FormSumario.cs">
       <SubType>Form</SubType>
@@ -91,11 +111,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Estante\FormGestionDeEstantes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Estante\FormGestionDeEstantes.Designer.cs">
+      <DependentUpon>FormGestionDeEstantes.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Caja\FormAbrirCaja.resx">
+      <DependentUpon>FormAbrirCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Caja\FormGestionCaja.resx">
+      <DependentUpon>FormGestionCaja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Cliente\FormGestionClientes.resx">
       <DependentUpon>FormGestionClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Empleado\FormGestionarEmpleados.resx">
       <DependentUpon>FormGestionarEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Estante\FormGestionDeEstantes.resx">
+      <DependentUpon>FormGestionDeEstantes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bodega\FormGestionBodega.resx">
+      <DependentUpon>FormGestionBodega.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal\FormSumario.resx">
       <DependentUpon>FormSumario.cs</DependentUpon>
@@ -133,7 +171,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Caja\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>

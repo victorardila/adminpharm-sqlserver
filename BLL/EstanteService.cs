@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity
+namespace BLL
 {
-    public class Bodega
+    class EstanteService
     {
-
     }
 }

@@ -102,14 +102,20 @@ namespace Presentacion
                 }
             }
         }
+//**********************************************GESTION DE CAJA*********************************************************
+        
         private void btnGestionCaja_Click(object sender, EventArgs e)
         {
             panelSelectionCaja.Location = btnGestionCaja.Location;
             panelSelectionCaja.Visible = true;
             panelSelectionProducto.Visible = false;
             panelSelectionUsuarios.Visible = false;
-
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionCaja>();
         }
+
+//**********************************************GESTION DE PRODUCTOS****************************************************
+        
         private void btnGestionProductos_Click(object sender, EventArgs e)
         {
             showSubMenu(subMenuProductos);
@@ -124,6 +130,20 @@ namespace Presentacion
             CerrarFormulariosCiclo();
             AbrirFormulario<FormGestionProducto>();
         }
+
+        private void btnEstantes_Click(object sender, EventArgs e)
+        {
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionDeEstantes>();
+        }
+        private void btnBodega_Click(object sender, EventArgs e)
+        {
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionBodega>();
+        }
+
+//**********************************************GESTION DE USUARIOS*****************************************************
+        
         private void btnGestionUsuarios_Click(object sender, EventArgs e)
         {
             showSubMenu(subMenuUsuarios);
@@ -132,7 +152,18 @@ namespace Presentacion
             panelSelectionProducto.Visible = false;
             panelSelectionUsuarios.Visible = true;
         }
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionClientes>();
+        }
+        private void btnEmpleados_Click(object sender, EventArgs e)
+        {
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionarEmpleados>();
+        }
 
+        //**********************************************************************************************************************
         private void btnDarkMode_Click(object sender, EventArgs e)
         {
             
@@ -178,10 +209,22 @@ namespace Presentacion
             switch (FormularioCerrar)
             {
                 case 1:
-                    CerrarFormulario<FormGestionProducto>();
+                    CerrarFormulario<FormGestionCaja>();
                     break;
                 case 2:
+                    CerrarFormulario<FormGestionProducto>();
+                    break;
+                case 3:
+                    CerrarFormulario<FormGestionDeEstantes>();
+                    break;
+                case 4:
+                    CerrarFormulario<FormGestionBodega>();
+                    break;
+                case 5:
                     CerrarFormulario<FormGestionClientes>();
+                    break;
+                case 6:
+                    CerrarFormulario<FormGestionarEmpleados>();
                     break;
             }
         }

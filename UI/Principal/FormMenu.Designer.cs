@@ -40,16 +40,19 @@ namespace Presentacion
             this.panelSelectionProducto = new System.Windows.Forms.Panel();
             this.panelSelectionCaja = new System.Windows.Forms.Panel();
             this.subMenuUsuarios = new System.Windows.Forms.Panel();
-            this.iconButton4 = new FontAwesome.Sharp.IconButton();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
+            this.btnEmpleados = new FontAwesome.Sharp.IconButton();
+            this.btnClientes = new FontAwesome.Sharp.IconButton();
             this.btnGestionUsuarios = new FontAwesome.Sharp.IconButton();
             this.subMenuProductos = new System.Windows.Forms.Panel();
-            this.iconButton5 = new FontAwesome.Sharp.IconButton();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
+            this.btnBodega = new FontAwesome.Sharp.IconButton();
+            this.btnEstantes = new FontAwesome.Sharp.IconButton();
             this.btnProductos = new FontAwesome.Sharp.IconButton();
             this.btnGestionProductos = new FontAwesome.Sharp.IconButton();
             this.btnGestionCaja = new FontAwesome.Sharp.IconButton();
             this.panelLogoContainer = new System.Windows.Forms.Panel();
+            this.panelSidebarClose = new System.Windows.Forms.Panel();
+            this.labelMenu = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnOpenSidebar = new FontAwesome.Sharp.IconPictureBox();
             this.btnCloseSidebar = new FontAwesome.Sharp.IconPictureBox();
             this.labelLogoName = new System.Windows.Forms.Label();
@@ -62,9 +65,7 @@ namespace Presentacion
             this.btnModeLight = new FontAwesome.Sharp.IconPictureBox();
             this.btnModeDark = new FontAwesome.Sharp.IconPictureBox();
             this.panelContenedorInterno = new System.Windows.Forms.Panel();
-            this.panelSidebarClose = new System.Windows.Forms.Panel();
-            this.labelMenu = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelAvsio = new System.Windows.Forms.Label();
             this.panelHeaderbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnWindowMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnWindowRestore)).BeginInit();
@@ -74,6 +75,8 @@ namespace Presentacion
             this.subMenuUsuarios.SuspendLayout();
             this.subMenuProductos.SuspendLayout();
             this.panelLogoContainer.SuspendLayout();
+            this.panelSidebarClose.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOpenSidebar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseSidebar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).BeginInit();
@@ -82,8 +85,6 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.iconThemeMoon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnModeLight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnModeDark)).BeginInit();
-            this.panelSidebarClose.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeaderbar
@@ -96,7 +97,7 @@ namespace Presentacion
             this.panelHeaderbar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeaderbar.Location = new System.Drawing.Point(0, 0);
             this.panelHeaderbar.Name = "panelHeaderbar";
-            this.panelHeaderbar.Size = new System.Drawing.Size(950, 27);
+            this.panelHeaderbar.Size = new System.Drawing.Size(970, 27);
             this.panelHeaderbar.TabIndex = 1;
             // 
             // btnWindowMaximize
@@ -108,7 +109,7 @@ namespace Presentacion
             this.btnWindowMaximize.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnWindowMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnWindowMaximize.IconSize = 20;
-            this.btnWindowMaximize.Location = new System.Drawing.Point(897, 4);
+            this.btnWindowMaximize.Location = new System.Drawing.Point(917, 4);
             this.btnWindowMaximize.Name = "btnWindowMaximize";
             this.btnWindowMaximize.Size = new System.Drawing.Size(20, 20);
             this.btnWindowMaximize.TabIndex = 4;
@@ -124,7 +125,7 @@ namespace Presentacion
             this.btnWindowRestore.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnWindowRestore.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnWindowRestore.IconSize = 20;
-            this.btnWindowRestore.Location = new System.Drawing.Point(898, 4);
+            this.btnWindowRestore.Location = new System.Drawing.Point(918, 4);
             this.btnWindowRestore.Name = "btnWindowRestore";
             this.btnWindowRestore.Size = new System.Drawing.Size(20, 20);
             this.btnWindowRestore.TabIndex = 5;
@@ -140,7 +141,7 @@ namespace Presentacion
             this.btnWindowCerrar.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnWindowCerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnWindowCerrar.IconSize = 20;
-            this.btnWindowCerrar.Location = new System.Drawing.Point(921, 4);
+            this.btnWindowCerrar.Location = new System.Drawing.Point(941, 4);
             this.btnWindowCerrar.Name = "btnWindowCerrar";
             this.btnWindowCerrar.Size = new System.Drawing.Size(20, 20);
             this.btnWindowCerrar.TabIndex = 3;
@@ -156,7 +157,7 @@ namespace Presentacion
             this.btnWindowMinimize.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnWindowMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnWindowMinimize.IconSize = 20;
-            this.btnWindowMinimize.Location = new System.Drawing.Point(875, 4);
+            this.btnWindowMinimize.Location = new System.Drawing.Point(895, 4);
             this.btnWindowMinimize.Name = "btnWindowMinimize";
             this.btnWindowMinimize.Size = new System.Drawing.Size(20, 20);
             this.btnWindowMinimize.TabIndex = 1;
@@ -212,57 +213,59 @@ namespace Presentacion
             // subMenuUsuarios
             // 
             this.subMenuUsuarios.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.subMenuUsuarios.Controls.Add(this.iconButton4);
-            this.subMenuUsuarios.Controls.Add(this.iconButton3);
+            this.subMenuUsuarios.Controls.Add(this.btnEmpleados);
+            this.subMenuUsuarios.Controls.Add(this.btnClientes);
             this.subMenuUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
             this.subMenuUsuarios.Location = new System.Drawing.Point(0, 322);
             this.subMenuUsuarios.Name = "subMenuUsuarios";
             this.subMenuUsuarios.Size = new System.Drawing.Size(186, 76);
             this.subMenuUsuarios.TabIndex = 6;
             // 
-            // iconButton4
+            // btnEmpleados
             // 
-            this.iconButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
-            this.iconButton4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton4.FlatAppearance.BorderSize = 0;
-            this.iconButton4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.iconButton4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.iconButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.iconButton4.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
-            this.iconButton4.IconColor = System.Drawing.Color.White;
-            this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton4.IconSize = 10;
-            this.iconButton4.Location = new System.Drawing.Point(0, 37);
-            this.iconButton4.Name = "iconButton4";
-            this.iconButton4.Size = new System.Drawing.Size(186, 37);
-            this.iconButton4.TabIndex = 6;
-            this.iconButton4.Text = "Empleados";
-            this.iconButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton4.UseVisualStyleBackColor = false;
+            this.btnEmpleados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
+            this.btnEmpleados.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnEmpleados.FlatAppearance.BorderSize = 0;
+            this.btnEmpleados.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnEmpleados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmpleados.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmpleados.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEmpleados.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
+            this.btnEmpleados.IconColor = System.Drawing.Color.White;
+            this.btnEmpleados.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEmpleados.IconSize = 10;
+            this.btnEmpleados.Location = new System.Drawing.Point(0, 37);
+            this.btnEmpleados.Name = "btnEmpleados";
+            this.btnEmpleados.Size = new System.Drawing.Size(186, 37);
+            this.btnEmpleados.TabIndex = 6;
+            this.btnEmpleados.Text = "Empleados";
+            this.btnEmpleados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEmpleados.UseVisualStyleBackColor = false;
+            this.btnEmpleados.Click += new System.EventHandler(this.btnEmpleados_Click);
             // 
-            // iconButton3
+            // btnClientes
             // 
-            this.iconButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
-            this.iconButton3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton3.FlatAppearance.BorderSize = 0;
-            this.iconButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.iconButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
-            this.iconButton3.IconColor = System.Drawing.Color.White;
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.IconSize = 10;
-            this.iconButton3.Location = new System.Drawing.Point(0, 0);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(186, 37);
-            this.iconButton3.TabIndex = 5;
-            this.iconButton3.Text = "Clientes";
-            this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton3.UseVisualStyleBackColor = false;
+            this.btnClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
+            this.btnClientes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnClientes.FlatAppearance.BorderSize = 0;
+            this.btnClientes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClientes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnClientes.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
+            this.btnClientes.IconColor = System.Drawing.Color.White;
+            this.btnClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnClientes.IconSize = 10;
+            this.btnClientes.Location = new System.Drawing.Point(0, 0);
+            this.btnClientes.Name = "btnClientes";
+            this.btnClientes.Size = new System.Drawing.Size(186, 37);
+            this.btnClientes.TabIndex = 5;
+            this.btnClientes.Text = "Clientes";
+            this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnClientes.UseVisualStyleBackColor = false;
+            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
             // btnGestionUsuarios
             // 
@@ -290,8 +293,8 @@ namespace Presentacion
             // 
             // subMenuProductos
             // 
-            this.subMenuProductos.Controls.Add(this.iconButton5);
-            this.subMenuProductos.Controls.Add(this.iconButton2);
+            this.subMenuProductos.Controls.Add(this.btnBodega);
+            this.subMenuProductos.Controls.Add(this.btnEstantes);
             this.subMenuProductos.Controls.Add(this.btnProductos);
             this.subMenuProductos.Dock = System.Windows.Forms.DockStyle.Top;
             this.subMenuProductos.Location = new System.Drawing.Point(0, 174);
@@ -299,49 +302,51 @@ namespace Presentacion
             this.subMenuProductos.Size = new System.Drawing.Size(186, 111);
             this.subMenuProductos.TabIndex = 4;
             // 
-            // iconButton5
+            // btnBodega
             // 
-            this.iconButton5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
-            this.iconButton5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton5.FlatAppearance.BorderSize = 0;
-            this.iconButton5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.iconButton5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.iconButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.iconButton5.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
-            this.iconButton5.IconColor = System.Drawing.Color.White;
-            this.iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton5.IconSize = 10;
-            this.iconButton5.Location = new System.Drawing.Point(0, 74);
-            this.iconButton5.Name = "iconButton5";
-            this.iconButton5.Size = new System.Drawing.Size(186, 37);
-            this.iconButton5.TabIndex = 6;
-            this.iconButton5.Text = "Bodega";
-            this.iconButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton5.UseVisualStyleBackColor = false;
+            this.btnBodega.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
+            this.btnBodega.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnBodega.FlatAppearance.BorderSize = 0;
+            this.btnBodega.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnBodega.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnBodega.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBodega.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBodega.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnBodega.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
+            this.btnBodega.IconColor = System.Drawing.Color.White;
+            this.btnBodega.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBodega.IconSize = 10;
+            this.btnBodega.Location = new System.Drawing.Point(0, 74);
+            this.btnBodega.Name = "btnBodega";
+            this.btnBodega.Size = new System.Drawing.Size(186, 37);
+            this.btnBodega.TabIndex = 6;
+            this.btnBodega.Text = "Bodega";
+            this.btnBodega.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBodega.UseVisualStyleBackColor = false;
+            this.btnBodega.Click += new System.EventHandler(this.btnBodega_Click);
             // 
-            // iconButton2
+            // btnEstantes
             // 
-            this.iconButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
-            this.iconButton2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton2.FlatAppearance.BorderSize = 0;
-            this.iconButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.iconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
-            this.iconButton2.IconColor = System.Drawing.Color.White;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.IconSize = 10;
-            this.iconButton2.Location = new System.Drawing.Point(0, 37);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(186, 37);
-            this.iconButton2.TabIndex = 5;
-            this.iconButton2.Text = "Estantes";
-            this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton2.UseVisualStyleBackColor = false;
+            this.btnEstantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
+            this.btnEstantes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnEstantes.FlatAppearance.BorderSize = 0;
+            this.btnEstantes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnEstantes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnEstantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEstantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstantes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEstantes.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
+            this.btnEstantes.IconColor = System.Drawing.Color.White;
+            this.btnEstantes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEstantes.IconSize = 10;
+            this.btnEstantes.Location = new System.Drawing.Point(0, 37);
+            this.btnEstantes.Name = "btnEstantes";
+            this.btnEstantes.Size = new System.Drawing.Size(186, 37);
+            this.btnEstantes.TabIndex = 5;
+            this.btnEstantes.Text = "Estantes";
+            this.btnEstantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEstantes.UseVisualStyleBackColor = false;
+            this.btnEstantes.Click += new System.EventHandler(this.btnEstantes_Click);
             // 
             // btnProductos
             // 
@@ -426,6 +431,35 @@ namespace Presentacion
             this.panelLogoContainer.Size = new System.Drawing.Size(186, 100);
             this.panelLogoContainer.TabIndex = 0;
             // 
+            // panelSidebarClose
+            // 
+            this.panelSidebarClose.Controls.Add(this.labelMenu);
+            this.panelSidebarClose.Controls.Add(this.pictureBox1);
+            this.panelSidebarClose.Location = new System.Drawing.Point(0, 31);
+            this.panelSidebarClose.Name = "panelSidebarClose";
+            this.panelSidebarClose.Size = new System.Drawing.Size(52, 69);
+            this.panelSidebarClose.TabIndex = 6;
+            // 
+            // labelMenu
+            // 
+            this.labelMenu.AutoSize = true;
+            this.labelMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMenu.Location = new System.Drawing.Point(3, 47);
+            this.labelMenu.Name = "labelMenu";
+            this.labelMenu.Size = new System.Drawing.Size(38, 13);
+            this.labelMenu.TabIndex = 7;
+            this.labelMenu.Text = "Menu";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(44, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnOpenSidebar
             // 
             this.btnOpenSidebar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -480,6 +514,7 @@ namespace Presentacion
             // 
             // panelHeader
             // 
+            this.panelHeader.Controls.Add(this.labelAvsio);
             this.panelHeader.Controls.Add(this.labelHeaderRuta);
             this.panelHeader.Controls.Add(this.iconThemeSun);
             this.panelHeader.Controls.Add(this.iconThemeMoon);
@@ -489,7 +524,7 @@ namespace Presentacion
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(186, 27);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(764, 25);
+            this.panelHeader.Size = new System.Drawing.Size(784, 25);
             this.panelHeader.TabIndex = 3;
             // 
             // labelHeaderRuta
@@ -511,7 +546,7 @@ namespace Presentacion
             this.iconThemeSun.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
             this.iconThemeSun.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconThemeSun.IconSize = 24;
-            this.iconThemeSun.Location = new System.Drawing.Point(736, 0);
+            this.iconThemeSun.Location = new System.Drawing.Point(756, 0);
             this.iconThemeSun.Name = "iconThemeSun";
             this.iconThemeSun.Size = new System.Drawing.Size(24, 25);
             this.iconThemeSun.TabIndex = 9;
@@ -526,7 +561,7 @@ namespace Presentacion
             this.iconThemeMoon.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
             this.iconThemeMoon.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconThemeMoon.IconSize = 24;
-            this.iconThemeMoon.Location = new System.Drawing.Point(736, 0);
+            this.iconThemeMoon.Location = new System.Drawing.Point(756, 0);
             this.iconThemeMoon.Name = "iconThemeMoon";
             this.iconThemeMoon.Size = new System.Drawing.Size(24, 25);
             this.iconThemeMoon.TabIndex = 8;
@@ -537,7 +572,7 @@ namespace Presentacion
             this.labelHeaderTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelHeaderTheme.AutoSize = true;
             this.labelHeaderTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHeaderTheme.Location = new System.Drawing.Point(648, 5);
+            this.labelHeaderTheme.Location = new System.Drawing.Point(668, 5);
             this.labelHeaderTheme.Name = "labelHeaderTheme";
             this.labelHeaderTheme.Size = new System.Drawing.Size(60, 16);
             this.labelHeaderTheme.TabIndex = 6;
@@ -552,7 +587,7 @@ namespace Presentacion
             this.btnModeLight.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
             this.btnModeLight.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnModeLight.IconSize = 24;
-            this.btnModeLight.Location = new System.Drawing.Point(709, 0);
+            this.btnModeLight.Location = new System.Drawing.Point(729, 0);
             this.btnModeLight.Name = "btnModeLight";
             this.btnModeLight.Size = new System.Drawing.Size(24, 25);
             this.btnModeLight.TabIndex = 6;
@@ -567,7 +602,7 @@ namespace Presentacion
             this.btnModeDark.IconColor = System.Drawing.Color.White;
             this.btnModeDark.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnModeDark.IconSize = 24;
-            this.btnModeDark.Location = new System.Drawing.Point(709, 0);
+            this.btnModeDark.Location = new System.Drawing.Point(729, 0);
             this.btnModeDark.Name = "btnModeDark";
             this.btnModeDark.Size = new System.Drawing.Size(24, 25);
             this.btnModeDark.TabIndex = 7;
@@ -579,43 +614,26 @@ namespace Presentacion
             this.panelContenedorInterno.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedorInterno.Location = new System.Drawing.Point(186, 52);
             this.panelContenedorInterno.Name = "panelContenedorInterno";
-            this.panelContenedorInterno.Size = new System.Drawing.Size(764, 448);
+            this.panelContenedorInterno.Size = new System.Drawing.Size(784, 448);
             this.panelContenedorInterno.TabIndex = 4;
             // 
-            // panelSidebarClose
+            // labelAvsio
             // 
-            this.panelSidebarClose.Controls.Add(this.labelMenu);
-            this.panelSidebarClose.Controls.Add(this.pictureBox1);
-            this.panelSidebarClose.Location = new System.Drawing.Point(0, 31);
-            this.panelSidebarClose.Name = "panelSidebarClose";
-            this.panelSidebarClose.Size = new System.Drawing.Size(52, 69);
-            this.panelSidebarClose.TabIndex = 6;
-            // 
-            // labelMenu
-            // 
-            this.labelMenu.AutoSize = true;
-            this.labelMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMenu.Location = new System.Drawing.Point(3, 47);
-            this.labelMenu.Name = "labelMenu";
-            this.labelMenu.Size = new System.Drawing.Size(38, 13);
-            this.labelMenu.TabIndex = 7;
-            this.labelMenu.Text = "Menu";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(44, 50);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
+            this.labelAvsio.AutoSize = true;
+            this.labelAvsio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAvsio.Location = new System.Drawing.Point(106, 7);
+            this.labelAvsio.Name = "labelAvsio";
+            this.labelAvsio.Size = new System.Drawing.Size(91, 13);
+            this.labelAvsio.TabIndex = 11;
+            this.labelAvsio.Text = "!!!Advertencia:";
+            this.labelAvsio.Visible = false;
             // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(950, 500);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(970, 500);
             this.Controls.Add(this.panelContenedorInterno);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelSidebar);
@@ -634,6 +652,9 @@ namespace Presentacion
             this.subMenuProductos.ResumeLayout(false);
             this.panelLogoContainer.ResumeLayout(false);
             this.panelLogoContainer.PerformLayout();
+            this.panelSidebarClose.ResumeLayout(false);
+            this.panelSidebarClose.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOpenSidebar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseSidebar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).EndInit();
@@ -643,9 +664,6 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.iconThemeMoon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnModeLight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnModeDark)).EndInit();
-            this.panelSidebarClose.ResumeLayout(false);
-            this.panelSidebarClose.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -678,14 +696,15 @@ namespace Presentacion
         private System.Windows.Forms.Panel panelContenedorInterno;
         private System.Windows.Forms.Label labelHeaderRuta;
         private System.Windows.Forms.Panel subMenuUsuarios;
-        private FontAwesome.Sharp.IconButton iconButton3;
+        private FontAwesome.Sharp.IconButton btnClientes;
         private System.Windows.Forms.Panel subMenuProductos;
-        private FontAwesome.Sharp.IconButton iconButton2;
+        private FontAwesome.Sharp.IconButton btnEstantes;
         private FontAwesome.Sharp.IconButton btnProductos;
-        private FontAwesome.Sharp.IconButton iconButton4;
-        private FontAwesome.Sharp.IconButton iconButton5;
+        private FontAwesome.Sharp.IconButton btnEmpleados;
+        private FontAwesome.Sharp.IconButton btnBodega;
         private System.Windows.Forms.Label labelMenu;
         private System.Windows.Forms.Panel panelSidebarClose;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label labelAvsio;
     }
 }

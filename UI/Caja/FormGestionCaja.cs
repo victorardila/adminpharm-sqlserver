@@ -10,16 +10,21 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class FormGestionarEmpleados : Form
+    public partial class FormGestionCaja : Form
     {
-        public FormGestionarEmpleados()
+        public FormGestionCaja()
         {
             InitializeComponent();
         }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnAbrirCaja_Click(object sender, EventArgs e)
+        {
+            FormAbrirCaja frm = new FormAbrirCaja();
+            frm.ShowDialog();
         }
     }
 }
