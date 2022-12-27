@@ -44,9 +44,13 @@
     <Compile Include="Bodega.cs" />
     <Compile Include="Caja.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="Drogueria.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="Estante.cs" />
+    <Compile Include="Factura.cs" />
     <Compile Include="Producto.cs" />
+    <Compile Include="ProductoFacturaTxt.cs" />
+    <Compile Include="ProductoVencidoTxt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,11 +8,13 @@ namespace Entity
 {
     public class Caja
     {
-        public Caja(string idCaja, string fechaDeApertura, string fechaDeCierre, string estado, double montoInicial, double monto)
+        public Caja(string idCaja, string fechaDeApertura, string horaDeApertura, string fechaDeCierre, string horaDeCierre, string estado, double montoInicial, double monto)
         {
             IdCaja = idCaja;
             FechaDeApertura = fechaDeApertura;
+            HoraDeApertura = horaDeApertura;
             FechaDeCierre = fechaDeCierre;
+            HoraDeCierre = horaDeCierre;
             Estado = estado;
             Monto = monto;
         }
@@ -23,16 +25,22 @@ namespace Entity
 
         public string IdCaja { get; set; }
         public string FechaDeApertura { get; set; }
+        public string HoraDeApertura { get; set; }
         public string FechaDeCierre { get; set; }
+        public string HoraDeCierre { get; set; }
         public string Estado { get; set; }
         public double Monto { get; set; }
         //Metodos de la clase
         string dateNullFormat = "--/--/----";
+        string timeNullFormat = "--:--";
         public void AbrirCaja()
         {
             string fechaDeApertura = DateTime.Today.ToString("dd-MM-yyyy");
+            string time = DateTime.Now.ToString("h:mm:ss tt");
             FechaDeApertura = fechaDeApertura;
+            HoraDeApertura= time;
             FechaDeCierre = dateNullFormat;
+            HoraDeCierre = timeNullFormat;
             Estado = "Abierta";
         }
         public void GenerarIdCaja()
@@ -48,7 +56,9 @@ namespace Entity
         public void CerrarCaja()
         {
             string fechaDeCierre = DateTime.Now.ToString("dd-MM-yyyy");
+            string time = DateTime.Now.ToString("h:mm:ss tt");
             FechaDeCierre = fechaDeCierre;
+            HoraDeCierre = time;
             Estado = "Cerrada";
         }
     }

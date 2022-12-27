@@ -85,6 +85,42 @@
     <Compile Include="Caja\FormAbrirCaja.Designer.cs">
       <DependentUpon>FormAbrirCaja.cs</DependentUpon>
     </Compile>
+    <Compile Include="Factura\FormGestionFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Factura\FormGestionFacturas.Designer.cs">
+      <DependentUpon>FormGestionFacturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ajustes\FormAjustes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ajustes\FormAjustes.Designer.cs">
+      <DependentUpon>FormAjustes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Producto\FormProductosVendidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Producto\FormProductosVendidos.Designer.cs">
+      <DependentUpon>FormProductosVendidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Producto\FormFacturaDeProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Producto\FormFacturaDeProducto.Designer.cs">
+      <DependentUpon>FormFacturaDeProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Producto\FormProductosVencidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Producto\FormProductosVencidos.Designer.cs">
+      <DependentUpon>FormProductosVencidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Producto\FormRegistrarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Producto\FormRegistrarProducto.Designer.cs">
+      <DependentUpon>FormRegistrarProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Principal\FormSumario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +171,21 @@
     <EmbeddedResource Include="Bodega\FormGestionBodega.resx">
       <DependentUpon>FormGestionBodega.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Factura\FormGestionFacturas.resx">
+      <DependentUpon>FormGestionFacturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ajustes\FormAjustes.resx">
+      <DependentUpon>FormAjustes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Producto\FormProductosVendidos.resx">
+      <DependentUpon>FormProductosVendidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Producto\FormFacturaDeProducto.resx">
+      <DependentUpon>FormFacturaDeProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Producto\FormProductosVencidos.resx">
+      <DependentUpon>FormProductosVencidos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Principal\FormSumario.resx">
       <DependentUpon>FormSumario.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Producto\FormGestionProducto.resx">
       <DependentUpon>FormGestionProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Producto\FormRegistrarProducto.resx">
+      <DependentUpon>FormRegistrarProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -171,7 +225,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\cash.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
@@ -182,6 +236,18 @@
       <Project>{20fd8785-bb90-454b-aed5-d9aeca5a3d08}</Project>
       <Name>Entity</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deleRojBlack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\selector.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Medicamentos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Caja-Registradora.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

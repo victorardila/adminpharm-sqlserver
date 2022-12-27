@@ -33,34 +33,34 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
-            this.labelEntrenador = new FontAwesome.Sharp.IconButton();
+            this.labelProductos = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelTitleEntrenadores = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblhora = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel13 = new System.Windows.Forms.Panel();
-            this.labelAcerca = new FontAwesome.Sharp.IconButton();
+            this.labelEstantes = new FontAwesome.Sharp.IconButton();
             this.labelTitleAcerca = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel14 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
-            this.labelServicios = new FontAwesome.Sharp.IconButton();
+            this.labelClientes = new FontAwesome.Sharp.IconButton();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.labelTitleServicios = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
-            this.labelClientes = new FontAwesome.Sharp.IconButton();
+            this.labelCaja = new FontAwesome.Sharp.IconButton();
             this.panel10 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.labelTitleClientes = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
-            this.labelCaja = new FontAwesome.Sharp.IconButton();
+            this.labelEmpleados = new FontAwesome.Sharp.IconButton();
             this.panel8 = new System.Windows.Forms.Panel();
             this.labelTitleCash = new System.Windows.Forms.Label();
             this.btnRefresh = new FontAwesome.Sharp.IconButton();
@@ -69,7 +69,7 @@
             this.iconPapelera = new FontAwesome.Sharp.IconButton();
             this.labelPapelera = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.labelBodega = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -100,7 +100,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.iconPictureBox4);
             this.panel1.Controls.Add(this.iconPictureBox3);
-            this.panel1.Controls.Add(this.labelEntrenador);
+            this.panel1.Controls.Add(this.labelProductos);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.ForeColor = System.Drawing.Color.SeaGreen;
             this.panel1.Location = new System.Drawing.Point(158, 47);
@@ -136,23 +136,23 @@
             this.iconPictureBox3.TabIndex = 32;
             this.iconPictureBox3.TabStop = false;
             // 
-            // labelEntrenador
+            // labelProductos
             // 
-            this.labelEntrenador.FlatAppearance.BorderSize = 0;
-            this.labelEntrenador.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.labelEntrenador.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.labelEntrenador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelEntrenador.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEntrenador.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.labelEntrenador.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.labelEntrenador.IconColor = System.Drawing.Color.Black;
-            this.labelEntrenador.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.labelEntrenador.Location = new System.Drawing.Point(3, 115);
-            this.labelEntrenador.Name = "labelEntrenador";
-            this.labelEntrenador.Size = new System.Drawing.Size(109, 30);
-            this.labelEntrenador.TabIndex = 31;
-            this.labelEntrenador.Text = "lbl1";
-            this.labelEntrenador.UseVisualStyleBackColor = true;
+            this.labelProductos.FlatAppearance.BorderSize = 0;
+            this.labelProductos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.labelProductos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.labelProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelProductos.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.labelProductos.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.labelProductos.IconColor = System.Drawing.Color.Black;
+            this.labelProductos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.labelProductos.Location = new System.Drawing.Point(3, 115);
+            this.labelProductos.Name = "labelProductos";
+            this.labelProductos.Size = new System.Drawing.Size(109, 30);
+            this.labelProductos.TabIndex = 31;
+            this.labelProductos.Text = "lbl1";
+            this.labelProductos.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
@@ -209,7 +209,7 @@
             // panel13
             // 
             this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel13.Controls.Add(this.labelAcerca);
+            this.panel13.Controls.Add(this.labelEstantes);
             this.panel13.Controls.Add(this.labelTitleAcerca);
             this.panel13.Controls.Add(this.pictureBox7);
             this.panel13.Controls.Add(this.panel14);
@@ -218,23 +218,23 @@
             this.panel13.Size = new System.Drawing.Size(110, 150);
             this.panel13.TabIndex = 34;
             // 
-            // labelAcerca
+            // labelEstantes
             // 
-            this.labelAcerca.FlatAppearance.BorderSize = 0;
-            this.labelAcerca.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.labelAcerca.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.labelAcerca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelAcerca.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAcerca.ForeColor = System.Drawing.Color.Orange;
-            this.labelAcerca.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.labelAcerca.IconColor = System.Drawing.Color.Black;
-            this.labelAcerca.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.labelAcerca.Location = new System.Drawing.Point(0, 115);
-            this.labelAcerca.Name = "labelAcerca";
-            this.labelAcerca.Size = new System.Drawing.Size(109, 30);
-            this.labelAcerca.TabIndex = 30;
-            this.labelAcerca.Text = "lbl1";
-            this.labelAcerca.UseVisualStyleBackColor = true;
+            this.labelEstantes.FlatAppearance.BorderSize = 0;
+            this.labelEstantes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.labelEstantes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.labelEstantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelEstantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEstantes.ForeColor = System.Drawing.Color.Orange;
+            this.labelEstantes.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.labelEstantes.IconColor = System.Drawing.Color.Black;
+            this.labelEstantes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.labelEstantes.Location = new System.Drawing.Point(0, 115);
+            this.labelEstantes.Name = "labelEstantes";
+            this.labelEstantes.Size = new System.Drawing.Size(109, 30);
+            this.labelEstantes.TabIndex = 30;
+            this.labelEstantes.Text = "lbl1";
+            this.labelEstantes.UseVisualStyleBackColor = true;
             // 
             // labelTitleAcerca
             // 
@@ -283,7 +283,7 @@
             this.panel11.BackColor = System.Drawing.Color.Transparent;
             this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel11.Controls.Add(this.iconPictureBox5);
-            this.panel11.Controls.Add(this.labelServicios);
+            this.panel11.Controls.Add(this.labelClientes);
             this.panel11.Controls.Add(this.iconPictureBox1);
             this.panel11.Controls.Add(this.panel12);
             this.panel11.Location = new System.Drawing.Point(303, 48);
@@ -305,23 +305,23 @@
             this.iconPictureBox5.TabIndex = 34;
             this.iconPictureBox5.TabStop = false;
             // 
-            // labelServicios
+            // labelClientes
             // 
-            this.labelServicios.FlatAppearance.BorderSize = 0;
-            this.labelServicios.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.labelServicios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.labelServicios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelServicios.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelServicios.ForeColor = System.Drawing.Color.Crimson;
-            this.labelServicios.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.labelServicios.IconColor = System.Drawing.Color.Black;
-            this.labelServicios.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.labelServicios.Location = new System.Drawing.Point(0, 115);
-            this.labelServicios.Name = "labelServicios";
-            this.labelServicios.Size = new System.Drawing.Size(109, 30);
-            this.labelServicios.TabIndex = 32;
-            this.labelServicios.Text = "lbl1";
-            this.labelServicios.UseVisualStyleBackColor = true;
+            this.labelClientes.FlatAppearance.BorderSize = 0;
+            this.labelClientes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.labelClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.labelClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelClientes.ForeColor = System.Drawing.Color.Crimson;
+            this.labelClientes.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.labelClientes.IconColor = System.Drawing.Color.Black;
+            this.labelClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.labelClientes.Location = new System.Drawing.Point(0, 115);
+            this.labelClientes.Name = "labelClientes";
+            this.labelClientes.Size = new System.Drawing.Size(109, 30);
+            this.labelClientes.TabIndex = 32;
+            this.labelClientes.Text = "lbl1";
+            this.labelClientes.UseVisualStyleBackColor = true;
             // 
             // iconPictureBox1
             // 
@@ -355,16 +355,16 @@
             this.labelTitleServicios.ForeColor = System.Drawing.Color.White;
             this.labelTitleServicios.Location = new System.Drawing.Point(18, 4);
             this.labelTitleServicios.Name = "labelTitleServicios";
-            this.labelTitleServicios.Size = new System.Drawing.Size(68, 18);
+            this.labelTitleServicios.Size = new System.Drawing.Size(61, 18);
             this.labelTitleServicios.TabIndex = 15;
-            this.labelTitleServicios.Text = "Usuarios";
+            this.labelTitleServicios.Text = "Clientes";
             // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.Transparent;
             this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel9.Controls.Add(this.iconPictureBox2);
-            this.panel9.Controls.Add(this.labelClientes);
+            this.panel9.Controls.Add(this.labelCaja);
             this.panel9.Controls.Add(this.panel10);
             this.panel9.Location = new System.Drawing.Point(14, 46);
             this.panel9.Name = "panel9";
@@ -385,23 +385,23 @@
             this.iconPictureBox2.TabIndex = 31;
             this.iconPictureBox2.TabStop = false;
             // 
-            // labelClientes
+            // labelCaja
             // 
-            this.labelClientes.FlatAppearance.BorderSize = 0;
-            this.labelClientes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.labelClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.labelClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelClientes.ForeColor = System.Drawing.Color.SeaGreen;
-            this.labelClientes.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.labelClientes.IconColor = System.Drawing.Color.Black;
-            this.labelClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.labelClientes.Location = new System.Drawing.Point(0, 116);
-            this.labelClientes.Name = "labelClientes";
-            this.labelClientes.Size = new System.Drawing.Size(109, 30);
-            this.labelClientes.TabIndex = 30;
-            this.labelClientes.Text = "lbl1";
-            this.labelClientes.UseVisualStyleBackColor = true;
+            this.labelCaja.FlatAppearance.BorderSize = 0;
+            this.labelCaja.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.labelCaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.labelCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCaja.ForeColor = System.Drawing.Color.SeaGreen;
+            this.labelCaja.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.labelCaja.IconColor = System.Drawing.Color.Black;
+            this.labelCaja.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.labelCaja.Location = new System.Drawing.Point(0, 116);
+            this.labelCaja.Name = "labelCaja";
+            this.labelCaja.Size = new System.Drawing.Size(109, 30);
+            this.labelCaja.TabIndex = 30;
+            this.labelCaja.Text = "lbl1";
+            this.labelCaja.UseVisualStyleBackColor = true;
             // 
             // panel10
             // 
@@ -452,7 +452,7 @@
             // 
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel7.Controls.Add(this.iconPictureBox6);
-            this.panel7.Controls.Add(this.labelCaja);
+            this.panel7.Controls.Add(this.labelEmpleados);
             this.panel7.Controls.Add(this.panel8);
             this.panel7.Location = new System.Drawing.Point(444, 49);
             this.panel7.Name = "panel7";
@@ -473,23 +473,23 @@
             this.iconPictureBox6.TabIndex = 35;
             this.iconPictureBox6.TabStop = false;
             // 
-            // labelCaja
+            // labelEmpleados
             // 
-            this.labelCaja.FlatAppearance.BorderSize = 0;
-            this.labelCaja.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.labelCaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.labelCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCaja.ForeColor = System.Drawing.Color.Turquoise;
-            this.labelCaja.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.labelCaja.IconColor = System.Drawing.Color.Black;
-            this.labelCaja.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.labelCaja.Location = new System.Drawing.Point(0, 114);
-            this.labelCaja.Name = "labelCaja";
-            this.labelCaja.Size = new System.Drawing.Size(109, 30);
-            this.labelCaja.TabIndex = 29;
-            this.labelCaja.Text = "lbl1";
-            this.labelCaja.UseVisualStyleBackColor = true;
+            this.labelEmpleados.FlatAppearance.BorderSize = 0;
+            this.labelEmpleados.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.labelEmpleados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.labelEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelEmpleados.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEmpleados.ForeColor = System.Drawing.Color.Turquoise;
+            this.labelEmpleados.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.labelEmpleados.IconColor = System.Drawing.Color.Black;
+            this.labelEmpleados.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.labelEmpleados.Location = new System.Drawing.Point(0, 114);
+            this.labelEmpleados.Name = "labelEmpleados";
+            this.labelEmpleados.Size = new System.Drawing.Size(109, 30);
+            this.labelEmpleados.TabIndex = 29;
+            this.labelEmpleados.Text = "lbl1";
+            this.labelEmpleados.UseVisualStyleBackColor = true;
             // 
             // panel8
             // 
@@ -597,7 +597,7 @@
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.iconButton1);
+            this.panel5.Controls.Add(this.labelBodega);
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.pictureBox1);
             this.panel5.Controls.Add(this.panel6);
@@ -606,23 +606,23 @@
             this.panel5.Size = new System.Drawing.Size(110, 150);
             this.panel5.TabIndex = 35;
             // 
-            // iconButton1
+            // labelBodega
             // 
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton1.ForeColor = System.Drawing.Color.Orange;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(0, 115);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(109, 30);
-            this.iconButton1.TabIndex = 30;
-            this.iconButton1.Text = "lbl1";
-            this.iconButton1.UseVisualStyleBackColor = true;
+            this.labelBodega.FlatAppearance.BorderSize = 0;
+            this.labelBodega.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.labelBodega.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.labelBodega.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelBodega.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBodega.ForeColor = System.Drawing.Color.Orange;
+            this.labelBodega.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.labelBodega.IconColor = System.Drawing.Color.Black;
+            this.labelBodega.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.labelBodega.Location = new System.Drawing.Point(0, 115);
+            this.labelBodega.Name = "labelBodega";
+            this.labelBodega.Size = new System.Drawing.Size(109, 30);
+            this.labelBodega.TabIndex = 30;
+            this.labelBodega.Text = "lbl1";
+            this.labelBodega.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -730,11 +730,11 @@
         private System.Windows.Forms.Label labelTitleCash;
         private System.Windows.Forms.Panel panel8;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
-        private FontAwesome.Sharp.IconButton labelCaja;
-        private FontAwesome.Sharp.IconButton labelEntrenador;
-        private FontAwesome.Sharp.IconButton labelAcerca;
-        private FontAwesome.Sharp.IconButton labelServicios;
+        private FontAwesome.Sharp.IconButton labelEmpleados;
+        private FontAwesome.Sharp.IconButton labelProductos;
+        private FontAwesome.Sharp.IconButton labelEstantes;
         private FontAwesome.Sharp.IconButton labelClientes;
+        private FontAwesome.Sharp.IconButton labelCaja;
         private FontAwesome.Sharp.IconButton btnRefresh;
         private System.Windows.Forms.Label labelRefresh;
         private System.Windows.Forms.Panel panel4;
@@ -747,7 +747,7 @@
         private FontAwesome.Sharp.IconPictureBox iconPictureBox5;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox6;
         private System.Windows.Forms.Panel panel5;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton labelBodega;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel6;

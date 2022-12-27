@@ -44,9 +44,15 @@
     <Compile Include="BodegaService.cs" />
     <Compile Include="CajaService.cs" />
     <Compile Include="ClienteService.cs" />
+    <Compile Include="DrogueriaService.cs" />
     <Compile Include="EmpleadoService.cs" />
     <Compile Include="EstanteService.cs" />
+    <Compile Include="FacturaService.cs" />
     <Compile Include="ProductoService.cs" />
+    <Compile Include="ProductoFacturaTxtConsultaResponse.cs" />
+    <Compile Include="ProductoFacturaTxtService.cs" />
+    <Compile Include="ProductoVencidoTxtConsultaResponse.cs" />
+    <Compile Include="ProductoVencidoTxtService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

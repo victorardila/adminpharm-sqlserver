@@ -19,6 +19,7 @@ namespace Presentacion
         {
             InitializeComponent();
             customizeDesign();
+            AbrirFormulario<FormGestionCaja>();
         }
         private void AbrirSumadorDelSistema()
         {
@@ -108,6 +109,7 @@ namespace Presentacion
         {
             panelSelectionCaja.Location = btnGestionCaja.Location;
             panelSelectionCaja.Visible = true;
+            panelSelectionAjustes.Visible = false;
             panelSelectionProducto.Visible = false;
             panelSelectionUsuarios.Visible = false;
             CerrarFormulariosCiclo();
@@ -121,6 +123,7 @@ namespace Presentacion
             showSubMenu(subMenuProductos);
             panelSelectionProducto.Location = btnGestionProductos.Location;
             panelSelectionCaja.Visible = false;
+            panelSelectionAjustes.Visible = false;
             panelSelectionProducto.Visible = true;
             panelSelectionUsuarios.Visible = false;
 
@@ -149,6 +152,7 @@ namespace Presentacion
             showSubMenu(subMenuUsuarios);
             panelSelectionUsuarios.Location = btnGestionUsuarios.Location;
             panelSelectionCaja.Visible = false;
+            panelSelectionAjustes.Visible = false;
             panelSelectionProducto.Visible = false;
             panelSelectionUsuarios.Visible = true;
         }
@@ -162,13 +166,23 @@ namespace Presentacion
             CerrarFormulariosCiclo();
             AbrirFormulario<FormGestionarEmpleados>();
         }
+//**********************************************GESTION DE AJUSTES******************************************************
 
-        //**********************************************************************************************************************
+        private void btnAjustes_Click(object sender, EventArgs e)
+        {
+            panelSelectionAjustes.Location = btnAjustes.Location;
+            panelSelectionAjustes.Visible = true;
+            panelSelectionCaja.Visible = false;
+            panelSelectionProducto.Visible = false;
+            panelSelectionUsuarios.Visible = false;
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormAjustes>();
+        }
+//**********************************************************************************************************************
         private void btnDarkMode_Click(object sender, EventArgs e)
         {
-            
+           
         }
-
         private void btnLightMode_Click(object sender, EventArgs e)
         {
 
@@ -225,6 +239,9 @@ namespace Presentacion
                     break;
                 case 6:
                     CerrarFormulario<FormGestionarEmpleados>();
+                    break;
+                case 7:
+                    CerrarFormulario<FormAjustes>();
                     break;
             }
         }

@@ -20,7 +20,7 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Insert Into CAJA_REGISTRADORA(Id_Caja, Fecha_De_Apertura, Fecha_De_Cierre, Estado, Monto) " +
+                command.CommandText = "Insert Into CAJA(Id_Caja, Fecha_De_Apertura, Fecha_De_Cierre, Estado, Monto) " +
                     "Values (@Id_Caja, @Fecha_De_Apertura, @Fecha_De_Cierre, @Estado, @Monto)";
                 //command.Parameters.Add("@Id", SqlDbType.VarChar).Value = persona.Identificacion;
                 command.Parameters.AddWithValue("@Id_Caja", caja.IdCaja);
@@ -36,11 +36,13 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"Insert Into CAJA_REGISTRADORA (Id_Caja, Fecha_De_Apertura, Fecha_De_Cierre, Estado, Monto) 
-                                        values (@Id_Caja, @Fecha_De_Apertura, @Fecha_De_Cierre, @Estado, @Monto)";
+                command.CommandText = @"Insert Into CAJA (Id_Caja, Fecha_De_Apertura, Hora_De_Apertura, Fecha_De_Cierre, Hora_De_Cierre, Estado, Monto) 
+                                        values (@Id_Caja, @Fecha_De_Apertura, @Hora_De_Apertura, @Fecha_De_Cierre, @Hora_De_Cierre, @Estado, @Monto)";
                 command.Parameters.AddWithValue("@Id_Caja", caja.IdCaja);
                 command.Parameters.AddWithValue("@Fecha_De_Apertura", caja.FechaDeApertura);
+                command.Parameters.AddWithValue("@Hora_De_Apertura", caja.HoraDeApertura);
                 command.Parameters.AddWithValue("@Fecha_De_Cierre", caja.FechaDeCierre);
+                command.Parameters.AddWithValue("@Hora_De_Cierre", caja.HoraDeCierre);
                 command.Parameters.AddWithValue("@Estado", caja.Estado);
                 command.Parameters.AddWithValue("@Monto", caja.Monto);
                 var filas = command.ExecuteNonQuery();
@@ -50,7 +52,7 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Delete from CAJA_REGISTRADORA where Id_Caja=@Id_Caja";
+                command.CommandText = "Delete from CAJA where Id_Caja=@Id_Caja";
                 command.Parameters.AddWithValue("@Id_Caja", caja.IdCaja);
                 command.ExecuteNonQuery();
             }
@@ -60,7 +62,7 @@ namespace DAL
             List<Caja> cajas = new List<Caja>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Delete from CAJA_REGISTRADORA where Estado=@Estado";
+                command.CommandText = "Delete from CAJA where Estado=@Estado";
                 command.Parameters.AddWithValue("@estado", estado);
                 command.ExecuteNonQuery();
                 var dataReader = command.ExecuteReader();
@@ -79,7 +81,7 @@ namespace DAL
             List<Caja> cajas = new List<Caja>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select Id_Caja, Fecha_De_Apertura, Fecha_De_Cierre, Estado, Monto from CAJA_REGISTRADORA ";
+                command.CommandText = "Select Id_Caja, Fecha_De_Apertura, Hora_De_Apertura, Fecha_De_Cierre, Hora_De_Cierre, Estado, Monto from CAJA";
                 var dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -97,7 +99,7 @@ namespace DAL
             List<Caja> cajas = new List<Caja>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "select * from CAJA_REGISTRADORA where Estado=@Estado";
+                command.CommandText = "select * from CAJA where Estado=@Estado";
                 command.Parameters.AddWithValue("@Estado", estado);
                 var dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
@@ -116,7 +118,7 @@ namespace DAL
             SqlDataReader dataReader;
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "select * from CAJA_REGISTRADORA where Estado=@Estado";
+                command.CommandText = "select * from CAJA where Estado=@Estado";
                 command.Parameters.AddWithValue("@Estado", estado);
                 dataReader = command.ExecuteReader();
                 dataReader.Read();
@@ -128,7 +130,7 @@ namespace DAL
             SqlDataReader dataReader;
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "select * from CAJA_REGISTRADORA where Id_Caja=@Id_Caja";
+                command.CommandText = "select * from CAJA where Id_Caja=@Id_Caja";
                 command.Parameters.AddWithValue("@Id_Caja", identificacion);
                 dataReader = command.ExecuteReader();
                 dataReader.Read();
@@ -139,11 +141,13 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"update CAJA_REGISTRADORA set Fecha_De_Apertura=@Fecha_De_Apertura, Fecha_De_Cierre=@Fecha_De_Cierre, Estado=@Estado, Monto=@Monto
+                command.CommandText = @"update CAJA set Fecha_De_Apertura=@Fecha_De_Apertura, Hora_De_Apertura=@Hora_De_Apertura, Fecha_De_Cierre=@Fecha_De_Cierre, Hora_De_Cierre=@Hora_De_Cierre, Estado=@Estado, Monto=@Monto
                                         where Id_Caja=@Id_Caja";
                 command.Parameters.AddWithValue("@Id_Caja", caja.IdCaja);
                 command.Parameters.AddWithValue("@Fecha_De_Apertura", caja.FechaDeApertura);
+                command.Parameters.AddWithValue("@Hora_De_Apertura", caja.HoraDeApertura);
                 command.Parameters.AddWithValue("@Fecha_De_Cierre", caja.FechaDeCierre);
+                command.Parameters.AddWithValue("@Hora_De_Cierre", caja.HoraDeCierre);
                 command.Parameters.AddWithValue("@Estado", caja.Estado);
                 command.Parameters.AddWithValue("@Monto", caja.Monto);
                 var filas = command.ExecuteNonQuery();
@@ -155,7 +159,9 @@ namespace DAL
             Caja caja = new Caja();
             caja.IdCaja = (string)dataReader["Id_Caja"];
             caja.FechaDeApertura = (string)dataReader["Fecha_De_Apertura"];
+            caja.HoraDeApertura = (string)dataReader["Hora_De_Apertura"];
             caja.FechaDeCierre = (string)dataReader["Fecha_De_Cierre"];
+            caja.HoraDeCierre = (string)dataReader["Hora_De_Cierre"];
             caja.Estado = (string)dataReader["Estado"];
             caja.Monto = (int)dataReader["Monto"];
             return caja;

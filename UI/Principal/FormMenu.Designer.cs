@@ -58,6 +58,7 @@ namespace Presentacion
             this.labelLogoName = new System.Windows.Forms.Label();
             this.pictureLogo = new System.Windows.Forms.PictureBox();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.labelAvsio = new System.Windows.Forms.Label();
             this.labelHeaderRuta = new System.Windows.Forms.Label();
             this.iconThemeSun = new FontAwesome.Sharp.IconPictureBox();
             this.iconThemeMoon = new FontAwesome.Sharp.IconPictureBox();
@@ -65,7 +66,8 @@ namespace Presentacion
             this.btnModeLight = new FontAwesome.Sharp.IconPictureBox();
             this.btnModeDark = new FontAwesome.Sharp.IconPictureBox();
             this.panelContenedorInterno = new System.Windows.Forms.Panel();
-            this.labelAvsio = new System.Windows.Forms.Label();
+            this.btnAjustes = new FontAwesome.Sharp.IconButton();
+            this.panelSelectionAjustes = new System.Windows.Forms.Panel();
             this.panelHeaderbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnWindowMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnWindowRestore)).BeginInit();
@@ -168,6 +170,8 @@ namespace Presentacion
             // 
             this.panelSidebar.AutoScroll = true;
             this.panelSidebar.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panelSidebar.Controls.Add(this.panelSelectionAjustes);
+            this.panelSidebar.Controls.Add(this.btnAjustes);
             this.panelSidebar.Controls.Add(this.panelSelectionUsuarios);
             this.panelSidebar.Controls.Add(this.panelSelectionProducto);
             this.panelSidebar.Controls.Add(this.panelSelectionCaja);
@@ -237,7 +241,7 @@ namespace Presentacion
             this.btnEmpleados.IconSize = 10;
             this.btnEmpleados.Location = new System.Drawing.Point(0, 37);
             this.btnEmpleados.Name = "btnEmpleados";
-            this.btnEmpleados.Size = new System.Drawing.Size(186, 37);
+            this.btnEmpleados.Size = new System.Drawing.Size(186, 39);
             this.btnEmpleados.TabIndex = 6;
             this.btnEmpleados.Text = "Empleados";
             this.btnEmpleados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -527,6 +531,17 @@ namespace Presentacion
             this.panelHeader.Size = new System.Drawing.Size(784, 25);
             this.panelHeader.TabIndex = 3;
             // 
+            // labelAvsio
+            // 
+            this.labelAvsio.AutoSize = true;
+            this.labelAvsio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAvsio.Location = new System.Drawing.Point(106, 7);
+            this.labelAvsio.Name = "labelAvsio";
+            this.labelAvsio.Size = new System.Drawing.Size(91, 13);
+            this.labelAvsio.TabIndex = 11;
+            this.labelAvsio.Text = "!!!Advertencia:";
+            this.labelAvsio.Visible = false;
+            // 
             // labelHeaderRuta
             // 
             this.labelHeaderRuta.AutoSize = true;
@@ -617,16 +632,38 @@ namespace Presentacion
             this.panelContenedorInterno.Size = new System.Drawing.Size(784, 448);
             this.panelContenedorInterno.TabIndex = 4;
             // 
-            // labelAvsio
+            // btnAjustes
             // 
-            this.labelAvsio.AutoSize = true;
-            this.labelAvsio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAvsio.Location = new System.Drawing.Point(106, 7);
-            this.labelAvsio.Name = "labelAvsio";
-            this.labelAvsio.Size = new System.Drawing.Size(91, 13);
-            this.labelAvsio.TabIndex = 11;
-            this.labelAvsio.Text = "!!!Advertencia:";
-            this.labelAvsio.Visible = false;
+            this.btnAjustes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
+            this.btnAjustes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAjustes.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnAjustes.FlatAppearance.BorderSize = 0;
+            this.btnAjustes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnAjustes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnAjustes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAjustes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAjustes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAjustes.IconChar = FontAwesome.Sharp.IconChar.Cog;
+            this.btnAjustes.IconColor = System.Drawing.Color.White;
+            this.btnAjustes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAjustes.IconSize = 22;
+            this.btnAjustes.Location = new System.Drawing.Point(0, 398);
+            this.btnAjustes.Name = "btnAjustes";
+            this.btnAjustes.Size = new System.Drawing.Size(186, 37);
+            this.btnAjustes.TabIndex = 9;
+            this.btnAjustes.Text = "   Ajustes";
+            this.btnAjustes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAjustes.UseVisualStyleBackColor = false;
+            this.btnAjustes.Click += new System.EventHandler(this.btnAjustes_Click);
+            // 
+            // panelSelectionAjustes
+            // 
+            this.panelSelectionAjustes.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panelSelectionAjustes.Location = new System.Drawing.Point(0, 398);
+            this.panelSelectionAjustes.Name = "panelSelectionAjustes";
+            this.panelSelectionAjustes.Size = new System.Drawing.Size(6, 37);
+            this.panelSelectionAjustes.TabIndex = 9;
+            this.panelSelectionAjustes.Visible = false;
             // 
             // FormMenu
             // 
@@ -639,6 +676,7 @@ namespace Presentacion
             this.Controls.Add(this.panelSidebar);
             this.Controls.Add(this.panelHeaderbar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(899, 500);
             this.Name = "FormMenu";
             this.Text = "FormMenu";
@@ -706,5 +744,7 @@ namespace Presentacion
         private System.Windows.Forms.Panel panelSidebarClose;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelAvsio;
+        private FontAwesome.Sharp.IconButton btnAjustes;
+        private System.Windows.Forms.Panel panelSelectionAjustes;
     }
 }
