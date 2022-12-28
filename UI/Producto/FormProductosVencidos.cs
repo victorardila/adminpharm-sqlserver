@@ -58,6 +58,7 @@ namespace Presentacion
                 if (productoVencidoTxtConsultaResponse.ProductoTxts.Count == 0)
                 {
                     dataGridProductosVencidos.DataSource = null;
+                    labelAdvertencia.Visible = true;
                 }
             }
         }
@@ -94,7 +95,7 @@ namespace Presentacion
         }
         private void btnLimpiarHistorial_Click(object sender, EventArgs e)
         {
-            var respuesta = MessageBox.Show("¿Está seguro de eliminar el historial de cajas cerradas?", "Mensaje de Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var respuesta = MessageBox.Show("¿Está seguro de eliminar el historial de productos vencidos?", "Mensaje de Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
                 ProductoFacturaTxt productoTxt = new ProductoFacturaTxt();

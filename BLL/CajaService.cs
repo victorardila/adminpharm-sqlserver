@@ -133,8 +133,8 @@ namespace BLL
                 var cajaRegistradora = repositorio.BuscarPorIdentificacion(cajaRegistradoraNueva.IdCaja);
                 if (cajaRegistradora != null)
                 {
-                    repositorio.Modificar(cajaRegistradoraNueva);
-                    return ($"El registro de {cajaRegistradoraNueva.IdCaja} se ha modificado satisfactoriamente.");
+                    repositorio.ModificarCash(cajaRegistradoraNueva);
+                    return ($"los productos se han generado en la caja {cajaRegistradoraNueva.IdCaja} satisfactoriamente.");
                 }
                 else
                 {

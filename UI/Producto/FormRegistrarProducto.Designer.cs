@@ -48,6 +48,7 @@ namespace Presentacion
             this.comboVia = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panelTituloDeRegistroProductos = new System.Windows.Forms.Panel();
+            this.labelAdvertencia = new System.Windows.Forms.Label();
             this.btnClose = new FontAwesome.Sharp.IconPictureBox();
             this.textSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new FontAwesome.Sharp.IconPictureBox();
@@ -67,7 +68,6 @@ namespace Presentacion
             this.textLote = new System.Windows.Forms.TextBox();
             this.dateTimeFechaVencimiento = new System.Windows.Forms.DateTimePicker();
             this.labelLote = new System.Windows.Forms.Label();
-            this.labelAdvertencia = new System.Windows.Forms.Label();
             this.menuTop.SuspendLayout();
             this.panelRegistroDeProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -106,6 +106,7 @@ namespace Presentacion
             // panelRegistroDeProductos
             // 
             this.panelRegistroDeProductos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRegistroDeProductos.Controls.Add(this.labelAdvertencia);
             this.panelRegistroDeProductos.Controls.Add(this.comboLaboratorio);
             this.panelRegistroDeProductos.Controls.Add(this.labelLaboratorio);
             this.panelRegistroDeProductos.Controls.Add(this.pictureBox1);
@@ -139,7 +140,7 @@ namespace Presentacion
             this.panelRegistroDeProductos.Controls.Add(this.labelLote);
             this.panelRegistroDeProductos.Location = new System.Drawing.Point(0, 25);
             this.panelRegistroDeProductos.Name = "panelRegistroDeProductos";
-            this.panelRegistroDeProductos.Size = new System.Drawing.Size(526, 388);
+            this.panelRegistroDeProductos.Size = new System.Drawing.Size(526, 417);
             this.panelRegistroDeProductos.TabIndex = 49;
             // 
             // comboLaboratorio
@@ -150,7 +151,7 @@ namespace Presentacion
             "Asociados S.A.S",
             "Nancy S.A.S",
             "Funsovida"});
-            this.comboLaboratorio.Location = new System.Drawing.Point(387, 217);
+            this.comboLaboratorio.Location = new System.Drawing.Point(387, 248);
             this.comboLaboratorio.Name = "comboLaboratorio";
             this.comboLaboratorio.Size = new System.Drawing.Size(115, 21);
             this.comboLaboratorio.TabIndex = 67;
@@ -158,7 +159,7 @@ namespace Presentacion
             // labelLaboratorio
             // 
             this.labelLaboratorio.AutoSize = true;
-            this.labelLaboratorio.Location = new System.Drawing.Point(326, 223);
+            this.labelLaboratorio.Location = new System.Drawing.Point(326, 254);
             this.labelLaboratorio.Name = "labelLaboratorio";
             this.labelLaboratorio.Size = new System.Drawing.Size(63, 13);
             this.labelLaboratorio.TabIndex = 66;
@@ -167,7 +168,7 @@ namespace Presentacion
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Presentacion.Properties.Resources.Medicamentos;
-            this.pictureBox1.Location = new System.Drawing.Point(187, 28);
+            this.pictureBox1.Location = new System.Drawing.Point(187, 59);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(148, 82);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -195,7 +196,7 @@ namespace Presentacion
             "Anti-histamínico",
             "Antipirético",
             "Relajante muscular"});
-            this.comboTipo.Location = new System.Drawing.Point(44, 249);
+            this.comboTipo.Location = new System.Drawing.Point(44, 280);
             this.comboTipo.Name = "comboTipo";
             this.comboTipo.Size = new System.Drawing.Size(177, 21);
             this.comboTipo.TabIndex = 64;
@@ -203,7 +204,7 @@ namespace Presentacion
             // labelTipo
             // 
             this.labelTipo.AutoSize = true;
-            this.labelTipo.Location = new System.Drawing.Point(11, 252);
+            this.labelTipo.Location = new System.Drawing.Point(11, 283);
             this.labelTipo.Name = "labelTipo";
             this.labelTipo.Size = new System.Drawing.Size(31, 13);
             this.labelTipo.TabIndex = 63;
@@ -212,7 +213,7 @@ namespace Presentacion
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 313);
+            this.label1.Location = new System.Drawing.Point(11, 344);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 13);
             this.label1.TabIndex = 62;
@@ -220,7 +221,7 @@ namespace Presentacion
             // 
             // textCantidad
             // 
-            this.textCantidad.Location = new System.Drawing.Point(124, 310);
+            this.textCantidad.Location = new System.Drawing.Point(124, 341);
             this.textCantidad.Name = "textCantidad";
             this.textCantidad.Size = new System.Drawing.Size(144, 20);
             this.textCantidad.TabIndex = 61;
@@ -240,7 +241,7 @@ namespace Presentacion
             "8",
             "9",
             "10"});
-            this.comboBox1.Location = new System.Drawing.Point(381, 309);
+            this.comboBox1.Location = new System.Drawing.Point(381, 340);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 60;
@@ -259,7 +260,7 @@ namespace Presentacion
             this.btnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnModificar.IconSize = 30;
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(265, 341);
+            this.btnModificar.Location = new System.Drawing.Point(265, 372);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(174, 35);
             this.btnModificar.TabIndex = 51;
@@ -281,7 +282,7 @@ namespace Presentacion
             this.btnRegistrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRegistrar.IconSize = 30;
             this.btnRegistrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistrar.Location = new System.Drawing.Point(85, 341);
+            this.btnRegistrar.Location = new System.Drawing.Point(85, 372);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(174, 35);
             this.btnRegistrar.TabIndex = 54;
@@ -292,7 +293,7 @@ namespace Presentacion
             // 
             // textDetalle
             // 
-            this.textDetalle.Location = new System.Drawing.Point(136, 142);
+            this.textDetalle.Location = new System.Drawing.Point(136, 173);
             this.textDetalle.Multiline = true;
             this.textDetalle.Name = "textDetalle";
             this.textDetalle.Size = new System.Drawing.Size(272, 40);
@@ -301,7 +302,7 @@ namespace Presentacion
             // labelDetalle
             // 
             this.labelDetalle.AutoSize = true;
-            this.labelDetalle.Location = new System.Drawing.Point(9, 157);
+            this.labelDetalle.Location = new System.Drawing.Point(9, 188);
             this.labelDetalle.Name = "labelDetalle";
             this.labelDetalle.Size = new System.Drawing.Size(124, 13);
             this.labelDetalle.TabIndex = 58;
@@ -311,7 +312,7 @@ namespace Presentacion
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(468, 283);
+            this.label6.Location = new System.Drawing.Point(468, 314);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(16, 13);
             this.label6.TabIndex = 57;
@@ -333,7 +334,7 @@ namespace Presentacion
             "Nebulizantes",
             "Cutanea",
             "Transdérmica"});
-            this.comboVia.Location = new System.Drawing.Point(320, 248);
+            this.comboVia.Location = new System.Drawing.Point(320, 279);
             this.comboVia.Name = "comboVia";
             this.comboVia.Size = new System.Drawing.Size(172, 21);
             this.comboVia.TabIndex = 56;
@@ -341,7 +342,7 @@ namespace Presentacion
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(268, 313);
+            this.label5.Location = new System.Drawing.Point(268, 344);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(113, 13);
             this.label5.TabIndex = 52;
@@ -350,7 +351,6 @@ namespace Presentacion
             // panelTituloDeRegistroProductos
             // 
             this.panelTituloDeRegistroProductos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTituloDeRegistroProductos.Controls.Add(this.labelAdvertencia);
             this.panelTituloDeRegistroProductos.Controls.Add(this.btnClose);
             this.panelTituloDeRegistroProductos.Controls.Add(this.textSearch);
             this.panelTituloDeRegistroProductos.Controls.Add(this.btnSearch);
@@ -360,6 +360,18 @@ namespace Presentacion
             this.panelTituloDeRegistroProductos.Name = "panelTituloDeRegistroProductos";
             this.panelTituloDeRegistroProductos.Size = new System.Drawing.Size(524, 24);
             this.panelTituloDeRegistroProductos.TabIndex = 48;
+            // 
+            // labelAdvertencia
+            // 
+            this.labelAdvertencia.AutoSize = true;
+            this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelAdvertencia.Location = new System.Drawing.Point(165, 31);
+            this.labelAdvertencia.Name = "labelAdvertencia";
+            this.labelAdvertencia.Size = new System.Drawing.Size(184, 16);
+            this.labelAdvertencia.TabIndex = 60;
+            this.labelAdvertencia.Text = "No existe este producto!!!";
+            this.labelAdvertencia.Visible = false;
             // 
             // btnClose
             // 
@@ -417,7 +429,7 @@ namespace Presentacion
             // 
             // textReferencia
             // 
-            this.textReferencia.Location = new System.Drawing.Point(73, 118);
+            this.textReferencia.Location = new System.Drawing.Point(73, 149);
             this.textReferencia.Name = "textReferencia";
             this.textReferencia.Size = new System.Drawing.Size(144, 20);
             this.textReferencia.TabIndex = 33;
@@ -425,7 +437,7 @@ namespace Presentacion
             // labelPorcentajeDeVenta
             // 
             this.labelPorcentajeDeVenta.AutoSize = true;
-            this.labelPorcentajeDeVenta.Location = new System.Drawing.Point(273, 283);
+            this.labelPorcentajeDeVenta.Location = new System.Drawing.Point(273, 314);
             this.labelPorcentajeDeVenta.Name = "labelPorcentajeDeVenta";
             this.labelPorcentajeDeVenta.Size = new System.Drawing.Size(106, 13);
             this.labelPorcentajeDeVenta.TabIndex = 47;
@@ -434,7 +446,7 @@ namespace Presentacion
             // labelReferencia
             // 
             this.labelReferencia.AutoSize = true;
-            this.labelReferencia.Location = new System.Drawing.Point(9, 122);
+            this.labelReferencia.Location = new System.Drawing.Point(9, 153);
             this.labelReferencia.Name = "labelReferencia";
             this.labelReferencia.Size = new System.Drawing.Size(62, 13);
             this.labelReferencia.TabIndex = 32;
@@ -442,7 +454,7 @@ namespace Presentacion
             // 
             // textPorcentajeDeVenta
             // 
-            this.textPorcentajeDeVenta.Location = new System.Drawing.Point(379, 279);
+            this.textPorcentajeDeVenta.Location = new System.Drawing.Point(379, 310);
             this.textPorcentajeDeVenta.Name = "textPorcentajeDeVenta";
             this.textPorcentajeDeVenta.Size = new System.Drawing.Size(88, 20);
             this.textPorcentajeDeVenta.TabIndex = 46;
@@ -451,7 +463,7 @@ namespace Presentacion
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(220, 121);
+            this.label2.Location = new System.Drawing.Point(220, 152);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 13);
             this.label2.TabIndex = 34;
@@ -459,7 +471,7 @@ namespace Presentacion
             // 
             // textPrecioDeNegocio
             // 
-            this.textPrecioDeNegocio.Location = new System.Drawing.Point(116, 279);
+            this.textPrecioDeNegocio.Location = new System.Drawing.Point(116, 310);
             this.textPrecioDeNegocio.Name = "textPrecioDeNegocio";
             this.textPrecioDeNegocio.Size = new System.Drawing.Size(144, 20);
             this.textPrecioDeNegocio.TabIndex = 45;
@@ -467,7 +479,7 @@ namespace Presentacion
             // 
             // textNombreFarmaceutico
             // 
-            this.textNombreFarmaceutico.Location = new System.Drawing.Point(334, 118);
+            this.textNombreFarmaceutico.Location = new System.Drawing.Point(334, 149);
             this.textNombreFarmaceutico.Name = "textNombreFarmaceutico";
             this.textNombreFarmaceutico.Size = new System.Drawing.Size(144, 20);
             this.textNombreFarmaceutico.TabIndex = 35;
@@ -475,7 +487,7 @@ namespace Presentacion
             // labelPrecioDeNegocio
             // 
             this.labelPrecioDeNegocio.AutoSize = true;
-            this.labelPrecioDeNegocio.Location = new System.Drawing.Point(11, 284);
+            this.labelPrecioDeNegocio.Location = new System.Drawing.Point(11, 315);
             this.labelPrecioDeNegocio.Name = "labelPrecioDeNegocio";
             this.labelPrecioDeNegocio.Size = new System.Drawing.Size(105, 13);
             this.labelPrecioDeNegocio.TabIndex = 44;
@@ -484,7 +496,7 @@ namespace Presentacion
             // labelFechaRegistro
             // 
             this.labelFechaRegistro.AutoSize = true;
-            this.labelFechaRegistro.Location = new System.Drawing.Point(9, 193);
+            this.labelFechaRegistro.Location = new System.Drawing.Point(9, 224);
             this.labelFechaRegistro.Name = "labelFechaRegistro";
             this.labelFechaRegistro.Size = new System.Drawing.Size(92, 13);
             this.labelFechaRegistro.TabIndex = 36;
@@ -493,7 +505,7 @@ namespace Presentacion
             // dateTimeFechaRegistro
             // 
             this.dateTimeFechaRegistro.Enabled = false;
-            this.dateTimeFechaRegistro.Location = new System.Drawing.Point(101, 190);
+            this.dateTimeFechaRegistro.Location = new System.Drawing.Point(101, 221);
             this.dateTimeFechaRegistro.Name = "dateTimeFechaRegistro";
             this.dateTimeFechaRegistro.Size = new System.Drawing.Size(200, 20);
             this.dateTimeFechaRegistro.TabIndex = 37;
@@ -501,7 +513,7 @@ namespace Presentacion
             // labelVia
             // 
             this.labelVia.AutoSize = true;
-            this.labelVia.Location = new System.Drawing.Point(228, 252);
+            this.labelVia.Location = new System.Drawing.Point(228, 283);
             this.labelVia.Name = "labelVia";
             this.labelVia.Size = new System.Drawing.Size(91, 13);
             this.labelVia.TabIndex = 42;
@@ -510,7 +522,7 @@ namespace Presentacion
             // labelFechaVencimiento
             // 
             this.labelFechaVencimiento.AutoSize = true;
-            this.labelFechaVencimiento.Location = new System.Drawing.Point(8, 222);
+            this.labelFechaVencimiento.Location = new System.Drawing.Point(8, 253);
             this.labelFechaVencimiento.Name = "labelFechaVencimiento";
             this.labelFechaVencimiento.Size = new System.Drawing.Size(115, 13);
             this.labelFechaVencimiento.TabIndex = 38;
@@ -518,14 +530,14 @@ namespace Presentacion
             // 
             // textLote
             // 
-            this.textLote.Location = new System.Drawing.Point(342, 191);
+            this.textLote.Location = new System.Drawing.Point(342, 222);
             this.textLote.Name = "textLote";
             this.textLote.Size = new System.Drawing.Size(144, 20);
             this.textLote.TabIndex = 41;
             // 
             // dateTimeFechaVencimiento
             // 
-            this.dateTimeFechaVencimiento.Location = new System.Drawing.Point(122, 219);
+            this.dateTimeFechaVencimiento.Location = new System.Drawing.Point(122, 250);
             this.dateTimeFechaVencimiento.Name = "dateTimeFechaVencimiento";
             this.dateTimeFechaVencimiento.Size = new System.Drawing.Size(200, 20);
             this.dateTimeFechaVencimiento.TabIndex = 39;
@@ -533,29 +545,17 @@ namespace Presentacion
             // labelLote
             // 
             this.labelLote.AutoSize = true;
-            this.labelLote.Location = new System.Drawing.Point(305, 194);
+            this.labelLote.Location = new System.Drawing.Point(305, 225);
             this.labelLote.Name = "labelLote";
             this.labelLote.Size = new System.Drawing.Size(31, 13);
             this.labelLote.TabIndex = 40;
             this.labelLote.Text = "Lote:";
             // 
-            // labelAdvertencia
-            // 
-            this.labelAdvertencia.AutoSize = true;
-            this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
-            this.labelAdvertencia.Location = new System.Drawing.Point(164, 3);
-            this.labelAdvertencia.Name = "labelAdvertencia";
-            this.labelAdvertencia.Size = new System.Drawing.Size(184, 16);
-            this.labelAdvertencia.TabIndex = 60;
-            this.labelAdvertencia.Text = "No existe este producto!!!";
-            this.labelAdvertencia.Visible = false;
-            // 
             // FormRegistrarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 414);
+            this.ClientSize = new System.Drawing.Size(526, 442);
             this.Controls.Add(this.panelRegistroDeProductos);
             this.Controls.Add(this.menuTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

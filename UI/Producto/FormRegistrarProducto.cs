@@ -59,34 +59,38 @@ namespace Presentacion
             textSearch.Visible = true;
             btnClose.Visible = true;
             labelTitle.Text = "Modificar Producto";
-            BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
-            string referencia = textSearch.Text;
-            respuesta = productoService.BuscarPorReferencia(referencia);
-            if (respuesta.Producto != null)
+            if (textSearch.Text != ""&& textSearch.Text != "Buscar referencia")
             {
-                btnModificar.Enabled = true;
-                btnRegistrar.Enabled = false;
-                labelAdvertencia.Visible = false;
-                var productos = new List<Producto> { respuesta.Producto };
-                textReferencia.Text = respuesta.Producto.Referencia;
-                referencia = respuesta.Producto.Referencia;
-                textNombreFarmaceutico.Text = respuesta.Producto.Nombre;
-                textDetalle.Text = respuesta.Producto.Detalle;
-                dateTimeFechaRegistro.Text = respuesta.Producto.FechaDeRegistro.ToString();
-                dateTimeFechaVencimiento.Text = respuesta.Producto.FechaDeVencimiento.ToString();
-                textLote.Text = respuesta.Producto.Lote;
-                comboLaboratorio.Text= respuesta.Producto.Laboratorio;
-                comboTipo.Text = respuesta.Producto.Tipo;
-                comboVia.Text = respuesta.Producto.Via;
-                textPrecioDeNegocio.Text = respuesta.Producto.PrecioDeNegocio.ToString();
-                textPorcentajeDeVenta.Text= respuesta.Producto.PorcentajeDeVenta.ToString();
-                textCantidad.Text = respuesta.Producto.Cantidad.ToString();
-            }
-            else
-            {
-                if (respuesta.Producto == null)
+                BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
+                string referencia = textSearch.Text;
+                respuesta = productoService.BuscarPorReferencia(referencia);
+                if (respuesta.Producto != null)
                 {
-                    labelAdvertencia.Visible = true;
+                    btnModificar.Enabled = true;
+                    btnRegistrar.Enabled = false;
+                    labelAdvertencia.Visible = false;
+                    var productos = new List<Producto> { respuesta.Producto };
+                    textReferencia.Text = respuesta.Producto.Referencia;
+                    referencia = respuesta.Producto.Referencia;
+                    textNombreFarmaceutico.Text = respuesta.Producto.Nombre;
+                    textDetalle.Text = respuesta.Producto.Detalle;
+                    dateTimeFechaRegistro.Text = respuesta.Producto.FechaDeRegistro.ToString();
+                    dateTimeFechaVencimiento.Text = respuesta.Producto.FechaDeVencimiento.ToString();
+                    textLote.Text = respuesta.Producto.Lote;
+                    comboLaboratorio.Text = respuesta.Producto.Laboratorio;
+                    comboTipo.Text = respuesta.Producto.Tipo;
+                    comboVia.Text = respuesta.Producto.Via;
+                    textPrecioDeNegocio.Text = respuesta.Producto.PrecioDeNegocio.ToString();
+                    textPorcentajeDeVenta.Text = respuesta.Producto.PorcentajeDeVenta.ToString();
+                    textCantidad.Text = respuesta.Producto.Cantidad.ToString();
+                }
+                else
+                {
+                    if (respuesta.Producto == null)
+                    {
+                        labelAdvertencia.Visible = true;
+                        labelAdvertencia.Text = "No existe producto con esta referencia";
+                    }
                 }
             }
         }
@@ -96,6 +100,7 @@ namespace Presentacion
             textSearch.Visible = false;
             btnClose.Visible = false;
             labelTitle.Text = "Registrar Producto";
+            labelAdvertencia.Visible = false;
         }
 
         private void textSearch_Enter(object sender, EventArgs e)
@@ -108,7 +113,7 @@ namespace Presentacion
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            var respuesta = MessageBox.Show("Está seguro de Modificar la información", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var respuesta = MessageBox.Show("Está seguro de Modificar el producto", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (respuesta == DialogResult.Yes)
             {
                 Producto producto = MapearProducto();

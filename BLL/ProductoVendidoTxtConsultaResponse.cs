@@ -7,21 +7,21 @@ using Entity;
 
 namespace BLL
 {
-    public class ProductoVencidoTxtConsultaResponse
+    public class ProductoVendidoTxtConsultaResponse
     {
-        public List<ProductoVencidoTxt> ProductoTxts { get; set; }
+        public List<ProductoVendidoTxt> ProductoTxts { get; set; }
         public string Mensaje { get; set; }
         public bool Error { get; set; }
         public bool Encontrado { get; set; }
 
-        public ProductoVencidoTxtConsultaResponse(string mensaje)
+        public ProductoVendidoTxtConsultaResponse(string mensaje)
         {
             Mensaje = mensaje;
             Encontrado = false;
         }
-        public ProductoVencidoTxtConsultaResponse(List<ProductoVencidoTxt> productostxts)
+        public ProductoVendidoTxtConsultaResponse(List<ProductoVendidoTxt> productostxts)
         {
-            ProductoTxts = new List<ProductoVencidoTxt>();
+            ProductoTxts = new List<ProductoVendidoTxt>();
             ProductoTxts = productostxts;
             Encontrado = true;
         }

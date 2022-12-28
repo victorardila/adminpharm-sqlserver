@@ -103,6 +103,7 @@ namespace Presentacion
             // 
             // dataGridProductosVencidos
             // 
+            this.dataGridProductosVencidos.AllowUserToAddRows = false;
             this.dataGridProductosVencidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProductosVencidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cantidad,
@@ -121,6 +122,7 @@ namespace Presentacion
             this.GananciaPorProducto});
             this.dataGridProductosVencidos.Location = new System.Drawing.Point(0, 24);
             this.dataGridProductosVencidos.Name = "dataGridProductosVencidos";
+            this.dataGridProductosVencidos.RowHeadersVisible = false;
             this.dataGridProductosVencidos.Size = new System.Drawing.Size(772, 419);
             this.dataGridProductosVencidos.TabIndex = 50;
             // 
@@ -240,6 +242,7 @@ namespace Presentacion
             this.labelAdvertencia.Size = new System.Drawing.Size(209, 16);
             this.labelAdvertencia.TabIndex = 54;
             this.labelAdvertencia.Text = "No hay productos vencidos!!!";
+            this.labelAdvertencia.Visible = false;
             // 
             // textCuarentena
             // 

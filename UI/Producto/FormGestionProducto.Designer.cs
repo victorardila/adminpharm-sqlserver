@@ -33,6 +33,10 @@ namespace Presentacion
             this.panelBarraVolver = new System.Windows.Forms.Panel();
             this.panelConsultaDeProductos = new System.Windows.Forms.Panel();
             this.dataGridFarmacos = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Cash = new System.Windows.Forms.DataGridViewImageColumn();
+            this.CantidadVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconPictureBox();
             this.textSearch = new System.Windows.Forms.TextBox();
@@ -67,10 +71,7 @@ namespace Presentacion
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.iconCash = new FontAwesome.Sharp.IconPictureBox();
             this.btnVolver = new FontAwesome.Sharp.IconButton();
-            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Cash = new System.Windows.Forms.DataGridViewImageColumn();
-            this.CantidadVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelMedicamentosAgotados = new System.Windows.Forms.Label();
             this.panelConsultaDeProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFarmacos)).BeginInit();
             this.panelTituloDataGridFarmacos.SuspendLayout();
@@ -130,6 +131,36 @@ namespace Presentacion
             this.dataGridFarmacos.Size = new System.Drawing.Size(786, 419);
             this.dataGridFarmacos.TabIndex = 50;
             this.dataGridFarmacos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridFarmacos_CellClick);
+            // 
+            // Column1
+            // 
+            this.Column1.Frozen = true;
+            this.Column1.HeaderText = "Seleccionar";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 30;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.Description = "Seleccionar";
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Width = 30;
+            // 
+            // Cash
+            // 
+            this.Cash.HeaderText = "Vender";
+            this.Cash.Image = global::Presentacion.Properties.Resources.cash;
+            this.Cash.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Cash.Name = "Cash";
+            this.Cash.Width = 30;
+            // 
+            // CantidadVenta
+            // 
+            this.CantidadVenta.HeaderText = "CantidadVenta";
+            this.CantidadVenta.Name = "CantidadVenta";
+            this.CantidadVenta.Width = 80;
             // 
             // panelTituloDataGridFarmacos
             // 
@@ -609,35 +640,17 @@ namespace Presentacion
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
-            // Column1
+            // labelMedicamentosAgotados
             // 
-            this.Column1.Frozen = true;
-            this.Column1.HeaderText = "Seleccionar";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 30;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.Description = "Seleccionar";
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
-            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Width = 30;
-            // 
-            // Cash
-            // 
-            this.Cash.HeaderText = "Vender";
-            this.Cash.Image = global::Presentacion.Properties.Resources.cash;
-            this.Cash.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Cash.Name = "Cash";
-            this.Cash.Width = 30;
-            // 
-            // CantidadVenta
-            // 
-            this.CantidadVenta.HeaderText = "CantidadVenta";
-            this.CantidadVenta.Name = "CantidadVenta";
-            this.CantidadVenta.Width = 80;
+            this.labelMedicamentosAgotados.AutoSize = true;
+            this.labelMedicamentosAgotados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMedicamentosAgotados.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelMedicamentosAgotados.Location = new System.Drawing.Point(309, 25);
+            this.labelMedicamentosAgotados.Name = "labelMedicamentosAgotados";
+            this.labelMedicamentosAgotados.Size = new System.Drawing.Size(225, 16);
+            this.labelMedicamentosAgotados.TabIndex = 55;
+            this.labelMedicamentosAgotados.Text = "No hay productos registrados!!!";
+            this.labelMedicamentosAgotados.Visible = false;
             // 
             // FormGestionProducto
             // 
@@ -645,6 +658,7 @@ namespace Presentacion
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(800, 599);
+            this.Controls.Add(this.labelMedicamentosAgotados);
             this.Controls.Add(this.labelTextFondo);
             this.Controls.Add(this.labelCash);
             this.Controls.Add(this.iconCash);
@@ -718,6 +732,7 @@ namespace Presentacion
         private System.Windows.Forms.DataGridViewImageColumn Eliminar;
         private System.Windows.Forms.DataGridViewImageColumn Cash;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantidadVenta;
+        private System.Windows.Forms.Label labelMedicamentosAgotados;
     }
 }
 

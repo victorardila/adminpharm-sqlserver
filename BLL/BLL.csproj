@@ -53,6 +53,8 @@
     <Compile Include="ProductoFacturaTxtService.cs" />
     <Compile Include="ProductoVencidoTxtConsultaResponse.cs" />
     <Compile Include="ProductoVencidoTxtService.cs" />
+    <Compile Include="ProductoVendidoTxtConsultaResponse.cs" />
+    <Compile Include="ProductoVendidoTxtService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

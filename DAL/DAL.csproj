@@ -52,6 +52,7 @@
     <Compile Include="ProductoRepository.cs" />
     <Compile Include="ProductoFacturaTxtRepository.cs" />
     <Compile Include="ProductoVencidoTxtRepository.cs" />
+    <Compile Include="ProductoVendidoTxtRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

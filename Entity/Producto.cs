@@ -92,7 +92,7 @@ namespace Entity
                         int mesesRestantes = (12 - mesActual);
                         int diferenciaMeses = (12 - FechaDeVencimiento.Month);
                         int mesesAcumuladosAño = (12 - diferenciaMeses) + mesesRestantes;
-                        if (mesesAcumuladosAño > 3)
+                        if (mesesAcumuladosAño >= 3)
                         {
                             Estado = "Vigente";
                         }
@@ -116,8 +116,9 @@ namespace Entity
         }
         public void calcularPrecioDeVenta()
         {
-            PorcentajeDeVenta = (PorcentajeDeVenta / 100)* PrecioDeNegocio;
-            PrecioDeVenta = PorcentajeDeVenta + PrecioDeNegocio;
+            double procedimientoporcentaje;
+            procedimientoporcentaje = (PorcentajeDeVenta / 100)* PrecioDeNegocio;
+            PrecioDeVenta = procedimientoporcentaje + PrecioDeNegocio;
         }
         public void calcularGanancia()
         {

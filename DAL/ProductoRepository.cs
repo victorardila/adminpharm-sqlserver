@@ -147,6 +147,17 @@ namespace DAL
             }
             return productos;
         }
+        public void ModificarCantidad(Producto producto)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = @"update PRODUCTO set Cantidad=@Cantidad
+                                        where Referencia=@Referencia";
+                command.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
+                command.Parameters.AddWithValue("@Referencia", producto.Referencia);
+                var filas = command.ExecuteNonQuery();
+            }
+        }
         public void Modificar(Producto producto)
         {
             using (var command = _connection.CreateCommand())
@@ -166,7 +177,7 @@ namespace DAL
                 command.Parameters.AddWithValue("@Via", producto.Via);
                 command.Parameters.AddWithValue("@Porcentaje_De_Venta", producto.PorcentajeDeVenta);
                 command.Parameters.AddWithValue("@Precio_De_Negocio", producto.PrecioDeNegocio);
-                command.Parameters.AddWithValue("@Precio_De_Venta", producto.PorcentajeDeVenta);
+                command.Parameters.AddWithValue("@Precio_De_Venta", producto.PrecioDeVenta);
                 command.Parameters.AddWithValue("@GananciaPorProducto", producto.GananciaPorProducto);
                 var filas = command.ExecuteNonQuery();
             }

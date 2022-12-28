@@ -137,6 +137,17 @@ namespace DAL
                 return DataReaderMapToCajaRegistradora(dataReader);
             }
         }
+        public void ModificarCash(Caja caja)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = @"update CAJA set Monto=@Monto
+                                        where Id_Caja=@Id_Caja";
+                command.Parameters.AddWithValue("@Id_Caja", caja.IdCaja);
+                command.Parameters.AddWithValue("@Monto", caja.Monto);
+                var filas = command.ExecuteNonQuery();
+            }
+        }
         public void Modificar(Caja caja)
         {
             using (var command = _connection.CreateCommand())

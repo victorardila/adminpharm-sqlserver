@@ -32,16 +32,22 @@ namespace Presentacion
             this.menuTop = new System.Windows.Forms.Panel();
             this.btnCerrar = new FontAwesome.Sharp.IconButton();
             this.panelConsultaDeProductos = new System.Windows.Forms.Panel();
-            this.dataGridFarmacos = new System.Windows.Forms.DataGridView();
-            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridProductosVendidos = new System.Windows.Forms.DataGridView();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Referencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaDeRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaDeVencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Laboratorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Via = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioDeNegocio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioDeVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GananciaPorProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
-            this.btnClose = new FontAwesome.Sharp.IconPictureBox();
-            this.textSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new FontAwesome.Sharp.IconPictureBox();
-            this.comboFiltroAdministracion = new System.Windows.Forms.ComboBox();
-            this.labelFiltroAdministracion = new System.Windows.Forms.Label();
-            this.comboFiltroPresentacion = new System.Windows.Forms.ComboBox();
-            this.labelFiltroPresentacion = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
@@ -52,12 +58,11 @@ namespace Presentacion
             this.labelVigentes = new System.Windows.Forms.Label();
             this.textTotal = new System.Windows.Forms.TextBox();
             this.labelTotalFarmacos = new System.Windows.Forms.Label();
+            this.btnLimpiarHistorial = new FontAwesome.Sharp.IconButton();
             this.menuTop.SuspendLayout();
             this.panelConsultaDeProductos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridFarmacos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosVendidos)).BeginInit();
             this.panelTituloDataGridFarmacos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
             this.panelSubDataGridFarmacos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,145 +95,117 @@ namespace Presentacion
             // 
             // panelConsultaDeProductos
             // 
-            this.panelConsultaDeProductos.Controls.Add(this.dataGridFarmacos);
+            this.panelConsultaDeProductos.Controls.Add(this.dataGridProductosVendidos);
             this.panelConsultaDeProductos.Controls.Add(this.panelTituloDataGridFarmacos);
             this.panelConsultaDeProductos.Location = new System.Drawing.Point(18, 36);
             this.panelConsultaDeProductos.Name = "panelConsultaDeProductos";
             this.panelConsultaDeProductos.Size = new System.Drawing.Size(772, 446);
             this.panelConsultaDeProductos.TabIndex = 51;
             // 
-            // dataGridFarmacos
+            // dataGridProductosVendidos
             // 
-            this.dataGridFarmacos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridFarmacos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Eliminar});
-            this.dataGridFarmacos.Location = new System.Drawing.Point(0, 24);
-            this.dataGridFarmacos.Name = "dataGridFarmacos";
-            this.dataGridFarmacos.Size = new System.Drawing.Size(772, 419);
-            this.dataGridFarmacos.TabIndex = 50;
+            this.dataGridProductosVendidos.AllowUserToAddRows = false;
+            this.dataGridProductosVendidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridProductosVendidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Cantidad,
+            this.Referencia,
+            this.Nombre,
+            this.Detalle,
+            this.FechaDeRegistro,
+            this.FechaDeVencimiento,
+            this.Lote,
+            this.Laboratorio,
+            this.Estado,
+            this.Tipo,
+            this.Via,
+            this.PrecioDeNegocio,
+            this.PrecioDeVenta,
+            this.GananciaPorProducto});
+            this.dataGridProductosVendidos.Location = new System.Drawing.Point(0, 24);
+            this.dataGridProductosVendidos.Name = "dataGridProductosVendidos";
+            this.dataGridProductosVendidos.RowHeadersVisible = false;
+            this.dataGridProductosVendidos.Size = new System.Drawing.Size(772, 419);
+            this.dataGridProductosVendidos.TabIndex = 51;
             // 
-            // Eliminar
+            // Cantidad
             // 
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
-            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Width = 50;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            // 
+            // Referencia
+            // 
+            this.Referencia.HeaderText = "Referencia";
+            this.Referencia.Name = "Referencia";
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // Detalle
+            // 
+            this.Detalle.HeaderText = "Detalle";
+            this.Detalle.Name = "Detalle";
+            // 
+            // FechaDeRegistro
+            // 
+            this.FechaDeRegistro.HeaderText = "FechaDeRegistro";
+            this.FechaDeRegistro.Name = "FechaDeRegistro";
+            // 
+            // FechaDeVencimiento
+            // 
+            this.FechaDeVencimiento.HeaderText = "FechaDeVencimiento";
+            this.FechaDeVencimiento.Name = "FechaDeVencimiento";
+            // 
+            // Lote
+            // 
+            this.Lote.HeaderText = "Lote";
+            this.Lote.Name = "Lote";
+            // 
+            // Laboratorio
+            // 
+            this.Laboratorio.HeaderText = "Laboratorio";
+            this.Laboratorio.Name = "Laboratorio";
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            // 
+            // Tipo
+            // 
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            // 
+            // Via
+            // 
+            this.Via.HeaderText = "Via";
+            this.Via.Name = "Via";
+            // 
+            // PrecioDeNegocio
+            // 
+            this.PrecioDeNegocio.HeaderText = "PrecioDeNegocio";
+            this.PrecioDeNegocio.Name = "PrecioDeNegocio";
+            // 
+            // PrecioDeVenta
+            // 
+            this.PrecioDeVenta.HeaderText = "PrecioDeVenta";
+            this.PrecioDeVenta.Name = "PrecioDeVenta";
+            // 
+            // GananciaPorProducto
+            // 
+            this.GananciaPorProducto.HeaderText = "GananciaPorProducto";
+            this.GananciaPorProducto.Name = "GananciaPorProducto";
             // 
             // panelTituloDataGridFarmacos
             // 
             this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTituloDataGridFarmacos.Controls.Add(this.btnClose);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.textSearch);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.btnSearch);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.comboFiltroAdministracion);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.labelFiltroAdministracion);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.comboFiltroPresentacion);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.labelFiltroPresentacion);
             this.panelTituloDataGridFarmacos.Controls.Add(this.label4);
             this.panelTituloDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTituloDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
             this.panelTituloDataGridFarmacos.Name = "panelTituloDataGridFarmacos";
             this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(772, 24);
             this.panelTituloDataGridFarmacos.TabIndex = 49;
-            // 
-            // btnClose
-            // 
-            this.btnClose.BackColor = System.Drawing.SystemColors.Control;
-            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClose.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnClose.IconChar = FontAwesome.Sharp.IconChar.X;
-            this.btnClose.IconColor = System.Drawing.SystemColors.ControlText;
-            this.btnClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnClose.IconSize = 18;
-            this.btnClose.Location = new System.Drawing.Point(703, 3);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(18, 18);
-            this.btnClose.TabIndex = 56;
-            this.btnClose.TabStop = false;
-            this.btnClose.Visible = false;
-            // 
-            // textSearch
-            // 
-            this.textSearch.Location = new System.Drawing.Point(578, 1);
-            this.textSearch.Name = "textSearch";
-            this.textSearch.Size = new System.Drawing.Size(127, 20);
-            this.textSearch.TabIndex = 54;
-            this.textSearch.Text = "Buscar nombre";
-            this.textSearch.Visible = false;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSearch.IconChar = FontAwesome.Sharp.IconChar.Search;
-            this.btnSearch.IconColor = System.Drawing.SystemColors.ControlText;
-            this.btnSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSearch.IconSize = 20;
-            this.btnSearch.Location = new System.Drawing.Point(725, 1);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(20, 20);
-            this.btnSearch.TabIndex = 55;
-            this.btnSearch.TabStop = false;
-            // 
-            // comboFiltroAdministracion
-            // 
-            this.comboFiltroAdministracion.AutoCompleteCustomSource.AddRange(new string[] {
-            "Todos",
-            "Orales",
-            "Intravenoso"});
-            this.comboFiltroAdministracion.FormattingEnabled = true;
-            this.comboFiltroAdministracion.Items.AddRange(new object[] {
-            "Todos",
-            "Oral",
-            "Intravenosa"});
-            this.comboFiltroAdministracion.Location = new System.Drawing.Point(463, 1);
-            this.comboFiltroAdministracion.Name = "comboFiltroAdministracion";
-            this.comboFiltroAdministracion.Size = new System.Drawing.Size(109, 21);
-            this.comboFiltroAdministracion.TabIndex = 54;
-            this.comboFiltroAdministracion.Text = "Todos";
-            // 
-            // labelFiltroAdministracion
-            // 
-            this.labelFiltroAdministracion.AutoSize = true;
-            this.labelFiltroAdministracion.Location = new System.Drawing.Point(385, 5);
-            this.labelFiltroAdministracion.Name = "labelFiltroAdministracion";
-            this.labelFiltroAdministracion.Size = new System.Drawing.Size(81, 13);
-            this.labelFiltroAdministracion.TabIndex = 53;
-            this.labelFiltroAdministracion.Text = "Filtro por admin:";
-            // 
-            // comboFiltroPresentacion
-            // 
-            this.comboFiltroPresentacion.AutoCompleteCustomSource.AddRange(new string[] {
-            "Todos",
-            "Jarabe",
-            "Comprimido",
-            "Capsula",
-            "Intramusculares",
-            "Intradermicos"});
-            this.comboFiltroPresentacion.FormattingEnabled = true;
-            this.comboFiltroPresentacion.Items.AddRange(new object[] {
-            "Todos",
-            "Jarabe",
-            "Comprimido",
-            "Capsula",
-            "Intramusculares",
-            "Intradermicos"});
-            this.comboFiltroPresentacion.Location = new System.Drawing.Point(299, 1);
-            this.comboFiltroPresentacion.Name = "comboFiltroPresentacion";
-            this.comboFiltroPresentacion.Size = new System.Drawing.Size(86, 21);
-            this.comboFiltroPresentacion.TabIndex = 52;
-            this.comboFiltroPresentacion.Text = "Todos";
-            // 
-            // labelFiltroPresentacion
-            // 
-            this.labelFiltroPresentacion.AutoSize = true;
-            this.labelFiltroPresentacion.Location = new System.Drawing.Point(204, 5);
-            this.labelFiltroPresentacion.Name = "labelFiltroPresentacion";
-            this.labelFiltroPresentacion.Size = new System.Drawing.Size(96, 13);
-            this.labelFiltroPresentacion.TabIndex = 50;
-            this.labelFiltroPresentacion.Text = "Filtro presentacion:";
             // 
             // label4
             // 
@@ -267,7 +244,6 @@ namespace Presentacion
             // labelAdvertencia
             // 
             this.labelAdvertencia.AutoSize = true;
-            this.labelAdvertencia.Enabled = false;
             this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
             this.labelAdvertencia.Location = new System.Drawing.Point(524, 4);
@@ -275,6 +251,7 @@ namespace Presentacion
             this.labelAdvertencia.Size = new System.Drawing.Size(210, 16);
             this.labelAdvertencia.TabIndex = 54;
             this.labelAdvertencia.Text = "No hay productos vendidos!!!";
+            this.labelAdvertencia.Visible = false;
             // 
             // textCuarentena
             // 
@@ -327,11 +304,34 @@ namespace Presentacion
             this.labelTotalFarmacos.TabIndex = 49;
             this.labelTotalFarmacos.Text = "Total Registrados:";
             // 
+            // btnLimpiarHistorial
+            // 
+            this.btnLimpiarHistorial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnLimpiarHistorial.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnLimpiarHistorial.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnLimpiarHistorial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarHistorial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarHistorial.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnLimpiarHistorial.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.btnLimpiarHistorial.IconColor = System.Drawing.Color.Black;
+            this.btnLimpiarHistorial.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnLimpiarHistorial.IconSize = 30;
+            this.btnLimpiarHistorial.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpiarHistorial.Location = new System.Drawing.Point(322, 514);
+            this.btnLimpiarHistorial.Name = "btnLimpiarHistorial";
+            this.btnLimpiarHistorial.Size = new System.Drawing.Size(151, 35);
+            this.btnLimpiarHistorial.TabIndex = 62;
+            this.btnLimpiarHistorial.Text = "   Limpiar Historial";
+            this.btnLimpiarHistorial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLimpiarHistorial.UseVisualStyleBackColor = false;
+            this.btnLimpiarHistorial.Click += new System.EventHandler(this.btnLimpiarHistorial_Click);
+            // 
             // FormProductosVendidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 518);
+            this.ClientSize = new System.Drawing.Size(808, 555);
+            this.Controls.Add(this.btnLimpiarHistorial);
             this.Controls.Add(this.panelSubDataGridFarmacos);
             this.Controls.Add(this.panelConsultaDeProductos);
             this.Controls.Add(this.menuTop);
@@ -340,11 +340,9 @@ namespace Presentacion
             this.Text = "FormProductosVendidos";
             this.menuTop.ResumeLayout(false);
             this.panelConsultaDeProductos.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridFarmacos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosVendidos)).EndInit();
             this.panelTituloDataGridFarmacos.ResumeLayout(false);
             this.panelTituloDataGridFarmacos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
             this.panelSubDataGridFarmacos.ResumeLayout(false);
             this.panelSubDataGridFarmacos.PerformLayout();
             this.ResumeLayout(false);
@@ -356,16 +354,7 @@ namespace Presentacion
         private System.Windows.Forms.Panel menuTop;
         private FontAwesome.Sharp.IconButton btnCerrar;
         private System.Windows.Forms.Panel panelConsultaDeProductos;
-        private System.Windows.Forms.DataGridView dataGridFarmacos;
-        private System.Windows.Forms.DataGridViewImageColumn Eliminar;
         private System.Windows.Forms.Panel panelTituloDataGridFarmacos;
-        private FontAwesome.Sharp.IconPictureBox btnClose;
-        private System.Windows.Forms.TextBox textSearch;
-        private FontAwesome.Sharp.IconPictureBox btnSearch;
-        private System.Windows.Forms.ComboBox comboFiltroAdministracion;
-        private System.Windows.Forms.Label labelFiltroAdministracion;
-        private System.Windows.Forms.ComboBox comboFiltroPresentacion;
-        private System.Windows.Forms.Label labelFiltroPresentacion;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.Panel panelSubDataGridFarmacos;
@@ -376,5 +365,21 @@ namespace Presentacion
         private System.Windows.Forms.Label labelVigentes;
         private System.Windows.Forms.TextBox textTotal;
         private System.Windows.Forms.Label labelTotalFarmacos;
+        private System.Windows.Forms.DataGridView dataGridProductosVendidos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Referencia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaDeRegistro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaDeVencimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Lote;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Laboratorio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Via;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioDeNegocio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioDeVenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GananciaPorProducto;
+        private FontAwesome.Sharp.IconButton btnLimpiarHistorial;
     }
 }

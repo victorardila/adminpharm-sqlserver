@@ -45,8 +45,12 @@ namespace Presentacion
             this.labelVueltos = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.labelTotalFactura = new System.Windows.Forms.Label();
+            this.labelTextFondo = new System.Windows.Forms.Label();
+            this.labelCash = new System.Windows.Forms.Label();
+            this.iconCash = new FontAwesome.Sharp.IconPictureBox();
             this.menuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFacturaProductos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconCash)).BeginInit();
             this.SuspendLayout();
             // 
             // menuTop
@@ -78,6 +82,7 @@ namespace Presentacion
             // 
             // dataGridFacturaProductos
             // 
+            this.dataGridFacturaProductos.AllowUserToAddRows = false;
             this.dataGridFacturaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridFacturaProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Referencia,
@@ -87,6 +92,7 @@ namespace Presentacion
             this.Precio});
             this.dataGridFacturaProductos.Location = new System.Drawing.Point(67, 143);
             this.dataGridFacturaProductos.Name = "dataGridFacturaProductos";
+            this.dataGridFacturaProductos.RowHeadersVisible = false;
             this.dataGridFacturaProductos.Size = new System.Drawing.Size(556, 140);
             this.dataGridFacturaProductos.TabIndex = 6;
             // 
@@ -213,17 +219,58 @@ namespace Presentacion
             this.labelTotalFactura.AutoSize = true;
             this.labelTotalFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTotalFactura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.labelTotalFactura.Location = new System.Drawing.Point(332, 79);
+            this.labelTotalFactura.Location = new System.Drawing.Point(333, 79);
             this.labelTotalFactura.Name = "labelTotalFactura";
             this.labelTotalFactura.Size = new System.Drawing.Size(18, 24);
             this.labelTotalFactura.TabIndex = 67;
             this.labelTotalFactura.Text = "*";
+            // 
+            // labelTextFondo
+            // 
+            this.labelTextFondo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTextFondo.AutoSize = true;
+            this.labelTextFondo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTextFondo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.labelTextFondo.Location = new System.Drawing.Point(625, 32);
+            this.labelTextFondo.Name = "labelTextFondo";
+            this.labelTextFondo.Size = new System.Drawing.Size(45, 12);
+            this.labelTextFondo.TabIndex = 70;
+            this.labelTextFondo.Text = "MONTO";
+            // 
+            // labelCash
+            // 
+            this.labelCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCash.AutoSize = true;
+            this.labelCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCash.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.labelCash.Location = new System.Drawing.Point(629, 48);
+            this.labelCash.Name = "labelCash";
+            this.labelCash.Size = new System.Drawing.Size(14, 16);
+            this.labelCash.TabIndex = 69;
+            this.labelCash.Text = "*";
+            // 
+            // iconCash
+            // 
+            this.iconCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconCash.BackColor = System.Drawing.SystemColors.Control;
+            this.iconCash.ForeColor = System.Drawing.Color.Olive;
+            this.iconCash.IconChar = FontAwesome.Sharp.IconChar.Coins;
+            this.iconCash.IconColor = System.Drawing.Color.Olive;
+            this.iconCash.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconCash.Location = new System.Drawing.Point(591, 35);
+            this.iconCash.Name = "iconCash";
+            this.iconCash.Size = new System.Drawing.Size(32, 32);
+            this.iconCash.TabIndex = 68;
+            this.iconCash.TabStop = false;
             // 
             // FormFacturaDeProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 342);
+            this.Controls.Add(this.labelTextFondo);
+            this.Controls.Add(this.labelCash);
+            this.Controls.Add(this.iconCash);
             this.Controls.Add(this.labelTotalFactura);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.labelVueltos);
@@ -240,6 +287,7 @@ namespace Presentacion
             this.Text = "FormFacturaDeProducto";
             this.menuTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFacturaProductos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconCash)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,5 +311,8 @@ namespace Presentacion
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.Label labelTextFondo;
+        private System.Windows.Forms.Label labelCash;
+        private FontAwesome.Sharp.IconPictureBox iconCash;
     }
 }

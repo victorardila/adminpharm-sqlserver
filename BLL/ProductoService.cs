@@ -38,6 +38,31 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
+        public string ModificarCantidad(Producto productoNuevo)
+        {
+            try
+            {
+                productoNuevo.calcularEstado();
+                conexion.Open();
+                var productoAntiguo = repositorio.BuscarPorReferencia(productoNuevo.Referencia);
+
+                if (productoAntiguo != null)
+                {
+                    repositorio.ModificarCantidad(productoNuevo);
+                    return $"El registro de {productoNuevo.Nombre} se ha modificado satisfactoriamente.";
+                }
+                else
+                {
+                    return $"Lo sentimos, el cliente con Identificación {productoAntiguo.Referencia} no se encuentra registrado.";
+                }
+            }
+            catch (Exception e)
+            {
+
+                return $"Error de la Aplicación: {e.Message}";
+            }
+            finally { conexion.Close(); }
+        }
         public string Modificar(Producto productoNuevo)
         {
             try
