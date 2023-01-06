@@ -14,8 +14,8 @@ Estado varchar(10) not null,
 Monto int
 );
 create table CLIENTE(
-Codigo_Cliente nvarchar(10) not null,
 Id varchar(12) primary key not null,
+Codigo_Cliente nvarchar(10) not null,
 Tipo_De_Id char(2)not null,
 Nombres varchar(30) not null,
 Apellidos varchar(30) not null,
@@ -27,8 +27,8 @@ Telefono varchar(15),
 Correo varchar(100)
 );
 create table EMPLEADO(
-Codigo_Empleado nvarchar(10) not null,
 Id varchar(12) primary key not null,
+Codigo_Empleado nvarchar(10) not null,
 Tipo_De_Id char(2)not null,
 Nombres varchar(30) not null,
 Apellidos varchar(30) not null,
@@ -37,16 +37,18 @@ Edad int,
 Sexo varchar(5),
 Direccion_Domicilio text,
 Telefono varchar(15),
-Correo varchar(100)
+Correo varchar(100),
+Contraseña nvarchar(50)
 );
 create table ESTANTE(
-Codigo_De_Estante nvarchar(10) not null,
+Codigo_De_Estante nvarchar(10) primary key not null,
 Numero_De_Estante int,
-Cantidad_De_Productos int
+Cantidad_De_Productos int,
+Estado varchar(12)
 );
 create table PRODUCTO(
 Cantidad int not null,
-Referencia nvarchar(100) not null,
+Referencia nvarchar(100) primary key not null,
 Nombre varchar(100)not null,
 Detalle text,
 Fecha_De_Registro datetime not null,
@@ -59,10 +61,11 @@ Via varchar(20),
 Porcentaje_De_Venta int,
 Precio_De_Negocio int,
 Precio_De_Venta int,
-GananciaPorProducto int
+GananciaPorProducto int,
+Numero_Estante int
 );
 create table DROGUERIA(
-Id_Drogueria nvarchar(6)not null,
+Id_Drogueria nvarchar(6) primary key not null,
 Nombre_De_Drogueria nvarchar(100)not null,
 NIT nvarchar(50)not null,
 Frase_Distintiva text,
@@ -70,4 +73,17 @@ Regimen varchar(20)not null,
 PBX nvarchar(30),
 Direccion nvarchar(100),
 Telefono varchar(15)
+);
+create table FACTURA(
+Id_Factura varchar(15) primary key not null,
+Secuencia_De_Factura int not null,
+FechaYHora datetime not null,
+Nombre_De_Empleado varchar(50) not null,
+Ciudad varchar(20) not null,
+Id_Caja int not null,
+Nombre_De_Cliente varchar(50) not null,
+Total_Sin_Redondeo int,
+Total_Con_Redondeo int,
+Total_De_Factura int,
+Forma_De_Pago varchar(20)
 );

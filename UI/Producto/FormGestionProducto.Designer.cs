@@ -114,6 +114,7 @@ namespace Presentacion
             // 
             // dataGridFarmacos
             // 
+            this.dataGridFarmacos.AllowUserToAddRows = false;
             this.dataGridFarmacos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedVertical;
             this.dataGridFarmacos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridFarmacos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

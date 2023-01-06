@@ -8,10 +8,10 @@ namespace Entity
 {
     public class ProductoFacturaTxt
     {
-        public ProductoFacturaTxt(string referencia, int cantidad, string nombre, string detalle, double precio)
+        public ProductoFacturaTxt(int cantidad, string referencia, string nombre, string detalle, double precio)
         {
-            Referencia = referencia;
             Cantidad = cantidad;
+            Referencia = referencia;
             Nombre = nombre;
             Detalle = detalle;
             Precio = precio;

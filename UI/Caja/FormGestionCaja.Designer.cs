@@ -31,6 +31,9 @@ namespace Presentacion
         {
             this.panelContenedorGestionProductos = new System.Windows.Forms.Panel();
             this.panelSubMenu = new System.Windows.Forms.Panel();
+            this.btnHistorial = new FontAwesome.Sharp.IconButton();
+            this.btnCerrarCaja = new FontAwesome.Sharp.IconButton();
+            this.btnAbrirCaja = new FontAwesome.Sharp.IconButton();
             this.panelConsultaDeCajas = new System.Windows.Forms.Panel();
             this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
             this.textTotalCajasCerradas = new System.Windows.Forms.TextBox();
@@ -40,6 +43,7 @@ namespace Presentacion
             this.textTotalCajas = new System.Windows.Forms.TextBox();
             this.labelTotalCajas = new System.Windows.Forms.Label();
             this.dataGridFarmacos = new System.Windows.Forms.DataGridView();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
             this.labelAdvertencia = new System.Windows.Forms.Label();
             this.comboFiltroEstado = new System.Windows.Forms.ComboBox();
@@ -52,10 +56,6 @@ namespace Presentacion
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.iconCash = new FontAwesome.Sharp.IconPictureBox();
             this.btnVolver = new FontAwesome.Sharp.IconButton();
-            this.btnHistorial = new FontAwesome.Sharp.IconButton();
-            this.btnCerrarCaja = new FontAwesome.Sharp.IconButton();
-            this.btnAbrirCaja = new FontAwesome.Sharp.IconButton();
-            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelContenedorGestionProductos.SuspendLayout();
             this.panelSubMenu.SuspendLayout();
             this.panelConsultaDeCajas.SuspendLayout();
@@ -88,6 +88,75 @@ namespace Presentacion
             this.panelSubMenu.Name = "panelSubMenu";
             this.panelSubMenu.Size = new System.Drawing.Size(125, 354);
             this.panelSubMenu.TabIndex = 51;
+            // 
+            // btnHistorial
+            // 
+            this.btnHistorial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnHistorial.FlatAppearance.BorderSize = 0;
+            this.btnHistorial.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnHistorial.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnHistorial.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHistorial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistorial.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnHistorial.IconChar = FontAwesome.Sharp.IconChar.Reorder;
+            this.btnHistorial.IconColor = System.Drawing.Color.Black;
+            this.btnHistorial.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnHistorial.IconSize = 30;
+            this.btnHistorial.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHistorial.Location = new System.Drawing.Point(0, 96);
+            this.btnHistorial.Name = "btnHistorial";
+            this.btnHistorial.Size = new System.Drawing.Size(123, 35);
+            this.btnHistorial.TabIndex = 53;
+            this.btnHistorial.Text = "Historial de Cajas";
+            this.btnHistorial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHistorial.UseVisualStyleBackColor = false;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
+            // 
+            // btnCerrarCaja
+            // 
+            this.btnCerrarCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnCerrarCaja.FlatAppearance.BorderSize = 0;
+            this.btnCerrarCaja.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnCerrarCaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnCerrarCaja.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCerrarCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarCaja.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCerrarCaja.IconChar = FontAwesome.Sharp.IconChar.SackXmark;
+            this.btnCerrarCaja.IconColor = System.Drawing.Color.Black;
+            this.btnCerrarCaja.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCerrarCaja.IconSize = 30;
+            this.btnCerrarCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCerrarCaja.Location = new System.Drawing.Point(0, 60);
+            this.btnCerrarCaja.Name = "btnCerrarCaja";
+            this.btnCerrarCaja.Size = new System.Drawing.Size(123, 35);
+            this.btnCerrarCaja.TabIndex = 52;
+            this.btnCerrarCaja.Text = "  Cerrar Caja";
+            this.btnCerrarCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCerrarCaja.UseVisualStyleBackColor = false;
+            this.btnCerrarCaja.Click += new System.EventHandler(this.btnCerrarCaja_Click);
+            // 
+            // btnAbrirCaja
+            // 
+            this.btnAbrirCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnAbrirCaja.FlatAppearance.BorderSize = 0;
+            this.btnAbrirCaja.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnAbrirCaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnAbrirCaja.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAbrirCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAbrirCaja.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAbrirCaja.IconChar = FontAwesome.Sharp.IconChar.SackDollar;
+            this.btnAbrirCaja.IconColor = System.Drawing.Color.Black;
+            this.btnAbrirCaja.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAbrirCaja.IconSize = 30;
+            this.btnAbrirCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAbrirCaja.Location = new System.Drawing.Point(0, 24);
+            this.btnAbrirCaja.Name = "btnAbrirCaja";
+            this.btnAbrirCaja.Size = new System.Drawing.Size(123, 35);
+            this.btnAbrirCaja.TabIndex = 51;
+            this.btnAbrirCaja.Text = "   Abrir Caja";
+            this.btnAbrirCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAbrirCaja.UseVisualStyleBackColor = false;
+            this.btnAbrirCaja.Click += new System.EventHandler(this.btnAbrirCaja_Click);
             // 
             // panelConsultaDeCajas
             // 
@@ -183,6 +252,15 @@ namespace Presentacion
             this.dataGridFarmacos.Size = new System.Drawing.Size(630, 304);
             this.dataGridFarmacos.TabIndex = 50;
             this.dataGridFarmacos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridFarmacos_CellClick);
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Width = 50;
             // 
             // panelTituloDataGridFarmacos
             // 
@@ -326,84 +404,6 @@ namespace Presentacion
             this.btnVolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
-            // 
-            // btnHistorial
-            // 
-            this.btnHistorial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.btnHistorial.FlatAppearance.BorderSize = 0;
-            this.btnHistorial.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btnHistorial.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.btnHistorial.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnHistorial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHistorial.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnHistorial.IconChar = FontAwesome.Sharp.IconChar.HouseMedical;
-            this.btnHistorial.IconColor = System.Drawing.Color.Black;
-            this.btnHistorial.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnHistorial.IconSize = 30;
-            this.btnHistorial.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHistorial.Location = new System.Drawing.Point(0, 96);
-            this.btnHistorial.Name = "btnHistorial";
-            this.btnHistorial.Size = new System.Drawing.Size(123, 35);
-            this.btnHistorial.TabIndex = 53;
-            this.btnHistorial.Text = "Historial de Cajas";
-            this.btnHistorial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnHistorial.UseVisualStyleBackColor = false;
-            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
-            // 
-            // btnCerrarCaja
-            // 
-            this.btnCerrarCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.btnCerrarCaja.FlatAppearance.BorderSize = 0;
-            this.btnCerrarCaja.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btnCerrarCaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.btnCerrarCaja.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCerrarCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrarCaja.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCerrarCaja.IconChar = FontAwesome.Sharp.IconChar.HouseMedical;
-            this.btnCerrarCaja.IconColor = System.Drawing.Color.Black;
-            this.btnCerrarCaja.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCerrarCaja.IconSize = 30;
-            this.btnCerrarCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCerrarCaja.Location = new System.Drawing.Point(0, 60);
-            this.btnCerrarCaja.Name = "btnCerrarCaja";
-            this.btnCerrarCaja.Size = new System.Drawing.Size(123, 35);
-            this.btnCerrarCaja.TabIndex = 52;
-            this.btnCerrarCaja.Text = "  Cerrar Caja";
-            this.btnCerrarCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCerrarCaja.UseVisualStyleBackColor = false;
-            this.btnCerrarCaja.Click += new System.EventHandler(this.btnCerrarCaja_Click);
-            // 
-            // btnAbrirCaja
-            // 
-            this.btnAbrirCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.btnAbrirCaja.FlatAppearance.BorderSize = 0;
-            this.btnAbrirCaja.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btnAbrirCaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.btnAbrirCaja.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAbrirCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAbrirCaja.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnAbrirCaja.IconChar = FontAwesome.Sharp.IconChar.HouseMedical;
-            this.btnAbrirCaja.IconColor = System.Drawing.Color.Black;
-            this.btnAbrirCaja.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAbrirCaja.IconSize = 30;
-            this.btnAbrirCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAbrirCaja.Location = new System.Drawing.Point(0, 24);
-            this.btnAbrirCaja.Name = "btnAbrirCaja";
-            this.btnAbrirCaja.Size = new System.Drawing.Size(123, 35);
-            this.btnAbrirCaja.TabIndex = 51;
-            this.btnAbrirCaja.Text = "   Abrir Caja";
-            this.btnAbrirCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAbrirCaja.UseVisualStyleBackColor = false;
-            this.btnAbrirCaja.Click += new System.EventHandler(this.btnAbrirCaja_Click);
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
-            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.ReadOnly = true;
-            this.Eliminar.Width = 50;
             // 
             // FormGestionCaja
             // 

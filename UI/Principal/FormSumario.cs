@@ -16,12 +16,23 @@ namespace Presentacion
     {
         CajaRegistradoraService cajaRegistradoraService;
         ProductoService productoService;
+        ClienteService clienteService;
+        EmpleadoService empleadoService;
+        EstanteService estanteService;
         Producto producto;
+        Cliente cliente;
+        Empleado empleado;
         List<Producto> productos;
+        List<Cliente> clientes;
+        List<Empleado> empleados;
+        List<Estante> estantes;
         public InicioResumen()
         {
             cajaRegistradoraService = new CajaRegistradoraService(ConfigConnection.ConnectionString);
             productoService = new ProductoService(ConfigConnection.ConnectionString);
+            clienteService = new ClienteService(ConfigConnection.ConnectionString);
+            empleadoService = new EmpleadoService(ConfigConnection.ConnectionString);
+            estanteService = new EstanteService(ConfigConnection.ConnectionString);
             InitializeComponent();
             MostrarDatos();
         }
@@ -38,6 +49,23 @@ namespace Presentacion
             else
             {
                 if (respuesta.Productos == null || respuesta.Productos.Count == 0)
+                {
+                    labelProductos.Text = "Sin definir";
+                }
+            }
+        }
+        private void ConsultarEstantes()
+        {
+            ConsultaEstanteRespuesta respuesta = new ConsultaEstanteRespuesta();
+            respuesta = estanteService.ConsultarTodos();
+            estantes = respuesta.Estantes.ToList();
+            if (respuesta.Estantes.Count != 0 && respuesta.Estantes != null)
+            {
+                labelEstantes.Text = estanteService.Totalizar().Cuenta.ToString();
+            }
+            else
+            {
+                if (respuesta.Estantes == null || respuesta.Estantes.Count == 0)
                 {
                     labelProductos.Text = "Sin definir";
                 }
@@ -61,10 +89,47 @@ namespace Presentacion
                 }
             }
         }
+        private void ConsultarDatoDeClientes()
+        {
+            ConsultaClienteRespuesta respuesta = new ConsultaClienteRespuesta();
+            respuesta = clienteService.ConsultarTodos();
+            clientes = respuesta.Clientes.ToList();
+            if (respuesta.Clientes.Count != 0 && respuesta.Clientes != null)
+            {
+                labelClientes.Text = clienteService.Totalizar().Cuenta.ToString();
+            }
+            else
+            {
+                if (respuesta.Clientes == null || respuesta.Clientes.Count == 0)
+                {
+                    labelClientes.Text= "Sin definir";
+                }
+            }
+        }
+        private void ConsultarDatoDeEmpleados()
+        {
+            ConsultaEmpleadoRespuesta respuesta = new ConsultaEmpleadoRespuesta();
+            respuesta = empleadoService.ConsultarTodos();
+            empleados = respuesta.Empleados.ToList();
+            if (respuesta.Empleados.Count != 0 && respuesta.Empleados != null)
+            {
+                labelEmpleados.Text = empleadoService.Totalizar().Cuenta.ToString();
+            }
+            else
+            {
+                if (respuesta.Empleados == null || respuesta.Empleados.Count == 0)
+                {
+                    labelEmpleados.Text = "Sin definir";
+                }
+            }
+        }
         public void MostrarDatos()
         {
             ConsultarDatoCaja();
             ConsultarDatoDeProductos();
+            ConsultarDatoDeClientes();
+            ConsultarDatoDeEmpleados();
+            ConsultarEstantes();
         }
         private void timer1_Tick(object sender, EventArgs e)
         {

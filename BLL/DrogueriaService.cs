@@ -122,7 +122,50 @@ namespace BLL
                 return $"Error de la Aplicación: {e.Message}";
             }
             finally { conexion.Close(); }
+        }
+        public ConteoProductoRespuesta Totalizar()
+        {
+            ConteoProductoRespuesta respuesta = new ConteoProductoRespuesta();
+            try
+            {
 
+                conexion.Open();
+                respuesta.Cuenta = repositorio.Totalizar(); ;
+                conexion.Close();
+                respuesta.Error = false;
+                respuesta.Mensaje = "Se consultan los Datos";
+
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
+        }
+        public ConteoProductoRespuesta TotalizarTipo(string tipo)
+        {
+            ConteoProductoRespuesta respuesta = new ConteoProductoRespuesta();
+            try
+            {
+
+                conexion.Open();
+                respuesta.Cuenta = repositorio.TotalizarTipo(tipo);
+                conexion.Close();
+                respuesta.Error = false;
+                respuesta.Mensaje = "Se consultan los Datos";
+
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
         }
     }
     public class ConsultaDrogueriaRespuesta

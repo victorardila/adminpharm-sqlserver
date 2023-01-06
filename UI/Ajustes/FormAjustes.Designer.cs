@@ -50,6 +50,7 @@ namespace Presentacion
             this.btnModificarInfo = new FontAwesome.Sharp.IconButton();
             this.btnEliminarInfo = new FontAwesome.Sharp.IconButton();
             this.dataGridInfoDrogueria = new System.Windows.Forms.DataGridView();
+            this.labelAdvertencia = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfoDrogueria)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +95,7 @@ namespace Presentacion
             // labelNombreDrogueria
             // 
             this.labelNombreDrogueria.AutoSize = true;
-            this.labelNombreDrogueria.Location = new System.Drawing.Point(77, 191);
+            this.labelNombreDrogueria.Location = new System.Drawing.Point(77, 215);
             this.labelNombreDrogueria.Name = "labelNombreDrogueria";
             this.labelNombreDrogueria.Size = new System.Drawing.Size(120, 13);
             this.labelNombreDrogueria.TabIndex = 60;
@@ -102,14 +103,14 @@ namespace Presentacion
             // 
             // textNombreDrogueria
             // 
-            this.textNombreDrogueria.Location = new System.Drawing.Point(197, 188);
+            this.textNombreDrogueria.Location = new System.Drawing.Point(197, 212);
             this.textNombreDrogueria.Name = "textNombreDrogueria";
             this.textNombreDrogueria.Size = new System.Drawing.Size(226, 20);
             this.textNombreDrogueria.TabIndex = 61;
             // 
             // textNIT
             // 
-            this.textNIT.Location = new System.Drawing.Point(462, 190);
+            this.textNIT.Location = new System.Drawing.Point(462, 214);
             this.textNIT.Name = "textNIT";
             this.textNIT.Size = new System.Drawing.Size(189, 20);
             this.textNIT.TabIndex = 63;
@@ -117,7 +118,7 @@ namespace Presentacion
             // labelNIT
             // 
             this.labelNIT.AutoSize = true;
-            this.labelNIT.Location = new System.Drawing.Point(429, 191);
+            this.labelNIT.Location = new System.Drawing.Point(429, 215);
             this.labelNIT.Name = "labelNIT";
             this.labelNIT.Size = new System.Drawing.Size(28, 13);
             this.labelNIT.TabIndex = 62;
@@ -125,7 +126,7 @@ namespace Presentacion
             // 
             // textFraseDistintiva
             // 
-            this.textFraseDistintiva.Location = new System.Drawing.Point(163, 223);
+            this.textFraseDistintiva.Location = new System.Drawing.Point(163, 247);
             this.textFraseDistintiva.Multiline = true;
             this.textFraseDistintiva.Name = "textFraseDistintiva";
             this.textFraseDistintiva.Size = new System.Drawing.Size(260, 52);
@@ -134,7 +135,7 @@ namespace Presentacion
             // labelFraseDistintiva
             // 
             this.labelFraseDistintiva.AutoSize = true;
-            this.labelFraseDistintiva.Location = new System.Drawing.Point(77, 243);
+            this.labelFraseDistintiva.Location = new System.Drawing.Point(77, 267);
             this.labelFraseDistintiva.Name = "labelFraseDistintiva";
             this.labelFraseDistintiva.Size = new System.Drawing.Size(80, 13);
             this.labelFraseDistintiva.TabIndex = 64;
@@ -143,7 +144,7 @@ namespace Presentacion
             // labelRegimen
             // 
             this.labelRegimen.AutoSize = true;
-            this.labelRegimen.Location = new System.Drawing.Point(434, 239);
+            this.labelRegimen.Location = new System.Drawing.Point(434, 263);
             this.labelRegimen.Name = "labelRegimen";
             this.labelRegimen.Size = new System.Drawing.Size(52, 13);
             this.labelRegimen.TabIndex = 66;
@@ -151,7 +152,7 @@ namespace Presentacion
             // 
             // textPBX
             // 
-            this.textPBX.Location = new System.Drawing.Point(114, 285);
+            this.textPBX.Location = new System.Drawing.Point(114, 309);
             this.textPBX.Name = "textPBX";
             this.textPBX.Size = new System.Drawing.Size(132, 20);
             this.textPBX.TabIndex = 69;
@@ -159,7 +160,7 @@ namespace Presentacion
             // labelPBX
             // 
             this.labelPBX.AutoSize = true;
-            this.labelPBX.Location = new System.Drawing.Point(77, 288);
+            this.labelPBX.Location = new System.Drawing.Point(77, 312);
             this.labelPBX.Name = "labelPBX";
             this.labelPBX.Size = new System.Drawing.Size(31, 13);
             this.labelPBX.TabIndex = 68;
@@ -167,7 +168,7 @@ namespace Presentacion
             // 
             // textDireccion
             // 
-            this.textDireccion.Location = new System.Drawing.Point(302, 285);
+            this.textDireccion.Location = new System.Drawing.Point(302, 309);
             this.textDireccion.Name = "textDireccion";
             this.textDireccion.Size = new System.Drawing.Size(202, 20);
             this.textDireccion.TabIndex = 71;
@@ -175,7 +176,7 @@ namespace Presentacion
             // labelDireccion
             // 
             this.labelDireccion.AutoSize = true;
-            this.labelDireccion.Location = new System.Drawing.Point(248, 288);
+            this.labelDireccion.Location = new System.Drawing.Point(248, 312);
             this.labelDireccion.Name = "labelDireccion";
             this.labelDireccion.Size = new System.Drawing.Size(55, 13);
             this.labelDireccion.TabIndex = 70;
@@ -183,7 +184,7 @@ namespace Presentacion
             // 
             // textTelefono
             // 
-            this.textTelefono.Location = new System.Drawing.Point(568, 285);
+            this.textTelefono.Location = new System.Drawing.Point(568, 309);
             this.textTelefono.Name = "textTelefono";
             this.textTelefono.Size = new System.Drawing.Size(100, 20);
             this.textTelefono.TabIndex = 73;
@@ -191,7 +192,7 @@ namespace Presentacion
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(510, 288);
+            this.label8.Location = new System.Drawing.Point(510, 312);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(52, 13);
             this.label8.TabIndex = 72;
@@ -200,7 +201,7 @@ namespace Presentacion
             // comboRegimen
             // 
             this.comboRegimen.FormattingEnabled = true;
-            this.comboRegimen.Location = new System.Drawing.Point(488, 235);
+            this.comboRegimen.Location = new System.Drawing.Point(488, 259);
             this.comboRegimen.Name = "comboRegimen";
             this.comboRegimen.Size = new System.Drawing.Size(121, 21);
             this.comboRegimen.TabIndex = 74;
@@ -277,16 +278,28 @@ namespace Presentacion
             // dataGridInfoDrogueria
             // 
             this.dataGridInfoDrogueria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridInfoDrogueria.Location = new System.Drawing.Point(68, 67);
+            this.dataGridInfoDrogueria.Location = new System.Drawing.Point(68, 91);
             this.dataGridInfoDrogueria.Name = "dataGridInfoDrogueria";
             this.dataGridInfoDrogueria.Size = new System.Drawing.Size(600, 115);
             this.dataGridInfoDrogueria.TabIndex = 78;
+            // 
+            // labelAdvertencia
+            // 
+            this.labelAdvertencia.AutoSize = true;
+            this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelAdvertencia.Location = new System.Drawing.Point(65, 72);
+            this.labelAdvertencia.Name = "labelAdvertencia";
+            this.labelAdvertencia.Size = new System.Drawing.Size(225, 16);
+            this.labelAdvertencia.TabIndex = 79;
+            this.labelAdvertencia.Text = "No hay productos registrados!!!";
             // 
             // FormAjustes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelAdvertencia);
             this.Controls.Add(this.dataGridInfoDrogueria);
             this.Controls.Add(this.btnEliminarInfo);
             this.Controls.Add(this.btnModificarInfo);
@@ -340,5 +353,6 @@ namespace Presentacion
         private FontAwesome.Sharp.IconButton btnModificarInfo;
         private FontAwesome.Sharp.IconButton btnEliminarInfo;
         private System.Windows.Forms.DataGridView dataGridInfoDrogueria;
+        private System.Windows.Forms.Label labelAdvertencia;
     }
 }

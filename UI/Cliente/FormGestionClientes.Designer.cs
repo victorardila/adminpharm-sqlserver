@@ -34,24 +34,34 @@ namespace Presentacion
             this.label1 = new System.Windows.Forms.Label();
             this.panelConsultaDeClientes = new System.Windows.Forms.Panel();
             this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
-            this.textTotalFarmacos = new System.Windows.Forms.TextBox();
+            this.labelAdvertencia = new System.Windows.Forms.Label();
+            this.textTotalMujeres = new System.Windows.Forms.TextBox();
+            this.labelTotalMujeres = new System.Windows.Forms.Label();
+            this.textTotalHombres = new System.Windows.Forms.TextBox();
+            this.labelTotalHombres = new System.Windows.Forms.Label();
+            this.textTotal = new System.Windows.Forms.TextBox();
             this.labelTotalFarmacos = new System.Windows.Forms.Label();
-            this.dataGridFarmacos = new System.Windows.Forms.DataGridView();
+            this.dataGridClientes = new System.Windows.Forms.DataGridView();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.labelAdvertenciaCliente = new System.Windows.Forms.Label();
+            this.btnCloseCliente = new FontAwesome.Sharp.IconPictureBox();
+            this.textSearchCliente = new System.Windows.Forms.TextBox();
+            this.btnSearchCliente = new FontAwesome.Sharp.IconPictureBox();
+            this.comboSexo = new System.Windows.Forms.ComboBox();
             this.labelFiltro = new System.Windows.Forms.Label();
             this.labelConsultaDeClientes = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelRegistrarCliente = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.labelCodigoCliente = new System.Windows.Forms.Label();
+            this.labelCodigo = new System.Windows.Forms.Label();
+            this.dateTimeFechaDeNacimiento = new System.Windows.Forms.DateTimePicker();
             this.labelFechaDeNacimiento = new System.Windows.Forms.Label();
-            this.comboSexo = new System.Windows.Forms.ComboBox();
+            this.comboSexoCliente = new System.Windows.Forms.ComboBox();
             this.labelSexo = new System.Windows.Forms.Label();
             this.labelRegistroDeEmpleados = new System.Windows.Forms.Label();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.btnAbrirCaja = new FontAwesome.Sharp.IconButton();
+            this.btnModificar = new FontAwesome.Sharp.IconButton();
+            this.btnRegistrar = new FontAwesome.Sharp.IconButton();
             this.comboTipoDeId = new System.Windows.Forms.ComboBox();
             this.textCorreo = new System.Windows.Forms.TextBox();
             this.textTelefono = new System.Windows.Forms.TextBox();
@@ -68,8 +78,10 @@ namespace Presentacion
             this.labelNombre = new System.Windows.Forms.Label();
             this.panelConsultaDeClientes.SuspendLayout();
             this.panelSubDataGridFarmacos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridFarmacos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridClientes)).BeginInit();
             this.panelTituloDataGridFarmacos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCloseCliente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchCliente)).BeginInit();
             this.panel2.SuspendLayout();
             this.panelRegistrarCliente.SuspendLayout();
             this.SuspendLayout();
@@ -115,7 +127,7 @@ namespace Presentacion
             // panelConsultaDeClientes
             // 
             this.panelConsultaDeClientes.Controls.Add(this.panelSubDataGridFarmacos);
-            this.panelConsultaDeClientes.Controls.Add(this.dataGridFarmacos);
+            this.panelConsultaDeClientes.Controls.Add(this.dataGridClientes);
             this.panelConsultaDeClientes.Controls.Add(this.panelTituloDataGridFarmacos);
             this.panelConsultaDeClientes.Location = new System.Drawing.Point(3, 3);
             this.panelConsultaDeClientes.Name = "panelConsultaDeClientes";
@@ -125,7 +137,12 @@ namespace Presentacion
             // panelSubDataGridFarmacos
             // 
             this.panelSubDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelSubDataGridFarmacos.Controls.Add(this.textTotalFarmacos);
+            this.panelSubDataGridFarmacos.Controls.Add(this.labelAdvertencia);
+            this.panelSubDataGridFarmacos.Controls.Add(this.textTotalMujeres);
+            this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalMujeres);
+            this.panelSubDataGridFarmacos.Controls.Add(this.textTotalHombres);
+            this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalHombres);
+            this.panelSubDataGridFarmacos.Controls.Add(this.textTotal);
             this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalFarmacos);
             this.panelSubDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(0, 226);
@@ -133,35 +150,99 @@ namespace Presentacion
             this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(750, 22);
             this.panelSubDataGridFarmacos.TabIndex = 51;
             // 
-            // textTotalFarmacos
+            // labelAdvertencia
             // 
-            this.textTotalFarmacos.Location = new System.Drawing.Point(95, 0);
-            this.textTotalFarmacos.Name = "textTotalFarmacos";
-            this.textTotalFarmacos.Size = new System.Drawing.Size(47, 20);
-            this.textTotalFarmacos.TabIndex = 49;
+            this.labelAdvertencia.AutoSize = true;
+            this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelAdvertencia.Location = new System.Drawing.Point(489, 1);
+            this.labelAdvertencia.Name = "labelAdvertencia";
+            this.labelAdvertencia.Size = new System.Drawing.Size(225, 16);
+            this.labelAdvertencia.TabIndex = 62;
+            this.labelAdvertencia.Text = "No hay productos registrados!!!";
+            this.labelAdvertencia.Visible = false;
+            // 
+            // textTotalMujeres
+            // 
+            this.textTotalMujeres.Location = new System.Drawing.Point(369, 0);
+            this.textTotalMujeres.Name = "textTotalMujeres";
+            this.textTotalMujeres.Size = new System.Drawing.Size(47, 20);
+            this.textTotalMujeres.TabIndex = 60;
+            this.textTotalMujeres.Text = "0";
+            // 
+            // labelTotalMujeres
+            // 
+            this.labelTotalMujeres.AutoSize = true;
+            this.labelTotalMujeres.Location = new System.Drawing.Point(298, 4);
+            this.labelTotalMujeres.Name = "labelTotalMujeres";
+            this.labelTotalMujeres.Size = new System.Drawing.Size(73, 13);
+            this.labelTotalMujeres.TabIndex = 61;
+            this.labelTotalMujeres.Text = "Total mujeres:";
+            // 
+            // textTotalHombres
+            // 
+            this.textTotalHombres.Location = new System.Drawing.Point(233, 0);
+            this.textTotalHombres.Name = "textTotalHombres";
+            this.textTotalHombres.Size = new System.Drawing.Size(47, 20);
+            this.textTotalHombres.TabIndex = 58;
+            this.textTotalHombres.Text = "0";
+            // 
+            // labelTotalHombres
+            // 
+            this.labelTotalHombres.AutoSize = true;
+            this.labelTotalHombres.Location = new System.Drawing.Point(157, 4);
+            this.labelTotalHombres.Name = "labelTotalHombres";
+            this.labelTotalHombres.Size = new System.Drawing.Size(77, 13);
+            this.labelTotalHombres.TabIndex = 59;
+            this.labelTotalHombres.Text = "Total hombres:";
+            // 
+            // textTotal
+            // 
+            this.textTotal.Location = new System.Drawing.Point(97, 0);
+            this.textTotal.Name = "textTotal";
+            this.textTotal.Size = new System.Drawing.Size(47, 20);
+            this.textTotal.TabIndex = 56;
+            this.textTotal.Text = "0";
             // 
             // labelTotalFarmacos
             // 
             this.labelTotalFarmacos.AutoSize = true;
-            this.labelTotalFarmacos.Location = new System.Drawing.Point(4, 5);
+            this.labelTotalFarmacos.Location = new System.Drawing.Point(6, 5);
             this.labelTotalFarmacos.Name = "labelTotalFarmacos";
             this.labelTotalFarmacos.Size = new System.Drawing.Size(93, 13);
-            this.labelTotalFarmacos.TabIndex = 49;
+            this.labelTotalFarmacos.TabIndex = 57;
             this.labelTotalFarmacos.Text = "Total Registrados:";
             // 
-            // dataGridFarmacos
+            // dataGridClientes
             // 
-            this.dataGridFarmacos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridFarmacos.Location = new System.Drawing.Point(0, 24);
-            this.dataGridFarmacos.Name = "dataGridFarmacos";
-            this.dataGridFarmacos.Size = new System.Drawing.Size(750, 224);
-            this.dataGridFarmacos.TabIndex = 50;
+            this.dataGridClientes.AllowUserToAddRows = false;
+            this.dataGridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Eliminar});
+            this.dataGridClientes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridClientes.Location = new System.Drawing.Point(0, 24);
+            this.dataGridClientes.Name = "dataGridClientes";
+            this.dataGridClientes.RowHeadersVisible = false;
+            this.dataGridClientes.Size = new System.Drawing.Size(750, 224);
+            this.dataGridClientes.TabIndex = 50;
+            this.dataGridClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridClientes_CellClick);
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Width = 50;
             // 
             // panelTituloDataGridFarmacos
             // 
             this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTituloDataGridFarmacos.Controls.Add(this.comboBox1);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.labelAdvertenciaCliente);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.btnCloseCliente);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.textSearchCliente);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.btnSearchCliente);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.comboSexo);
             this.panelTituloDataGridFarmacos.Controls.Add(this.labelFiltro);
             this.panelTituloDataGridFarmacos.Controls.Add(this.labelConsultaDeClientes);
             this.panelTituloDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Top;
@@ -170,13 +251,76 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(750, 24);
             this.panelTituloDataGridFarmacos.TabIndex = 49;
             // 
-            // comboBox1
+            // labelAdvertenciaCliente
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(261, 1);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(86, 21);
-            this.comboBox1.TabIndex = 52;
+            this.labelAdvertenciaCliente.AutoSize = true;
+            this.labelAdvertenciaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdvertenciaCliente.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelAdvertenciaCliente.Location = new System.Drawing.Point(406, 3);
+            this.labelAdvertenciaCliente.Name = "labelAdvertenciaCliente";
+            this.labelAdvertenciaCliente.Size = new System.Drawing.Size(157, 16);
+            this.labelAdvertenciaCliente.TabIndex = 82;
+            this.labelAdvertenciaCliente.Text = "No hay coincidencias";
+            this.labelAdvertenciaCliente.Visible = false;
+            // 
+            // btnCloseCliente
+            // 
+            this.btnCloseCliente.BackColor = System.Drawing.SystemColors.Control;
+            this.btnCloseCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCloseCliente.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnCloseCliente.IconChar = FontAwesome.Sharp.IconChar.X;
+            this.btnCloseCliente.IconColor = System.Drawing.Color.DarkRed;
+            this.btnCloseCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCloseCliente.IconSize = 18;
+            this.btnCloseCliente.Location = new System.Drawing.Point(705, 2);
+            this.btnCloseCliente.Name = "btnCloseCliente";
+            this.btnCloseCliente.Size = new System.Drawing.Size(18, 18);
+            this.btnCloseCliente.TabIndex = 81;
+            this.btnCloseCliente.TabStop = false;
+            this.btnCloseCliente.Visible = false;
+            this.btnCloseCliente.Click += new System.EventHandler(this.btnCloseCliente_Click);
+            // 
+            // textSearchCliente
+            // 
+            this.textSearchCliente.Location = new System.Drawing.Point(578, 1);
+            this.textSearchCliente.Name = "textSearchCliente";
+            this.textSearchCliente.Size = new System.Drawing.Size(127, 20);
+            this.textSearchCliente.TabIndex = 79;
+            this.textSearchCliente.Text = "Buscar identificacion";
+            this.textSearchCliente.Visible = false;
+            this.textSearchCliente.TextChanged += new System.EventHandler(this.textSearchCliente_TextChanged);
+            this.textSearchCliente.Enter += new System.EventHandler(this.textSearchCliente_Enter);
+            this.textSearchCliente.Leave += new System.EventHandler(this.textSearchCliente_Leave);
+            // 
+            // btnSearchCliente
+            // 
+            this.btnSearchCliente.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSearchCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchCliente.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearchCliente.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.btnSearchCliente.IconColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearchCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSearchCliente.IconSize = 20;
+            this.btnSearchCliente.Location = new System.Drawing.Point(724, 1);
+            this.btnSearchCliente.Name = "btnSearchCliente";
+            this.btnSearchCliente.Size = new System.Drawing.Size(20, 20);
+            this.btnSearchCliente.TabIndex = 80;
+            this.btnSearchCliente.TabStop = false;
+            this.btnSearchCliente.Click += new System.EventHandler(this.btnSearchCliente_Click);
+            // 
+            // comboSexo
+            // 
+            this.comboSexo.FormattingEnabled = true;
+            this.comboSexo.Items.AddRange(new object[] {
+            "Todos",
+            "M",
+            "F"});
+            this.comboSexo.Location = new System.Drawing.Point(261, 1);
+            this.comboSexo.Name = "comboSexo";
+            this.comboSexo.Size = new System.Drawing.Size(86, 21);
+            this.comboSexo.TabIndex = 52;
+            this.comboSexo.Text = "Todos";
+            this.comboSexo.SelectedIndexChanged += new System.EventHandler(this.comboSexo_SelectedIndexChanged);
             // 
             // labelFiltro
             // 
@@ -209,15 +353,15 @@ namespace Presentacion
             // 
             // panelRegistrarCliente
             // 
-            this.panelRegistrarCliente.Controls.Add(this.label3);
-            this.panelRegistrarCliente.Controls.Add(this.label2);
-            this.panelRegistrarCliente.Controls.Add(this.dateTimePicker1);
+            this.panelRegistrarCliente.Controls.Add(this.labelCodigoCliente);
+            this.panelRegistrarCliente.Controls.Add(this.labelCodigo);
+            this.panelRegistrarCliente.Controls.Add(this.dateTimeFechaDeNacimiento);
             this.panelRegistrarCliente.Controls.Add(this.labelFechaDeNacimiento);
-            this.panelRegistrarCliente.Controls.Add(this.comboSexo);
+            this.panelRegistrarCliente.Controls.Add(this.comboSexoCliente);
             this.panelRegistrarCliente.Controls.Add(this.labelSexo);
             this.panelRegistrarCliente.Controls.Add(this.labelRegistroDeEmpleados);
-            this.panelRegistrarCliente.Controls.Add(this.iconButton1);
-            this.panelRegistrarCliente.Controls.Add(this.btnAbrirCaja);
+            this.panelRegistrarCliente.Controls.Add(this.btnModificar);
+            this.panelRegistrarCliente.Controls.Add(this.btnRegistrar);
             this.panelRegistrarCliente.Controls.Add(this.comboTipoDeId);
             this.panelRegistrarCliente.Controls.Add(this.textCorreo);
             this.panelRegistrarCliente.Controls.Add(this.textTelefono);
@@ -237,34 +381,34 @@ namespace Presentacion
             this.panelRegistrarCliente.Size = new System.Drawing.Size(744, 193);
             this.panelRegistrarCliente.TabIndex = 51;
             // 
-            // label3
+            // labelCodigoCliente
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.label3.Location = new System.Drawing.Point(646, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 16);
-            this.label3.TabIndex = 59;
-            this.label3.Text = "#                   ";
+            this.labelCodigoCliente.AutoSize = true;
+            this.labelCodigoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCodigoCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.labelCodigoCliente.Location = new System.Drawing.Point(646, 3);
+            this.labelCodigoCliente.Name = "labelCodigoCliente";
+            this.labelCodigoCliente.Size = new System.Drawing.Size(92, 16);
+            this.labelCodigoCliente.TabIndex = 59;
+            this.labelCodigoCliente.Text = "#                   ";
             // 
-            // label2
+            // labelCodigo
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.label2.Location = new System.Drawing.Point(482, 3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 16);
-            this.label2.TabIndex = 58;
-            this.label2.Text = "Codigo de clientes:";
+            this.labelCodigo.AutoSize = true;
+            this.labelCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.labelCodigo.Location = new System.Drawing.Point(482, 3);
+            this.labelCodigo.Name = "labelCodigo";
+            this.labelCodigo.Size = new System.Drawing.Size(142, 16);
+            this.labelCodigo.TabIndex = 58;
+            this.labelCodigo.Text = "Codigo de clientes:";
             // 
-            // dateTimePicker1
+            // dateTimeFechaDeNacimiento
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(121, 86);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(195, 20);
-            this.dateTimePicker1.TabIndex = 57;
+            this.dateTimeFechaDeNacimiento.Location = new System.Drawing.Point(121, 86);
+            this.dateTimeFechaDeNacimiento.Name = "dateTimeFechaDeNacimiento";
+            this.dateTimeFechaDeNacimiento.Size = new System.Drawing.Size(195, 20);
+            this.dateTimeFechaDeNacimiento.TabIndex = 57;
             // 
             // labelFechaDeNacimiento
             // 
@@ -275,13 +419,17 @@ namespace Presentacion
             this.labelFechaDeNacimiento.TabIndex = 56;
             this.labelFechaDeNacimiento.Text = "Fecha de nacimiento:";
             // 
-            // comboSexo
+            // comboSexoCliente
             // 
-            this.comboSexo.FormattingEnabled = true;
-            this.comboSexo.Location = new System.Drawing.Point(358, 85);
-            this.comboSexo.Name = "comboSexo";
-            this.comboSexo.Size = new System.Drawing.Size(59, 21);
-            this.comboSexo.TabIndex = 55;
+            this.comboSexoCliente.FormattingEnabled = true;
+            this.comboSexoCliente.Items.AddRange(new object[] {
+            "M",
+            "F"});
+            this.comboSexoCliente.Location = new System.Drawing.Point(358, 85);
+            this.comboSexoCliente.Name = "comboSexoCliente";
+            this.comboSexoCliente.Size = new System.Drawing.Size(59, 21);
+            this.comboSexoCliente.TabIndex = 55;
+            this.comboSexoCliente.Text = "M";
             // 
             // labelSexo
             // 
@@ -303,57 +451,63 @@ namespace Presentacion
             this.labelRegistroDeEmpleados.TabIndex = 53;
             this.labelRegistroDeEmpleados.Text = "Registrar clientes";
             // 
-            // iconButton1
+            // btnModificar
             // 
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Pen;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 30;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(485, 100);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(110, 35);
-            this.iconButton1.TabIndex = 53;
-            this.iconButton1.Text = "   Modificar";
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
+            this.btnModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnModificar.FlatAppearance.BorderSize = 0;
+            this.btnModificar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnModificar.IconChar = FontAwesome.Sharp.IconChar.Pen;
+            this.btnModificar.IconColor = System.Drawing.Color.Black;
+            this.btnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnModificar.IconSize = 30;
+            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnModificar.Location = new System.Drawing.Point(485, 100);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(110, 35);
+            this.btnModificar.TabIndex = 53;
+            this.btnModificar.Text = "   Modificar";
+            this.btnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
-            // btnAbrirCaja
+            // btnRegistrar
             // 
-            this.btnAbrirCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.btnAbrirCaja.FlatAppearance.BorderSize = 0;
-            this.btnAbrirCaja.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btnAbrirCaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.btnAbrirCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAbrirCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAbrirCaja.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnAbrirCaja.IconChar = FontAwesome.Sharp.IconChar.HouseMedical;
-            this.btnAbrirCaja.IconColor = System.Drawing.Color.Black;
-            this.btnAbrirCaja.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAbrirCaja.IconSize = 30;
-            this.btnAbrirCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAbrirCaja.Location = new System.Drawing.Point(485, 60);
-            this.btnAbrirCaja.Name = "btnAbrirCaja";
-            this.btnAbrirCaja.Size = new System.Drawing.Size(110, 35);
-            this.btnAbrirCaja.TabIndex = 52;
-            this.btnAbrirCaja.Text = "   Registrar";
-            this.btnAbrirCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAbrirCaja.UseVisualStyleBackColor = false;
+            this.btnRegistrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnRegistrar.FlatAppearance.BorderSize = 0;
+            this.btnRegistrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnRegistrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRegistrar.IconChar = FontAwesome.Sharp.IconChar.HouseMedical;
+            this.btnRegistrar.IconColor = System.Drawing.Color.Black;
+            this.btnRegistrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnRegistrar.IconSize = 30;
+            this.btnRegistrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRegistrar.Location = new System.Drawing.Point(485, 60);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(110, 35);
+            this.btnRegistrar.TabIndex = 52;
+            this.btnRegistrar.Text = "   Registrar";
+            this.btnRegistrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // comboTipoDeId
             // 
             this.comboTipoDeId.FormattingEnabled = true;
+            this.comboTipoDeId.Items.AddRange(new object[] {
+            "CC",
+            "TI"});
             this.comboTipoDeId.Location = new System.Drawing.Point(306, 54);
             this.comboTipoDeId.Name = "comboTipoDeId";
             this.comboTipoDeId.Size = new System.Drawing.Size(50, 21);
             this.comboTipoDeId.TabIndex = 13;
+            this.comboTipoDeId.Text = "CC";
             // 
             // textCorreo
             // 
@@ -475,9 +629,11 @@ namespace Presentacion
             this.panelConsultaDeClientes.ResumeLayout(false);
             this.panelSubDataGridFarmacos.ResumeLayout(false);
             this.panelSubDataGridFarmacos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridFarmacos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridClientes)).EndInit();
             this.panelTituloDataGridFarmacos.ResumeLayout(false);
             this.panelTituloDataGridFarmacos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCloseCliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchCliente)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panelRegistrarCliente.ResumeLayout(false);
             this.panelRegistrarCliente.PerformLayout();
@@ -493,24 +649,22 @@ namespace Presentacion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelConsultaDeClientes;
         private System.Windows.Forms.Panel panelSubDataGridFarmacos;
-        private System.Windows.Forms.TextBox textTotalFarmacos;
-        private System.Windows.Forms.Label labelTotalFarmacos;
-        private System.Windows.Forms.DataGridView dataGridFarmacos;
+        private System.Windows.Forms.DataGridView dataGridClientes;
         private System.Windows.Forms.Panel panelTituloDataGridFarmacos;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboSexo;
         private System.Windows.Forms.Label labelFiltro;
         private System.Windows.Forms.Label labelConsultaDeClientes;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panelRegistrarCliente;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label labelCodigoCliente;
+        private System.Windows.Forms.Label labelCodigo;
+        private System.Windows.Forms.DateTimePicker dateTimeFechaDeNacimiento;
         private System.Windows.Forms.Label labelFechaDeNacimiento;
-        private System.Windows.Forms.ComboBox comboSexo;
+        private System.Windows.Forms.ComboBox comboSexoCliente;
         private System.Windows.Forms.Label labelSexo;
         private System.Windows.Forms.Label labelRegistroDeEmpleados;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconButton btnAbrirCaja;
+        private FontAwesome.Sharp.IconButton btnModificar;
+        private FontAwesome.Sharp.IconButton btnRegistrar;
         private System.Windows.Forms.ComboBox comboTipoDeId;
         private System.Windows.Forms.TextBox textCorreo;
         private System.Windows.Forms.TextBox textTelefono;
@@ -525,5 +679,17 @@ namespace Presentacion
         private System.Windows.Forms.Label labelIdentificacion;
         private System.Windows.Forms.Label labelApellido;
         private System.Windows.Forms.Label labelNombre;
+        private System.Windows.Forms.Label labelAdvertencia;
+        private System.Windows.Forms.TextBox textTotalMujeres;
+        private System.Windows.Forms.Label labelTotalMujeres;
+        private System.Windows.Forms.TextBox textTotalHombres;
+        private System.Windows.Forms.Label labelTotalHombres;
+        private System.Windows.Forms.TextBox textTotal;
+        private System.Windows.Forms.Label labelTotalFarmacos;
+        private System.Windows.Forms.Label labelAdvertenciaCliente;
+        private FontAwesome.Sharp.IconPictureBox btnCloseCliente;
+        private System.Windows.Forms.TextBox textSearchCliente;
+        private FontAwesome.Sharp.IconPictureBox btnSearchCliente;
+        private System.Windows.Forms.DataGridViewImageColumn Eliminar;
     }
 }

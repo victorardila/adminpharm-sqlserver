@@ -36,6 +36,12 @@
     <Reference Include="FontAwesome.Sharp, Version=6.1.1.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.1.1\lib\net472\FontAwesome.Sharp.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.13\lib\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -97,16 +103,22 @@
     <Compile Include="Ajustes\FormAjustes.Designer.cs">
       <DependentUpon>FormAjustes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Estante\FormRegistrarEstante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Estante\FormRegistrarEstante.Designer.cs">
+      <DependentUpon>FormRegistrarEstante.cs</DependentUpon>
+    </Compile>
     <Compile Include="Producto\FormProductosVendidos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Producto\FormProductosVendidos.Designer.cs">
       <DependentUpon>FormProductosVendidos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Producto\FormFacturaDeProducto.cs">
+    <Compile Include="Factura\FormFacturaDeProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Producto\FormFacturaDeProducto.Designer.cs">
+    <Compile Include="Factura\FormFacturaDeProducto.Designer.cs">
       <DependentUpon>FormFacturaDeProducto.cs</DependentUpon>
     </Compile>
     <Compile Include="Producto\FormProductosVencidos.cs">
@@ -177,10 +189,13 @@
     <EmbeddedResource Include="Ajustes\FormAjustes.resx">
       <DependentUpon>FormAjustes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Estante\FormRegistrarEstante.resx">
+      <DependentUpon>FormRegistrarEstante.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Producto\FormProductosVendidos.resx">
       <DependentUpon>FormProductosVendidos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Producto\FormFacturaDeProducto.resx">
+    <EmbeddedResource Include="Factura\FormFacturaDeProducto.resx">
       <DependentUpon>FormFacturaDeProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Producto\FormProductosVencidos.resx">
@@ -248,6 +263,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Caja-Registradora.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1055138.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

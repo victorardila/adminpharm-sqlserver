@@ -32,6 +32,7 @@ namespace Presentacion
             this.menuTop = new System.Windows.Forms.Panel();
             this.btnCerrar = new FontAwesome.Sharp.IconButton();
             this.panelRegistroDeProductos = new System.Windows.Forms.Panel();
+            this.labelAdvertencia = new System.Windows.Forms.Label();
             this.comboLaboratorio = new System.Windows.Forms.ComboBox();
             this.labelLaboratorio = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -39,16 +40,15 @@ namespace Presentacion
             this.labelTipo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textCantidad = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboNumeroEstante = new System.Windows.Forms.ComboBox();
             this.btnModificar = new FontAwesome.Sharp.IconButton();
             this.btnRegistrar = new FontAwesome.Sharp.IconButton();
             this.textDetalle = new System.Windows.Forms.TextBox();
             this.labelDetalle = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.comboVia = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelNumeroEstante = new System.Windows.Forms.Label();
             this.panelTituloDeRegistroProductos = new System.Windows.Forms.Panel();
-            this.labelAdvertencia = new System.Windows.Forms.Label();
             this.btnClose = new FontAwesome.Sharp.IconPictureBox();
             this.textSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new FontAwesome.Sharp.IconPictureBox();
@@ -114,14 +114,14 @@ namespace Presentacion
             this.panelRegistroDeProductos.Controls.Add(this.labelTipo);
             this.panelRegistroDeProductos.Controls.Add(this.label1);
             this.panelRegistroDeProductos.Controls.Add(this.textCantidad);
-            this.panelRegistroDeProductos.Controls.Add(this.comboBox1);
+            this.panelRegistroDeProductos.Controls.Add(this.comboNumeroEstante);
             this.panelRegistroDeProductos.Controls.Add(this.btnModificar);
             this.panelRegistroDeProductos.Controls.Add(this.btnRegistrar);
             this.panelRegistroDeProductos.Controls.Add(this.textDetalle);
             this.panelRegistroDeProductos.Controls.Add(this.labelDetalle);
             this.panelRegistroDeProductos.Controls.Add(this.label6);
             this.panelRegistroDeProductos.Controls.Add(this.comboVia);
-            this.panelRegistroDeProductos.Controls.Add(this.label5);
+            this.panelRegistroDeProductos.Controls.Add(this.labelNumeroEstante);
             this.panelRegistroDeProductos.Controls.Add(this.panelTituloDeRegistroProductos);
             this.panelRegistroDeProductos.Controls.Add(this.textReferencia);
             this.panelRegistroDeProductos.Controls.Add(this.labelPorcentajeDeVenta);
@@ -142,6 +142,18 @@ namespace Presentacion
             this.panelRegistroDeProductos.Name = "panelRegistroDeProductos";
             this.panelRegistroDeProductos.Size = new System.Drawing.Size(526, 417);
             this.panelRegistroDeProductos.TabIndex = 49;
+            // 
+            // labelAdvertencia
+            // 
+            this.labelAdvertencia.AutoSize = true;
+            this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelAdvertencia.Location = new System.Drawing.Point(165, 31);
+            this.labelAdvertencia.Name = "labelAdvertencia";
+            this.labelAdvertencia.Size = new System.Drawing.Size(184, 16);
+            this.labelAdvertencia.TabIndex = 60;
+            this.labelAdvertencia.Text = "No existe este producto!!!";
+            this.labelAdvertencia.Visible = false;
             // 
             // comboLaboratorio
             // 
@@ -227,24 +239,14 @@ namespace Presentacion
             this.textCantidad.TabIndex = 61;
             this.textCantidad.Text = "0";
             // 
-            // comboBox1
+            // comboNumeroEstante
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.comboBox1.Location = new System.Drawing.Point(381, 340);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 60;
+            this.comboNumeroEstante.FormattingEnabled = true;
+            this.comboNumeroEstante.Location = new System.Drawing.Point(381, 340);
+            this.comboNumeroEstante.Name = "comboNumeroEstante";
+            this.comboNumeroEstante.Size = new System.Drawing.Size(121, 21);
+            this.comboNumeroEstante.TabIndex = 60;
+            this.comboNumeroEstante.SelectedIndexChanged += new System.EventHandler(this.comboNumeroEstante_SelectedIndexChanged);
             // 
             // btnModificar
             // 
@@ -339,14 +341,14 @@ namespace Presentacion
             this.comboVia.Size = new System.Drawing.Size(172, 21);
             this.comboVia.TabIndex = 56;
             // 
-            // label5
+            // labelNumeroEstante
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(268, 344);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 13);
-            this.label5.TabIndex = 52;
-            this.label5.Text = "Ubicacion del estante:";
+            this.labelNumeroEstante.AutoSize = true;
+            this.labelNumeroEstante.Location = new System.Drawing.Point(268, 344);
+            this.labelNumeroEstante.Name = "labelNumeroEstante";
+            this.labelNumeroEstante.Size = new System.Drawing.Size(113, 13);
+            this.labelNumeroEstante.TabIndex = 52;
+            this.labelNumeroEstante.Text = "Ubicacion del estante:";
             // 
             // panelTituloDeRegistroProductos
             // 
@@ -360,18 +362,6 @@ namespace Presentacion
             this.panelTituloDeRegistroProductos.Name = "panelTituloDeRegistroProductos";
             this.panelTituloDeRegistroProductos.Size = new System.Drawing.Size(524, 24);
             this.panelTituloDeRegistroProductos.TabIndex = 48;
-            // 
-            // labelAdvertencia
-            // 
-            this.labelAdvertencia.AutoSize = true;
-            this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
-            this.labelAdvertencia.Location = new System.Drawing.Point(165, 31);
-            this.labelAdvertencia.Name = "labelAdvertencia";
-            this.labelAdvertencia.Size = new System.Drawing.Size(184, 16);
-            this.labelAdvertencia.TabIndex = 60;
-            this.labelAdvertencia.Text = "No existe este producto!!!";
-            this.labelAdvertencia.Visible = false;
             // 
             // btnClose
             // 
@@ -584,7 +574,7 @@ namespace Presentacion
         private System.Windows.Forms.Label labelDetalle;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboVia;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelNumeroEstante;
         private System.Windows.Forms.Panel panelTituloDeRegistroProductos;
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.TextBox textReferencia;
@@ -602,7 +592,7 @@ namespace Presentacion
         private System.Windows.Forms.TextBox textLote;
         private System.Windows.Forms.DateTimePicker dateTimeFechaVencimiento;
         private System.Windows.Forms.Label labelLote;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboNumeroEstante;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textCantidad;
         private System.Windows.Forms.ComboBox comboTipo;

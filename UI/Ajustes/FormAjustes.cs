@@ -49,7 +49,7 @@ namespace Presentacion
             {
                 if (respuesta.Drogueria == null)
                 {
-                    
+                    labelAdvertencia.Visible = true;
                 }
             }
         }
@@ -82,6 +82,7 @@ namespace Presentacion
             Drogueria drogueria = MapearDrogueria();
             string mensaje = drogueriaService.Guardar(drogueria);
             MessageBox.Show(mensaje, "Mensaje de Guardado", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            BuscarPorId();
         }
         private void btnEliminarInfo_Click(object sender, EventArgs e)
         {

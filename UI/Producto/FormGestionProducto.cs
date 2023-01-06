@@ -17,12 +17,15 @@ namespace Presentacion
     public partial class FormGestionProducto : Form
     {
         ProductoService productoService;
+        DrogueriaService drogueriaService;
         ProductoFacturaTxtService productoTxtService=new ProductoFacturaTxtService();
         ProductoVencidoTxtService productoVencidoTxtService = new ProductoVencidoTxtService();
         List<Producto> productos;
+        List<Drogueria> droguerias;
         Producto producto;
         CajaRegistradoraService cajaRegistradoraService;
-
+        int cantidadDrogueria;
+        bool cajaAbierta;
         string referenciaProducto;
         int cantidadProducto;
         int cantidadARestar;
@@ -46,8 +49,10 @@ namespace Presentacion
         {
             cajaRegistradoraService = new CajaRegistradoraService(ConfigConnection.ConnectionString);
             productoService = new ProductoService(ConfigConnection.ConnectionString);
+            drogueriaService = new DrogueriaService(ConfigConnection.ConnectionString);
             InitializeComponent();
             ConsultarYLlenarGridDeProductos();
+            ConsultarDroguerias();
             CalcularProvisiones();
             CalculoDeEstadoAutomatico();
         }
@@ -154,6 +159,7 @@ namespace Presentacion
             {
                 var cajasRegistradoras = new List<Caja> { respuesta.CajaRegistradora };
                 labelCash.Text = respuesta.CajaRegistradora.Monto.ToString();
+                cajaAbierta = true;
             }
             else
             {
@@ -346,7 +352,7 @@ namespace Presentacion
                     tipoProducto = respuesta.Producto.Tipo;
                     precioDeNegocio = respuesta.Producto.PrecioDeNegocio;
                     porcentajeDeVenta = respuesta.Producto.PorcentajeDeVenta;
-                    ProductoFacturaTxt productoTxt = new ProductoFacturaTxt(referenciaProducto, cantidadARestar, nombreProducto, detalleProducto, precioProducto);
+                    ProductoFacturaTxt productoTxt = new ProductoFacturaTxt(cantidadARestar, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
                     string mensaje = productoTxtService.Guardar(productoTxt);
 
                     Producto producto = CalculosDefactura();
@@ -382,9 +388,7 @@ namespace Presentacion
                             if (cantidadADescontar <= cantidadEnInventario)
                             {
                                 MapearMedicamentosFactura(referencia);
-                                FormFacturaDeProducto frm = new FormFacturaDeProducto();
-                                frm.ShowDialog();
-                                ConsultarYLlenarGridDeProductos();
+                                break;
                             }
                             else
                             {
@@ -395,6 +399,24 @@ namespace Presentacion
                     }
                     i = i + 1;
                 }
+                break;
+            }
+        }
+        private void ConsultarDroguerias()
+        {
+            ConsultaDrogueriaRespuesta respuesta = new ConsultaDrogueriaRespuesta();
+            respuesta = drogueriaService.ConsultarTodos();
+            droguerias = respuesta.Droguerias.ToList();
+            if (respuesta.Droguerias.Count != 0 && respuesta.Droguerias != null)
+            {
+                cantidadDrogueria=drogueriaService.Totalizar().Cuenta;
+            }
+            else
+            {
+                if (respuesta.Droguerias == null || respuesta.Droguerias.Count == 0)
+                {
+                    
+                }
             }
         }
         private void btnVenderProducto_Click(object sender, EventArgs e)
@@ -403,15 +425,34 @@ namespace Presentacion
             string referencia;
             if (TotalSeleccion >= 1)
             {
-                foreach (DataGridViewRow row in dataGridFarmacos.Rows)
+                if (cajaAbierta == true)
                 {
-                    if (Convert.ToBoolean(row.Cells["Column1"].Value) == true)
+                    if (cantidadDrogueria == 1)
                     {
-                        referencia = Convert.ToString(row.Cells["Referencia"].Value);
-                        ValidarCantidadesIngresadas(referencia);
+                        foreach (DataGridViewRow row in dataGridFarmacos.Rows)
+                        {
+                            if (Convert.ToBoolean(row.Cells["Column1"].Value) == true)
+                            {
+                                referencia = Convert.ToString(row.Cells["Referencia"].Value);
+                                ValidarCantidadesIngresadas(referencia);
+                            }
+                        }
+                        x = 0;
+                        FormFacturaDeProducto frm = new FormFacturaDeProducto();
+                        frm.ShowDialog();
+                        ConsultarYLlenarGridDeProductos();
+                    }
+                    else
+                    {
+                        string mensaje = "No se ha registrado datos de drogueria, asi que no se puede generar factura";
+                        MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                x = 0;
+                else
+                {
+                    string mensaje = "No hay caja abierta, asi que no se puede cargar productos a la factura";
+                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
@@ -497,7 +538,6 @@ namespace Presentacion
                 BuscarPorVia();
             }
         }
-
         private void comboFiltroTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             String query = "select * from PRODUCTO where Tipo='" + comboFiltroTipo.Text + "'";
@@ -514,7 +554,6 @@ namespace Presentacion
                 BuscarPorTipo();
             }
         }
-
         private void textSearch_Enter(object sender, EventArgs e)
         {
             if(textSearch.Text=="Buscar nombre")

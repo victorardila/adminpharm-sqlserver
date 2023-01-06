@@ -102,5 +102,14 @@ namespace DAL
             drogueria.Telefono = (string)dataReader["Telefono"];
             return drogueria;
         }
+        public int Totalizar()
+        {
+            return ConsultarTodos().Count();
+        }
+        public int TotalizarTipo(string tipo)
+        {
+
+            return ConsultarTodos().Where(p => p.IdDrogueria.Equals(tipo)).Count();
+        }
     }
 }

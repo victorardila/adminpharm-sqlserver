@@ -20,8 +20,8 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"Insert Into PRODUCTO (Cantidad, Referencia, Nombre, Detalle, Fecha_De_Registro, Fecha_De_Vencimiento, Lote, Laboratorio, Estado, Tipo, Via, Porcentaje_De_Venta, Precio_De_Negocio, Precio_De_Venta, GananciaPorProducto) 
-                                        values (@Cantidad, @Referencia, @Nombre, @Detalle, @Fecha_De_Registro, @Fecha_De_Vencimiento, @Lote, @Laboratorio, @Estado, @Tipo, @Via, @Porcentaje_De_Venta, @Precio_De_Negocio, @Precio_De_Venta, @GananciaPorProducto)";
+                command.CommandText = @"Insert Into PRODUCTO (Cantidad, Referencia, Nombre, Detalle, Fecha_De_Registro, Fecha_De_Vencimiento, Lote, Laboratorio, Estado, Tipo, Via, Porcentaje_De_Venta, Precio_De_Negocio, Precio_De_Venta, GananciaPorProducto, Numero_Estante) 
+                                        values (@Cantidad, @Referencia, @Nombre, @Detalle, @Fecha_De_Registro, @Fecha_De_Vencimiento, @Lote, @Laboratorio, @Estado, @Tipo, @Via, @Porcentaje_De_Venta, @Precio_De_Negocio, @Precio_De_Venta, @GananciaPorProducto, @Numero_Estante)";
                 command.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
                 command.Parameters.AddWithValue("@Referencia", producto.Referencia);
                 command.Parameters.AddWithValue("@Nombre", producto.Nombre);
@@ -37,6 +37,7 @@ namespace DAL
                 command.Parameters.AddWithValue("@Precio_De_Negocio", producto.PrecioDeNegocio);
                 command.Parameters.AddWithValue("@Precio_De_Venta", producto.PrecioDeVenta);
                 command.Parameters.AddWithValue("@GananciaPorProducto", producto.GananciaPorProducto);
+                command.Parameters.AddWithValue("@Numero_Estante", producto.NumeroDeEstante);
                 var filas = command.ExecuteNonQuery();
             }
         }
@@ -54,7 +55,7 @@ namespace DAL
             List<Producto> productos = new List<Producto>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select Cantidad, Referencia, Nombre, Detalle, Fecha_De_Registro, Fecha_De_Vencimiento, Lote, Laboratorio, Estado, Tipo, Via, Porcentaje_De_Venta, Precio_De_Negocio, Precio_De_Venta, GananciaPorProducto from PRODUCTO";
+                command.CommandText = "Select Cantidad, Referencia, Nombre, Detalle, Fecha_De_Registro, Fecha_De_Vencimiento, Lote, Laboratorio, Estado, Tipo, Via, Porcentaje_De_Venta, Precio_De_Negocio, Precio_De_Venta, GananciaPorProducto, Numero_Estante from PRODUCTO";
                 var dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -162,7 +163,7 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"update PRODUCTO set Cantidad=@Cantidad, Nombre=@Nombre, Detalle=@Detalle, Fecha_De_Registro=@Fecha_De_Registro, Fecha_De_Vencimiento=@Fecha_De_Vencimiento, Lote=@Lote, Laboratorio=@Laboratorio,Estado=@Estado, Tipo=@Tipo, Via=@Via, Porcentaje_De_Venta=@Porcentaje_De_Venta, Precio_De_Negocio=@Precio_De_Negocio, Precio_De_Venta=@Precio_De_Venta, GananciaPorProducto=@GananciaPorProducto
+                command.CommandText = @"update PRODUCTO set Cantidad=@Cantidad, Nombre=@Nombre, Detalle=@Detalle, Fecha_De_Registro=@Fecha_De_Registro, Fecha_De_Vencimiento=@Fecha_De_Vencimiento, Lote=@Lote, Laboratorio=@Laboratorio,Estado=@Estado, Tipo=@Tipo, Via=@Via, Porcentaje_De_Venta=@Porcentaje_De_Venta, Precio_De_Negocio=@Precio_De_Negocio, Precio_De_Venta=@Precio_De_Venta, GananciaPorProducto=@GananciaPorProducto, Numero_Estante=@Numero_Estante
                                         where Referencia=@Referencia";
                 command.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
                 command.Parameters.AddWithValue("@Referencia", producto.Referencia);
@@ -179,6 +180,7 @@ namespace DAL
                 command.Parameters.AddWithValue("@Precio_De_Negocio", producto.PrecioDeNegocio);
                 command.Parameters.AddWithValue("@Precio_De_Venta", producto.PrecioDeVenta);
                 command.Parameters.AddWithValue("@GananciaPorProducto", producto.GananciaPorProducto);
+                command.Parameters.AddWithValue("@Numero_Estante", producto.NumeroDeEstante);
                 var filas = command.ExecuteNonQuery();
             }
         }
@@ -201,6 +203,7 @@ namespace DAL
             producto.PrecioDeNegocio = (int)dataReader["Precio_De_Negocio"];
             producto.PrecioDeVenta = (int)dataReader["Precio_De_Venta"];
             producto.GananciaPorProducto = (int)dataReader["GananciaPorProducto"];
+            producto.NumeroDeEstante = (int)dataReader["Numero_Estante"];
             return producto;
         }
         public int Totalizar()

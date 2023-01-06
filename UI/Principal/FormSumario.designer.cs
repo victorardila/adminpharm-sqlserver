@@ -142,7 +142,7 @@
             this.labelProductos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.labelProductos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.labelProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelProductos.ForeColor = System.Drawing.Color.RoyalBlue;
             this.labelProductos.IconChar = FontAwesome.Sharp.IconChar.None;
             this.labelProductos.IconColor = System.Drawing.Color.Black;
@@ -224,7 +224,7 @@
             this.labelEstantes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.labelEstantes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.labelEstantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelEstantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEstantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEstantes.ForeColor = System.Drawing.Color.Orange;
             this.labelEstantes.IconChar = FontAwesome.Sharp.IconChar.None;
             this.labelEstantes.IconColor = System.Drawing.Color.Black;
@@ -311,7 +311,7 @@
             this.labelClientes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.labelClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.labelClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelClientes.ForeColor = System.Drawing.Color.Crimson;
             this.labelClientes.IconChar = FontAwesome.Sharp.IconChar.None;
             this.labelClientes.IconColor = System.Drawing.Color.Black;
@@ -479,8 +479,8 @@
             this.labelEmpleados.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.labelEmpleados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.labelEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelEmpleados.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEmpleados.ForeColor = System.Drawing.Color.Turquoise;
+            this.labelEmpleados.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEmpleados.ForeColor = System.Drawing.Color.MidnightBlue;
             this.labelEmpleados.IconChar = FontAwesome.Sharp.IconChar.None;
             this.labelEmpleados.IconColor = System.Drawing.Color.Black;
             this.labelEmpleados.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -612,8 +612,8 @@
             this.labelBodega.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.labelBodega.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.labelBodega.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelBodega.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBodega.ForeColor = System.Drawing.Color.Orange;
+            this.labelBodega.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBodega.ForeColor = System.Drawing.Color.Indigo;
             this.labelBodega.IconChar = FontAwesome.Sharp.IconChar.None;
             this.labelBodega.IconColor = System.Drawing.Color.Black;
             this.labelBodega.IconFont = FontAwesome.Sharp.IconFont.Auto;

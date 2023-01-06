@@ -34,6 +34,7 @@ namespace Presentacion
             btnGestionCaja.Text = "Gestion de Caja";
             btnGestionProductos.Text = "Gestion de Productos";
             btnGestionUsuarios.Text = "Gestion de Usuarios";
+            btnAjustes.Text = "Ajustes";
             panelSidebarClose.Visible = false;
         }
 
@@ -46,6 +47,7 @@ namespace Presentacion
             btnGestionCaja.Text = "";
             btnGestionProductos.Text = "";
             btnGestionUsuarios.Text = "";
+            btnAjustes.Text = "";
             panelSidebarClose.Visible = true;
         }
 

@@ -47,6 +47,7 @@ namespace Entity
         public double PrecioDeNegocio { get; set; }
         public double PrecioDeVenta { get; set; }
         public double GananciaPorProducto { get; set; }
+        public int NumeroDeEstante { get; set; }
         /*Metodos de la clase*/
         public void calcularEstado()
         {

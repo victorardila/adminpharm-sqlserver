@@ -29,55 +29,36 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnVolver = new FontAwesome.Sharp.IconButton();
             this.panelBarraVolver = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.panelContenedorGestionProductos = new System.Windows.Forms.Panel();
             this.panelConsultaDeProductos = new System.Windows.Forms.Panel();
             this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
-            this.textTotalFarmacos = new System.Windows.Forms.TextBox();
+            this.labelAdvertencia = new System.Windows.Forms.Label();
+            this.textTotalEstantes = new System.Windows.Forms.TextBox();
             this.labelTotalFarmacos = new System.Windows.Forms.Label();
-            this.dataGridFarmacos = new System.Windows.Forms.DataGridView();
+            this.dataGridEstantes = new System.Windows.Forms.DataGridView();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.labelAdvertenciaCliente = new System.Windows.Forms.Label();
+            this.textSearchEstante = new System.Windows.Forms.TextBox();
+            this.comboEstado = new System.Windows.Forms.ComboBox();
             this.labelFiltro = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.panelRegistroDeProductos = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.panelTituloDeRegistroProductos = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnAbrirCaja = new FontAwesome.Sharp.IconButton();
-            this.textReferencia = new System.Windows.Forms.TextBox();
-            this.labelReferencia = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textNombreFarmaceutico = new System.Windows.Forms.TextBox();
-            this.panelContenedorGestionProductos.SuspendLayout();
+            this.panelContenedorGestionProductos = new System.Windows.Forms.Panel();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnModificarEstantes = new FontAwesome.Sharp.IconButton();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnCloseEstante = new FontAwesome.Sharp.IconPictureBox();
+            this.btnSearchEstante = new FontAwesome.Sharp.IconPictureBox();
+            this.btnRegistrarEstantes = new FontAwesome.Sharp.IconButton();
+            this.btnVolver = new FontAwesome.Sharp.IconButton();
             this.panelConsultaDeProductos.SuspendLayout();
             this.panelSubDataGridFarmacos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridFarmacos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).BeginInit();
             this.panelTituloDataGridFarmacos.SuspendLayout();
-            this.panelRegistroDeProductos.SuspendLayout();
-            this.panelTituloDeRegistroProductos.SuspendLayout();
+            this.panelContenedorGestionProductos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCloseEstante)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchEstante)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnVolver
-            // 
-            this.btnVolver.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVolver.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnVolver.IconChar = FontAwesome.Sharp.IconChar.CaretLeft;
-            this.btnVolver.IconColor = System.Drawing.SystemColors.WindowText;
-            this.btnVolver.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnVolver.IconSize = 30;
-            this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(19, 6);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(31, 35);
-            this.btnVolver.TabIndex = 34;
-            this.btnVolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnVolver.UseVisualStyleBackColor = true;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // panelBarraVolver
             // 
@@ -98,45 +79,46 @@ namespace Presentacion
             this.label1.TabIndex = 32;
             this.label1.Text = "Gestionar Estantes";
             // 
-            // panelContenedorGestionProductos
-            // 
-            this.panelContenedorGestionProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelContenedorGestionProductos.Controls.Add(this.panelConsultaDeProductos);
-            this.panelContenedorGestionProductos.Controls.Add(this.panelRegistroDeProductos);
-            this.panelContenedorGestionProductos.Location = new System.Drawing.Point(12, 47);
-            this.panelContenedorGestionProductos.Name = "panelContenedorGestionProductos";
-            this.panelContenedorGestionProductos.Size = new System.Drawing.Size(767, 395);
-            this.panelContenedorGestionProductos.TabIndex = 53;
-            // 
             // panelConsultaDeProductos
             // 
             this.panelConsultaDeProductos.Controls.Add(this.panelSubDataGridFarmacos);
-            this.panelConsultaDeProductos.Controls.Add(this.dataGridFarmacos);
+            this.panelConsultaDeProductos.Controls.Add(this.dataGridEstantes);
             this.panelConsultaDeProductos.Controls.Add(this.panelTituloDataGridFarmacos);
             this.panelConsultaDeProductos.Location = new System.Drawing.Point(3, 3);
             this.panelConsultaDeProductos.Name = "panelConsultaDeProductos";
-            this.panelConsultaDeProductos.Size = new System.Drawing.Size(750, 248);
+            this.panelConsultaDeProductos.Size = new System.Drawing.Size(750, 349);
             this.panelConsultaDeProductos.TabIndex = 49;
             // 
             // panelSubDataGridFarmacos
             // 
             this.panelSubDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelSubDataGridFarmacos.Controls.Add(this.textTotalFarmacos);
+            this.panelSubDataGridFarmacos.Controls.Add(this.labelAdvertencia);
+            this.panelSubDataGridFarmacos.Controls.Add(this.textTotalEstantes);
             this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalFarmacos);
-            this.panelSubDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(0, 226);
+            this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(0, 324);
             this.panelSubDataGridFarmacos.Name = "panelSubDataGridFarmacos";
             this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(750, 22);
             this.panelSubDataGridFarmacos.TabIndex = 51;
             // 
-            // textTotalFarmacos
+            // labelAdvertencia
             // 
-            this.textTotalFarmacos.Location = new System.Drawing.Point(95, 0);
-            this.textTotalFarmacos.Name = "textTotalFarmacos";
-            this.textTotalFarmacos.Size = new System.Drawing.Size(47, 20);
-            this.textTotalFarmacos.TabIndex = 49;
+            this.labelAdvertencia.AutoSize = true;
+            this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelAdvertencia.Location = new System.Drawing.Point(548, 2);
+            this.labelAdvertencia.Name = "labelAdvertencia";
+            this.labelAdvertencia.Size = new System.Drawing.Size(195, 16);
+            this.labelAdvertencia.TabIndex = 87;
+            this.labelAdvertencia.Text = "No hay datos registrados!!!";
+            this.labelAdvertencia.Visible = false;
+            // 
+            // textTotalEstantes
+            // 
+            this.textTotalEstantes.Location = new System.Drawing.Point(95, 0);
+            this.textTotalEstantes.Name = "textTotalEstantes";
+            this.textTotalEstantes.Size = new System.Drawing.Size(47, 20);
+            this.textTotalEstantes.TabIndex = 49;
+            this.textTotalEstantes.Text = "0";
             // 
             // labelTotalFarmacos
             // 
@@ -147,19 +129,27 @@ namespace Presentacion
             this.labelTotalFarmacos.TabIndex = 49;
             this.labelTotalFarmacos.Text = "Total Registrados:";
             // 
-            // dataGridFarmacos
+            // dataGridEstantes
             // 
-            this.dataGridFarmacos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridFarmacos.Location = new System.Drawing.Point(0, 24);
-            this.dataGridFarmacos.Name = "dataGridFarmacos";
-            this.dataGridFarmacos.Size = new System.Drawing.Size(750, 224);
-            this.dataGridFarmacos.TabIndex = 50;
+            this.dataGridEstantes.AllowUserToAddRows = false;
+            this.dataGridEstantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridEstantes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Eliminar});
+            this.dataGridEstantes.Location = new System.Drawing.Point(0, 23);
+            this.dataGridEstantes.Name = "dataGridEstantes";
+            this.dataGridEstantes.RowHeadersVisible = false;
+            this.dataGridEstantes.Size = new System.Drawing.Size(750, 304);
+            this.dataGridEstantes.TabIndex = 50;
+            this.dataGridEstantes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEstantes_CellClick);
             // 
             // panelTituloDataGridFarmacos
             // 
             this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTituloDataGridFarmacos.Controls.Add(this.comboBox1);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.labelAdvertenciaCliente);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.btnCloseEstante);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.textSearchEstante);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.btnSearchEstante);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.comboEstado);
             this.panelTituloDataGridFarmacos.Controls.Add(this.labelFiltro);
             this.panelTituloDataGridFarmacos.Controls.Add(this.label4);
             this.panelTituloDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Top;
@@ -168,22 +158,54 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(750, 24);
             this.panelTituloDataGridFarmacos.TabIndex = 49;
             // 
-            // comboBox1
+            // labelAdvertenciaCliente
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(261, 1);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(86, 21);
-            this.comboBox1.TabIndex = 52;
+            this.labelAdvertenciaCliente.AutoSize = true;
+            this.labelAdvertenciaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdvertenciaCliente.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelAdvertenciaCliente.Location = new System.Drawing.Point(405, 3);
+            this.labelAdvertenciaCliente.Name = "labelAdvertenciaCliente";
+            this.labelAdvertenciaCliente.Size = new System.Drawing.Size(157, 16);
+            this.labelAdvertenciaCliente.TabIndex = 86;
+            this.labelAdvertenciaCliente.Text = "No hay coincidencias";
+            this.labelAdvertenciaCliente.Visible = false;
+            // 
+            // textSearchEstante
+            // 
+            this.textSearchEstante.Location = new System.Drawing.Point(577, 1);
+            this.textSearchEstante.Name = "textSearchEstante";
+            this.textSearchEstante.Size = new System.Drawing.Size(127, 20);
+            this.textSearchEstante.TabIndex = 83;
+            this.textSearchEstante.Text = "Buscar numero";
+            this.textSearchEstante.Visible = false;
+            this.textSearchEstante.TextChanged += new System.EventHandler(this.textSearchEstante_TextChanged);
+            this.textSearchEstante.Enter += new System.EventHandler(this.textSearchCliente_Enter);
+            // 
+            // comboEstado
+            // 
+            this.comboEstado.FormattingEnabled = true;
+            this.comboEstado.Items.AddRange(new object[] {
+            "Todos",
+            "Vacio",
+            "Medio Vacio",
+            "Medio Lleno",
+            "Casi Lleno",
+            "Lleno"});
+            this.comboEstado.Location = new System.Drawing.Point(300, 2);
+            this.comboEstado.Name = "comboEstado";
+            this.comboEstado.Size = new System.Drawing.Size(86, 21);
+            this.comboEstado.TabIndex = 52;
+            this.comboEstado.Text = "Todos";
+            this.comboEstado.SelectedIndexChanged += new System.EventHandler(this.comboEstado_SelectedIndexChanged);
             // 
             // labelFiltro
             // 
             this.labelFiltro.AutoSize = true;
-            this.labelFiltro.Location = new System.Drawing.Point(223, 6);
+            this.labelFiltro.Location = new System.Drawing.Point(210, 6);
             this.labelFiltro.Name = "labelFiltro";
-            this.labelFiltro.Size = new System.Drawing.Size(32, 13);
+            this.labelFiltro.Size = new System.Drawing.Size(88, 13);
             this.labelFiltro.TabIndex = 50;
-            this.labelFiltro.Text = "Filtro:";
+            this.labelFiltro.Text = "Filtrar por estado:";
             // 
             // label4
             // 
@@ -196,123 +218,137 @@ namespace Presentacion
             this.label4.TabIndex = 51;
             this.label4.Text = "Consultar Estantes";
             // 
-            // panelRegistroDeProductos
+            // panelContenedorGestionProductos
             // 
-            this.panelRegistroDeProductos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRegistroDeProductos.Controls.Add(this.iconButton1);
-            this.panelRegistroDeProductos.Controls.Add(this.panelTituloDeRegistroProductos);
-            this.panelRegistroDeProductos.Controls.Add(this.btnAbrirCaja);
-            this.panelRegistroDeProductos.Controls.Add(this.textReferencia);
-            this.panelRegistroDeProductos.Controls.Add(this.labelReferencia);
-            this.panelRegistroDeProductos.Controls.Add(this.label2);
-            this.panelRegistroDeProductos.Controls.Add(this.textNombreFarmaceutico);
-            this.panelRegistroDeProductos.Location = new System.Drawing.Point(3, 252);
-            this.panelRegistroDeProductos.Name = "panelRegistroDeProductos";
-            this.panelRegistroDeProductos.Size = new System.Drawing.Size(611, 143);
-            this.panelRegistroDeProductos.TabIndex = 48;
+            this.panelContenedorGestionProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelContenedorGestionProductos.Controls.Add(this.btnModificarEstantes);
+            this.panelContenedorGestionProductos.Controls.Add(this.panelConsultaDeProductos);
+            this.panelContenedorGestionProductos.Controls.Add(this.btnRegistrarEstantes);
+            this.panelContenedorGestionProductos.Location = new System.Drawing.Point(12, 47);
+            this.panelContenedorGestionProductos.Name = "panelContenedorGestionProductos";
+            this.panelContenedorGestionProductos.Size = new System.Drawing.Size(755, 397);
+            this.panelContenedorGestionProductos.TabIndex = 53;
             // 
-            // iconButton1
+            // dataGridViewImageColumn1
             // 
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Pen;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 30;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(377, 74);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(110, 35);
-            this.iconButton1.TabIndex = 51;
-            this.iconButton1.Text = "   Modificar";
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
+            this.dataGridViewImageColumn1.HeaderText = "Eliminar";
+            this.dataGridViewImageColumn1.Image = global::Presentacion.Properties.Resources.deleRojBlack;
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 50;
             // 
-            // panelTituloDeRegistroProductos
+            // btnModificarEstantes
             // 
-            this.panelTituloDeRegistroProductos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTituloDeRegistroProductos.Controls.Add(this.label3);
-            this.panelTituloDeRegistroProductos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTituloDeRegistroProductos.Location = new System.Drawing.Point(0, 0);
-            this.panelTituloDeRegistroProductos.Name = "panelTituloDeRegistroProductos";
-            this.panelTituloDeRegistroProductos.Size = new System.Drawing.Size(609, 24);
-            this.panelTituloDeRegistroProductos.TabIndex = 48;
+            this.btnModificarEstantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnModificarEstantes.FlatAppearance.BorderSize = 0;
+            this.btnModificarEstantes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnModificarEstantes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnModificarEstantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificarEstantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificarEstantes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnModificarEstantes.IconChar = FontAwesome.Sharp.IconChar.Pen;
+            this.btnModificarEstantes.IconColor = System.Drawing.Color.Black;
+            this.btnModificarEstantes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnModificarEstantes.IconSize = 30;
+            this.btnModificarEstantes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnModificarEstantes.Location = new System.Drawing.Point(354, 359);
+            this.btnModificarEstantes.Name = "btnModificarEstantes";
+            this.btnModificarEstantes.Size = new System.Drawing.Size(110, 35);
+            this.btnModificarEstantes.TabIndex = 51;
+            this.btnModificarEstantes.Text = "   Modificar Estantes";
+            this.btnModificarEstantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnModificarEstantes.UseVisualStyleBackColor = false;
             // 
-            // label3
+            // Eliminar
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.label3.Location = new System.Drawing.Point(4, 4);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 16);
-            this.label3.TabIndex = 50;
-            this.label3.Text = "Registrar Estantes";
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Width = 50;
             // 
-            // btnAbrirCaja
+            // btnCloseEstante
             // 
-            this.btnAbrirCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.btnAbrirCaja.FlatAppearance.BorderSize = 0;
-            this.btnAbrirCaja.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btnAbrirCaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.btnAbrirCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAbrirCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAbrirCaja.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnAbrirCaja.IconChar = FontAwesome.Sharp.IconChar.HouseMedical;
-            this.btnAbrirCaja.IconColor = System.Drawing.Color.Black;
-            this.btnAbrirCaja.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAbrirCaja.IconSize = 30;
-            this.btnAbrirCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAbrirCaja.Location = new System.Drawing.Point(377, 33);
-            this.btnAbrirCaja.Name = "btnAbrirCaja";
-            this.btnAbrirCaja.Size = new System.Drawing.Size(110, 35);
-            this.btnAbrirCaja.TabIndex = 50;
-            this.btnAbrirCaja.Text = "   Registrar";
-            this.btnAbrirCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAbrirCaja.UseVisualStyleBackColor = false;
+            this.btnCloseEstante.BackColor = System.Drawing.SystemColors.Control;
+            this.btnCloseEstante.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCloseEstante.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnCloseEstante.IconChar = FontAwesome.Sharp.IconChar.X;
+            this.btnCloseEstante.IconColor = System.Drawing.Color.DarkRed;
+            this.btnCloseEstante.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCloseEstante.IconSize = 18;
+            this.btnCloseEstante.Location = new System.Drawing.Point(704, 2);
+            this.btnCloseEstante.Name = "btnCloseEstante";
+            this.btnCloseEstante.Size = new System.Drawing.Size(18, 18);
+            this.btnCloseEstante.TabIndex = 85;
+            this.btnCloseEstante.TabStop = false;
+            this.btnCloseEstante.Visible = false;
+            this.btnCloseEstante.Click += new System.EventHandler(this.btnCloseCliente_Click);
             // 
-            // textReferencia
+            // btnSearchEstante
             // 
-            this.textReferencia.Location = new System.Drawing.Point(118, 41);
-            this.textReferencia.Name = "textReferencia";
-            this.textReferencia.Size = new System.Drawing.Size(144, 20);
-            this.textReferencia.TabIndex = 33;
+            this.btnSearchEstante.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSearchEstante.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchEstante.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearchEstante.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.btnSearchEstante.IconColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearchEstante.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSearchEstante.IconSize = 20;
+            this.btnSearchEstante.Location = new System.Drawing.Point(723, 1);
+            this.btnSearchEstante.Name = "btnSearchEstante";
+            this.btnSearchEstante.Size = new System.Drawing.Size(20, 20);
+            this.btnSearchEstante.TabIndex = 84;
+            this.btnSearchEstante.TabStop = false;
+            this.btnSearchEstante.Click += new System.EventHandler(this.btnSearchCliente_Click);
             // 
-            // labelReferencia
+            // btnRegistrarEstantes
             // 
-            this.labelReferencia.AutoSize = true;
-            this.labelReferencia.Location = new System.Drawing.Point(20, 44);
-            this.labelReferencia.Name = "labelReferencia";
-            this.labelReferencia.Size = new System.Drawing.Size(98, 13);
-            this.labelReferencia.TabIndex = 32;
-            this.labelReferencia.Text = "Codigo del estante:";
+            this.btnRegistrarEstantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnRegistrarEstantes.FlatAppearance.BorderSize = 0;
+            this.btnRegistrarEstantes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnRegistrarEstantes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnRegistrarEstantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrarEstantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrarEstantes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRegistrarEstantes.IconChar = FontAwesome.Sharp.IconChar.HouseMedical;
+            this.btnRegistrarEstantes.IconColor = System.Drawing.Color.Black;
+            this.btnRegistrarEstantes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnRegistrarEstantes.IconSize = 30;
+            this.btnRegistrarEstantes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRegistrarEstantes.Location = new System.Drawing.Point(238, 358);
+            this.btnRegistrarEstantes.Name = "btnRegistrarEstantes";
+            this.btnRegistrarEstantes.Size = new System.Drawing.Size(110, 35);
+            this.btnRegistrarEstantes.TabIndex = 50;
+            this.btnRegistrarEstantes.Text = "   Registrar Estantes";
+            this.btnRegistrarEstantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRegistrarEstantes.UseVisualStyleBackColor = false;
+            this.btnRegistrarEstantes.Click += new System.EventHandler(this.btnRegistrarEstantes_Click);
             // 
-            // label2
+            // btnVolver
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 13);
-            this.label2.TabIndex = 34;
-            this.label2.Text = "Numero del Estante:";
-            // 
-            // textNombreFarmaceutico
-            // 
-            this.textNombreFarmaceutico.Location = new System.Drawing.Point(118, 67);
-            this.textNombreFarmaceutico.Name = "textNombreFarmaceutico";
-            this.textNombreFarmaceutico.Size = new System.Drawing.Size(144, 20);
-            this.textNombreFarmaceutico.TabIndex = 35;
+            this.btnVolver.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVolver.IconChar = FontAwesome.Sharp.IconChar.CaretLeft;
+            this.btnVolver.IconColor = System.Drawing.SystemColors.WindowText;
+            this.btnVolver.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVolver.IconSize = 30;
+            this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVolver.Location = new System.Drawing.Point(19, 6);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(31, 35);
+            this.btnVolver.TabIndex = 34;
+            this.btnVolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // FormGestionDeEstantes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 467);
+            this.ClientSize = new System.Drawing.Size(779, 467);
             this.Controls.Add(this.panelContenedorGestionProductos);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.panelBarraVolver);
@@ -320,17 +356,15 @@ namespace Presentacion
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormGestionDeEstantes";
             this.Text = "FormGestionDeEstantes";
-            this.panelContenedorGestionProductos.ResumeLayout(false);
             this.panelConsultaDeProductos.ResumeLayout(false);
             this.panelSubDataGridFarmacos.ResumeLayout(false);
             this.panelSubDataGridFarmacos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridFarmacos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).EndInit();
             this.panelTituloDataGridFarmacos.ResumeLayout(false);
             this.panelTituloDataGridFarmacos.PerformLayout();
-            this.panelRegistroDeProductos.ResumeLayout(false);
-            this.panelRegistroDeProductos.PerformLayout();
-            this.panelTituloDeRegistroProductos.ResumeLayout(false);
-            this.panelTituloDeRegistroProductos.PerformLayout();
+            this.panelContenedorGestionProductos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnCloseEstante)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchEstante)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,24 +375,24 @@ namespace Presentacion
         private FontAwesome.Sharp.IconButton btnVolver;
         private System.Windows.Forms.Panel panelBarraVolver;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panelContenedorGestionProductos;
+        private FontAwesome.Sharp.IconButton btnModificarEstantes;
+        private FontAwesome.Sharp.IconButton btnRegistrarEstantes;
         private System.Windows.Forms.Panel panelConsultaDeProductos;
         private System.Windows.Forms.Panel panelSubDataGridFarmacos;
-        private System.Windows.Forms.TextBox textTotalFarmacos;
+        private System.Windows.Forms.TextBox textTotalEstantes;
         private System.Windows.Forms.Label labelTotalFarmacos;
-        private System.Windows.Forms.DataGridView dataGridFarmacos;
+        private System.Windows.Forms.DataGridView dataGridEstantes;
+        private System.Windows.Forms.DataGridViewImageColumn Eliminar;
         private System.Windows.Forms.Panel panelTituloDataGridFarmacos;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label labelAdvertenciaCliente;
+        private FontAwesome.Sharp.IconPictureBox btnCloseEstante;
+        private System.Windows.Forms.TextBox textSearchEstante;
+        private FontAwesome.Sharp.IconPictureBox btnSearchEstante;
+        private System.Windows.Forms.ComboBox comboEstado;
         private System.Windows.Forms.Label labelFiltro;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panelRegistroDeProductos;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private System.Windows.Forms.Panel panelTituloDeRegistroProductos;
-        private System.Windows.Forms.Label label3;
-        private FontAwesome.Sharp.IconButton btnAbrirCaja;
-        private System.Windows.Forms.TextBox textReferencia;
-        private System.Windows.Forms.Label labelReferencia;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textNombreFarmaceutico;
+        private System.Windows.Forms.Panel panelContenedorGestionProductos;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.Label labelAdvertencia;
     }
 }

@@ -6,20 +6,22 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    class Cliente
+    public class Cliente
     {
         //Constructor
-        public Cliente(string identificacion, string tipoDeIdentificacion, string nombres, string apellidos, DateTime fechaDeNacimiento, string direccion, string sexo, string telefono, string correoElectronico)
+        public Cliente(string identificacion, string tipoDeIdentificacion, string nombres, string apellidos, DateTime fechaDeNacimiento, int edad, string direccion, string sexo, string telefono, string correoElectronico, string codigoCliente)
         {
             Identificacion = identificacion;
             TipoDeIdentificacion = tipoDeIdentificacion;
             Nombres = nombres;
             Apellidos = apellidos;
             FechaDeNacimiento = fechaDeNacimiento;
+            Edad = edad;
             Direccion = direccion;
             Sexo = sexo;
             Telefono = telefono;
             CorreoElectronico = correoElectronico;
+            CodigoCliente = codigoCliente;
         }
         //Constructor Sobrecargado
         public Cliente()
@@ -49,6 +51,11 @@ namespace Entity
             b = aleatorio.Next(100000, 200000);
             codigo = a + b;
             CodigoCliente = codigo;
+        }
+        public void CalcularEdad()
+        {
+            int AñoActual = DateTime.Now.Year;
+            Edad = AñoActual - FechaDeNacimiento.Year;
         }
     }
 }
