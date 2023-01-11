@@ -22,7 +22,6 @@ namespace BLL
             try
             {
                 factura.GenerarNombrePdf();
-                factura.GenerarIdFactura();
                 factura.GenerarFechaYHoraFactura();
                 factura.TotalizarFactura();
                 conexion.Open();
@@ -87,7 +86,50 @@ namespace BLL
                 return respuesta;
             }
             finally { conexion.Close(); }
+        }
+        public string EliminarHistorial(string FormaDePago)
+        {
+            ConsultaFacturaRespuesta respuesta = new ConsultaFacturaRespuesta();
+            try
+            {
+                conexion.Open();
+                respuesta.Facturas = repositorio.BuscarHistorial(FormaDePago);
+                if (respuesta.Facturas != null)
+                {
+                    repositorio.EliminarHistorial(FormaDePago);
+                    conexion.Close();
+                    return ($"El historial se ha eliminado satisfactoriamente.");
+                }
+                return ($"Lo sentimos, las cajas en estado {FormaDePago} no se encuentra registrada.");
+            }
+            catch (Exception e)
+            {
 
+                return $"Error de la Aplicación: {e.Message}";
+            }
+            finally { conexion.Close(); }
+
+        }
+        public BusquedaFacturaRespuesta BuscarPorIdCaja(string id_caja)
+        {
+            BusquedaFacturaRespuesta respuesta = new BusquedaFacturaRespuesta();
+            try
+            {
+
+                conexion.Open();
+                respuesta.Factura = repositorio.BuscarPorIdCaja(id_caja);
+                conexion.Close();
+                respuesta.Mensaje = (respuesta.Factura != null) ? "Se encontró la factura" : "la identificacion de factura buscada no existe";
+                respuesta.Error = false;
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
         }
         public BusquedaFacturaRespuesta BuscarPorId(string id)
         {
@@ -97,6 +139,27 @@ namespace BLL
 
                 conexion.Open();
                 respuesta.Factura = repositorio.BuscarPorId(id);
+                conexion.Close();
+                respuesta.Mensaje = (respuesta.Factura != null) ? "Se encontró la factura" : "la identificacion de factura buscada no existe";
+                respuesta.Error = false;
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
+        }
+        public BusquedaFacturaRespuesta BuscarPorSecuencia(int secuencia)
+        {
+            BusquedaFacturaRespuesta respuesta = new BusquedaFacturaRespuesta();
+            try
+            {
+
+                conexion.Open();
+                respuesta.Factura = repositorio.BuscarPorSecuencia(secuencia);
                 conexion.Close();
                 respuesta.Mensaje = (respuesta.Factura != null) ? "Se encontró la factura" : "la identificacion de factura buscada no existe";
                 respuesta.Error = false;

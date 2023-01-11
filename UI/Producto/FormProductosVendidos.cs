@@ -17,6 +17,12 @@ namespace Presentacion
         ProductoService productoService;
         ProductoVendidoTxtService productoVendidoTxtService = new ProductoVendidoTxtService();
         ProductoVendidoTxt productoTxt = new ProductoVendidoTxt();
+        string referenciaProducto;
+        int cantidadARestar;
+        int cantidadProducto;
+        string nombreProducto;
+        string detalleProducto;
+        double precioProducto;
         public FormProductosVendidos()
         {
             InitializeComponent();
@@ -34,22 +40,12 @@ namespace Presentacion
             {
                 foreach (var item in productoVendidoTxtConsultaResponse.ProductoTxts)
                 {
-                    int Cantidad = item.Cantidad;
-                    string Referencia = item.Referencia;
-                    string Nombre = item.Nombre;
-                    string Detalle = item.Detalle;
-                    DateTime FechaDeRegistro = item.FechaDeRegistro;
-                    DateTime FechaDeVencimiento = item.FechaDeVencimiento;
-                    string Lote = item.Lote;
-                    string Laboratorio = item.Laboratorio;
-                    string Estado = item.Estado;
-                    string Tipo = item.Tipo;
-                    string Via = item.Via;
-                    double PrecioDeNegocio = item.PrecioDeNegocio;
-                    double PrecioDeVenta = item.PrecioDeVenta;
-                    double GananciaPorProducto = item.GananciaPorProducto;
-                    dataGridProductosVendidos.Rows.Add(Cantidad, Referencia, Nombre, Detalle, FechaDeRegistro,
-                        FechaDeVencimiento, Lote, Laboratorio, Estado, Tipo, Via, PrecioDeNegocio, PrecioDeVenta, GananciaPorProducto);
+                    cantidadProducto = item.Cantidad;
+                    referenciaProducto = item.Referencia;
+                    nombreProducto = item.Nombre;
+                    detalleProducto = item.Detalle;
+                    precioProducto = item.Precio;
+                    dataGridProductosVendidos.Rows.Add(cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
                 }
             }
             else
@@ -68,22 +64,12 @@ namespace Presentacion
             {
                 foreach (var item in productoTxtConsultaResponse.ProductoTxts)
                 {
-                    int Cantidad = item.Cantidad;
-                    string Referencia = item.Referencia;
-                    string Nombre = item.Nombre;
-                    string Detalle = item.Detalle;
-                    DateTime FechaDeRegistro = item.FechaDeRegistro;
-                    DateTime FechaDeVencimiento = item.FechaDeVencimiento;
-                    string Lote = item.Lote;
-                    string Laboratorio = item.Laboratorio;
-                    string Estado = item.Estado;
-                    string Tipo = item.Tipo;
-                    string Via = item.Via;
-                    double PrecioDeNegocio = item.PrecioDeNegocio;
-                    double PrecioDeVenta = item.PrecioDeVenta;
-                    double GananciaPorProducto = item.GananciaPorProducto;
-                    dataGridProductosVendidos.Rows.Add(Cantidad, Referencia, Nombre, Detalle, FechaDeRegistro,
-                        FechaDeVencimiento, Lote, Laboratorio, Estado, Tipo, Via, PrecioDeNegocio, PrecioDeVenta, GananciaPorProducto);
+                    string referencia = item.Referencia;
+                    int cantidad = item.Cantidad;
+                    string nombre = item.Nombre;
+                    string detalle = item.Detalle;
+                    double precio = item.Precio;
+                    dataGridProductosVendidos.Rows.Add(referencia, cantidad, nombre, detalle, precio);
                 }
             }
             else

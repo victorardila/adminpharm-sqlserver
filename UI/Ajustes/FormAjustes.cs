@@ -31,7 +31,7 @@ namespace Presentacion
         }
         private void BuscarPorId()
         {
-            BusqueDrogueriaRespuesta respuesta = new BusqueDrogueriaRespuesta();
+            BusquedaDrogueriaRespuesta respuesta = new BusquedaDrogueriaRespuesta();
             respuesta = drogueriaService.BuscarPorId(idDrogueria);
             if (respuesta.Drogueria != null)
             {

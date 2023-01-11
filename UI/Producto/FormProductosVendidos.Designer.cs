@@ -33,20 +33,6 @@ namespace Presentacion
             this.btnCerrar = new FontAwesome.Sharp.IconButton();
             this.panelConsultaDeProductos = new System.Windows.Forms.Panel();
             this.dataGridProductosVendidos = new System.Windows.Forms.DataGridView();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Referencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaDeRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaDeVencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lote = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Laboratorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Via = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioDeNegocio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioDeVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GananciaPorProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
@@ -59,6 +45,11 @@ namespace Presentacion
             this.textTotal = new System.Windows.Forms.TextBox();
             this.labelTotalFarmacos = new System.Windows.Forms.Label();
             this.btnLimpiarHistorial = new FontAwesome.Sharp.IconButton();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Referencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuTop.SuspendLayout();
             this.panelConsultaDeProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosVendidos)).BeginInit();
@@ -111,91 +102,12 @@ namespace Presentacion
             this.Referencia,
             this.Nombre,
             this.Detalle,
-            this.FechaDeRegistro,
-            this.FechaDeVencimiento,
-            this.Lote,
-            this.Laboratorio,
-            this.Estado,
-            this.Tipo,
-            this.Via,
-            this.PrecioDeNegocio,
-            this.PrecioDeVenta,
-            this.GananciaPorProducto});
+            this.Precio});
             this.dataGridProductosVendidos.Location = new System.Drawing.Point(0, 24);
             this.dataGridProductosVendidos.Name = "dataGridProductosVendidos";
             this.dataGridProductosVendidos.RowHeadersVisible = false;
             this.dataGridProductosVendidos.Size = new System.Drawing.Size(772, 419);
             this.dataGridProductosVendidos.TabIndex = 51;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            // 
-            // Referencia
-            // 
-            this.Referencia.HeaderText = "Referencia";
-            this.Referencia.Name = "Referencia";
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            // 
-            // Detalle
-            // 
-            this.Detalle.HeaderText = "Detalle";
-            this.Detalle.Name = "Detalle";
-            // 
-            // FechaDeRegistro
-            // 
-            this.FechaDeRegistro.HeaderText = "FechaDeRegistro";
-            this.FechaDeRegistro.Name = "FechaDeRegistro";
-            // 
-            // FechaDeVencimiento
-            // 
-            this.FechaDeVencimiento.HeaderText = "FechaDeVencimiento";
-            this.FechaDeVencimiento.Name = "FechaDeVencimiento";
-            // 
-            // Lote
-            // 
-            this.Lote.HeaderText = "Lote";
-            this.Lote.Name = "Lote";
-            // 
-            // Laboratorio
-            // 
-            this.Laboratorio.HeaderText = "Laboratorio";
-            this.Laboratorio.Name = "Laboratorio";
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            // 
-            // Tipo
-            // 
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
-            // 
-            // Via
-            // 
-            this.Via.HeaderText = "Via";
-            this.Via.Name = "Via";
-            // 
-            // PrecioDeNegocio
-            // 
-            this.PrecioDeNegocio.HeaderText = "PrecioDeNegocio";
-            this.PrecioDeNegocio.Name = "PrecioDeNegocio";
-            // 
-            // PrecioDeVenta
-            // 
-            this.PrecioDeVenta.HeaderText = "PrecioDeVenta";
-            this.PrecioDeVenta.Name = "PrecioDeVenta";
-            // 
-            // GananciaPorProducto
-            // 
-            this.GananciaPorProducto.HeaderText = "GananciaPorProducto";
-            this.GananciaPorProducto.Name = "GananciaPorProducto";
             // 
             // panelTituloDataGridFarmacos
             // 
@@ -326,6 +238,36 @@ namespace Presentacion
             this.btnLimpiarHistorial.UseVisualStyleBackColor = false;
             this.btnLimpiarHistorial.Click += new System.EventHandler(this.btnLimpiarHistorial_Click);
             // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 80;
+            // 
+            // Referencia
+            // 
+            this.Referencia.HeaderText = "Referencia";
+            this.Referencia.Name = "Referencia";
+            this.Referencia.Width = 200;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.Width = 200;
+            // 
+            // Detalle
+            // 
+            this.Detalle.HeaderText = "Detalle";
+            this.Detalle.Name = "Detalle";
+            this.Detalle.Width = 180;
+            // 
+            // Precio
+            // 
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.Width = 108;
+            // 
             // FormProductosVendidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,20 +308,11 @@ namespace Presentacion
         private System.Windows.Forms.TextBox textTotal;
         private System.Windows.Forms.Label labelTotalFarmacos;
         private System.Windows.Forms.DataGridView dataGridProductosVendidos;
+        private FontAwesome.Sharp.IconButton btnLimpiarHistorial;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Referencia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaDeRegistro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaDeVencimiento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Lote;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Laboratorio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Via;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioDeNegocio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioDeVenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GananciaPorProducto;
-        private FontAwesome.Sharp.IconButton btnLimpiarHistorial;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
     }
 }

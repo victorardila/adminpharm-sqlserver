@@ -81,9 +81,9 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
-        public BusqueDrogueriaRespuesta BuscarPorId(string nit)
+        public BusquedaDrogueriaRespuesta BuscarPorId(string nit)
         {
-            BusqueDrogueriaRespuesta respuesta = new BusqueDrogueriaRespuesta();
+            BusquedaDrogueriaRespuesta respuesta = new BusquedaDrogueriaRespuesta();
             try
             {
 
@@ -174,7 +174,7 @@ namespace BLL
         public string Mensaje { get; set; }
         public IList<Drogueria> Droguerias { get; set; }
     }
-    public class BusqueDrogueriaRespuesta
+    public class BusquedaDrogueriaRespuesta
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }

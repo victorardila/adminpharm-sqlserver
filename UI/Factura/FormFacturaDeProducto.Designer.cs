@@ -94,7 +94,7 @@ namespace Presentacion
             this.panel8 = new System.Windows.Forms.Panel();
             this.labelDireccion = new System.Windows.Forms.Label();
             this.textDireccion = new System.Windows.Forms.TextBox();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.ImprimirDocumento = new System.Drawing.Printing.PrintDocument();
             this.menuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFacturaProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconCash)).BeginInit();
@@ -819,9 +819,9 @@ namespace Presentacion
             this.textDireccion.Size = new System.Drawing.Size(143, 20);
             this.textDireccion.TabIndex = 95;
             // 
-            // printDocument1
+            // ImprimirDocumento
             // 
-            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            this.ImprimirDocumento.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Imprimir);
             // 
             // FormFacturaDeProducto
             // 
@@ -932,6 +932,6 @@ namespace Presentacion
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboFormaDePago;
-        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Drawing.Printing.PrintDocument ImprimirDocumento;
     }
 }

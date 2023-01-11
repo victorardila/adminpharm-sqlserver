@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Drawing.Printing;
+using System.IO;
 using BLL;
 using Entity;
 
@@ -16,17 +18,56 @@ namespace Presentacion
     public partial class FormGestionCaja : Form
     {
         CajaRegistradoraService cajaRegistradoraService;
+        ProductoVendidoTxtService productoVendidoTxtService;
+        ProductoVendidoTxt productoVendidoTxt;
+        List<ProductoVendidoTxt> productoVendidoTxts;
         List<Caja> cajasRegistradoras;
         Caja cajaRegistradora;
+        FacturaService facturaService;
+        DrogueriaService drogueriaService;
+        //Variables de caja
         string idCajaAbierta;
         string fechaDeApertura;
         string horaDeApertura;
         double montoCaja;
+        //Variables de producto
+        string referenciaProducto;
+        int cantidadARestar;
+        int cantidadProducto;
+        string nombreProducto;
+        string detalleProducto;
+        double precioProductos;
+        double precioProductosRedondeado;
+        //Variables de drogueria
+        string idDrogueria = "#Drog";
+        string nombreDrogueria;
+        string nitDrogueria;
+        string fraseDistintiva;
+        string regimen;
+        string pbx;
+        string direccion;
+        string telefono;
+        //Variables Factura
+        int productoLeido = 0;
+        string id_factura;
+        int secuenciaDeFactura = 0;
+        DateTime fechaFactura;
+        string nombreEmpleado;
+        string ciudad;
+        string nombreCliente;
+        double totalSinRedondeo;
+        double totalConRedondeo;
+        double valorDeRedondeo;
+        string formaDePago;
         public FormGestionCaja()
         {
+            drogueriaService = new DrogueriaService(ConfigConnection.ConnectionString);
+            productoVendidoTxtService = new ProductoVendidoTxtService();
+            facturaService = new FacturaService(ConfigConnection.ConnectionString);
             cajaRegistradoraService = new CajaRegistradoraService(ConfigConnection.ConnectionString);
             InitializeComponent();
             ConsultarYLlenarGridDeCajas();
+            BuscararDrogueria();
             BuscarPorEstado();
         }
         private void btnVolver_Click(object sender, EventArgs e)
@@ -141,6 +182,67 @@ namespace Presentacion
             cajaRegistradora.Monto = montoCaja;
             return cajaRegistradora;
         }
+        private void BuscararDrogueria()
+        {
+            BusquedaDrogueriaRespuesta respuesta = new BusquedaDrogueriaRespuesta();
+            respuesta = drogueriaService.BuscarPorId(idDrogueria);
+            if (respuesta.Drogueria != null)
+            {
+                nombreDrogueria = respuesta.Drogueria.NombreDrogueria;
+                nitDrogueria = respuesta.Drogueria.NIT;
+                fraseDistintiva = respuesta.Drogueria.FraseDistintiva;
+                regimen = respuesta.Drogueria.Regimen;
+                pbx = respuesta.Drogueria.PBX;
+                direccion = respuesta.Drogueria.Direccion;
+                telefono = respuesta.Drogueria.Telefono;
+            }
+            else
+            {
+                if (respuesta.Drogueria == null)
+                {
+
+                }
+            }
+        }
+        private void ProductosRegistradosEnCaja()
+        {
+            productoVendidoTxts = new List<ProductoVendidoTxt>();
+            ProductoVendidoTxtConsultaResponse productoTxtConsultaResponse = productoVendidoTxtService.Consultar();
+            if (productoTxtConsultaResponse.ProductoTxts.Count > 0)
+            {
+                foreach (var item in productoTxtConsultaResponse.ProductoTxts)
+                {
+                    productoVendidoTxt = new ProductoVendidoTxt();
+                    productoVendidoTxt.Cantidad = item.Cantidad;
+                    productoVendidoTxt.Referencia = item.Referencia;
+                    productoVendidoTxt.Nombre = item.Nombre;
+                    productoVendidoTxt.Detalle = item.Detalle;
+                    productoVendidoTxt.Precio = item.Precio;
+                    precioProductos = precioProductos+item.Precio;
+                    precioProductosRedondeado = Math.Ceiling(precioProductos);
+                    valorDeRedondeo = precioProductosRedondeado - precioProductos;
+                    productoVendidoTxts.Add(productoVendidoTxt);
+                }
+                FacturarProductosVendidosEnCaja();
+            }
+            else
+            {
+                if (productoTxtConsultaResponse.ProductoTxts.Count == 0)
+                {
+                    string mensaje = "No hay productos vendidos";
+                    MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                }
+            }
+        }
+        private void EliminarProductosVendidos()
+        {
+            string mensaje = productoVendidoTxtService.EliminarHistorial();
+        }
+        private void FacturarProductosVendidosEnCaja()
+        {
+            fechaFactura = DateTime.Now;
+            ciudad = "Valledupar, Cesar";
+        }
         private void btnCerrarCaja_Click(object sender, EventArgs e)
         {
             var respuesta = MessageBox.Show("Está seguro de Modificar la información", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -149,6 +251,8 @@ namespace Presentacion
                 Caja cajaRegistradora = MapearCaja();
                 string mensaje = cajaRegistradoraService.Modificar(cajaRegistradora);
                 MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                ProductosRegistradosEnCaja();
+                ImprimirDatoDeVenta();
                 ConsultarYLlenarGridDeCajas();
                 btnAbrirCaja.Enabled = true;
                 btnCerrarCaja.Enabled = false;
@@ -219,6 +323,72 @@ namespace Presentacion
                     MessageBox.Show(msg, "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+        private void ImprimirDatoDeVenta()
+        {
+            //Proceso de impresion
+            string nombreFactura = idCajaAbierta+"ProductosVendidos" + ".pdf";
+            string directorio = @"C:\Users\VICTOR PC\Documents\CierreDeCajas\";
+            string existingPathName = @"C:\Users\VICTOR PC\Documents\CierreDeCajas";
+            string notExistingFileName = directorio + nombreFactura;
+
+            if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
+            {
+                ImprimirProductosVendidos = new PrintDocument();
+
+                ImprimirProductosVendidos.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+                ImprimirProductosVendidos.PrinterSettings.PrintFileName = notExistingFileName;
+                ImprimirProductosVendidos.PrinterSettings.PrintToFile = true;
+                ImprimirProductosVendidos.PrintPage += Imprimir;
+                ImprimirProductosVendidos.Print();
+            }
+        }
+        private void Imprimir(object sender, PrintPageEventArgs e)
+        {
+            EliminarProductosVendidos();
+            Font font = new Font("Arial Narrow", 10);
+            int ancho = 220;
+            int y = 20;
+            StringFormat stringFormatCenter = new StringFormat();
+            stringFormatCenter.Alignment = StringAlignment.Center;
+            stringFormatCenter.LineAlignment = StringAlignment.Center;
+
+            StringFormat stringFormatRight = new StringFormat();
+            stringFormatRight.Alignment = StringAlignment.Far;
+            stringFormatRight.LineAlignment = StringAlignment.Far;
+
+            e.Graphics.DrawString(nombreDrogueria, font, Brushes.Black, new RectangleF(0, y, ancho, 20), stringFormatCenter);
+
+            e.Graphics.DrawString("NIT: " + nitDrogueria, font, Brushes.Black, new RectangleF(0, y + 40, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString(fraseDistintiva, font, Brushes.Black, new RectangleF(0, y + 53, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString("PBX: " + pbx, font, Brushes.Black, new RectangleF(0, y + 66, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString("Regimen: " + regimen, font, Brushes.Black, new RectangleF(0, y + 79, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString("Direccion: " + direccion, font, Brushes.Black, new RectangleF(0, y + 92, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString("Telefono: " + telefono, font, Brushes.Black, new RectangleF(0, y + 105, ancho, 13), stringFormatCenter);
+
+            e.Graphics.DrawString("FechaYhora: " + fechaFactura, font, Brushes.Black, new RectangleF(0, y + 130, ancho, 13));
+            e.Graphics.DrawString("Ciudad: " + ciudad, font, Brushes.Black, new RectangleF(0, y + 143, ancho, 13));
+            e.Graphics.DrawString("IdDeCaja: " + idCajaAbierta, font, Brushes.Black, new RectangleF(0, y + 156, ancho, 13));
+
+            e.Graphics.DrawString("Lista de productos", font, Brushes.Black, new RectangleF(0, y + 180, ancho, 14));
+            e.Graphics.DrawString(" Cantidad " + " Nombre " + " Detalle " + " Precio ", font, Brushes.Black, new RectangleF(0, y + 194, ancho, 14));
+            int r = 0;
+            int j = 208;
+            int i = 0;
+            foreach (var item in productoVendidoTxts)
+            {
+                e.Graphics.DrawString("   " + Convert.ToString(item.Cantidad) + "    " + Convert.ToString(item.Referencia) + "   " + Convert.ToString(item.Nombre) + "    " + Convert.ToString(item.Detalle) + "   " + Convert.ToString(item.Precio), font, Brushes.Black, new RectangleF(0, y + j, ancho, 14));
+                j = j + 14;
+                int x = y + j;
+                r = x;
+            }
+            e.Graphics.DrawString("Total sin redondeo: " + precioProductos, font, Brushes.Black, new RectangleF(0, r + 30, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Total con redondeo: " + precioProductosRedondeado, font, Brushes.Black, new RectangleF(0, r + 44, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Valor de redondeo: " + valorDeRedondeo, font, Brushes.Black, new RectangleF(0, r + 58, ancho, 14), stringFormatRight);
+            
+
+            e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(0, r + 72, ancho, 14), stringFormatCenter);
+            e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(0, r + 98, ancho, 14), stringFormatCenter);
         }
     }
 }

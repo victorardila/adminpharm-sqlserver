@@ -17,6 +17,18 @@ namespace DAL
         {
             _connection = connection._conexion;
         }
+        public Factura BuscarPorIdCaja(string id_caja)
+        {
+            SqlDataReader dataReader;
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from FACTURA where Id_Caja=@Id_Caja";
+                command.Parameters.AddWithValue("@Id_Caja", id_caja);
+                dataReader = command.ExecuteReader();
+                dataReader.Read();
+                return DataReaderMapToFactura(dataReader);
+            }
+        }
         public Factura BuscarPorId(string id_factura)
         {
             SqlDataReader dataReader;
@@ -26,8 +38,39 @@ namespace DAL
                 command.Parameters.AddWithValue("@Id_Factura", id_factura);
                 dataReader = command.ExecuteReader();
                 dataReader.Read();
-                return DataReaderMapToCajaRegistradora(dataReader);
+                return DataReaderMapToFactura(dataReader);
             }
+        }
+        public Factura BuscarPorSecuencia(int secuencia)
+        {
+            SqlDataReader dataReader;
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from FACTURA where Secuencia_De_Factura=@Secuencia_De_Factura";
+                command.Parameters.AddWithValue("@Secuencia_De_Factura", secuencia);
+                dataReader = command.ExecuteReader();
+                dataReader.Read();
+                return DataReaderMapToFactura(dataReader);
+            }
+        }
+        public List<Factura> BuscarHistorial(string id_factura)
+        {
+            List<Factura> facturas = new List<Factura>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from FACTURA where Id_Factura=@Id_Factura";
+                command.Parameters.AddWithValue("@Id_Factura", id_factura);
+                var dataReader = command.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        Factura factura = DataReaderMapToFactura(dataReader);
+                        facturas.Add(factura);
+                    }
+                }
+            }
+            return facturas;
         }
         public void Guardar(Factura factura)
         {
@@ -78,18 +121,55 @@ namespace DAL
                 command.ExecuteNonQuery();
             }
         }
-        public List<Factura> ConsultarTodos()
+        public void EliminarHistorial(string FormaDePago)
         {
             List<Factura> facturas = new List<Factura>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select Id_Factura, Secuencia_De_Factura, FechaYHora, Nombre_De_Empleado, Ciudad, Id_Caja, Nombre_De_Cliente, Total_Sin_Redondeo, Total_Con_Redondeo, Total_De_Factura, Forma_De_Pago";
+                command.CommandText = "Delete from FACTURA where Forma_De_Pago=@Forma_De_Pago";
+                command.Parameters.AddWithValue("@Forma_De_Pago", FormaDePago);
+                command.ExecuteNonQuery();
                 var dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     while (dataReader.Read())
                     {
-                        Factura factura = DataReaderMapToCajaRegistradora(dataReader);
+                        Factura factura = DataReaderMapToFactura(dataReader);
+                        facturas.Add(factura);
+                    }
+                }
+            }
+        }
+        public List<Factura> ConsultarTodos()
+        {
+            List<Factura> facturas = new List<Factura>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "Select Id_Factura, Secuencia_De_Factura, FechaYHora, Nombre_De_Empleado, Ciudad, Id_Caja, Nombre_De_Cliente, Total_Sin_Redondeo, Total_Con_Redondeo, Total_De_Factura, Forma_De_Pago from FACTURA";
+                var dataReader = command.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        Factura factura = DataReaderMapToFactura(dataReader);
+                        facturas.Add(factura);
+                    }
+                }
+            }
+            return facturas;
+        }
+        public List<Factura> EliminarHistorial()
+        {
+            List<Factura> facturas = new List<Factura>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "Delete Id_Factura, Secuencia_De_Factura, FechaYHora, Nombre_De_Empleado, Ciudad, Id_Caja, Nombre_De_Cliente, Total_Sin_Redondeo, Total_Con_Redondeo, Total_De_Factura, Forma_De_Pago from FACTURA";
+                var dataReader = command.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        Factura factura = DataReaderMapToFactura(dataReader);
                         facturas.Add(factura);
                     }
                 }
@@ -108,14 +188,14 @@ namespace DAL
                 {
                     while (dataReader.Read())
                     {
-                        Factura factura = DataReaderMapToCajaRegistradora(dataReader);
+                        Factura factura = DataReaderMapToFactura(dataReader);
                         facturas.Add(factura);
                     }
                 }
             }
             return facturas;
         }
-        private Factura DataReaderMapToCajaRegistradora(SqlDataReader dataReader)
+        private Factura DataReaderMapToFactura(SqlDataReader dataReader)
         {
             if (!dataReader.HasRows) return null;
             Factura factura = new Factura();

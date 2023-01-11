@@ -9,9 +9,7 @@ namespace Entity
     public class Factura
     {
         public Factura(
-            string nombreDrogueria, string nit, string fraseDistintiva, string regimen, 
-            string pbx, string direccion, string telefono, string id_Factura, int secuenciaDeFactura, 
-            DateTime fechaHora, string nombreDeEmpleado,string ciudad, string idCaja, string nombreDeCliente,
+            string id_Factura, int secuenciaDeFactura, DateTime fechaHora, string nombreDeEmpleado,string ciudad, string idCaja, string nombreDeCliente,
             int cantidad, string nombreDeProducto, string detalleDeProducto, string tipo, string via,
             double precioDeProducto, double totalSinRedondeo, double totalConRedondeo, double totalFactura, string formaDePago)
         {
@@ -32,15 +30,7 @@ namespace Entity
 
         }
         //Detalles de Drogueria
-        public string NombreDrogueria { get; set; }
-        public string NIT { get; set; }
-        public string FraseDistintiva { get; set; }
-        public string Regimen { get; set; }
-        public string PBX { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
         //Detalles de Factura
-        public string NombreDePdf { get; set; }
         public string Id_Factura { get; set; }
         public int SecuenciaDeFactura { get; set; }
         public DateTime FechaHora { get; set; }
@@ -49,11 +39,6 @@ namespace Entity
         public string IdCaja { get; set; }
         public string NombreDeCliente { get; set; }
         //Detalles de producto
-        public int Cantidad { get; set; }
-        public string Referencia { get; set; }
-        public string NombreDeProducto { get; set; }
-        public string DetalleDeProducto { get; set; }
-        public double PrecioDeProducto { get; set; }
         //Total de Factura
         public double TotalSinRedondeo { get; set; }
         public double TotalConRedondeo { get; set; }
@@ -64,12 +49,13 @@ namespace Entity
         {
             TotalConRedondeo = Math.Ceiling(TotalSinRedondeo);
             ValorDeRedondeo = TotalConRedondeo - TotalSinRedondeo;
+            TotalFactura = TotalConRedondeo;
         }
         public void GenerarNombrePdf()
         {
             string fechaActual = DateTime.Today.ToString("dd-MM-yyyy");
             string timeAcual = DateTime.Now.ToString("h:mm:ss tt");
-            NombreDePdf = fechaActual + "-" + timeAcual + ".pdf";
+            
         }
         public void GenerarIdFactura()
         {

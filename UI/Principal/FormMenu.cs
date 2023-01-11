@@ -34,6 +34,7 @@ namespace Presentacion
             btnGestionCaja.Text = "Gestion de Caja";
             btnGestionProductos.Text = "Gestion de Productos";
             btnGestionUsuarios.Text = "Gestion de Usuarios";
+            btnGestionFactura.Text = "Gestion de Factura";
             btnAjustes.Text = "Ajustes";
             panelSidebarClose.Visible = false;
         }
@@ -47,6 +48,7 @@ namespace Presentacion
             btnGestionCaja.Text = "";
             btnGestionProductos.Text = "";
             btnGestionUsuarios.Text = "";
+            btnGestionFactura.Text = "";
             btnAjustes.Text = "";
             panelSidebarClose.Visible = true;
         }
@@ -114,6 +116,7 @@ namespace Presentacion
             panelSelectionAjustes.Visible = false;
             panelSelectionProducto.Visible = false;
             panelSelectionUsuarios.Visible = false;
+            panelSelectionFactura.Visible = false;
             CerrarFormulariosCiclo();
             AbrirFormulario<FormGestionCaja>();
         }
@@ -128,6 +131,7 @@ namespace Presentacion
             panelSelectionAjustes.Visible = false;
             panelSelectionProducto.Visible = true;
             panelSelectionUsuarios.Visible = false;
+            panelSelectionFactura.Visible = false;
 
         }
         private void btnProductos_Click(object sender, EventArgs e)
@@ -157,6 +161,7 @@ namespace Presentacion
             panelSelectionAjustes.Visible = false;
             panelSelectionProducto.Visible = false;
             panelSelectionUsuarios.Visible = true;
+            panelSelectionFactura.Visible = false;
         }
         private void btnClientes_Click(object sender, EventArgs e)
         {
@@ -168,8 +173,19 @@ namespace Presentacion
             CerrarFormulariosCiclo();
             AbrirFormulario<FormGestionarEmpleados>();
         }
+//**********************************************GESTION DE FACTURA******************************************************
+        private void btnGestionFactura_Click(object sender, EventArgs e)
+        {
+            panelSelectionFactura.Location = btnGestionFactura.Location;
+            panelSelectionFactura.Visible = true;
+            panelSelectionCaja.Visible = false;
+            panelSelectionProducto.Visible = false;
+            panelSelectionUsuarios.Visible = false;
+            panelSelectionAjustes.Visible = false;
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionFacturas>();
+        }
 //**********************************************GESTION DE AJUSTES******************************************************
-
         private void btnAjustes_Click(object sender, EventArgs e)
         {
             panelSelectionAjustes.Location = btnAjustes.Location;
@@ -177,6 +193,7 @@ namespace Presentacion
             panelSelectionCaja.Visible = false;
             panelSelectionProducto.Visible = false;
             panelSelectionUsuarios.Visible = false;
+            panelSelectionFactura.Visible = false;
             CerrarFormulariosCiclo();
             AbrirFormulario<FormAjustes>();
         }
@@ -243,6 +260,9 @@ namespace Presentacion
                     CerrarFormulario<FormGestionarEmpleados>();
                     break;
                 case 7:
+                    CerrarFormulario<FormGestionFacturas>();
+                    break;
+                case 8:
                     CerrarFormulario<FormAjustes>();
                     break;
             }

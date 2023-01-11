@@ -14,6 +14,7 @@ using System.Drawing.Printing;
 using System.Windows.Forms;
 using BLL;
 using Entity;
+using Font = System.Drawing.Font;
 
 namespace Presentacion
 {
@@ -33,6 +34,7 @@ namespace Presentacion
         ProductoVendidoTxtService productoVendidoTxtService = new ProductoVendidoTxtService();
         List<Factura> facturas;
         List<Drogueria> droguerias;
+        List<ProductoFacturaTxt> productosFactura = new List<ProductoFacturaTxt>();
         //Variables de drogueria
         string idDrogueria = "#Drog";
         string nombreDrogueria;
@@ -67,7 +69,17 @@ namespace Presentacion
         double porcentajeDeVenta;
         double precioDelProducto;
         //Variables Factura
-        int productoLeido;
+        int productoLeido = 0;
+        string id_factura;
+        int secuenciaDeFactura = 0;
+        DateTime fechaFactura;
+        string nombreEmpleado;
+        string ciudad;
+        string nombreCliente;
+        double totalSinRedondeo;
+        double totalConRedondeo;
+        double valorDeRedondeo;
+        string formaDePago; 
         public FormFacturaDeProducto()
         {
             cajaRegistradoraService = new CajaRegistradoraService(ConfigConnection.ConnectionString);
@@ -83,9 +95,21 @@ namespace Presentacion
             SumtoriaDeFactura();
             BuscararDrogueria();
         }
+//***********************************************Metodos*******************************************************
         private void MapearProductosVendidos(string referencia)
         {
-            
+            BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
+            respuesta = productoService.BuscarPorReferencia(referencia);
+            if (respuesta.Producto != null)
+            {
+                var productos = new List<Producto> { respuesta.Producto };
+                referenciaProducto = respuesta.Producto.Referencia;
+                nombreProducto= respuesta.Producto.Nombre;
+                detalleProducto= respuesta.Producto.Detalle;
+                precioProducto= respuesta.Producto.PrecioDeVenta;
+                ProductoVendidoTxt productoVendidoTxt = new ProductoVendidoTxt(cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
+                string mensaje = productoVendidoTxtService.Guardar(productoVendidoTxt);
+            }
         }
         private void ContarProductosVendidos()
         {
@@ -104,9 +128,22 @@ namespace Presentacion
                 }
             }
         }
+        private void MapearDatosActualesDeFactura(Factura factura)
+        {
+            factura.GenerarFechaYHoraFactura();
+            fechaFactura = factura.FechaHora;
+            nombreEmpleado = factura.NombreDeEmpleado;
+            ciudad = factura.Ciudad;
+            nombreCliente = factura.NombreDeCliente;
+            totalSinRedondeo = factura.TotalSinRedondeo;
+            factura.TotalizarFactura();
+            totalConRedondeo = factura.TotalConRedondeo;
+            totalFactura = factura.TotalFactura;
+            valorDeRedondeo = factura.ValorDeRedondeo;
+            formaDePago = factura.FormaDePago;
+        }
         private void SumtoriaDeFactura()
         {
-            totalFactura = montoActualCaja;
             foreach (DataGridViewRow fila in dataGridFacturaProductos.Rows)
             {
                 int i = 0;
@@ -126,7 +163,7 @@ namespace Presentacion
                         {
                             int valorUnidad = Convert.ToInt32(fila.Cells[i].Value);
                             int valorTotal = valorUnidad * cantidad;
-                            totalFactura = totalFactura + valorTotal;
+                            totalFactura = totalFactura+valorTotal;
                         }
                     }
                     i = i + 1;
@@ -154,21 +191,48 @@ namespace Presentacion
                 }
             }
         }
-        public void CargarArchivo(ProductoFacturaTxtService productoTxtService)
+        private Factura GenerarIdFactura()
         {
+            factura = new Factura();
+            factura.GenerarIdFactura();
+            return factura;
+        }
+        private void SecuenciaDeFactura()
+        {
+            for(int i = 1; i <= 1000; i++)
+            {
+                BusquedaFacturaRespuesta respuesta = new BusquedaFacturaRespuesta();
+                respuesta = facturaService.BuscarPorSecuencia(i);
+                if (respuesta.Factura != null)
+                {
+                    secuenciaDeFactura = secuenciaDeFactura + 1;
+                }
+                else
+                {
+                    if (respuesta.Factura == null)
+                    {
+                        secuenciaDeFactura = i;
+                        break;
+                    }
+                }
+            }
+        }
+        private  void CargarArchivo(ProductoFacturaTxtService productoTxtService)
+        {
+            Factura factura = GenerarIdFactura();
+            id_factura=factura.Id_Factura;
+            labelIdGeneradoDeFactura.Text = id_factura;
             ProductoFacturaTxtConsultaResponse productoTxtConsultaResponse = productoTxtService.Consultar();
             if (productoTxtConsultaResponse.ProductoTxts.Count > 0)
             {
                 foreach (var item in productoTxtConsultaResponse.ProductoTxts)
                 {
-                    int cantidad = item.Cantidad;
-                    string referencia = item.Referencia;
-                    cantidadProducto = cantidad;
-                    string nombre = item.Nombre;
-                    string detalle = item.Detalle;
-                    double precio = item.Precio;
-                    precioDelProducto = precio;
-                    dataGridFacturaProductos.Rows.Add(cantidad, referencia, nombre, detalle, precio);
+                    cantidadProducto = item.Cantidad;
+                    referenciaProducto = item.Referencia;
+                    nombreProducto = item.Nombre;
+                    detalleProducto = item.Detalle;
+                    precioProducto = item.Precio;
+                    dataGridFacturaProductos.Rows.Add(cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
                 }
                 ContarProductosVendidos();
             }
@@ -227,25 +291,9 @@ namespace Presentacion
                 labelCash.Text = "Sin definir";
             }
         }
-        private void textPago_TextChanged(object sender, EventArgs e)
-        {
-            if (textPago.Text != "")
-            {
-                labelVueltosGenerado.Text = "";
-                int pago = int.Parse(textPago.Text);
-                int TotalFactura = int.Parse(labelTotalFacturaGenerada.Text);
-                int diferencia = pago - TotalFactura;
-                labelVueltosGenerado.Text = diferencia.ToString();
-            }
-        }
-        private void btnCerrar_Click(object sender, EventArgs e)
-        {
-            EliminarFactura();
-            this.Close();
-        }
         private void ConsultarDatosDrogueria()
         {
-            BusqueDrogueriaRespuesta respuesta = new BusqueDrogueriaRespuesta();
+            BusquedaDrogueriaRespuesta respuesta = new BusquedaDrogueriaRespuesta();
             string id_Drogueria = "#Drog";
             respuesta = drogueriaService.BuscarPorId(id_Drogueria);
             if (respuesta.Drogueria != null)
@@ -265,7 +313,7 @@ namespace Presentacion
         }
         private void BuscararDrogueria()
         {
-            BusqueDrogueriaRespuesta respuesta = new BusqueDrogueriaRespuesta();
+            BusquedaDrogueriaRespuesta respuesta = new BusquedaDrogueriaRespuesta();
             respuesta = drogueriaService.BuscarPorId(idDrogueria);
             if (respuesta.Drogueria != null)
             {
@@ -289,14 +337,10 @@ namespace Presentacion
         {
             factura = new Factura();
             //Mapeamos Datos de Drogueria
-            factura.NombreDrogueria = nombreDrogueria;
-            factura.NIT = nitDrogueria;
-            factura.FraseDistintiva = fraseDistintiva;
-            factura.Regimen = regimen;
-            factura.PBX = pbx;
-            factura.Direccion = direccion;
-            factura.Telefono = telefono;
+            factura.Id_Factura = id_factura;
             //Mapeamos Datos de factura
+            SecuenciaDeFactura();
+            factura.SecuenciaDeFactura = secuenciaDeFactura;
             factura.NombreDeEmpleado = textNombreEmpleado.Text;
             factura.Ciudad = "Valledupar, Cesar";
             factura.IdCaja = idCajaAbierta;
@@ -306,54 +350,41 @@ namespace Presentacion
             factura.FormaDePago = comboFormaDePago.Text;
             return factura;
         }
-        private void AgregarProductosAFacturaImprimir(Factura factura)
+        private void Imprimirfactura()
         {
-            List<Factura> listFact = new List<Factura>();
-            ProductoFacturaTxtConsultaResponse productoTxtConsultaResponse = productoTxtService.Consultar();
-            if (productoTxtConsultaResponse.ProductoTxts.Count > 0)
+            //Proceso de impresion
+            string nombreFactura = id_factura+".pdf";
+            string directorio = @"C:\Users\VICTOR PC\Documents\Facturas\";
+            string existingPathName = @"C:\Users\VICTOR PC\Documents\Facturas";
+            string notExistingFileName = directorio + nombreFactura;
+
+            if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {
-                foreach (var item in productoTxtConsultaResponse.ProductoTxts)
-                {
-                    factura.Cantidad = item.Cantidad;
-                    factura.Referencia = item.Referencia;
-                    factura.NombreDeProducto = item.Nombre;
-                    factura.DetalleDeProducto = item.Detalle;
-                    factura.PrecioDeProducto = item.Precio;
-                    productoLeido = productoLeido + 1;
-                    listFact.Add(factura);
-                }
+                ImprimirDocumento = new PrintDocument();
+
+                ImprimirDocumento.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+                ImprimirDocumento.PrinterSettings.PrintFileName = notExistingFileName;
+                ImprimirDocumento.PrinterSettings.PrintToFile = true;
+                ImprimirDocumento.PrintPage += Imprimir;
+                ImprimirDocumento.Print();
             }
         }
-        private void Armarfactura(Factura factura)
-        {
-            AgregarProductosAFacturaImprimir(factura);
-        }
 
-        private void btnSearchEmpleado_Click(object sender, EventArgs e)
+//*************************************************Eventos*****************************************************
+        private void textPago_TextChanged(object sender, EventArgs e)
         {
-            textSearchEmpleado.Visible = true;
-            btnCloseEmpleado.Visible = true;
-        }
-        private void btnCloseEmpleado_Click(object sender, EventArgs e)
-        {
-            textSearchEmpleado.Visible = false;
-            btnCloseEmpleado.Visible = false;
-        }
-
-        private void btnSearchCliente_Click(object sender, EventArgs e)
-        {
-            textSearchCliente.Visible = true;
-            btnCloseCliente.Visible = true;
-        }
-
-        private void btnCloseCliente_Click(object sender, EventArgs e)
-        {
-            textSearchCliente.Visible = false;
-            btnCloseCliente.Visible = false;
+            if (textPago.Text != "")
+            {
+                labelVueltosGenerado.Text = "";
+                int pago = int.Parse(textPago.Text);
+                int TotalFactura = int.Parse(labelTotalFacturaGenerada.Text);
+                int diferencia = pago - TotalFactura;
+                labelVueltosGenerado.Text = diferencia.ToString();
+            }
         }
         private void textSearchEmpleado_Enter(object sender, EventArgs e)
         {
-            if(textSearchEmpleado.Text == "Buscar identificacion")
+            if (textSearchEmpleado.Text == "Buscar identificacion")
             {
                 textSearchEmpleado.Text = "";
             }
@@ -370,7 +401,7 @@ namespace Presentacion
             if (textSearchEmpleado.Text != "")
             {
                 BusquedaEmpleadoRespuesta respuesta = new BusquedaEmpleadoRespuesta();
-                string Id_Empleado=textSearchEmpleado.Text;
+                string Id_Empleado = textSearchEmpleado.Text;
                 respuesta = empleadoService.BuscarPorIdentificacion(Id_Empleado);
                 if (respuesta.Empleado != null)
                 {
@@ -434,28 +465,110 @@ namespace Presentacion
                 }
             }
         }
-        private void btnImprimirFactura_Click(object sender, EventArgs e)
-        {
-            Factura factura=MapearFactura();
-            facturaService.Guardar(factura);
-            ModificarCashCaja();
-            ConsultarCajaAbierta();
-            Armarfactura(factura);
-            EliminarFactura();
-            this.Close();
-        }
+
         private void textPago_TextChanged_1(object sender, EventArgs e)
         {
             if (textPago.Text != "")
             {
                 double totalFactura = double.Parse(labelTotalFacturaGenerada.Text);
                 double pago = double.Parse(textPago.Text);
-                labelVueltosGenerado.Text = (pago- totalFactura).ToString();
+                labelVueltosGenerado.Text = (pago - totalFactura).ToString();
             }
         }
-        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
+//******************************************Administrar factura**************************************************
+        private void Imprimir(object sender, PrintPageEventArgs e)
         {
+            Font font = new Font("Arial Narrow",10);
+            int ancho = 220;
+            int y = 20;
+            StringFormat stringFormatCenter = new StringFormat();
+            stringFormatCenter.Alignment = StringAlignment.Center;
+            stringFormatCenter.LineAlignment = StringAlignment.Center;
 
+            StringFormat stringFormatRight = new StringFormat();
+            stringFormatRight.Alignment = StringAlignment.Far;
+            stringFormatRight.LineAlignment = StringAlignment.Far;
+            
+            e.Graphics.DrawString(nombreDrogueria, font, Brushes.Black, new RectangleF(0, y,ancho,20), stringFormatCenter);
+
+            e.Graphics.DrawString("NIT: "+nitDrogueria, font, Brushes.Black, new RectangleF(0, y+40, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString(fraseDistintiva, font, Brushes.Black, new RectangleF(0, y+53, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString("PBX: "+pbx, font, Brushes.Black, new RectangleF(0, y+66, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString("Regimen: " + regimen, font, Brushes.Black, new RectangleF(0, y + 79, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString("Direccion: "+direccion, font, Brushes.Black, new RectangleF(0, y+92, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString("Telefono: "+telefono, font, Brushes.Black, new RectangleF(0, y+105, ancho, 13), stringFormatCenter);
+
+            e.Graphics.DrawString("Id factura: " + id_factura, font, Brushes.Black, new RectangleF(0, y + 130, ancho, 13));
+            e.Graphics.DrawString("Secuencia: " + secuenciaDeFactura, font, Brushes.Black, new RectangleF(0, y + 143, ancho, 13));
+            e.Graphics.DrawString("FechaYhora: " + fechaFactura, font, Brushes.Black, new RectangleF(0, y + 156, ancho, 13));
+            e.Graphics.DrawString("Empleado: " + nombreEmpleado, font, Brushes.Black, new RectangleF(0, y + 169, ancho, 13));
+            e.Graphics.DrawString("Ciudad: " + ciudad, font, Brushes.Black, new RectangleF(0, y + 182, ancho, 13));
+            e.Graphics.DrawString("Cliente: " + nombreCliente, font, Brushes.Black, new RectangleF(0, y + 195, ancho, 13));
+            e.Graphics.DrawString("IdDeCaja: " + idCajaAbierta, font, Brushes.Black, new RectangleF(0, y + 208, ancho, 13));
+
+            e.Graphics.DrawString("Lista de productos", font, Brushes.Black, new RectangleF(0, y + 230, ancho, 14));
+            e.Graphics.DrawString(" Cantidad "+" Nombre " + " Detalle "+" Precio ", font, Brushes.Black, new RectangleF(0, y + 244, ancho, 14));
+            int r = 0;
+            int j = 258;
+            foreach (DataGridViewRow fila in dataGridFacturaProductos.Rows)
+            {
+                int i = 0;
+                foreach (DataGridViewCell celda in fila.Cells)
+                {
+                    e.Graphics.DrawString("   "+Convert.ToString(fila.Cells[i].Value) + "    " + Convert.ToString(fila.Cells[i+1].Value) +"   "+ Convert.ToString(fila.Cells[i+2].Value) +"    "+  Convert.ToString(fila.Cells[i+3].Value) +"   "+  Convert.ToString(fila.Cells[i+4].Value), font, Brushes.Black, new RectangleF(0, y + j, ancho, 14));
+                    j = j + 14;
+                    int x = y + j;
+                    r = x;
+                    break;
+                }
+            }
+            e.Graphics.DrawString("Total sin redondeo: " + totalSinRedondeo, font, Brushes.Black, new RectangleF(0, r + 30, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Total con redondeo: " + totalConRedondeo, font, Brushes.Black, new RectangleF(0, r + 44, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Valor de redondeo: " + valorDeRedondeo, font, Brushes.Black, new RectangleF(0, r + 58, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Forma de pago: " + formaDePago, font, Brushes.Black, new RectangleF(0, r + 72, ancho, 14), stringFormatRight);
+
+            e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(0, r + 98, ancho, 14), stringFormatCenter);
+            e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(0, r + 112, ancho, 14), stringFormatCenter);
+        }
+//*************************************************Botones*****************************************************
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            EliminarFactura();
+            this.Close();
+        }
+        private void btnSearchEmpleado_Click(object sender, EventArgs e)
+        {
+            textSearchEmpleado.Visible = true;
+            btnCloseEmpleado.Visible = true;
+        }
+        private void btnCloseEmpleado_Click(object sender, EventArgs e)
+        {
+            textSearchEmpleado.Visible = false;
+            btnCloseEmpleado.Visible = false;
+        }
+
+        private void btnSearchCliente_Click(object sender, EventArgs e)
+        {
+            textSearchCliente.Visible = true;
+            btnCloseCliente.Visible = true;
+        }
+
+        private void btnCloseCliente_Click(object sender, EventArgs e)
+        {
+            textSearchCliente.Visible = false;
+            btnCloseCliente.Visible = false;
+        }
+        private void btnImprimirFactura_Click(object sender, EventArgs e)
+        {
+            Factura factura = MapearFactura();
+            MapearDatosActualesDeFactura(factura);
+            facturaService.Guardar(factura);
+            ModificarCashCaja();
+            ConsultarCajaAbierta();
+            Imprimirfactura();
+            MapearProductosVendidos(referenciaProducto);
+            EliminarFactura();
+            this.Close();
         }
     }
 }

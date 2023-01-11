@@ -56,6 +56,7 @@ namespace Presentacion
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.iconCash = new FontAwesome.Sharp.IconPictureBox();
             this.btnVolver = new FontAwesome.Sharp.IconButton();
+            this.ImprimirProductosVendidos = new System.Drawing.Printing.PrintDocument();
             this.panelContenedorGestionProductos.SuspendLayout();
             this.panelSubMenu.SuspendLayout();
             this.panelConsultaDeCajas.SuspendLayout();
@@ -249,6 +250,7 @@ namespace Presentacion
             this.dataGridFarmacos.Location = new System.Drawing.Point(0, 24);
             this.dataGridFarmacos.Name = "dataGridFarmacos";
             this.dataGridFarmacos.ReadOnly = true;
+            this.dataGridFarmacos.RowHeadersVisible = false;
             this.dataGridFarmacos.Size = new System.Drawing.Size(630, 304);
             this.dataGridFarmacos.TabIndex = 50;
             this.dataGridFarmacos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridFarmacos_CellClick);
@@ -405,6 +407,10 @@ namespace Presentacion
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // ImprimirProductosVendidos
+            // 
+            this.ImprimirProductosVendidos.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Imprimir);
+            // 
             // FormGestionCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -463,5 +469,6 @@ namespace Presentacion
         private System.Windows.Forms.Label labelAdvertencia;
         private System.Windows.Forms.DataGridViewImageColumn Eliminar;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Drawing.Printing.PrintDocument ImprimirProductosVendidos;
     }
 }

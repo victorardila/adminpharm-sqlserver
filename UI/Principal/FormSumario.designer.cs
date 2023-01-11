@@ -564,6 +564,7 @@
             // 
             this.iconPapelera.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconPapelera.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconPapelera.Enabled = false;
             this.iconPapelera.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(173)))));
             this.iconPapelera.FlatAppearance.BorderSize = 0;
             this.iconPapelera.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;

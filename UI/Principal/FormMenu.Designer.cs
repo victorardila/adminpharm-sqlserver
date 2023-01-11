@@ -68,6 +68,8 @@ namespace Presentacion
             this.btnModeLight = new FontAwesome.Sharp.IconPictureBox();
             this.btnModeDark = new FontAwesome.Sharp.IconPictureBox();
             this.panelContenedorInterno = new System.Windows.Forms.Panel();
+            this.btnGestionFactura = new FontAwesome.Sharp.IconButton();
+            this.panelSelectionFactura = new System.Windows.Forms.Panel();
             this.panelHeaderbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnWindowMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnWindowRestore)).BeginInit();
@@ -171,7 +173,9 @@ namespace Presentacion
             this.panelSidebar.AutoScroll = true;
             this.panelSidebar.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panelSidebar.Controls.Add(this.panelSelectionAjustes);
+            this.panelSidebar.Controls.Add(this.panelSelectionFactura);
             this.panelSidebar.Controls.Add(this.btnAjustes);
+            this.panelSidebar.Controls.Add(this.btnGestionFactura);
             this.panelSidebar.Controls.Add(this.panelSelectionUsuarios);
             this.panelSidebar.Controls.Add(this.panelSelectionProducto);
             this.panelSidebar.Controls.Add(this.panelSelectionCaja);
@@ -190,7 +194,7 @@ namespace Presentacion
             // panelSelectionAjustes
             // 
             this.panelSelectionAjustes.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panelSelectionAjustes.Location = new System.Drawing.Point(0, 398);
+            this.panelSelectionAjustes.Location = new System.Drawing.Point(0, 435);
             this.panelSelectionAjustes.Name = "panelSelectionAjustes";
             this.panelSelectionAjustes.Size = new System.Drawing.Size(6, 37);
             this.panelSelectionAjustes.TabIndex = 9;
@@ -211,7 +215,7 @@ namespace Presentacion
             this.btnAjustes.IconColor = System.Drawing.Color.White;
             this.btnAjustes.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAjustes.IconSize = 22;
-            this.btnAjustes.Location = new System.Drawing.Point(0, 398);
+            this.btnAjustes.Location = new System.Drawing.Point(0, 435);
             this.btnAjustes.Name = "btnAjustes";
             this.btnAjustes.Size = new System.Drawing.Size(186, 37);
             this.btnAjustes.TabIndex = 9;
@@ -323,7 +327,7 @@ namespace Presentacion
             this.btnGestionUsuarios.Name = "btnGestionUsuarios";
             this.btnGestionUsuarios.Size = new System.Drawing.Size(186, 37);
             this.btnGestionUsuarios.TabIndex = 5;
-            this.btnGestionUsuarios.Text = "   Gestion de usuarios";
+            this.btnGestionUsuarios.Text = "   Gestion de usuario";
             this.btnGestionUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGestionUsuarios.UseVisualStyleBackColor = false;
             this.btnGestionUsuarios.Click += new System.EventHandler(this.btnGestionUsuarios_Click);
@@ -665,6 +669,39 @@ namespace Presentacion
             this.panelContenedorInterno.Size = new System.Drawing.Size(784, 448);
             this.panelContenedorInterno.TabIndex = 4;
             // 
+            // btnGestionFactura
+            // 
+            this.btnGestionFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
+            this.btnGestionFactura.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnGestionFactura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnGestionFactura.FlatAppearance.BorderSize = 0;
+            this.btnGestionFactura.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnGestionFactura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnGestionFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGestionFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGestionFactura.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGestionFactura.IconChar = FontAwesome.Sharp.IconChar.Wpforms;
+            this.btnGestionFactura.IconColor = System.Drawing.Color.White;
+            this.btnGestionFactura.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnGestionFactura.IconSize = 22;
+            this.btnGestionFactura.Location = new System.Drawing.Point(0, 398);
+            this.btnGestionFactura.Name = "btnGestionFactura";
+            this.btnGestionFactura.Size = new System.Drawing.Size(186, 37);
+            this.btnGestionFactura.TabIndex = 9;
+            this.btnGestionFactura.Text = "   Gestion de factura";
+            this.btnGestionFactura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGestionFactura.UseVisualStyleBackColor = false;
+            this.btnGestionFactura.Click += new System.EventHandler(this.btnGestionFactura_Click);
+            // 
+            // panelSelectionFactura
+            // 
+            this.panelSelectionFactura.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panelSelectionFactura.Location = new System.Drawing.Point(0, 398);
+            this.panelSelectionFactura.Name = "panelSelectionFactura";
+            this.panelSelectionFactura.Size = new System.Drawing.Size(6, 37);
+            this.panelSelectionFactura.TabIndex = 10;
+            this.panelSelectionFactura.Visible = false;
+            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -746,5 +783,7 @@ namespace Presentacion
         private System.Windows.Forms.Label labelAvsio;
         private FontAwesome.Sharp.IconButton btnAjustes;
         private System.Windows.Forms.Panel panelSelectionAjustes;
+        private FontAwesome.Sharp.IconButton btnGestionFactura;
+        private System.Windows.Forms.Panel panelSelectionFactura;
     }
 }

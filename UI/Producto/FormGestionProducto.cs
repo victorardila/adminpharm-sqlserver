@@ -41,9 +41,8 @@ namespace Presentacion
         string tipoProducto;
         double precioDeNegocio;
         double porcentajeDeVenta;
-        int x = 0;
+
         int cantidad;
-        int[] cantidades = new int[1000];
 
         public FormGestionProducto()
         {
@@ -290,47 +289,52 @@ namespace Presentacion
                 }
             }
         }
-        private void ObtenerCantidadDeProducto()
+        private void btnVenderProducto_Click(object sender, EventArgs e)
         {
-            int i = 0;
-            foreach (DataGridViewRow fila in dataGridFarmacos.Rows)
+            int TotalSeleccion = dataGridFarmacos.Rows.Cast<DataGridViewRow>().Where(p => Convert.ToBoolean(p.Cells["Column1"].Value)).Count();
+            string referencia;
+            if (TotalSeleccion >= 1)
             {
-                bool isChecked = Convert.ToBoolean(fila.Cells[0].Value);
-                if (isChecked)
+                if (cajaAbierta == true)
                 {
-                    int j = 0;
-                    foreach (DataGridViewCell celda in fila.Cells)
+                    if (cantidadDrogueria == 1)
                     {
-                        if (j == 3)
+                        foreach (DataGridViewRow row in dataGridFarmacos.Rows)
                         {
-                            cantidades[i] = Convert.ToInt32(fila.Cells[3].Value);
-                            break;
+                            if (Convert.ToBoolean(row.Cells["Column1"].Value) == true)
+                            {
+                                referencia = Convert.ToString(row.Cells["Referencia"].Value);
+                                cantidad = Convert.ToInt32(row.Cells["CantidadVenta"].Value);
+                                MapearMedicamentosFactura(referencia);
+                            }
                         }
-                        j = j + 1;
+                        FormFacturaDeProducto frm = new FormFacturaDeProducto();
+                        frm.ShowDialog();
+                        ConsultarYLlenarGridDeProductos();
+                    }
+                    else
+                    {
+                        string mensaje = "No se ha registrado datos de drogueria, asi que no se puede generar factura";
+                        MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                i = i + 1;
-            }
-        }
-        private void LeerCantidadProducto()
-        {
-            int e = 0;
-            for (int i = x; i < 1000; i++)
-            {
-                if (cantidades[i] > 0)
+                else
                 {
-                    cantidad = cantidades[i];
-                    x = x + 1;
-                    e = x;
+                    string mensaje = "No hay caja abierta, asi que no se puede cargar productos a la factura";
+                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                x = e;
-                break;
+            }
+            else
+            {
+                if (TotalSeleccion == 0)
+                {
+                    string mensaje = "No se ha cargado los productos para la factura";
+                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
         private void MapearMedicamentosFactura(string referencia)
         {
-            ObtenerCantidadDeProducto();
-            LeerCantidadProducto();
             if (cantidad!=0)
             {
                 BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
@@ -367,41 +371,6 @@ namespace Presentacion
                 }
             }
         }
-        private void ValidarCantidadesIngresadas(string referencia)
-        {
-            int cantidadADescontar = 0;
-            int cantidadEnInventario = 0;
-            foreach (DataGridViewRow fila in dataGridFarmacos.Rows)
-            {
-                int i = 0;
-                foreach (DataGridViewCell celda in fila.Cells)
-                {
-                    if (i == 3)
-                    {
-                        cantidadADescontar = Convert.ToInt32(fila.Cells[i].Value);
-                    }
-                    else
-                    {
-                        if (i == 4)
-                        {
-                            cantidadEnInventario = Convert.ToInt32(fila.Cells[i].Value);
-                            if (cantidadADescontar <= cantidadEnInventario)
-                            {
-                                MapearMedicamentosFactura(referencia);
-                                break;
-                            }
-                            else
-                            {
-                                string mensaje = "No puedes superar la cantidad registrada en el inventario";
-                                MessageBox.Show(mensaje, "Error de digitacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                        }
-                    }
-                    i = i + 1;
-                }
-                break;
-            }
-        }
         private void ConsultarDroguerias()
         {
             ConsultaDrogueriaRespuesta respuesta = new ConsultaDrogueriaRespuesta();
@@ -410,57 +379,6 @@ namespace Presentacion
             if (respuesta.Droguerias.Count != 0 && respuesta.Droguerias != null)
             {
                 cantidadDrogueria=drogueriaService.Totalizar().Cuenta;
-            }
-            else
-            {
-                if (respuesta.Droguerias == null || respuesta.Droguerias.Count == 0)
-                {
-                    
-                }
-            }
-        }
-        private void btnVenderProducto_Click(object sender, EventArgs e)
-        {
-            int TotalSeleccion = dataGridFarmacos.Rows.Cast<DataGridViewRow>().Where(p => Convert.ToBoolean(p.Cells["Column1"].Value)).Count();
-            string referencia;
-            if (TotalSeleccion >= 1)
-            {
-                if (cajaAbierta == true)
-                {
-                    if (cantidadDrogueria == 1)
-                    {
-                        foreach (DataGridViewRow row in dataGridFarmacos.Rows)
-                        {
-                            if (Convert.ToBoolean(row.Cells["Column1"].Value) == true)
-                            {
-                                referencia = Convert.ToString(row.Cells["Referencia"].Value);
-                                ValidarCantidadesIngresadas(referencia);
-                            }
-                        }
-                        x = 0;
-                        FormFacturaDeProducto frm = new FormFacturaDeProducto();
-                        frm.ShowDialog();
-                        ConsultarYLlenarGridDeProductos();
-                    }
-                    else
-                    {
-                        string mensaje = "No se ha registrado datos de drogueria, asi que no se puede generar factura";
-                        MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                else
-                {
-                    string mensaje = "No hay caja abierta, asi que no se puede cargar productos a la factura";
-                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                if (TotalSeleccion == 0)
-                {
-                    string mensaje = "No se ha cargado los productos para la factura";
-                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
             }
         }
         private void EliminarProducto(string referencia)
