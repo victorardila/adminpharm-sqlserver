@@ -19,6 +19,8 @@ namespace Presentacion
         EmpleadoService empleadoService;
         List<Empleado> empleados;
         Empleado empleado;
+        string rol = "Administrador";
+        bool rolExistenteValidado;
         public FormRegistrarUsuario()
         {
             empleadoService = new EmpleadoService(ConfigConnection.ConnectionString);
@@ -64,6 +66,26 @@ namespace Presentacion
             login.Show();
             this.Hide();
         }
+        private void BuscarPorRol()
+        {
+            BusquedaEmpleadoRespuesta respuesta = new BusquedaEmpleadoRespuesta();
+            respuesta = empleadoService.BuscarPorNombreDeUsuario(rol);
+            if (respuesta.Empleado != null)
+            {
+                var empleado = new List<Empleado> { respuesta.Empleado };
+                rolExistenteValidado = true;
+                labelAdvertencia.Text = "El rol de administrador ya esta registrado";
+                labelAdvertencia.Visible = true;
+            }
+            else
+            {
+                if (respuesta.Empleado == null)
+                {
+                    rolExistenteValidado = false;
+                    labelAdvertencia.Visible = false;
+                }
+            }
+        }
         private Empleado MapearEmpleado()
         {
             empleado = new Empleado();
@@ -98,10 +120,14 @@ namespace Presentacion
         }
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            Empleado empleado = MapearEmpleado();
-            var msg = empleadoService.Guardar(empleado);
-            MessageBox.Show(msg, "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Limpiar();
+            BuscarPorRol();
+            if (rolExistenteValidado != true)
+            {
+                Empleado empleado = MapearEmpleado();
+                var msg = empleadoService.Guardar(empleado);
+                MessageBox.Show(msg, "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpiar();
+            }
         }
 
         private void textContraseña_Enter(object sender, EventArgs e)

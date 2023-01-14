@@ -102,6 +102,27 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
+        public BusquedaEmpleadoRespuesta BuscarPorRol(string rol)
+        {
+            BusquedaEmpleadoRespuesta respuesta = new BusquedaEmpleadoRespuesta();
+            try
+            {
+
+                conexion.Open();
+                respuesta.Empleado = repositorio.BuscarPorRol(rol);
+                conexion.Close();
+                respuesta.Mensaje = (respuesta.Empleado != null) ? "Se encontró la id de empleado buscado" : "la id de empleado buscada no existe";
+                respuesta.Error = false;
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
+        }
         public BusquedaEmpleadoRespuesta BuscarPorNombreDeUsuario(string nombreDeUsuario)
         {
             BusquedaEmpleadoRespuesta respuesta = new BusquedaEmpleadoRespuesta();

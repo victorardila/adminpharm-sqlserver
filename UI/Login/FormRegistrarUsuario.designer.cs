@@ -65,6 +65,7 @@ namespace Presentacion
             this.label2 = new System.Windows.Forms.Label();
             this.iconSeePasword = new FontAwesome.Sharp.IconPictureBox();
             this.iconNoSeePasword = new FontAwesome.Sharp.IconPictureBox();
+            this.labelAdvertencia = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).BeginInit();
@@ -191,7 +192,7 @@ namespace Presentacion
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.label1.Location = new System.Drawing.Point(41, 31);
+            this.label1.Location = new System.Drawing.Point(39, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(192, 24);
             this.label1.TabIndex = 32;
@@ -448,11 +449,24 @@ namespace Presentacion
             this.iconNoSeePasword.TabStop = false;
             this.iconNoSeePasword.Click += new System.EventHandler(this.iconNoSeePasword_Click);
             // 
+            // labelAdvertencia
+            // 
+            this.labelAdvertencia.AutoSize = true;
+            this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdvertencia.ForeColor = System.Drawing.Color.Maroon;
+            this.labelAdvertencia.Location = new System.Drawing.Point(234, 39);
+            this.labelAdvertencia.Name = "labelAdvertencia";
+            this.labelAdvertencia.Size = new System.Drawing.Size(91, 16);
+            this.labelAdvertencia.TabIndex = 57;
+            this.labelAdvertencia.Text = "Advertencia";
+            this.labelAdvertencia.Visible = false;
+            // 
             // FormRegistrarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(459, 400);
+            this.Controls.Add(this.labelAdvertencia);
             this.Controls.Add(this.iconSeePasword);
             this.Controls.Add(this.iconNoSeePasword);
             this.Controls.Add(this.label2);
@@ -540,5 +554,6 @@ namespace Presentacion
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconPictureBox iconSeePasword;
         private FontAwesome.Sharp.IconPictureBox iconNoSeePasword;
+        private System.Windows.Forms.Label labelAdvertencia;
     }
 }

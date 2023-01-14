@@ -70,6 +70,18 @@ namespace DAL
                 return DataReaderMapToEmpleado(dataReader);
             }
         }
+        public Empleado BuscarPorRol(string rol)
+        {
+            SqlDataReader dataReader;
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from EMPLEADO where Rol=@Rol";
+                command.Parameters.AddWithValue("@Rol", rol);
+                dataReader = command.ExecuteReader();
+                dataReader.Read();
+                return DataReaderMapToEmpleado(dataReader);
+            }
+        }
         public Empleado BuscarPorNombreDeUsuario(string nombreDeUsuario)
         {
             SqlDataReader dataReader;
