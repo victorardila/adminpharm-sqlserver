@@ -55,7 +55,7 @@ namespace Presentacion
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void btnMaximizar_Click(object sender, EventArgs e)
@@ -251,18 +251,15 @@ namespace Presentacion
                     CerrarFormulario<FormGestionDeEstantes>();
                     break;
                 case 4:
-                    CerrarFormulario<FormGestionBodega>();
-                    break;
-                case 5:
                     CerrarFormulario<FormGestionClientes>();
                     break;
-                case 6:
+                case 5:
                     CerrarFormulario<FormGestionarEmpleados>();
                     break;
-                case 7:
+                case 6:
                     CerrarFormulario<FormGestionFacturas>();
                     break;
-                case 8:
+                case 7:
                     CerrarFormulario<FormAjustes>();
                     break;
             }

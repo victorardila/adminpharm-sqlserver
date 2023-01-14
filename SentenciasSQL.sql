@@ -37,7 +37,9 @@ Edad int,
 Sexo varchar(5),
 Direccion_Domicilio text,
 Telefono varchar(15),
+Rol varchar(15),
 Correo varchar(100),
+Usuario nvarchar(50),
 Contraseña nvarchar(50)
 );
 create table ESTANTE(

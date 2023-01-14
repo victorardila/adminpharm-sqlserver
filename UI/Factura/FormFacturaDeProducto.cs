@@ -14,6 +14,8 @@ using System.Drawing.Printing;
 using System.Windows.Forms;
 using BLL;
 using Entity;
+//se importa la libreria para arrastrar formulario
+using System.Runtime.InteropServices;
 using Font = System.Drawing.Font;
 
 namespace Presentacion
@@ -95,7 +97,12 @@ namespace Presentacion
             SumtoriaDeFactura();
             BuscararDrogueria();
         }
-//***********************************************Metodos*******************************************************
+        //Drag Form
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        //***********************************************Metodos*******************************************************
         private void MapearProductosVendidos(string referencia)
         {
             BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
@@ -120,9 +127,17 @@ namespace Presentacion
                 {
                     if (i == 0)
                     {
-                        referencias[i]= Convert.ToString(fila.Cells[i].Value);
-                        string referencia = referencias[i];
-                        MapearProductosVendidos(referencia);
+                        cantidadProducto=Convert.ToInt32(fila.Cells[i].Value);
+                    }
+                    else
+                    {
+                        if (i == 1)
+                        {
+                            referencias[i] = Convert.ToString(fila.Cells[i].Value);
+                            string referencia = referencias[i];
+                            MapearProductosVendidos(referencia);
+                            break;
+                        }
                     }
                     i = i + 1;
                 }
@@ -234,7 +249,6 @@ namespace Presentacion
                     precioProducto = item.Precio;
                     dataGridFacturaProductos.Rows.Add(cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
                 }
-                ContarProductosVendidos();
             }
             else
             {
@@ -434,7 +448,7 @@ namespace Presentacion
                 respuesta = clienteService.BuscarPorIdentificacion(Id_Cliente);
                 if (respuesta.Cliente != null)
                 {
-                    labelAdvertenciaEmpleado.Visible = false;
+                    labelAdvertenciaCliente.Visible = false;
                     var clientes = new List<Cliente> { respuesta.Cliente };
                     var cliente = respuesta.Cliente;
                     textNombreCliente.Text = cliente.Nombres;
@@ -505,11 +519,13 @@ namespace Presentacion
             e.Graphics.DrawString("Ciudad: " + ciudad, font, Brushes.Black, new RectangleF(0, y + 182, ancho, 13));
             e.Graphics.DrawString("Cliente: " + nombreCliente, font, Brushes.Black, new RectangleF(0, y + 195, ancho, 13));
             e.Graphics.DrawString("IdDeCaja: " + idCajaAbierta, font, Brushes.Black, new RectangleF(0, y + 208, ancho, 13));
-
-            e.Graphics.DrawString("Lista de productos", font, Brushes.Black, new RectangleF(0, y + 230, ancho, 14));
-            e.Graphics.DrawString(" Cantidad "+" Nombre " + " Detalle "+" Precio ", font, Brushes.Black, new RectangleF(0, y + 244, ancho, 14));
+            
+            e.Graphics.DrawString("FACTURA DE PRODUCTOS", font, Brushes.Black, new RectangleF(0, y + 234, ancho, 14));
+            
+            e.Graphics.DrawString("Lista de productos", font, Brushes.Black, new RectangleF(0, y + 260, ancho, 14));
+            e.Graphics.DrawString(" Cantidad "+" Nombre " + " Detalle "+" Precio ", font, Brushes.Black, new RectangleF(0, y + 274, ancho, 14));
             int r = 0;
-            int j = 258;
+            int j = 288;
             foreach (DataGridViewRow fila in dataGridFacturaProductos.Rows)
             {
                 int i = 0;
@@ -563,12 +579,24 @@ namespace Presentacion
             Factura factura = MapearFactura();
             MapearDatosActualesDeFactura(factura);
             facturaService.Guardar(factura);
+            ContarProductosVendidos();
             ModificarCashCaja();
             ConsultarCajaAbierta();
             Imprimirfactura();
-            MapearProductosVendidos(referenciaProducto);
             EliminarFactura();
             this.Close();
+        }
+
+        private void menuTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void FormFacturaDeProducto_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

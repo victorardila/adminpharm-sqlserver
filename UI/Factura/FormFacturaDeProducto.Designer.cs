@@ -121,6 +121,7 @@ namespace Presentacion
             this.menuTop.Name = "menuTop";
             this.menuTop.Size = new System.Drawing.Size(643, 26);
             this.menuTop.TabIndex = 5;
+            this.menuTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuTop_MouseDown);
             // 
             // btnCerrar
             // 
@@ -838,7 +839,9 @@ namespace Presentacion
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormFacturaDeProducto";
             this.Opacity = 0.9D;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormFacturaDeProducto";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormFacturaDeProducto_MouseDown);
             this.menuTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFacturaProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconCash)).EndInit();

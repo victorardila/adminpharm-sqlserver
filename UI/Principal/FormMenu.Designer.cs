@@ -37,7 +37,9 @@ namespace Presentacion
             this.btnWindowMinimize = new FontAwesome.Sharp.IconPictureBox();
             this.panelSidebar = new System.Windows.Forms.Panel();
             this.panelSelectionAjustes = new System.Windows.Forms.Panel();
+            this.panelSelectionFactura = new System.Windows.Forms.Panel();
             this.btnAjustes = new FontAwesome.Sharp.IconButton();
+            this.btnGestionFactura = new FontAwesome.Sharp.IconButton();
             this.panelSelectionUsuarios = new System.Windows.Forms.Panel();
             this.panelSelectionProducto = new System.Windows.Forms.Panel();
             this.panelSelectionCaja = new System.Windows.Forms.Panel();
@@ -68,8 +70,6 @@ namespace Presentacion
             this.btnModeLight = new FontAwesome.Sharp.IconPictureBox();
             this.btnModeDark = new FontAwesome.Sharp.IconPictureBox();
             this.panelContenedorInterno = new System.Windows.Forms.Panel();
-            this.btnGestionFactura = new FontAwesome.Sharp.IconButton();
-            this.panelSelectionFactura = new System.Windows.Forms.Panel();
             this.panelHeaderbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnWindowMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnWindowRestore)).BeginInit();
@@ -200,6 +200,15 @@ namespace Presentacion
             this.panelSelectionAjustes.TabIndex = 9;
             this.panelSelectionAjustes.Visible = false;
             // 
+            // panelSelectionFactura
+            // 
+            this.panelSelectionFactura.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panelSelectionFactura.Location = new System.Drawing.Point(0, 398);
+            this.panelSelectionFactura.Name = "panelSelectionFactura";
+            this.panelSelectionFactura.Size = new System.Drawing.Size(6, 37);
+            this.panelSelectionFactura.TabIndex = 10;
+            this.panelSelectionFactura.Visible = false;
+            // 
             // btnAjustes
             // 
             this.btnAjustes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
@@ -223,6 +232,30 @@ namespace Presentacion
             this.btnAjustes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAjustes.UseVisualStyleBackColor = false;
             this.btnAjustes.Click += new System.EventHandler(this.btnAjustes_Click);
+            // 
+            // btnGestionFactura
+            // 
+            this.btnGestionFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
+            this.btnGestionFactura.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnGestionFactura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnGestionFactura.FlatAppearance.BorderSize = 0;
+            this.btnGestionFactura.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnGestionFactura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnGestionFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGestionFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGestionFactura.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGestionFactura.IconChar = FontAwesome.Sharp.IconChar.Wpforms;
+            this.btnGestionFactura.IconColor = System.Drawing.Color.White;
+            this.btnGestionFactura.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnGestionFactura.IconSize = 22;
+            this.btnGestionFactura.Location = new System.Drawing.Point(0, 398);
+            this.btnGestionFactura.Name = "btnGestionFactura";
+            this.btnGestionFactura.Size = new System.Drawing.Size(186, 37);
+            this.btnGestionFactura.TabIndex = 9;
+            this.btnGestionFactura.Text = "   Gestion de factura";
+            this.btnGestionFactura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGestionFactura.UseVisualStyleBackColor = false;
+            this.btnGestionFactura.Click += new System.EventHandler(this.btnGestionFactura_Click);
             // 
             // panelSelectionUsuarios
             // 
@@ -347,6 +380,7 @@ namespace Presentacion
             // 
             this.btnBodega.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
             this.btnBodega.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnBodega.Enabled = false;
             this.btnBodega.FlatAppearance.BorderSize = 0;
             this.btnBodega.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btnBodega.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
@@ -668,39 +702,6 @@ namespace Presentacion
             this.panelContenedorInterno.Name = "panelContenedorInterno";
             this.panelContenedorInterno.Size = new System.Drawing.Size(784, 448);
             this.panelContenedorInterno.TabIndex = 4;
-            // 
-            // btnGestionFactura
-            // 
-            this.btnGestionFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
-            this.btnGestionFactura.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnGestionFactura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.btnGestionFactura.FlatAppearance.BorderSize = 0;
-            this.btnGestionFactura.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btnGestionFactura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.btnGestionFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGestionFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGestionFactura.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGestionFactura.IconChar = FontAwesome.Sharp.IconChar.Wpforms;
-            this.btnGestionFactura.IconColor = System.Drawing.Color.White;
-            this.btnGestionFactura.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnGestionFactura.IconSize = 22;
-            this.btnGestionFactura.Location = new System.Drawing.Point(0, 398);
-            this.btnGestionFactura.Name = "btnGestionFactura";
-            this.btnGestionFactura.Size = new System.Drawing.Size(186, 37);
-            this.btnGestionFactura.TabIndex = 9;
-            this.btnGestionFactura.Text = "   Gestion de factura";
-            this.btnGestionFactura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnGestionFactura.UseVisualStyleBackColor = false;
-            this.btnGestionFactura.Click += new System.EventHandler(this.btnGestionFactura_Click);
-            // 
-            // panelSelectionFactura
-            // 
-            this.panelSelectionFactura.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panelSelectionFactura.Location = new System.Drawing.Point(0, 398);
-            this.panelSelectionFactura.Name = "panelSelectionFactura";
-            this.panelSelectionFactura.Size = new System.Drawing.Size(6, 37);
-            this.panelSelectionFactura.TabIndex = 10;
-            this.panelSelectionFactura.Visible = false;
             // 
             // FormMenu
             // 

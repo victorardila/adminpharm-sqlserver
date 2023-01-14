@@ -44,12 +44,15 @@ namespace Presentacion
                 textPBX.Text= respuesta.Drogueria.PBX;
                 textDireccion.Text = respuesta.Drogueria.Direccion;
                 textTelefono.Text= respuesta.Drogueria.Telefono;
+                labelAdvertencia.Visible = false;
+                btnRegistrarInfo.Enabled = false;
             }
             else
             {
                 if (respuesta.Drogueria == null)
                 {
                     labelAdvertencia.Visible = true;
+                    btnRegistrarInfo.Enabled = true;
                 }
             }
         }
@@ -67,6 +70,7 @@ namespace Presentacion
         private Drogueria MapearDrogueria()
         {
             drogueria = new Drogueria();
+            drogueria.IdDrogueria = "#Drog";
             drogueria.NombreDrogueria = textNombreDrogueria.Text;
             drogueria.NIT = textNIT.Text;
             drogueria.FraseDistintiva = textFraseDistintiva.Text;
@@ -98,7 +102,7 @@ namespace Presentacion
                 Drogueria drogueria = MapearDrogueria();
                 string mensaje = drogueriaService.Modificar(drogueria);
                 MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                Limpiar();
+                BuscarPorId();
             }
         }
     }

@@ -42,6 +42,14 @@
     <Reference Include="itextsharp.xmlworker, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\itextsharp.xmlworker.5.5.13\lib\itextsharp.xmlworker.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\VisualBasic.PowerPacks.Vs.1.0.0\lib\Microsoft.VisualBasic.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\VisualBasic.PowerPacks.Vs.1.0.0\lib\Microsoft.VisualBasic.PowerPacks.Vs.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -109,6 +117,18 @@
     <Compile Include="Estante\FormRegistrarEstante.Designer.cs">
       <DependentUpon>FormRegistrarEstante.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\FormRestaurarContraseña.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FormRestaurarContraseña.designer.cs">
+      <DependentUpon>FormRestaurarContraseña.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\FormRegistrarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FormRegistrarUsuario.designer.cs">
+      <DependentUpon>FormRegistrarUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Producto\FormProductosVendidos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,11 +165,11 @@
     <Compile Include="Principal\FormMenu.Designer.cs">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\Login.cs">
+    <Compile Include="Login\FormInicioSesion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="Login\FormInicioSesion.Designer.cs">
+      <DependentUpon>FormInicioSesion.cs</DependentUpon>
     </Compile>
     <Compile Include="Producto\FormGestionProducto.cs">
       <SubType>Form</SubType>
@@ -192,6 +212,12 @@
     <EmbeddedResource Include="Estante\FormRegistrarEstante.resx">
       <DependentUpon>FormRegistrarEstante.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Login\FormRestaurarContraseña.resx">
+      <DependentUpon>FormRestaurarContraseña.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FormRegistrarUsuario.resx">
+      <DependentUpon>FormRegistrarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Producto\FormProductosVendidos.resx">
       <DependentUpon>FormProductosVendidos.cs</DependentUpon>
     </EmbeddedResource>
@@ -204,8 +230,8 @@
     <EmbeddedResource Include="Principal\FormSumario.resx">
       <DependentUpon>FormSumario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <EmbeddedResource Include="Login\FormInicioSesion.resx">
+      <DependentUpon>FormInicioSesion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
@@ -266,6 +292,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\1055138.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fondo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Usuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Contraseña.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

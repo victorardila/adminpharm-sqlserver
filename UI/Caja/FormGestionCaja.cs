@@ -243,22 +243,38 @@ namespace Presentacion
             fechaFactura = DateTime.Now;
             ciudad = "Valledupar, Cesar";
         }
+        private void ValidarDatosDeCaja(ProductoVendidoTxtService productoVendidoTxtService)
+        {
+            ProductoVendidoTxtConsultaResponse productoVendidoTxtConsultaResponse = productoVendidoTxtService.Consultar();
+            if (productoVendidoTxtConsultaResponse.ProductoTxts.Count > 0)
+            {
+                var respuesta = MessageBox.Show("Está seguro de Modificar la información", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    Caja cajaRegistradora = MapearCaja();
+                    string mensaje = cajaRegistradoraService.Modificar(cajaRegistradora);
+                    MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    ProductosRegistradosEnCaja();
+                    ImprimirDatoDeVenta();
+                    ConsultarYLlenarGridDeCajas();
+                    btnAbrirCaja.Enabled = true;
+                    btnCerrarCaja.Enabled = false;
+                    btnHistorial.Enabled = true;
+                    labelCash.Text = "Sin definir";
+                }
+            }
+            else
+            {
+                if (productoVendidoTxtConsultaResponse.ProductoTxts.Count == 0)
+                {
+                    string mensaje = "No hay productos vendidos, no puede cerrar la caja";
+                    MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                }
+            }
+        }
         private void btnCerrarCaja_Click(object sender, EventArgs e)
         {
-            var respuesta = MessageBox.Show("Está seguro de Modificar la información", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (respuesta == DialogResult.Yes)
-            {
-                Caja cajaRegistradora = MapearCaja();
-                string mensaje = cajaRegistradoraService.Modificar(cajaRegistradora);
-                MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                ProductosRegistradosEnCaja();
-                ImprimirDatoDeVenta();
-                ConsultarYLlenarGridDeCajas();
-                btnAbrirCaja.Enabled = true;
-                btnCerrarCaja.Enabled = false;
-                btnHistorial.Enabled = true;
-                labelCash.Text = "Sin definir";
-            }
+            ValidarDatosDeCaja(productoVendidoTxtService);
         }
         private void btnHistorial_Click(object sender, EventArgs e)
         {
@@ -370,10 +386,11 @@ namespace Presentacion
             e.Graphics.DrawString("Ciudad: " + ciudad, font, Brushes.Black, new RectangleF(0, y + 143, ancho, 13));
             e.Graphics.DrawString("IdDeCaja: " + idCajaAbierta, font, Brushes.Black, new RectangleF(0, y + 156, ancho, 13));
 
-            e.Graphics.DrawString("Lista de productos", font, Brushes.Black, new RectangleF(0, y + 180, ancho, 14));
-            e.Graphics.DrawString(" Cantidad " + " Nombre " + " Detalle " + " Precio ", font, Brushes.Black, new RectangleF(0, y + 194, ancho, 14));
+            e.Graphics.DrawString("CIERRE DE CAJA", font, Brushes.Black, new RectangleF(0, y + 180, ancho, 14));
+            e.Graphics.DrawString("Lista de productos", font, Brushes.Black, new RectangleF(0, y + 206, ancho, 14));
+            e.Graphics.DrawString(" Cantidad " + " Nombre " + " Detalle " + " Precio ", font, Brushes.Black, new RectangleF(0, y + 220, ancho, 14));
             int r = 0;
-            int j = 208;
+            int j = 234;
             int i = 0;
             foreach (var item in productoVendidoTxts)
             {

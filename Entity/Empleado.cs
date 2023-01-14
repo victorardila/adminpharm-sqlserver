@@ -9,7 +9,7 @@ namespace Entity
     public class Empleado
     {
         //Constructor
-        public Empleado(string identificacion, string tipoDeIdentificacion, string nombres, string apellidos, DateTime fechaDeNacimiento, int edad, string direccion, string sexo, string telefono, string correoElectronico, string contraseña, string codigoEmpleado)
+        public Empleado(string identificacion, string tipoDeIdentificacion, string nombres, string apellidos, DateTime fechaDeNacimiento, int edad, string direccion, string sexo, string telefono, string rol, string correoElectronico, string usuario, string contraseña, string codigoEmpleado)
         {
             Identificacion = identificacion;
             TipoDeIdentificacion = tipoDeIdentificacion;
@@ -20,7 +20,9 @@ namespace Entity
             Direccion = direccion;
             Sexo = sexo;
             Telefono = telefono;
+            Rol = rol;
             CorreoElectronico = correoElectronico;
+            Usuario = usuario;
             Contraseña = contraseña;
             CodigoEmpleado = codigoEmpleado;
         }
@@ -39,7 +41,9 @@ namespace Entity
         public string Sexo { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
+        public string Rol { get; set; }
         public string CorreoElectronico { get; set; }
+        public string Usuario { get; set; }
         public string Contraseña { get; set; }
         public string CodigoEmpleado { get; set; }
 

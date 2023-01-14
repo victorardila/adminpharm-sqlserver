@@ -33,6 +33,7 @@ namespace Presentacion
             this.panelBarraVolver = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelContenedorGestionProductos = new System.Windows.Forms.Panel();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.btnEliminarHistorial = new FontAwesome.Sharp.IconButton();
             this.panelConsultaDeProductos = new System.Windows.Forms.Panel();
             this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
@@ -53,7 +54,6 @@ namespace Presentacion
             this.comboIdCaja = new System.Windows.Forms.ComboBox();
             this.labelFiltro = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.panelContenedorGestionProductos.SuspendLayout();
             this.panelConsultaDeProductos.SuspendLayout();
             this.panelSubDataGridFarmacos.SuspendLayout();
@@ -113,6 +113,29 @@ namespace Presentacion
             this.panelContenedorGestionProductos.Name = "panelContenedorGestionProductos";
             this.panelContenedorGestionProductos.Size = new System.Drawing.Size(755, 397);
             this.panelContenedorGestionProductos.TabIndex = 54;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.iconButton1.Enabled = false;
+            this.iconButton1.FlatAppearance.BorderSize = 0;
+            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Receipt;
+            this.iconButton1.IconColor = System.Drawing.Color.Black;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 30;
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.Location = new System.Drawing.Point(380, 355);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(110, 35);
+            this.iconButton1.TabIndex = 52;
+            this.iconButton1.Text = "   Ver facturas";
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton1.UseVisualStyleBackColor = false;
             // 
             // btnEliminarHistorial
             // 
@@ -298,6 +321,7 @@ namespace Presentacion
             this.textSearchFactura.TabIndex = 83;
             this.textSearchFactura.Text = "Buscar secuencia de factura";
             this.textSearchFactura.Visible = false;
+            this.textSearchFactura.TextChanged += new System.EventHandler(this.textSearchFactura_TextChanged);
             this.textSearchFactura.Enter += new System.EventHandler(this.textSearchFactura_Enter);
             // 
             // btnSearchFactura
@@ -326,6 +350,7 @@ namespace Presentacion
             this.comboIdCaja.Size = new System.Drawing.Size(86, 21);
             this.comboIdCaja.TabIndex = 52;
             this.comboIdCaja.Text = "Todos";
+            this.comboIdCaja.SelectedIndexChanged += new System.EventHandler(this.comboIdCaja_SelectedIndexChanged);
             // 
             // labelFiltro
             // 
@@ -346,28 +371,6 @@ namespace Presentacion
             this.label4.Size = new System.Drawing.Size(137, 16);
             this.label4.TabIndex = 51;
             this.label4.Text = "Consultar Facturas";
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Receipt;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 30;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(380, 355);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(110, 35);
-            this.iconButton1.TabIndex = 52;
-            this.iconButton1.Text = "   Ver facturas";
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
             // 
             // FormGestionFacturas
             // 

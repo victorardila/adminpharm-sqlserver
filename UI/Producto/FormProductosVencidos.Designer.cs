@@ -75,6 +75,7 @@ namespace Presentacion
             this.menuTop.Name = "menuTop";
             this.menuTop.Size = new System.Drawing.Size(808, 26);
             this.menuTop.TabIndex = 4;
+            this.menuTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuTop_MouseDown);
             // 
             // btnCerrar
             // 
@@ -328,7 +329,9 @@ namespace Presentacion
             this.Controls.Add(this.menuTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormProductosVencidos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormProductosVencidos";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormProductosVencidos_MouseDown);
             this.menuTop.ResumeLayout(false);
             this.panelConsultaDeProductos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosVencidos)).EndInit();

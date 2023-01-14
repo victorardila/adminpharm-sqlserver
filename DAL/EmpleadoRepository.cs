@@ -20,8 +20,8 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"Insert Into EMPLEADO (Codigo_Empleado, Id, Tipo_De_Id, Nombres, Apellidos, Fecha_De_Nacimiento, Edad, Sexo, Direccion_Domicilio, Telefono, Correo, Contraseña) 
-                                        values (@Codigo_Empleado, @Id, @Tipo_De_Id, @Nombres, @Apellidos, @Fecha_De_Nacimiento, @Edad, @Sexo, @Direccion_Domicilio, @Telefono, @Correo, @Contraseña)";
+                command.CommandText = @"Insert Into EMPLEADO (Codigo_Empleado, Id, Tipo_De_Id, Nombres, Apellidos, Fecha_De_Nacimiento, Edad, Sexo, Direccion_Domicilio, Telefono, Rol, Correo, Usuario, Contraseña) 
+                                        values (@Codigo_Empleado, @Id, @Tipo_De_Id, @Nombres, @Apellidos, @Fecha_De_Nacimiento, @Edad, @Sexo, @Direccion_Domicilio, @Telefono, @Rol, @Correo, @Usuario, @Contraseña)";
                 command.Parameters.AddWithValue("@Codigo_Empleado", empleado.CodigoEmpleado);
                 command.Parameters.AddWithValue("@Id", empleado.Identificacion);
                 command.Parameters.AddWithValue("@Tipo_De_Id", empleado.TipoDeIdentificacion);
@@ -32,7 +32,9 @@ namespace DAL
                 command.Parameters.AddWithValue("@Sexo", empleado.Sexo);
                 command.Parameters.AddWithValue("@Direccion_Domicilio", empleado.Direccion);
                 command.Parameters.AddWithValue("@Telefono", empleado.Telefono);
+                command.Parameters.AddWithValue("@Rol", empleado.Rol);
                 command.Parameters.AddWithValue("@Correo", empleado.CorreoElectronico);
+                command.Parameters.AddWithValue("@Usuario", empleado.Usuario);
                 command.Parameters.AddWithValue("@Contraseña", empleado.Contraseña);
                 var filas = command.ExecuteNonQuery();
             }
@@ -68,11 +70,23 @@ namespace DAL
                 return DataReaderMapToEmpleado(dataReader);
             }
         }
+        public Empleado BuscarPorNombreDeUsuario(string nombreDeUsuario)
+        {
+            SqlDataReader dataReader;
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from EMPLEADO where Usuario=@Usuario";
+                command.Parameters.AddWithValue("@Usuario", nombreDeUsuario);
+                dataReader = command.ExecuteReader();
+                dataReader.Read();
+                return DataReaderMapToEmpleado(dataReader);
+            }
+        }
         public void Modificar(Empleado empleado)
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"update EMPLEADO set Codigo_Empleado=@Codigo_Empleado, Tipo_De_Id=@Tipo_De_Id, Nombres=@Nombres, Apellidos=@Apellidos, Fecha_De_Nacimiento=@Fecha_De_Nacimiento, Edad=@Edad, Sexo=@Sexo, Direccion_Domicilio=@Direccion_Domicilio, Telefono=@Telefono, Correo=@Correo, Contraseña=@Contraseña
+                command.CommandText = @"update EMPLEADO set Codigo_Empleado=@Codigo_Empleado, Tipo_De_Id=@Tipo_De_Id, Nombres=@Nombres, Apellidos=@Apellidos, Fecha_De_Nacimiento=@Fecha_De_Nacimiento, Edad=@Edad, Sexo=@Sexo, Direccion_Domicilio=@Direccion_Domicilio, Telefono=@Telefono, Rol=@Rol, Correo=@Correo, Usuario=@Usuario, Contraseña=@Contraseña
                                         where Id=@Id";
                 command.Parameters.AddWithValue("@Codigo_Empleado", empleado.CodigoEmpleado);
                 command.Parameters.AddWithValue("@Id", empleado.Identificacion);
@@ -84,7 +98,9 @@ namespace DAL
                 command.Parameters.AddWithValue("@Sexo", empleado.Sexo);
                 command.Parameters.AddWithValue("@Direccion_Domicilio", empleado.Direccion);
                 command.Parameters.AddWithValue("@Telefono", empleado.Telefono);
+                command.Parameters.AddWithValue("@Rol", empleado.Rol);
                 command.Parameters.AddWithValue("@Correo", empleado.CorreoElectronico);
+                command.Parameters.AddWithValue("@Usuario", empleado.Usuario);
                 command.Parameters.AddWithValue("@Contraseña", empleado.Contraseña);
                 var filas = command.ExecuteNonQuery();
             }
@@ -94,7 +110,7 @@ namespace DAL
             List<Empleado> empleados = new List<Empleado>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select Codigo_Empleado, Id, Tipo_De_Id, Nombres, Apellidos, Fecha_De_Nacimiento, Edad, Sexo, Direccion_Domicilio, Telefono, Correo, Contraseña from EMPLEADO";
+                command.CommandText = "Select Codigo_Empleado, Id, Tipo_De_Id, Nombres, Apellidos, Fecha_De_Nacimiento, Edad, Sexo, Direccion_Domicilio, Telefono, Rol, Correo, Usuario, Contraseña from EMPLEADO";
                 var dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -130,7 +146,9 @@ namespace DAL
             empleado.Sexo = (string)dataReader["Sexo"];
             empleado.Direccion = (string)dataReader["Direccion_Domicilio"];
             empleado.Telefono = (string)dataReader["Telefono"];
+            empleado.Rol = (string)dataReader["Rol"];
             empleado.CorreoElectronico = (string)dataReader["Correo"];
+            empleado.Usuario = (string)dataReader["Usuario"];
             empleado.Contraseña = (string)dataReader["Contraseña"];
             return empleado;
         }

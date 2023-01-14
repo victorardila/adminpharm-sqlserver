@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using BLL;
 using Entity;
+//se importa la libreria para arrastrar formulario
+using System.Runtime.InteropServices;
 
 namespace Presentacion
 {
@@ -34,6 +36,11 @@ namespace Presentacion
             InitializeComponent();
             ConsultarEstantes();
         }
+        //Drag Form
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
         private Producto MapearProducto()
         {
             producto = new Producto();
@@ -179,19 +186,34 @@ namespace Presentacion
         }
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            Producto producto = MapearProducto();
-            string mensaje = productoService.Guardar(producto);
-            MessageBox.Show(mensaje, "Mensaje de Guardado", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            if(mensaje== "Producto registrado correctamente")
+            if (cantidad > 0)
             {
-                Estante estante = MapearEstante();
-                estanteService.Modificar(estante);
+                Producto producto = MapearProducto();
+                string mensaje = productoService.Guardar(producto);
+                MessageBox.Show(mensaje, "Mensaje de Guardado", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                if (mensaje == "Producto registrado correctamente")
+                {
+                    Estante estante = MapearEstante();
+                    estanteService.Modificar(estante);
+                }
+                this.Close();
             }
-            this.Close();
         }
         private void comboNumeroEstante_SelectedIndexChanged(object sender, EventArgs e)
         {
             BuscarEstante();
+        }
+
+        private void menuTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void panelRegistroDeProductos_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

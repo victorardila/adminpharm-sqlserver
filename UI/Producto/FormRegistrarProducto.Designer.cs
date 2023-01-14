@@ -86,6 +86,7 @@ namespace Presentacion
             this.menuTop.Name = "menuTop";
             this.menuTop.Size = new System.Drawing.Size(526, 26);
             this.menuTop.TabIndex = 3;
+            this.menuTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuTop_MouseDown);
             // 
             // btnCerrar
             // 
@@ -142,6 +143,7 @@ namespace Presentacion
             this.panelRegistroDeProductos.Name = "panelRegistroDeProductos";
             this.panelRegistroDeProductos.Size = new System.Drawing.Size(526, 417);
             this.panelRegistroDeProductos.TabIndex = 49;
+            this.panelRegistroDeProductos.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelRegistroDeProductos_MouseDown);
             // 
             // labelAdvertencia
             // 

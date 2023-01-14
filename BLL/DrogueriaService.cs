@@ -63,8 +63,8 @@ namespace BLL
             try
             {
                 conexion.Open();
-                var cajaRegistradora = repositorio.BuscarPorId(drogueriaNueva.NIT);
-                if (cajaRegistradora != null)
+                var drogueriaAntigua = repositorio.BuscarPorId(drogueriaNueva.IdDrogueria);
+                if (drogueriaAntigua != null)
                 {
                     repositorio.Modificar(drogueriaNueva);
                     return ($"El registro de {drogueriaNueva.NIT} se ha modificado satisfactoriamente.");

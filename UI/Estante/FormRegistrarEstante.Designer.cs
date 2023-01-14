@@ -50,6 +50,7 @@ namespace Presentacion
             this.menuTop.Name = "menuTop";
             this.menuTop.Size = new System.Drawing.Size(523, 26);
             this.menuTop.TabIndex = 3;
+            this.menuTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuTop_MouseDown);
             // 
             // btnCerrar
             // 
@@ -82,7 +83,7 @@ namespace Presentacion
             this.textNumeroEstante.BackColor = System.Drawing.SystemColors.Control;
             this.textNumeroEstante.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textNumeroEstante.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textNumeroEstante.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.textNumeroEstante.ForeColor = System.Drawing.Color.Black;
             this.textNumeroEstante.Location = new System.Drawing.Point(292, 136);
             this.textNumeroEstante.Name = "textNumeroEstante";
             this.textNumeroEstante.Size = new System.Drawing.Size(115, 24);
@@ -140,7 +141,9 @@ namespace Presentacion
             this.Controls.Add(this.menuTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormRegistrarEstante";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormRegistrarEstante";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormRegistrarEstante_MouseDown);
             this.menuTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

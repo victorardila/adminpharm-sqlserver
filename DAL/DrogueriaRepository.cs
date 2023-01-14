@@ -57,6 +57,7 @@ namespace DAL
             {
                 command.CommandText = @"update DROGUERIA set Nombre_De_Drogueria=@Nombre_De_Drogueria, NIT=@NIT, Frase_Distintiva=@Frase_Distintiva, Regimen=@Regimen, PBX=@PBX, Direccion=@Direccion, Telefono=@Telefono
                                         where Id_Drogueria=@Id_Drogueria";
+                command.Parameters.AddWithValue("@Id_Drogueria", drogueria.IdDrogueria);
                 command.Parameters.AddWithValue("@Nombre_De_Drogueria", drogueria.NombreDrogueria);
                 command.Parameters.AddWithValue("@NIT", drogueria.NIT);
                 command.Parameters.AddWithValue("@Frase_Distintiva", drogueria.FraseDistintiva);

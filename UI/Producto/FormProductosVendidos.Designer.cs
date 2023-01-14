@@ -33,6 +33,11 @@ namespace Presentacion
             this.btnCerrar = new FontAwesome.Sharp.IconButton();
             this.panelConsultaDeProductos = new System.Windows.Forms.Panel();
             this.dataGridProductosVendidos = new System.Windows.Forms.DataGridView();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Referencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
@@ -45,11 +50,6 @@ namespace Presentacion
             this.textTotal = new System.Windows.Forms.TextBox();
             this.labelTotalFarmacos = new System.Windows.Forms.Label();
             this.btnLimpiarHistorial = new FontAwesome.Sharp.IconButton();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Referencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuTop.SuspendLayout();
             this.panelConsultaDeProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosVendidos)).BeginInit();
@@ -67,6 +67,7 @@ namespace Presentacion
             this.menuTop.Name = "menuTop";
             this.menuTop.Size = new System.Drawing.Size(808, 26);
             this.menuTop.TabIndex = 5;
+            this.menuTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuTop_MouseDown);
             // 
             // btnCerrar
             // 
@@ -108,6 +109,36 @@ namespace Presentacion
             this.dataGridProductosVendidos.RowHeadersVisible = false;
             this.dataGridProductosVendidos.Size = new System.Drawing.Size(772, 419);
             this.dataGridProductosVendidos.TabIndex = 51;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 80;
+            // 
+            // Referencia
+            // 
+            this.Referencia.HeaderText = "Referencia";
+            this.Referencia.Name = "Referencia";
+            this.Referencia.Width = 200;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.Width = 200;
+            // 
+            // Detalle
+            // 
+            this.Detalle.HeaderText = "Detalle";
+            this.Detalle.Name = "Detalle";
+            this.Detalle.Width = 180;
+            // 
+            // Precio
+            // 
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.Width = 108;
             // 
             // panelTituloDataGridFarmacos
             // 
@@ -238,36 +269,6 @@ namespace Presentacion
             this.btnLimpiarHistorial.UseVisualStyleBackColor = false;
             this.btnLimpiarHistorial.Click += new System.EventHandler(this.btnLimpiarHistorial_Click);
             // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.Width = 80;
-            // 
-            // Referencia
-            // 
-            this.Referencia.HeaderText = "Referencia";
-            this.Referencia.Name = "Referencia";
-            this.Referencia.Width = 200;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.Width = 200;
-            // 
-            // Detalle
-            // 
-            this.Detalle.HeaderText = "Detalle";
-            this.Detalle.Name = "Detalle";
-            this.Detalle.Width = 180;
-            // 
-            // Precio
-            // 
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.Width = 108;
-            // 
             // FormProductosVendidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,7 +280,9 @@ namespace Presentacion
             this.Controls.Add(this.menuTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormProductosVendidos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormProductosVendidos";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormProductosVendidos_MouseDown);
             this.menuTop.ResumeLayout(false);
             this.panelConsultaDeProductos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosVendidos)).EndInit();

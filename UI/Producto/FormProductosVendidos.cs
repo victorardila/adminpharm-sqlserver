@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
 using Entity;
+//se importa la libreria para arrastrar formulario
+using System.Runtime.InteropServices;
 
 namespace Presentacion
 {
@@ -28,7 +30,11 @@ namespace Presentacion
             InitializeComponent();
             cargarArchivo(productoVendidoTxtService);
         }
-
+        //Drag Form
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -89,6 +95,18 @@ namespace Presentacion
                 dataGridProductosVendidos.DataSource = null;
                 ConsultarHistorial();
             }
+        }
+
+        private void menuTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void FormProductosVendidos_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

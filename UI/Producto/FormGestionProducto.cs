@@ -24,6 +24,8 @@ namespace Presentacion
         List<Drogueria> droguerias;
         Producto producto;
         CajaRegistradoraService cajaRegistradoraService;
+        EstanteService estanteService;
+        List<Estante> estantes;
         int cantidadDrogueria;
         bool cajaAbierta;
         string referenciaProducto;
@@ -41,7 +43,7 @@ namespace Presentacion
         string tipoProducto;
         double precioDeNegocio;
         double porcentajeDeVenta;
-
+        int cantidadEstante;
         int cantidad;
 
         public FormGestionProducto()
@@ -49,9 +51,11 @@ namespace Presentacion
             cajaRegistradoraService = new CajaRegistradoraService(ConfigConnection.ConnectionString);
             productoService = new ProductoService(ConfigConnection.ConnectionString);
             drogueriaService = new DrogueriaService(ConfigConnection.ConnectionString);
+            estanteService = new EstanteService(ConfigConnection.ConnectionString);
             InitializeComponent();
             ConsultarYLlenarGridDeProductos();
             ConsultarDroguerias();
+            ConsultarEstantes();
             CalcularProvisiones();
             CalculoDeEstadoAutomatico();
         }
@@ -172,6 +176,16 @@ namespace Presentacion
         {
             this.Close();
         }
+        private void ConsultarEstantes()
+        {
+            ConsultaEstanteRespuesta respuesta = new ConsultaEstanteRespuesta();
+            respuesta = estanteService.ConsultarTodos();
+            estantes = respuesta.Estantes.ToList();
+            if (respuesta.Estantes.Count != 0 && respuesta.Estantes != null)
+            {
+                cantidadEstante = estanteService.Totalizar().Cuenta;
+            }
+        }
         private void ConsultarYLlenarGridDeProductos()
         {
             BuscarPorEstado();
@@ -289,6 +303,7 @@ namespace Presentacion
                 }
             }
         }
+
         private void btnVenderProducto_Click(object sender, EventArgs e)
         {
             int TotalSeleccion = dataGridFarmacos.Rows.Cast<DataGridViewRow>().Where(p => Convert.ToBoolean(p.Cells["Column1"].Value)).Count();
@@ -299,18 +314,26 @@ namespace Presentacion
                 {
                     if (cantidadDrogueria == 1)
                     {
-                        foreach (DataGridViewRow row in dataGridFarmacos.Rows)
+                        if (cantidadEstante > 0)
                         {
-                            if (Convert.ToBoolean(row.Cells["Column1"].Value) == true)
+                            foreach (DataGridViewRow row in dataGridFarmacos.Rows)
                             {
-                                referencia = Convert.ToString(row.Cells["Referencia"].Value);
-                                cantidad = Convert.ToInt32(row.Cells["CantidadVenta"].Value);
-                                MapearMedicamentosFactura(referencia);
+                                if (Convert.ToBoolean(row.Cells["Column1"].Value) == true)
+                                {
+                                    referencia = Convert.ToString(row.Cells["Referencia"].Value);
+                                    cantidad = Convert.ToInt32(row.Cells["CantidadVenta"].Value);
+                                    MapearMedicamentosFactura(referencia);
+                                }
                             }
+                            FormFacturaDeProducto frm = new FormFacturaDeProducto();
+                            frm.ShowDialog();
+                            ConsultarYLlenarGridDeProductos();
                         }
-                        FormFacturaDeProducto frm = new FormFacturaDeProducto();
-                        frm.ShowDialog();
-                        ConsultarYLlenarGridDeProductos();
+                        else
+                        {
+                            string mensaje = "No hay estantes registrados por lo que tampoco hay productos registrados";
+                            MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                     else
                     {
