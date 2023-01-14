@@ -37,27 +37,27 @@ namespace Presentacion
             this.textTotalEstantes = new System.Windows.Forms.TextBox();
             this.labelTotalFarmacos = new System.Windows.Forms.Label();
             this.dataGridEstantes = new System.Windows.Forms.DataGridView();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
             this.labelAdvertenciaCliente = new System.Windows.Forms.Label();
+            this.btnCloseEstante = new FontAwesome.Sharp.IconPictureBox();
             this.textSearchEstante = new System.Windows.Forms.TextBox();
+            this.btnSearchEstante = new FontAwesome.Sharp.IconPictureBox();
             this.comboEstado = new System.Windows.Forms.ComboBox();
             this.labelFiltro = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panelContenedorGestionProductos = new System.Windows.Forms.Panel();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnModificarEstantes = new FontAwesome.Sharp.IconButton();
-            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnCloseEstante = new FontAwesome.Sharp.IconPictureBox();
-            this.btnSearchEstante = new FontAwesome.Sharp.IconPictureBox();
+            this.btnEliminarEstantes = new FontAwesome.Sharp.IconButton();
             this.btnRegistrarEstantes = new FontAwesome.Sharp.IconButton();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnVolver = new FontAwesome.Sharp.IconButton();
             this.panelConsultaDeProductos.SuspendLayout();
             this.panelSubDataGridFarmacos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).BeginInit();
             this.panelTituloDataGridFarmacos.SuspendLayout();
-            this.panelContenedorGestionProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseEstante)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchEstante)).BeginInit();
+            this.panelContenedorGestionProductos.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelBarraVolver
@@ -142,6 +142,14 @@ namespace Presentacion
             this.dataGridEstantes.TabIndex = 50;
             this.dataGridEstantes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEstantes_CellClick);
             // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Width = 50;
+            // 
             // panelTituloDataGridFarmacos
             // 
             this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -170,6 +178,23 @@ namespace Presentacion
             this.labelAdvertenciaCliente.Text = "No hay coincidencias";
             this.labelAdvertenciaCliente.Visible = false;
             // 
+            // btnCloseEstante
+            // 
+            this.btnCloseEstante.BackColor = System.Drawing.SystemColors.Control;
+            this.btnCloseEstante.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCloseEstante.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnCloseEstante.IconChar = FontAwesome.Sharp.IconChar.X;
+            this.btnCloseEstante.IconColor = System.Drawing.Color.DarkRed;
+            this.btnCloseEstante.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCloseEstante.IconSize = 18;
+            this.btnCloseEstante.Location = new System.Drawing.Point(704, 2);
+            this.btnCloseEstante.Name = "btnCloseEstante";
+            this.btnCloseEstante.Size = new System.Drawing.Size(18, 18);
+            this.btnCloseEstante.TabIndex = 85;
+            this.btnCloseEstante.TabStop = false;
+            this.btnCloseEstante.Visible = false;
+            this.btnCloseEstante.Click += new System.EventHandler(this.btnCloseCliente_Click);
+            // 
             // textSearchEstante
             // 
             this.textSearchEstante.Location = new System.Drawing.Point(577, 1);
@@ -180,6 +205,22 @@ namespace Presentacion
             this.textSearchEstante.Visible = false;
             this.textSearchEstante.TextChanged += new System.EventHandler(this.textSearchEstante_TextChanged);
             this.textSearchEstante.Enter += new System.EventHandler(this.textSearchCliente_Enter);
+            // 
+            // btnSearchEstante
+            // 
+            this.btnSearchEstante.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSearchEstante.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchEstante.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearchEstante.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.btnSearchEstante.IconColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearchEstante.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSearchEstante.IconSize = 20;
+            this.btnSearchEstante.Location = new System.Drawing.Point(723, 1);
+            this.btnSearchEstante.Name = "btnSearchEstante";
+            this.btnSearchEstante.Size = new System.Drawing.Size(20, 20);
+            this.btnSearchEstante.TabIndex = 84;
+            this.btnSearchEstante.TabStop = false;
+            this.btnSearchEstante.Click += new System.EventHandler(this.btnSearchCliente_Click);
             // 
             // comboEstado
             // 
@@ -223,7 +264,7 @@ namespace Presentacion
             this.panelContenedorGestionProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelContenedorGestionProductos.Controls.Add(this.btnModificarEstantes);
+            this.panelContenedorGestionProductos.Controls.Add(this.btnEliminarEstantes);
             this.panelContenedorGestionProductos.Controls.Add(this.panelConsultaDeProductos);
             this.panelContenedorGestionProductos.Controls.Add(this.btnRegistrarEstantes);
             this.panelContenedorGestionProductos.Location = new System.Drawing.Point(12, 47);
@@ -231,76 +272,28 @@ namespace Presentacion
             this.panelContenedorGestionProductos.Size = new System.Drawing.Size(755, 397);
             this.panelContenedorGestionProductos.TabIndex = 53;
             // 
-            // dataGridViewImageColumn1
+            // btnEliminarEstantes
             // 
-            this.dataGridViewImageColumn1.HeaderText = "Eliminar";
-            this.dataGridViewImageColumn1.Image = global::Presentacion.Properties.Resources.deleRojBlack;
-            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Width = 50;
-            // 
-            // btnModificarEstantes
-            // 
-            this.btnModificarEstantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.btnModificarEstantes.FlatAppearance.BorderSize = 0;
-            this.btnModificarEstantes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btnModificarEstantes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.btnModificarEstantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificarEstantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificarEstantes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnModificarEstantes.IconChar = FontAwesome.Sharp.IconChar.Pen;
-            this.btnModificarEstantes.IconColor = System.Drawing.Color.Black;
-            this.btnModificarEstantes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnModificarEstantes.IconSize = 30;
-            this.btnModificarEstantes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificarEstantes.Location = new System.Drawing.Point(354, 359);
-            this.btnModificarEstantes.Name = "btnModificarEstantes";
-            this.btnModificarEstantes.Size = new System.Drawing.Size(110, 35);
-            this.btnModificarEstantes.TabIndex = 51;
-            this.btnModificarEstantes.Text = "   Modificar Estantes";
-            this.btnModificarEstantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnModificarEstantes.UseVisualStyleBackColor = false;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
-            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Width = 50;
-            // 
-            // btnCloseEstante
-            // 
-            this.btnCloseEstante.BackColor = System.Drawing.SystemColors.Control;
-            this.btnCloseEstante.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCloseEstante.ForeColor = System.Drawing.Color.DarkRed;
-            this.btnCloseEstante.IconChar = FontAwesome.Sharp.IconChar.X;
-            this.btnCloseEstante.IconColor = System.Drawing.Color.DarkRed;
-            this.btnCloseEstante.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCloseEstante.IconSize = 18;
-            this.btnCloseEstante.Location = new System.Drawing.Point(704, 2);
-            this.btnCloseEstante.Name = "btnCloseEstante";
-            this.btnCloseEstante.Size = new System.Drawing.Size(18, 18);
-            this.btnCloseEstante.TabIndex = 85;
-            this.btnCloseEstante.TabStop = false;
-            this.btnCloseEstante.Visible = false;
-            this.btnCloseEstante.Click += new System.EventHandler(this.btnCloseCliente_Click);
-            // 
-            // btnSearchEstante
-            // 
-            this.btnSearchEstante.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSearchEstante.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearchEstante.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSearchEstante.IconChar = FontAwesome.Sharp.IconChar.Search;
-            this.btnSearchEstante.IconColor = System.Drawing.SystemColors.ControlText;
-            this.btnSearchEstante.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSearchEstante.IconSize = 20;
-            this.btnSearchEstante.Location = new System.Drawing.Point(723, 1);
-            this.btnSearchEstante.Name = "btnSearchEstante";
-            this.btnSearchEstante.Size = new System.Drawing.Size(20, 20);
-            this.btnSearchEstante.TabIndex = 84;
-            this.btnSearchEstante.TabStop = false;
-            this.btnSearchEstante.Click += new System.EventHandler(this.btnSearchCliente_Click);
+            this.btnEliminarEstantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnEliminarEstantes.FlatAppearance.BorderSize = 0;
+            this.btnEliminarEstantes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnEliminarEstantes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnEliminarEstantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarEstantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarEstantes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnEliminarEstantes.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.btnEliminarEstantes.IconColor = System.Drawing.Color.Black;
+            this.btnEliminarEstantes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEliminarEstantes.IconSize = 30;
+            this.btnEliminarEstantes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminarEstantes.Location = new System.Drawing.Point(354, 359);
+            this.btnEliminarEstantes.Name = "btnEliminarEstantes";
+            this.btnEliminarEstantes.Size = new System.Drawing.Size(110, 35);
+            this.btnEliminarEstantes.TabIndex = 51;
+            this.btnEliminarEstantes.Text = "   Eliminar Estantes";
+            this.btnEliminarEstantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEliminarEstantes.UseVisualStyleBackColor = false;
+            this.btnEliminarEstantes.Click += new System.EventHandler(this.btnEliminarEstantes_Click);
             // 
             // btnRegistrarEstantes
             // 
@@ -324,6 +317,14 @@ namespace Presentacion
             this.btnRegistrarEstantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRegistrarEstantes.UseVisualStyleBackColor = false;
             this.btnRegistrarEstantes.Click += new System.EventHandler(this.btnRegistrarEstantes_Click);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Eliminar";
+            this.dataGridViewImageColumn1.Image = global::Presentacion.Properties.Resources.deleRojBlack;
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 50;
             // 
             // btnVolver
             // 
@@ -362,9 +363,9 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).EndInit();
             this.panelTituloDataGridFarmacos.ResumeLayout(false);
             this.panelTituloDataGridFarmacos.PerformLayout();
-            this.panelContenedorGestionProductos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseEstante)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchEstante)).EndInit();
+            this.panelContenedorGestionProductos.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,7 +376,7 @@ namespace Presentacion
         private FontAwesome.Sharp.IconButton btnVolver;
         private System.Windows.Forms.Panel panelBarraVolver;
         private System.Windows.Forms.Label label1;
-        private FontAwesome.Sharp.IconButton btnModificarEstantes;
+        private FontAwesome.Sharp.IconButton btnEliminarEstantes;
         private FontAwesome.Sharp.IconButton btnRegistrarEstantes;
         private System.Windows.Forms.Panel panelConsultaDeProductos;
         private System.Windows.Forms.Panel panelSubDataGridFarmacos;

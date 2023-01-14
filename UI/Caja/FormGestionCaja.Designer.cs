@@ -106,9 +106,9 @@ namespace Presentacion
             this.btnHistorial.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHistorial.Location = new System.Drawing.Point(0, 96);
             this.btnHistorial.Name = "btnHistorial";
-            this.btnHistorial.Size = new System.Drawing.Size(123, 35);
+            this.btnHistorial.Size = new System.Drawing.Size(123, 48);
             this.btnHistorial.TabIndex = 53;
-            this.btnHistorial.Text = "Historial de Cajas";
+            this.btnHistorial.Text = "Eliminar Cajas Cerradas";
             this.btnHistorial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHistorial.UseVisualStyleBackColor = false;
             this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);

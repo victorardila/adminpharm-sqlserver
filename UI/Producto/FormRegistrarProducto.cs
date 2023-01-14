@@ -95,6 +95,7 @@ namespace Presentacion
                     textCantidad.Text = respuesta.Producto.Cantidad.ToString();
                     comboNumeroEstante.Text = respuesta.Producto.NumeroDeEstante.ToString();
                     numeroEstante = int.Parse(comboNumeroEstante.Text);
+                    
                 }
                 else
                 {
@@ -132,13 +133,6 @@ namespace Presentacion
                 numeroEstante = respuesta.Estante.NumeroDeEstante;
                 cantidadProductoPorEstante = respuesta.Estante.CantidadDeProductos;
             }
-            else
-            {
-                if (respuesta.Estante == null)
-                {
-                    
-                }
-            }
         }
         private void ConsultarEstantes()
         {
@@ -150,12 +144,16 @@ namespace Presentacion
             {
                 cantidad = estanteService.Totalizar().Cuenta;
                 LlenarComboEstante(cantidad);
+                btnRegistrar.Enabled = true;
             }
             else
             {
                 if (respuesta.Estantes == null || respuesta.Estantes.Count == 0)
                 {
                     labelAdvertencia.Text = "No ha registrado ningun estante";
+                    labelAdvertencia.Visible = true;
+                    btnRegistrar.Enabled = false;
+                    btnSearch.Enabled = false;
                 }
             }
         }
@@ -175,13 +173,16 @@ namespace Presentacion
         }
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            var respuesta = MessageBox.Show("Está seguro de Modificar el producto", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (respuesta == DialogResult.Yes)
+            if (cantidad > 0)
             {
-                Producto producto = MapearProducto();
-                string mensaje = productoService.Modificar(producto);
-                MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                this.Close();
+                var respuesta = MessageBox.Show("Está seguro de Modificar el producto", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    Producto producto = MapearProducto();
+                    string mensaje = productoService.Modificar(producto);
+                    MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    this.Close();
+                }
             }
         }
         private void btnRegistrar_Click(object sender, EventArgs e)

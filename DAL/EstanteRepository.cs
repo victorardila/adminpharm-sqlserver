@@ -122,6 +122,25 @@ namespace DAL
             }
             return estantes;
         }
+        public void EliminarPorEstados(string estado)
+        {
+            List<Estante> estantes = new List<Estante>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "Delete from ESTANTE where Estado=@Estado";
+                command.Parameters.AddWithValue("@Estado", estado);
+                command.ExecuteNonQuery();
+                var dataReader = command.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        Estante estante = DataReaderMapToEstante(dataReader);
+                        estantes.Add(estante);
+                    }
+                }
+            }
+        }
         public void Eliminar(Estante estante)
         {
             using (var command = _connection.CreateCommand())

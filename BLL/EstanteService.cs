@@ -142,6 +142,29 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
+        public string EliminarEstantes(string estado)
+        {
+            ConsultaEstanteRespuesta respuesta = new ConsultaEstanteRespuesta();
+            try
+            {
+                conexion.Open();
+                respuesta.Estantes = repositorio.BuscarPorEstado(estado);
+                if (respuesta.Estantes != null)
+                {
+                    repositorio.EliminarPorEstados(estado);
+                    conexion.Close();
+                    return ($"El historial se ha eliminado satisfactoriamente.");
+                }
+                return ($"Lo sentimos, las cajas en estado {estado} no se encuentra registrada.");
+            }
+            catch (Exception e)
+            {
+
+                return $"Error de la Aplicación: {e.Message}";
+            }
+            finally { conexion.Close(); }
+
+        }
         public string Eliminar(string codigo)
         {
             try

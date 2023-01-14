@@ -95,6 +95,7 @@ namespace Presentacion
             this.labelDireccion = new System.Windows.Forms.Label();
             this.textDireccion = new System.Windows.Forms.TextBox();
             this.ImprimirDocumento = new System.Drawing.Printing.PrintDocument();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFacturaProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconCash)).BeginInit();
@@ -384,6 +385,7 @@ namespace Presentacion
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.labelAdvertenciaCliente);
             this.panel4.Controls.Add(this.btnCloseCliente);
             this.panel4.Controls.Add(this.textSearchCliente);
@@ -824,6 +826,17 @@ namespace Presentacion
             // 
             this.ImprimirDocumento.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Imprimir);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
+            this.label2.Location = new System.Drawing.Point(65, 2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 16);
+            this.label2.TabIndex = 80;
+            this.label2.Text = "Opcional";
+            // 
             // FormFacturaDeProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -936,5 +949,6 @@ namespace Presentacion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboFormaDePago;
         private System.Drawing.Printing.PrintDocument ImprimirDocumento;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -246,7 +246,7 @@ namespace Presentacion
         private void ValidarDatosDeCaja(ProductoVendidoTxtService productoVendidoTxtService)
         {
             ProductoVendidoTxtConsultaResponse productoVendidoTxtConsultaResponse = productoVendidoTxtService.Consultar();
-            if (productoVendidoTxtConsultaResponse.ProductoTxts.Count > 0)
+            if (productoVendidoTxtConsultaResponse.ProductoTxts.Count >= 0)
             {
                 var respuesta = MessageBox.Show("Está seguro de Modificar la información", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (respuesta == DialogResult.Yes)

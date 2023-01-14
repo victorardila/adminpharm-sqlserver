@@ -308,13 +308,13 @@ namespace Presentacion
         {
             int TotalSeleccion = dataGridFarmacos.Rows.Cast<DataGridViewRow>().Where(p => Convert.ToBoolean(p.Cells["Column1"].Value)).Count();
             string referencia;
-            if (TotalSeleccion >= 1)
+            if (cantidadDrogueria == 1)
             {
-                if (cajaAbierta == true)
+                if (cantidadEstante > 0)
                 {
-                    if (cantidadDrogueria == 1)
+                    if (cajaAbierta == true)
                     {
-                        if (cantidadEstante > 0)
+                        if (TotalSeleccion >= 1)
                         {
                             foreach (DataGridViewRow row in dataGridFarmacos.Rows)
                             {
@@ -331,29 +331,29 @@ namespace Presentacion
                         }
                         else
                         {
-                            string mensaje = "No hay estantes registrados por lo que tampoco hay productos registrados";
-                            MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (TotalSeleccion == 0)
+                            {
+                                string mensaje = "No se ha cargado los productos para la factura";
+                                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
                         }
                     }
                     else
                     {
-                        string mensaje = "No se ha registrado datos de drogueria, asi que no se puede generar factura";
+                        string mensaje = "No hay caja abierta, asi que no se puede cargar productos a la factura";
                         MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else
                 {
-                    string mensaje = "No hay caja abierta, asi que no se puede cargar productos a la factura";
+                    string mensaje = "No hay estantes registrados por lo que tampoco hay productos registrados";
                     MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                if (TotalSeleccion == 0)
-                {
-                    string mensaje = "No se ha cargado los productos para la factura";
-                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                string mensaje = "No se ha registrado datos de drogueria, asi que no se puede generar factura";
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         private void MapearMedicamentosFactura(string referencia)

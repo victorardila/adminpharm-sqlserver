@@ -77,7 +77,7 @@ namespace Presentacion
         DateTime fechaFactura;
         string nombreEmpleado;
         string ciudad;
-        string nombreCliente;
+        string nombreCliente="Sin definir";
         double totalSinRedondeo;
         double totalConRedondeo;
         double valorDeRedondeo;
@@ -358,7 +358,7 @@ namespace Presentacion
             factura.NombreDeEmpleado = textNombreEmpleado.Text;
             factura.Ciudad = "Valledupar, Cesar";
             factura.IdCaja = idCajaAbierta;
-            factura.NombreDeCliente = textNombreCliente.Text;
+            factura.NombreDeCliente = nombreCliente;
             factura.TotalSinRedondeo = totalFactura;
             //Mapeamos Forma de pago
             factura.FormaDePago = comboFormaDePago.Text;
@@ -452,6 +452,7 @@ namespace Presentacion
                     var clientes = new List<Cliente> { respuesta.Cliente };
                     var cliente = respuesta.Cliente;
                     textNombreCliente.Text = cliente.Nombres;
+                    nombreCliente = textNombreCliente.Text;
                     textApellidoCliente.Text = cliente.Apellidos;
                     textIdentificacionCliente.Text = cliente.Identificacion;
                     comboTipoDeId.Text = cliente.TipoDeIdentificacion;

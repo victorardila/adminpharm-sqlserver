@@ -159,5 +159,43 @@ namespace Presentacion
                 }
             }
         }
+        private void EliminarVacios()
+        {
+            string estado = "Vacio";
+            estanteService.EliminarEstantes(estado);
+        }
+        private void EliminarLlenos()
+        {
+            string estado = "Lleno";
+            estanteService.EliminarEstantes(estado);
+        }
+        private void EliminarCasiLlenos()
+        {
+            string estado = "Casi Lleno";
+            estanteService.EliminarEstantes(estado);
+        }
+        private void EliminarMedioLlenos()
+        {
+            string estado = "Medio Lleno";
+            estanteService.EliminarEstantes(estado);
+        }
+        private void EliminarMedioVacios()
+        {
+            string estado = "Medio Vacio";
+            estanteService.EliminarEstantes(estado);
+        }
+        private void btnEliminarEstantes_Click(object sender, EventArgs e)
+        {
+            var respuesta = MessageBox.Show("¿Está seguro de eliminar todos los estantes?", "Mensaje de Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (respuesta == DialogResult.Yes)
+            {
+                EliminarVacios();
+                EliminarLlenos();
+                EliminarCasiLlenos();
+                EliminarMedioLlenos();
+                EliminarMedioVacios();
+            }
+            ConsultarEstantes();
+        }
     }
 }
