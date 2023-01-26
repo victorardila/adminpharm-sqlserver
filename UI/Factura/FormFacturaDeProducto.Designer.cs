@@ -257,7 +257,7 @@ namespace Presentacion
             // 
             this.labelTotalFactura.AutoSize = true;
             this.labelTotalFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalFactura.ForeColor = System.Drawing.Color.Black;
+            this.labelTotalFactura.ForeColor = System.Drawing.Color.White;
             this.labelTotalFactura.Location = new System.Drawing.Point(-4, 2);
             this.labelTotalFactura.Name = "labelTotalFactura";
             this.labelTotalFactura.Size = new System.Drawing.Size(126, 20);
@@ -268,7 +268,7 @@ namespace Presentacion
             // 
             this.labelTotalFacturaGenerada.AutoSize = true;
             this.labelTotalFacturaGenerada.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalFacturaGenerada.ForeColor = System.Drawing.Color.Black;
+            this.labelTotalFacturaGenerada.ForeColor = System.Drawing.Color.White;
             this.labelTotalFacturaGenerada.Location = new System.Drawing.Point(118, 2);
             this.labelTotalFacturaGenerada.Name = "labelTotalFacturaGenerada";
             this.labelTotalFacturaGenerada.Size = new System.Drawing.Size(40, 18);
@@ -326,6 +326,7 @@ namespace Presentacion
             // 
             // panelTotalesFactura
             // 
+            this.panelTotalesFactura.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panelTotalesFactura.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTotalesFactura.Controls.Add(this.label1);
             this.panelTotalesFactura.Controls.Add(this.comboFormaDePago);
@@ -344,6 +345,7 @@ namespace Presentacion
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(449, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 15);
@@ -372,6 +374,8 @@ namespace Presentacion
             this.textPago.TabIndex = 74;
             this.textPago.Text = "0.00";
             this.textPago.TextChanged += new System.EventHandler(this.textPago_TextChanged_1);
+            this.textPago.Enter += new System.EventHandler(this.textPago_Enter);
+            this.textPago.Leave += new System.EventHandler(this.textPago_Leave);
             // 
             // labelCliente
             // 

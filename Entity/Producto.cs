@@ -121,10 +121,7 @@ namespace Entity
         public void calcularPrecioDeVenta()
         {
             double procedimientoporcentaje;
-            double porcentajeVenta = (PorcentajeDeVenta / 100);
-            double precioDeNegocio = Convert.ToDouble(PrecioDeNegocio);
-            procedimientoporcentaje = porcentajeVenta * precioDeNegocio;
-            
+            procedimientoporcentaje = (PorcentajeDeVenta / 100) * PrecioDeNegocio;
             PrecioDeVenta = procedimientoporcentaje + PrecioDeNegocio;
         }
         public void calcularGanancia()

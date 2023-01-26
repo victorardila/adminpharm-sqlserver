@@ -40,6 +40,7 @@ namespace Presentacion
                 if (rol == "Programador")
                 {
                     btnGestionUsuarios.Enabled = true;
+                    btnEmpleados.Enabled = true;
                     btnAjustes.Enabled = true;
                 }
                 else
@@ -47,6 +48,7 @@ namespace Presentacion
                     if (rol == "Administrador")
                     {
                         btnGestionUsuarios.Enabled = true;
+                        btnEmpleados.Enabled = false;
                         btnAjustes.Enabled = false;
                     }
                     else

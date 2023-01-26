@@ -664,5 +664,21 @@ namespace Presentacion
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+
+        private void textPago_Enter(object sender, EventArgs e)
+        {
+            if (textPago.Text == "0.00")
+            {
+                textPago.Text = "";
+            }
+        }
+
+        private void textPago_Leave(object sender, EventArgs e)
+        {
+            if (textPago.Text == "")
+            {
+                textPago.Text = "0.00";
+            }
+        }
     }
 }
