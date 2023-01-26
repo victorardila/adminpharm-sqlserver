@@ -49,6 +49,7 @@
     <Compile Include="EmpleadoRepository.cs" />
     <Compile Include="EstanteRepository.cs" />
     <Compile Include="FacturaRepository.cs" />
+    <Compile Include="IdEmpleadoTxtRepository.cs" />
     <Compile Include="ProductoRepository.cs" />
     <Compile Include="ProductoFacturaTxtRepository.cs" />
     <Compile Include="ProductoVencidoTxtRepository.cs" />

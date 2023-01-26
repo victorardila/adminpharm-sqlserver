@@ -39,6 +39,7 @@ namespace Presentacion
                 dataGridInfoDrogueria.DataSource = droguerias;
                 textNombreDrogueria.Text = respuesta.Drogueria.NombreDrogueria;
                 textNIT.Text= respuesta.Drogueria.NIT;
+                textCamaraDeComercio.Text = respuesta.Drogueria.CodigoDeCamara;
                 textFraseDistintiva.Text= respuesta.Drogueria.FraseDistintiva;
                 comboRegimen.Text= respuesta.Drogueria.Regimen;
                 textPBX.Text= respuesta.Drogueria.PBX;
@@ -73,6 +74,7 @@ namespace Presentacion
             drogueria.IdDrogueria = "#Drog";
             drogueria.NombreDrogueria = textNombreDrogueria.Text;
             drogueria.NIT = textNIT.Text;
+            drogueria.CodigoDeCamara = textCamaraDeComercio.Text;
             drogueria.FraseDistintiva = textFraseDistintiva.Text;
             drogueria.Regimen = comboRegimen.Text;
             drogueria.PBX = textPBX.Text;

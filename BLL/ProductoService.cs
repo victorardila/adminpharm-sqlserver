@@ -117,6 +117,69 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
+        public BusquedaProductoRespuesta BuscarExistenciaDeLaboratorio(string laboratoio)
+        {
+            BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
+            try
+            {
+
+                conexion.Open();
+                respuesta.Producto = repositorio.BuscarExistenciaDeLaboratorio(laboratoio);
+                conexion.Close();
+                respuesta.Mensaje = (respuesta.Producto != null) ? "Se encontró el producto" : "la refecrencia de producto buscada no existe";
+                respuesta.Error = false;
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
+        }
+        public ConsultaProductoRespuesta ConsultaTodosLaboratorios()
+        {
+            ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
+            try
+            {
+
+                conexion.Open();
+                respuesta.Productos = repositorio.ConsultarTodosLaboratorios();
+                conexion.Close();
+                respuesta.Mensaje = (respuesta.Productos != null) ? "Se consulto el estante buscado" : "el estante consultado no existe";
+                respuesta.Error = false;
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
+        }
+        public ConsultaProductoRespuesta ConsultaPorLaboratorios(string laboratorio)
+        {
+            ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
+            try
+            {
+
+                conexion.Open();
+                respuesta.Productos = repositorio.ConsultarPorLaboratoio(laboratorio);
+                conexion.Close();
+                respuesta.Mensaje = (respuesta.Productos != null) ? "Se consulto el estante buscado" : "el estante consultado no existe";
+                respuesta.Error = false;
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
+        }
         public ConsultaProductoRespuesta ConsultarTodos()
         {
             ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();

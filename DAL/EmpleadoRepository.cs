@@ -168,9 +168,12 @@ namespace DAL
         {
             return ConsultarTodos().Count();
         }
+        public int TotalizarTipoRol(string tipo)
+        {
+            return ConsultarTodos().Where(p => p.Rol.Equals(tipo)).Count();
+        }
         public int TotalizarTipo(string tipo)
         {
-
             return ConsultarTodos().Where(p => p.Sexo.Equals(tipo)).Count();
         }
     }

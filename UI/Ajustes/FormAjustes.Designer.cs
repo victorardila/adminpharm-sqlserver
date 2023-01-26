@@ -51,6 +51,8 @@ namespace Presentacion
             this.btnEliminarInfo = new FontAwesome.Sharp.IconButton();
             this.dataGridInfoDrogueria = new System.Windows.Forms.DataGridView();
             this.labelAdvertencia = new System.Windows.Forms.Label();
+            this.textCamaraDeComercio = new System.Windows.Forms.TextBox();
+            this.labelCamaraComercio = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfoDrogueria)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,7 +97,7 @@ namespace Presentacion
             // labelNombreDrogueria
             // 
             this.labelNombreDrogueria.AutoSize = true;
-            this.labelNombreDrogueria.Location = new System.Drawing.Point(77, 215);
+            this.labelNombreDrogueria.Location = new System.Drawing.Point(25, 215);
             this.labelNombreDrogueria.Name = "labelNombreDrogueria";
             this.labelNombreDrogueria.Size = new System.Drawing.Size(120, 13);
             this.labelNombreDrogueria.TabIndex = 60;
@@ -103,22 +105,22 @@ namespace Presentacion
             // 
             // textNombreDrogueria
             // 
-            this.textNombreDrogueria.Location = new System.Drawing.Point(197, 212);
+            this.textNombreDrogueria.Location = new System.Drawing.Point(145, 212);
             this.textNombreDrogueria.Name = "textNombreDrogueria";
-            this.textNombreDrogueria.Size = new System.Drawing.Size(226, 20);
+            this.textNombreDrogueria.Size = new System.Drawing.Size(201, 20);
             this.textNombreDrogueria.TabIndex = 61;
             // 
             // textNIT
             // 
-            this.textNIT.Location = new System.Drawing.Point(462, 214);
+            this.textNIT.Location = new System.Drawing.Point(378, 213);
             this.textNIT.Name = "textNIT";
-            this.textNIT.Size = new System.Drawing.Size(189, 20);
+            this.textNIT.Size = new System.Drawing.Size(118, 20);
             this.textNIT.TabIndex = 63;
             // 
             // labelNIT
             // 
             this.labelNIT.AutoSize = true;
-            this.labelNIT.Location = new System.Drawing.Point(429, 215);
+            this.labelNIT.Location = new System.Drawing.Point(349, 215);
             this.labelNIT.Name = "labelNIT";
             this.labelNIT.Size = new System.Drawing.Size(28, 13);
             this.labelNIT.TabIndex = 62;
@@ -201,6 +203,9 @@ namespace Presentacion
             // comboRegimen
             // 
             this.comboRegimen.FormattingEnabled = true;
+            this.comboRegimen.Items.AddRange(new object[] {
+            "Simple",
+            "Comun"});
             this.comboRegimen.Location = new System.Drawing.Point(488, 259);
             this.comboRegimen.Name = "comboRegimen";
             this.comboRegimen.Size = new System.Drawing.Size(121, 21);
@@ -294,11 +299,29 @@ namespace Presentacion
             this.labelAdvertencia.TabIndex = 79;
             this.labelAdvertencia.Text = "No hay productos registrados!!!";
             // 
+            // textCamaraDeComercio
+            // 
+            this.textCamaraDeComercio.Location = new System.Drawing.Point(647, 214);
+            this.textCamaraDeComercio.Name = "textCamaraDeComercio";
+            this.textCamaraDeComercio.Size = new System.Drawing.Size(118, 20);
+            this.textCamaraDeComercio.TabIndex = 81;
+            // 
+            // labelCamaraComercio
+            // 
+            this.labelCamaraComercio.AutoSize = true;
+            this.labelCamaraComercio.Location = new System.Drawing.Point(505, 217);
+            this.labelCamaraComercio.Name = "labelCamaraComercio";
+            this.labelCamaraComercio.Size = new System.Drawing.Size(142, 13);
+            this.labelCamaraComercio.TabIndex = 80;
+            this.labelCamaraComercio.Text = "Codigo camara de comercio:";
+            // 
             // FormAjustes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textCamaraDeComercio);
+            this.Controls.Add(this.labelCamaraComercio);
             this.Controls.Add(this.labelAdvertencia);
             this.Controls.Add(this.dataGridInfoDrogueria);
             this.Controls.Add(this.btnEliminarInfo);
@@ -354,5 +377,7 @@ namespace Presentacion
         private FontAwesome.Sharp.IconButton btnEliminarInfo;
         private System.Windows.Forms.DataGridView dataGridInfoDrogueria;
         private System.Windows.Forms.Label labelAdvertencia;
+        private System.Windows.Forms.TextBox textCamaraDeComercio;
+        private System.Windows.Forms.Label labelCamaraComercio;
     }
 }

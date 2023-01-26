@@ -64,9 +64,12 @@ namespace Entity
                 int mesCuarentena = Cuarentena.Month;
                 //Variables fecha de vencimiento
                 int mesDeVencimiento = FechaDeVencimiento.Month;
-                if (mesActual < mesCuarentena)
+                if (Cuarentena.Year==añoActual)
                 {
-                    Estado = "Vigente";
+                    if(mesActual < mesCuarentena)
+                    {
+                        Estado = "Vigente";
+                    }
                 }
                 else
                 {
@@ -118,7 +121,10 @@ namespace Entity
         public void calcularPrecioDeVenta()
         {
             double procedimientoporcentaje;
-            procedimientoporcentaje = (PorcentajeDeVenta / 100)* PrecioDeNegocio;
+            double porcentajeVenta = (PorcentajeDeVenta / 100);
+            double precioDeNegocio = Convert.ToDouble(PrecioDeNegocio);
+            procedimientoporcentaje = porcentajeVenta * precioDeNegocio;
+            
             PrecioDeVenta = procedimientoporcentaje + PrecioDeNegocio;
         }
         public void calcularGanancia()

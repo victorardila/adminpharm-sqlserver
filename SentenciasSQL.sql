@@ -70,6 +70,7 @@ create table DROGUERIA(
 Id_Drogueria nvarchar(6) primary key not null,
 Nombre_De_Drogueria nvarchar(100)not null,
 NIT nvarchar(50)not null,
+CodigoCamara varchar(6)not null,
 Frase_Distintiva text,
 Regimen varchar(20)not null,
 PBX nvarchar(30),

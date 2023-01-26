@@ -7,19 +7,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
+using Entity;
 
 namespace Presentacion
 {
     public partial class FormMenu : Form
     {
+        EmpleadoService empleadoService;
+        IdEmpleadoTxtService idEmpleadoTxtService = new IdEmpleadoTxtService();
         int cantidadFormularios = 2;
+
+        public string idEmpleado;
+        
+        string rol;
         private readonly EventArgs e;
         private readonly object sender;
         public FormMenu()
         {
+            empleadoService = new EmpleadoService(ConfigConnection.ConnectionString);
             InitializeComponent();
             customizeDesign();
             AbrirFormulario<FormGestionCaja>();
+        }
+        public void ValidarUsuario()
+        {
+            BusquedaEmpleadoRespuesta respuesta = new BusquedaEmpleadoRespuesta();
+            respuesta = empleadoService.BuscarPorIdentificacion(idEmpleado);
+            if (respuesta.Empleado != null)
+            {
+                rol = respuesta.Empleado.Rol;
+                if (rol == "Programador")
+                {
+                    btnGestionUsuarios.Enabled = true;
+                    btnAjustes.Enabled = true;
+                }
+                else
+                {
+                    if (rol == "Administrador")
+                    {
+                        btnGestionUsuarios.Enabled = true;
+                        btnAjustes.Enabled = false;
+                    }
+                    else
+                    {
+                        if (rol == "Empleado")
+                        {
+                            btnGestionUsuarios.Enabled = false;
+                            btnAjustes.Enabled = false;
+                        }
+                    }
+                }
+            }
+            GuardarIdUsuarioSesion(idEmpleado);
+        }
+        public void GuardarIdUsuarioSesion(string idEmpleado)
+        {
+            IdEmpleadoTxt idEmpleadoTxt = new IdEmpleadoTxt(idEmpleado);
+            string mensaje = idEmpleadoTxtService.Guardar(idEmpleadoTxt);
         }
         private void AbrirSumadorDelSistema()
         {
@@ -52,10 +97,14 @@ namespace Presentacion
             btnAjustes.Text = "";
             panelSidebarClose.Visible = true;
         }
-
+        private void EliminarIdSesionDeUsuario()
+        {
+            string mensaje = idEmpleadoTxtService.EliminarHistorial();
+        }
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Application.Exit();
+            EliminarIdSesionDeUsuario();
         }
 
         private void btnMaximizar_Click(object sender, EventArgs e)
@@ -139,7 +188,6 @@ namespace Presentacion
             CerrarFormulariosCiclo();
             AbrirFormulario<FormGestionProducto>();
         }
-
         private void btnEstantes_Click(object sender, EventArgs e)
         {
             CerrarFormulariosCiclo();

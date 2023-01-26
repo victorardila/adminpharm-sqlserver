@@ -20,6 +20,7 @@ namespace Presentacion
         EmpleadoService empleadoService;
         string nombreDeUsuario;
         string contraseña;
+        string Id_Empleado;
         bool UsuarioValido;
         public FormInicioSesion()
         {
@@ -129,6 +130,7 @@ namespace Presentacion
             {
                 var empleado = new List<Empleado> { respuesta.Empleado };
                 contraseña = respuesta.Empleado.Contraseña;
+                Id_Empleado = respuesta.Empleado.Identificacion;
                 linkLabelRestaurarContraseña.ForeColor = Color.FromArgb(0, 0, 255);
                 linkLabelRegistrarUsuario.ForeColor = Color.FromArgb(0, 0, 255);
                 ValidarContraseña();
@@ -187,6 +189,8 @@ namespace Presentacion
             if (UsuarioValido == true)
             {
                 FormMenu mainMenu = new FormMenu();
+                mainMenu.idEmpleado = Id_Empleado;
+                mainMenu.ValidarUsuario();
                 mainMenu.Show();
                 this.Hide();
             }

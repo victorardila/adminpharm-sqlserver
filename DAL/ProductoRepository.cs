@@ -50,6 +50,43 @@ namespace DAL
                 command.ExecuteNonQuery();
             }
         }
+        public List<Producto> ConsultarPorLaboratoio(string laboratorio)
+        {
+            List<Producto> productos = new List<Producto>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * Laboratorio from PRODUCTO";
+                command.Parameters.AddWithValue("@Laboratorio", laboratorio);
+                var dataReader = command.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        Producto producto = DataReaderMapToProducto(dataReader);
+                        productos.Add(producto);
+                    }
+                }
+            }
+            return productos;
+        }
+        public List<Producto> ConsultarTodosLaboratorios()
+        {
+            List<Producto> productos = new List<Producto>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "Select Laboratorio from PRODUCTO";
+                var dataReader = command.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        Producto producto = DataReaderMapToProducto(dataReader);
+                        productos.Add(producto);
+                    }
+                }
+            }
+            return productos;
+        }
         public List<Producto> ConsultarTodos()
         {
             List<Producto> productos = new List<Producto>();
@@ -61,12 +98,24 @@ namespace DAL
                 {
                     while (dataReader.Read())
                     {
-                        Producto producto = DataReaderMapToCajaRegistradora(dataReader);
+                        Producto producto = DataReaderMapToProducto(dataReader);
                         productos.Add(producto);
                     }
                 }
             }
             return productos;
+        }
+        public Producto BuscarExistenciaDeLaboratorio(string laboratorio)
+        {
+            SqlDataReader dataReader;
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from PRODUCTO where Laboratorio=@Laboratorio";
+                command.Parameters.AddWithValue("@Laboratorio", laboratorio);
+                dataReader = command.ExecuteReader();
+                dataReader.Read();
+                return DataReaderMapToProducto(dataReader);
+            }
         }
         public Producto BuscarPorReferencia(string referencia)
         {
@@ -77,7 +126,7 @@ namespace DAL
                 command.Parameters.AddWithValue("@Referencia", referencia);
                 dataReader = command.ExecuteReader();
                 dataReader.Read();
-                return DataReaderMapToCajaRegistradora(dataReader);
+                return DataReaderMapToProducto(dataReader);
             }
         }
         public void ModificarEstadoProducto(Producto producto)
@@ -103,7 +152,7 @@ namespace DAL
                 {
                     while (dataReader.Read())
                     {
-                        Producto producto = DataReaderMapToCajaRegistradora(dataReader);
+                        Producto producto = DataReaderMapToProducto(dataReader);
                         productos.Add(producto);
                     }
                 }
@@ -122,7 +171,7 @@ namespace DAL
                 {
                     while (dataReader.Read())
                     {
-                        Producto producto = DataReaderMapToCajaRegistradora(dataReader);
+                        Producto producto = DataReaderMapToProducto(dataReader);
                         productos.Add(producto);
                     }
                 }
@@ -141,7 +190,7 @@ namespace DAL
                 {
                     while (dataReader.Read())
                     {
-                        Producto producto = DataReaderMapToCajaRegistradora(dataReader);
+                        Producto producto = DataReaderMapToProducto(dataReader);
                         productos.Add(producto);
                     }
                 }
@@ -184,7 +233,7 @@ namespace DAL
                 var filas = command.ExecuteNonQuery();
             }
         }
-        private Producto DataReaderMapToCajaRegistradora(SqlDataReader dataReader)
+        private Producto DataReaderMapToProducto(SqlDataReader dataReader)
         {
             if (!dataReader.HasRows) return null;
             Producto producto = new Producto();

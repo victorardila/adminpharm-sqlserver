@@ -26,6 +26,7 @@ namespace Presentacion
         CajaRegistradoraService cajaRegistradoraService;
         EstanteService estanteService;
         List<Estante> estantes;
+
         int cantidadDrogueria;
         bool cajaAbierta;
         string referenciaProducto;
@@ -41,11 +42,13 @@ namespace Presentacion
         DateTime fechaDeVencimiento;
         string viaProducto;
         string tipoProducto;
-        double precioDeNegocio;
         double porcentajeDeVenta;
+        double precioDeNegocio;
+        double gananciaDeProducto;
         int cantidadEstante;
         int cantidad;
-
+        object sender;
+        EventArgs e;
         public FormGestionProducto()
         {
             cajaRegistradoraService = new CajaRegistradoraService(ConfigConnection.ConnectionString);
@@ -136,13 +139,14 @@ namespace Presentacion
                                 estadoProducto = producto.Estado;
                                 tipoProducto = producto.Tipo;
                                 viaProducto = producto.Via;
+                                porcentajeDeVenta = producto.PorcentajeDeVenta;
                                 precioDeNegocio = producto.PrecioDeNegocio;
                                 precioProducto = producto.PrecioDeVenta;
-                                porcentajeDeVenta = producto.GananciaPorProducto;
+                                gananciaDeProducto = producto.GananciaPorProducto;
                                 ProductoVencidoTxt productoTxt = new ProductoVencidoTxt(
                                     cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, fechaDeRegistro, 
                                     fechaDeVencimiento, loteProducto, laboratorioProducto, estadoProducto, tipoProducto, viaProducto,
-                                    precioDeNegocio, precioProducto, porcentajeDeVenta);
+                                    porcentajeDeVenta, precioDeNegocio, precioProducto, gananciaDeProducto);
                                 productoVencidoTxtService.Guardar(productoTxt);
                                 productoService.Eliminar(referenciaProducto);
                                 ConsultarYLlenarGridDeProductos();
@@ -188,6 +192,8 @@ namespace Presentacion
         }
         private void ConsultarYLlenarGridDeProductos()
         {
+            textSearch.SelectionStart = 0;
+
             BuscarPorEstado();
             ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
             string via = comboFiltroVia.Text;
@@ -203,6 +209,7 @@ namespace Presentacion
                 if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
                 {
                     dataGridFarmacos.DataSource = respuesta.Productos;
+                    dataGridFarmacos.ClearSelection();
                     Eliminar.Visible = true;
                     textTotal.Text = productoService.Totalizar().Cuenta.ToString();
                     textVigentes.Text = productoService.TotalizarTipo("Vigente").Cuenta.ToString();
@@ -224,7 +231,29 @@ namespace Presentacion
         {
             labelAdvertencia.Visible = true;
         }
-
+        private void BuscarPorReferencia()
+        {
+            BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
+            string referencia = textSearch.Text;
+            respuesta = productoService.BuscarPorReferencia(referencia);
+            dataGridFarmacos.DataSource = null;
+            if (respuesta.Producto != null)
+            {
+                dataGridFarmacos.DataSource = respuesta.Producto;
+            }
+            else
+            {
+                if (respuesta.Producto == null)
+                {
+                    labelAdvertencia.Enabled = true;
+                    labelAdvertencia.Text = "No hay medicametos de este tipo";
+                    textSearch.Text = "";
+                    string msg = "¡No se encontró medicamentos asociados!";
+                    MessageBox.Show(msg, "Filtro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ConsultarYLlenarGridDeProductos();
+                }
+            }
+        }
         private void BuscarPorVia()
         {
             ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
@@ -275,7 +304,9 @@ namespace Presentacion
         private void btnClose_Click(object sender, EventArgs e)
         {
             textSearch.Visible = false;
+            textSearch.Text = "Buscar medicamento";
             btnClose.Visible = false;
+            ConsultarYLlenarGridDeProductos();
         }
         private void dataGridFarmacos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -497,7 +528,7 @@ namespace Presentacion
         }
         private void textSearch_Enter(object sender, EventArgs e)
         {
-            if(textSearch.Text=="Buscar nombre")
+            if(textSearch.Text=="Buscar medicamento")
             {
                 textSearch.Text = "";
             }
@@ -531,6 +562,14 @@ namespace Presentacion
             else
             {
                 ConsultarYLlenarGridDeProductos();
+            }
+        }
+
+        private void textSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                BuscarPorReferencia();
             }
         }
     }

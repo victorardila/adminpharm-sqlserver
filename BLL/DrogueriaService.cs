@@ -26,9 +26,9 @@ namespace BLL
                 if (repositorio.BuscarPorId(drogueria.NIT) == null)
                 {
                     repositorio.Guardar(drogueria);
-                    return $"Caja abierta correctamente";
+                    return $"Drogueria registrada correctamente";
                 }
-                return $"Esta id de caja ya existe";
+                return $"Esta id de drogueria ya existe";
             }
             catch (Exception e)
             {
@@ -71,7 +71,7 @@ namespace BLL
                 }
                 else
                 {
-                    return ($"Lo sentimos, la caja con Id {drogueriaNueva.NIT} no se encuentra registrada.");
+                    return ($"Lo sentimos, la drogueria con Id {drogueriaNueva.NIT} no se encuentra registrada.");
                 }
             }
             catch (Exception e)
@@ -90,7 +90,7 @@ namespace BLL
                 conexion.Open();
                 respuesta.Drogueria = repositorio.BuscarPorId(nit);
                 conexion.Close();
-                respuesta.Mensaje = (respuesta.Drogueria != null) ? "Se encontró la id de caja buscada" : "la id de caja buscada no existe";
+                respuesta.Mensaje = (respuesta.Drogueria != null) ? "Se encontró la id de drogueria buscada" : "la id de drogueria buscada no existe";
                 respuesta.Error = false;
                 return respuesta;
             }

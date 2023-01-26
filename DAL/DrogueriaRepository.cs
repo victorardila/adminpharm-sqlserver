@@ -20,11 +20,12 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"Insert Into DROGUERIA (Id_Drogueria, Nombre_De_Drogueria, NIT, Frase_Distintiva, Regimen, PBX,Direccion,Telefono) 
-                                        values (@Id_Drogueria, @Nombre_De_Drogueria, @NIT, @Frase_Distintiva, @Regimen, @PBX, @Direccion, @Telefono)";
+                command.CommandText = @"Insert Into DROGUERIA (Id_Drogueria, Nombre_De_Drogueria, NIT, CodigoCamara, Frase_Distintiva, Regimen, PBX,Direccion,Telefono) 
+                                        values (@Id_Drogueria, @Nombre_De_Drogueria, @NIT, @CodigoCamara, @Frase_Distintiva, @Regimen, @PBX, @Direccion, @Telefono)";
                 command.Parameters.AddWithValue("@Id_Drogueria", drogueria.IdDrogueria);
                 command.Parameters.AddWithValue("@Nombre_De_Drogueria", drogueria.NombreDrogueria);
                 command.Parameters.AddWithValue("@NIT", drogueria.NIT);
+                command.Parameters.AddWithValue("@CodigoCamara", drogueria.CodigoDeCamara);
                 command.Parameters.AddWithValue("@Frase_Distintiva", drogueria.FraseDistintiva);
                 command.Parameters.AddWithValue("@Regimen", drogueria.Regimen);
                 command.Parameters.AddWithValue("@PBX", drogueria.PBX);
@@ -38,7 +39,7 @@ namespace DAL
             List<Drogueria> cajas = new List<Drogueria>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select Id_Drogueria, Nombre_De_Drogueria, NIT, Frase_Distintiva, Regimen, PBX, Direccion, Telefono from DROGUERIA";
+                command.CommandText = "Select Id_Drogueria, Nombre_De_Drogueria, NIT, CodigoCamara, Frase_Distintiva, Regimen, PBX, Direccion, Telefono from DROGUERIA";
                 var dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -55,11 +56,12 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"update DROGUERIA set Nombre_De_Drogueria=@Nombre_De_Drogueria, NIT=@NIT, Frase_Distintiva=@Frase_Distintiva, Regimen=@Regimen, PBX=@PBX, Direccion=@Direccion, Telefono=@Telefono
+                command.CommandText = @"update DROGUERIA set Nombre_De_Drogueria=@Nombre_De_Drogueria, NIT=@NIT, CodigoCamara=@CodigoCamara, Frase_Distintiva=@Frase_Distintiva, Regimen=@Regimen, PBX=@PBX, Direccion=@Direccion, Telefono=@Telefono
                                         where Id_Drogueria=@Id_Drogueria";
                 command.Parameters.AddWithValue("@Id_Drogueria", drogueria.IdDrogueria);
                 command.Parameters.AddWithValue("@Nombre_De_Drogueria", drogueria.NombreDrogueria);
                 command.Parameters.AddWithValue("@NIT", drogueria.NIT);
+                command.Parameters.AddWithValue("@CodigoCamara", drogueria.CodigoDeCamara);
                 command.Parameters.AddWithValue("@Frase_Distintiva", drogueria.FraseDistintiva);
                 command.Parameters.AddWithValue("@Regimen", drogueria.Regimen);
                 command.Parameters.AddWithValue("@PBX", drogueria.PBX);
@@ -96,6 +98,7 @@ namespace DAL
             drogueria.IdDrogueria = (string)dataReader["Id_Drogueria"];
             drogueria.NombreDrogueria = (string)dataReader["Nombre_De_Drogueria"];
             drogueria.NIT = (string)dataReader["NIT"];
+            drogueria.CodigoDeCamara = (string)dataReader["CodigoCamara"];
             drogueria.FraseDistintiva = (string)dataReader["Frase_Distintiva"];
             drogueria.Regimen = (string)dataReader["Regimen"];
             drogueria.PBX = (string)dataReader["PBX"];

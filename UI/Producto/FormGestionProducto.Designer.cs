@@ -115,6 +115,8 @@ namespace Presentacion
             // dataGridFarmacos
             // 
             this.dataGridFarmacos.AllowUserToAddRows = false;
+            this.dataGridFarmacos.AllowUserToResizeColumns = false;
+            this.dataGridFarmacos.AllowUserToResizeRows = false;
             this.dataGridFarmacos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedVertical;
             this.dataGridFarmacos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridFarmacos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -123,13 +125,14 @@ namespace Presentacion
             this.Cash,
             this.CantidadVenta});
             this.dataGridFarmacos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridFarmacos.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridFarmacos.Location = new System.Drawing.Point(0, 24);
             this.dataGridFarmacos.Name = "dataGridFarmacos";
             this.dataGridFarmacos.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridFarmacos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dataGridFarmacos.RowHeadersVisible = false;
-            this.dataGridFarmacos.Size = new System.Drawing.Size(786, 419);
+            this.dataGridFarmacos.Size = new System.Drawing.Size(786, 422);
             this.dataGridFarmacos.TabIndex = 50;
             this.dataGridFarmacos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridFarmacos_CellClick);
             // 
@@ -203,10 +206,11 @@ namespace Presentacion
             this.textSearch.Name = "textSearch";
             this.textSearch.Size = new System.Drawing.Size(127, 20);
             this.textSearch.TabIndex = 54;
-            this.textSearch.Text = "Buscar nombre";
+            this.textSearch.Text = "Buscar medicamento";
             this.textSearch.Visible = false;
             this.textSearch.TextChanged += new System.EventHandler(this.textSearch_TextChanged);
             this.textSearch.Enter += new System.EventHandler(this.textSearch_Enter);
+            this.textSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textSearch_KeyPress);
             // 
             // btnSearch
             // 

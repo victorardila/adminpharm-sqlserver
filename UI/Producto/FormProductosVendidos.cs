@@ -80,6 +80,7 @@ namespace Presentacion
             }
             else
             {
+                dataGridProductosVendidos.DataSource = null;
                 string mensaje = productoTxtConsultaResponse.Mensaje;
                 MessageBox.Show(mensaje.ToString());
             }

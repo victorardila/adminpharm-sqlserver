@@ -9,7 +9,7 @@ namespace Entity
     public class ProductoVencidoTxt
     {
         //Constructor
-        public ProductoVencidoTxt(int cantidad, string referencia, string nombre, string detalle, DateTime fechaDeRegistro, DateTime fechaDeVencimiento, string lote, string laboratorio, string estado, string tipo, string via, double precioDeVenta, double precioDeNegocio, double gananciaPorProducto)
+        public ProductoVencidoTxt(int cantidad, string referencia, string nombre, string detalle, DateTime fechaDeRegistro, DateTime fechaDeVencimiento, string lote, string laboratorio, string estado, string tipo, string via, double porcentajeDeVenta, double precioDeVenta, double precioDeNegocio, double gananciaPorProducto)
         {
             Cantidad = cantidad;
             Referencia = referencia;
@@ -22,6 +22,7 @@ namespace Entity
             Estado = estado;
             Tipo = tipo;
             Via = via;
+            PorcentajeDeVenta = porcentajeDeVenta;
             PrecioDeNegocio = precioDeNegocio;
             PrecioDeVenta = precioDeVenta;
             GananciaPorProducto = gananciaPorProducto;

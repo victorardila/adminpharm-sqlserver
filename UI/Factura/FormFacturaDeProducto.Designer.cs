@@ -54,6 +54,7 @@ namespace Presentacion
             this.textPago = new System.Windows.Forms.TextBox();
             this.labelCliente = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.labelAdvertenciaCliente = new System.Windows.Forms.Label();
             this.btnCloseCliente = new FontAwesome.Sharp.IconPictureBox();
             this.textSearchCliente = new System.Windows.Forms.TextBox();
@@ -95,7 +96,6 @@ namespace Presentacion
             this.labelDireccion = new System.Windows.Forms.Label();
             this.textDireccion = new System.Windows.Forms.TextBox();
             this.ImprimirDocumento = new System.Drawing.Printing.PrintDocument();
-            this.label2 = new System.Windows.Forms.Label();
             this.menuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFacturaProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconCash)).BeginInit();
@@ -396,6 +396,17 @@ namespace Presentacion
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(619, 21);
             this.panel4.TabIndex = 75;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
+            this.label2.Location = new System.Drawing.Point(65, 2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 16);
+            this.label2.TabIndex = 80;
+            this.label2.Text = "Opcional";
             // 
             // labelAdvertenciaCliente
             // 
@@ -825,17 +836,6 @@ namespace Presentacion
             // ImprimirDocumento
             // 
             this.ImprimirDocumento.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Imprimir);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
-            this.label2.Location = new System.Drawing.Point(65, 2);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 16);
-            this.label2.TabIndex = 80;
-            this.label2.Text = "Opcional";
             // 
             // FormFacturaDeProducto
             // 

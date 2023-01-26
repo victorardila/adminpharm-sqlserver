@@ -25,6 +25,8 @@ namespace Presentacion
         Caja cajaRegistradora;
         FacturaService facturaService;
         DrogueriaService drogueriaService;
+        string nombreFactura;
+        string notExistingFileName;
         //Variables de caja
         string idCajaAbierta;
         string fechaDeApertura;
@@ -248,6 +250,7 @@ namespace Presentacion
             ProductoVendidoTxtConsultaResponse productoVendidoTxtConsultaResponse = productoVendidoTxtService.Consultar();
             if (productoVendidoTxtConsultaResponse.ProductoTxts.Count >= 0)
             {
+                productoLeido = productoVendidoTxtConsultaResponse.ProductoTxts.Count;
                 var respuesta = MessageBox.Show("Está seguro de Modificar la información", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (respuesta == DialogResult.Yes)
                 {
@@ -255,12 +258,19 @@ namespace Presentacion
                     string mensaje = cajaRegistradoraService.Modificar(cajaRegistradora);
                     MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     ProductosRegistradosEnCaja();
-                    ImprimirDatoDeVenta();
                     ConsultarYLlenarGridDeCajas();
                     btnAbrirCaja.Enabled = true;
                     btnCerrarCaja.Enabled = false;
                     btnHistorial.Enabled = true;
                     labelCash.Text = "Sin definir";
+                    if (productoLeido > 0)
+                    {
+                        GuardarFactura();
+                        FormVisorDeFactura frm = new FormVisorDeFactura();
+                        frm.nombreDeArchivo = nombreFactura;
+                        frm.rutaDeGuardado = notExistingFileName;
+                        frm.ShowDialog();
+                    }
                 }
             }
             else
@@ -343,7 +353,30 @@ namespace Presentacion
         private void ImprimirDatoDeVenta()
         {
             //Proceso de impresion
-            string nombreFactura = idCajaAbierta+"ProductosVendidos" + ".pdf";
+            nombreFactura = idCajaAbierta+"ProductosVendidos" + ".pdf";
+            string directorio = @"C:\Users\VICTOR PC\Documents\CierreDeCajas\";
+            string existingPathName = @"C:\Users\VICTOR PC\Documents\CierreDeCajas";
+            notExistingFileName = directorio + nombreFactura;
+
+            if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
+            {
+                ImprimirProductosVendidos = new PrintDocument();
+                PrinterSettings ps = new PrinterSettings();
+                Margins margins = new Margins(0, 20, 20, 20);
+
+                ImprimirProductosVendidos.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+                ImprimirProductosVendidos.PrinterSettings.PrintFileName = notExistingFileName;
+                ImprimirProductosVendidos.PrinterSettings.PrintToFile = true;
+                ImprimirProductosVendidos.PrinterSettings = ps;
+                ImprimirProductosVendidos.DefaultPageSettings.Margins = margins;
+                ImprimirProductosVendidos.PrintPage += Imprimir;
+                ImprimirProductosVendidos.Print();
+            }
+        }
+        private void GuardarFactura()
+        {
+            //Proceso de impresion
+            string nombreFactura = idCajaAbierta + "ProductosVendidos" + ".pdf";
             string directorio = @"C:\Users\VICTOR PC\Documents\CierreDeCajas\";
             string existingPathName = @"C:\Users\VICTOR PC\Documents\CierreDeCajas";
             string notExistingFileName = directorio + nombreFactura;
@@ -351,12 +384,16 @@ namespace Presentacion
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {
                 ImprimirProductosVendidos = new PrintDocument();
+                PrinterSettings ps = new PrinterSettings();
+                Margins margins = new Margins(0, 20, 20, 20);
 
                 ImprimirProductosVendidos.PrinterSettings.PrinterName = "Microsoft Print to PDF";
                 ImprimirProductosVendidos.PrinterSettings.PrintFileName = notExistingFileName;
                 ImprimirProductosVendidos.PrinterSettings.PrintToFile = true;
+                ImprimirProductosVendidos.DefaultPageSettings.Margins = margins;
                 ImprimirProductosVendidos.PrintPage += Imprimir;
                 ImprimirProductosVendidos.Print();
+                ImprimirDatoDeVenta();
             }
         }
         private void Imprimir(object sender, PrintPageEventArgs e)
@@ -391,21 +428,20 @@ namespace Presentacion
             e.Graphics.DrawString(" Cantidad " + " Nombre " + " Detalle " + " Precio ", font, Brushes.Black, new RectangleF(0, y + 220, ancho, 14));
             int r = 0;
             int j = 234;
-            int i = 0;
             foreach (var item in productoVendidoTxts)
             {
-                e.Graphics.DrawString("   " + Convert.ToString(item.Cantidad) + "    " + Convert.ToString(item.Referencia) + "   " + Convert.ToString(item.Nombre) + "    " + Convert.ToString(item.Detalle) + "   " + Convert.ToString(item.Precio), font, Brushes.Black, new RectangleF(0, y + j, ancho, 14));
+                e.Graphics.DrawString("    " + Convert.ToString(item.Cantidad) + " " + Convert.ToString(item.Nombre) + " " + Convert.ToString(item.Detalle) + " " + Convert.ToString(item.Precio), font, Brushes.Black, new RectangleF(0, y + j, ancho, 14));
                 j = j + 14;
                 int x = y + j;
                 r = x;
             }
-            e.Graphics.DrawString("Total sin redondeo: " + precioProductos, font, Brushes.Black, new RectangleF(0, r + 30, ancho, 14), stringFormatRight);
-            e.Graphics.DrawString("Total con redondeo: " + precioProductosRedondeado, font, Brushes.Black, new RectangleF(0, r + 44, ancho, 14), stringFormatRight);
-            e.Graphics.DrawString("Valor de redondeo: " + valorDeRedondeo, font, Brushes.Black, new RectangleF(0, r + 58, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Total sin redondeo: " + precioProductos, font, Brushes.Black, new RectangleF(-30, r + 30, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Total con redondeo: " + precioProductosRedondeado, font, Brushes.Black, new RectangleF(-30, r + 44, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Valor de redondeo: " + valorDeRedondeo, font, Brushes.Black, new RectangleF(-30, r + 58, ancho, 14), stringFormatRight);
             
 
-            e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(0, r + 72, ancho, 14), stringFormatCenter);
-            e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(0, r + 98, ancho, 14), stringFormatCenter);
+            e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(-20, r + 72, ancho, 14), stringFormatCenter);
+            e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(-20, r + 98, ancho, 14), stringFormatCenter);
         }
     }
 }

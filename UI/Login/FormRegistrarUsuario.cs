@@ -20,7 +20,9 @@ namespace Presentacion
         List<Empleado> empleados;
         Empleado empleado;
         string rol = "Administrador";
+        string programador = "Programador";
         bool rolExistenteValidado;
+        bool programadorExistenteValido;
         public FormRegistrarUsuario()
         {
             empleadoService = new EmpleadoService(ConfigConnection.ConnectionString);
@@ -66,6 +68,27 @@ namespace Presentacion
             login.Show();
             this.Hide();
         }
+        private void BuscarPorProgramador()
+        {
+            BusquedaEmpleadoRespuesta respuesta = new BusquedaEmpleadoRespuesta();
+            respuesta = empleadoService.BuscarPorNombreDeUsuario(programador);
+            if (respuesta.Empleado != null)
+            {
+                var empleado = new List<Empleado> { respuesta.Empleado };
+                rolExistenteValidado = true;
+                programadorExistenteValido = true;
+                labelAdvertencia.Text = "No puede registrarse como programador";
+                labelAdvertencia.Visible = true;
+            }
+            else
+            {
+                if (respuesta.Empleado == null)
+                {
+                    rolExistenteValidado = false;
+                    labelAdvertencia.Visible = false;
+                }
+            }
+        }
         private void BuscarPorRol()
         {
             BusquedaEmpleadoRespuesta respuesta = new BusquedaEmpleadoRespuesta();
@@ -74,6 +97,7 @@ namespace Presentacion
             {
                 var empleado = new List<Empleado> { respuesta.Empleado };
                 rolExistenteValidado = true;
+                programadorExistenteValido = true;
                 labelAdvertencia.Text = "El rol de administrador ya esta registrado";
                 labelAdvertencia.Visible = true;
             }
@@ -120,13 +144,25 @@ namespace Presentacion
         }
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            BuscarPorProgramador();
             BuscarPorRol();
-            if (rolExistenteValidado != true)
+            if (comboRol.Text == "Empleado" || comboRol.Text == "Administrador" || comboRol.Text == "Programador")
             {
-                Empleado empleado = MapearEmpleado();
-                var msg = empleadoService.Guardar(empleado);
-                MessageBox.Show(msg, "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Limpiar();
+                if (programadorExistenteValido != true)
+                {
+                    if (rolExistenteValidado != true)
+                    {
+                        Empleado empleado = MapearEmpleado();
+                        var msg = empleadoService.Guardar(empleado);
+                        MessageBox.Show(msg, "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Limpiar();
+                    }
+                }
+            }
+            else
+            {
+                string msg = "Formato del combo de roles incorrecto";
+                MessageBox.Show(msg, "Combo Roles", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

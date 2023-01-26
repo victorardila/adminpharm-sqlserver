@@ -6,9 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.tool.xml;
 using System.IO;
 using System.Drawing.Printing;
 using System.Windows.Forms;
@@ -37,10 +34,16 @@ namespace Presentacion
         List<Factura> facturas;
         List<Drogueria> droguerias;
         List<ProductoFacturaTxt> productosFactura = new List<ProductoFacturaTxt>();
+        IdEmpleadoTxtService idEmpleadoTxtService = new IdEmpleadoTxtService();
+        public string idEmpleado;
+        string nombreFactura;
+        string notExistingFileName;
+
         //Variables de drogueria
         string idDrogueria = "#Drog";
         string nombreDrogueria;
         string nitDrogueria;
+        string codigoCamara;
         string fraseDistintiva;
         string regimen;
         string pbx;
@@ -96,6 +99,8 @@ namespace Presentacion
             ConsultarDatosDrogueria();
             SumtoriaDeFactura();
             BuscararDrogueria();
+            BuscarInformacionDeEmpleado();
+            BuscarSesionDeUsuario();
         }
         //Drag Form
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -103,6 +108,35 @@ namespace Presentacion
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
         //***********************************************Metodos*******************************************************
+        private void BuscarInformacionDeEmpleado()
+        {
+            textSearchEmpleado.Text = idEmpleado;
+        }
+        private void BuscarSesionDeUsuario()
+        {
+            IdEmpleadoTxtConsultaResponse idEmpleadoTxtConsultaResponse = idEmpleadoTxtService.Consultar();
+            BusquedaEmpleadoRespuesta respuesta = new BusquedaEmpleadoRespuesta();
+            string identificacion = "";
+            if (idEmpleadoTxtConsultaResponse.Encontrado == true)
+            {
+                foreach (var item in idEmpleadoTxtConsultaResponse.IdEmpleadoTxts)
+                {
+                    identificacion = item.Identificacion;
+                }
+                respuesta = empleadoService.BuscarPorIdentificacion(identificacion);
+                if (respuesta.Empleado != null)
+                {
+                    textNombreEmpleado.Text = respuesta.Empleado.Nombres;
+                    textApellidoEmpleado.Text = respuesta.Empleado.Apellidos;
+                    textIdentificacionEmpleado.Text = respuesta.Empleado.Identificacion;
+                }
+            }
+            else
+            {
+                string mensaje = idEmpleadoTxtConsultaResponse.Mensaje;
+                MessageBox.Show(mensaje.ToString());
+            }
+        }
         private void MapearProductosVendidos(string referencia)
         {
             BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
@@ -315,7 +349,7 @@ namespace Presentacion
                 var droguerias = new List<Drogueria> { respuesta.Drogueria };
                 var drogueria = respuesta.Drogueria;
                 nombreDrogueria = drogueria.NombreDrogueria;
-
+                codigoCamara = drogueria.CodigoDeCamara;
             }
             else
             {
@@ -364,23 +398,50 @@ namespace Presentacion
             factura.FormaDePago = comboFormaDePago.Text;
             return factura;
         }
-        private void Imprimirfactura()
+        private void ImprimirFactura()
         {
             //Proceso de impresion
-            string nombreFactura = id_factura+".pdf";
+            nombreFactura = id_factura + ".pdf";
             string directorio = @"C:\Users\VICTOR PC\Documents\Facturas\";
             string existingPathName = @"C:\Users\VICTOR PC\Documents\Facturas";
-            string notExistingFileName = directorio + nombreFactura;
+            notExistingFileName = directorio + nombreFactura;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {
                 ImprimirDocumento = new PrintDocument();
+                PrinterSettings ps = new PrinterSettings();
+                Margins margins = new Margins(0, 20, 20, 20);
 
                 ImprimirDocumento.PrinterSettings.PrinterName = "Microsoft Print to PDF";
                 ImprimirDocumento.PrinterSettings.PrintFileName = notExistingFileName;
                 ImprimirDocumento.PrinterSettings.PrintToFile = true;
+                ImprimirDocumento.PrinterSettings = ps;
+                ImprimirDocumento.DefaultPageSettings.Margins = margins;
                 ImprimirDocumento.PrintPage += Imprimir;
                 ImprimirDocumento.Print();
+            }
+        }
+        private void GuardarFactura()
+        {
+            //Proceso de impresion
+            nombreFactura = id_factura+".pdf";
+            string directorio = @"C:\Users\VICTOR PC\Documents\Facturas\";
+            string existingPathName = @"C:\Users\VICTOR PC\Documents\Facturas";
+            notExistingFileName = directorio + nombreFactura;
+
+            if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
+            {
+                ImprimirDocumento = new PrintDocument();
+                PrinterSettings ps = new PrinterSettings();
+                Margins margins = new Margins(0,20,20,20);
+
+                ImprimirDocumento.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+                ImprimirDocumento.PrinterSettings.PrintFileName = notExistingFileName;
+                ImprimirDocumento.PrinterSettings.PrintToFile = true;
+                ImprimirDocumento.DefaultPageSettings.Margins = margins;
+                ImprimirDocumento.PrintPage += Imprimir;
+                ImprimirDocumento.Print();
+                ImprimirFactura();
             }
         }
 
@@ -493,13 +554,13 @@ namespace Presentacion
 //******************************************Administrar factura**************************************************
         private void Imprimir(object sender, PrintPageEventArgs e)
         {
-            Font font = new Font("Arial Narrow",10);
+            Font font = new Font("Arial Narrow",8);
             int ancho = 220;
             int y = 20;
             StringFormat stringFormatCenter = new StringFormat();
             stringFormatCenter.Alignment = StringAlignment.Center;
             stringFormatCenter.LineAlignment = StringAlignment.Center;
-
+            
             StringFormat stringFormatRight = new StringFormat();
             stringFormatRight.Alignment = StringAlignment.Far;
             stringFormatRight.LineAlignment = StringAlignment.Far;
@@ -507,45 +568,46 @@ namespace Presentacion
             e.Graphics.DrawString(nombreDrogueria, font, Brushes.Black, new RectangleF(0, y,ancho,20), stringFormatCenter);
 
             e.Graphics.DrawString("NIT: "+nitDrogueria, font, Brushes.Black, new RectangleF(0, y+40, ancho, 13), stringFormatCenter);
-            e.Graphics.DrawString(fraseDistintiva, font, Brushes.Black, new RectangleF(0, y+53, ancho, 13), stringFormatCenter);
-            e.Graphics.DrawString("PBX: "+pbx, font, Brushes.Black, new RectangleF(0, y+66, ancho, 13), stringFormatCenter);
-            e.Graphics.DrawString("Regimen: " + regimen, font, Brushes.Black, new RectangleF(0, y + 79, ancho, 13), stringFormatCenter);
-            e.Graphics.DrawString("Direccion: "+direccion, font, Brushes.Black, new RectangleF(0, y+92, ancho, 13), stringFormatCenter);
-            e.Graphics.DrawString("Telefono: "+telefono, font, Brushes.Black, new RectangleF(0, y+105, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString("Actividad economica: " + codigoCamara, font, Brushes.Black, new RectangleF(0, y + 53, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString(fraseDistintiva, font, Brushes.Black, new RectangleF(0, y+66, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString("PBX: "+pbx, font, Brushes.Black, new RectangleF(0, y+79, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString("Regimen: " + regimen, font, Brushes.Black, new RectangleF(0, y + 92, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString("Direccion: "+direccion, font, Brushes.Black, new RectangleF(0, y+ 105, ancho, 13), stringFormatCenter);
+            e.Graphics.DrawString("Telefono: "+telefono, font, Brushes.Black, new RectangleF(0, y+118, ancho, 13), stringFormatCenter);
 
-            e.Graphics.DrawString("Id factura: " + id_factura, font, Brushes.Black, new RectangleF(0, y + 130, ancho, 13));
-            e.Graphics.DrawString("Secuencia: " + secuenciaDeFactura, font, Brushes.Black, new RectangleF(0, y + 143, ancho, 13));
-            e.Graphics.DrawString("FechaYhora: " + fechaFactura, font, Brushes.Black, new RectangleF(0, y + 156, ancho, 13));
-            e.Graphics.DrawString("Empleado: " + nombreEmpleado, font, Brushes.Black, new RectangleF(0, y + 169, ancho, 13));
-            e.Graphics.DrawString("Ciudad: " + ciudad, font, Brushes.Black, new RectangleF(0, y + 182, ancho, 13));
-            e.Graphics.DrawString("Cliente: " + nombreCliente, font, Brushes.Black, new RectangleF(0, y + 195, ancho, 13));
-            e.Graphics.DrawString("IdDeCaja: " + idCajaAbierta, font, Brushes.Black, new RectangleF(0, y + 208, ancho, 13));
+            e.Graphics.DrawString("Id factura: " + id_factura, font, Brushes.Black, new RectangleF(0, y + 143, ancho, 13));
+            e.Graphics.DrawString("Secuencia: " + secuenciaDeFactura, font, Brushes.Black, new RectangleF(0, y + 153, ancho, 13));
+            e.Graphics.DrawString("FechaYhora: " + fechaFactura, font, Brushes.Black, new RectangleF(0, y + 166, ancho, 13));
+            e.Graphics.DrawString("Empleado: " + nombreEmpleado, font, Brushes.Black, new RectangleF(0, y + 179, ancho, 13));
+            e.Graphics.DrawString("Ciudad: " + ciudad, font, Brushes.Black, new RectangleF(0, y + 192, ancho, 13));
+            e.Graphics.DrawString("Cliente: " + nombreCliente, font, Brushes.Black, new RectangleF(0, y + 205, ancho, 13));
+            e.Graphics.DrawString("IdDeCaja: " + idCajaAbierta, font, Brushes.Black, new RectangleF(0, y + 218, ancho, 13));
             
-            e.Graphics.DrawString("FACTURA DE PRODUCTOS", font, Brushes.Black, new RectangleF(0, y + 234, ancho, 14));
+            e.Graphics.DrawString("FACTURA DE VENTA", font, Brushes.Black, new RectangleF(0, y + 244, ancho, 14));
             
-            e.Graphics.DrawString("Lista de productos", font, Brushes.Black, new RectangleF(0, y + 260, ancho, 14));
-            e.Graphics.DrawString(" Cantidad "+" Nombre " + " Detalle "+" Precio ", font, Brushes.Black, new RectangleF(0, y + 274, ancho, 14));
+            e.Graphics.DrawString("Lista de productos", font, Brushes.Black, new RectangleF(0, y + 270, ancho, 14));
+            e.Graphics.DrawString(" Cantidad "+" Nombre " + " Detalle "+" Precio ", font, Brushes.Black, new RectangleF(0, y + 284, ancho, 14));
             int r = 0;
-            int j = 288;
+            int j = 298;
             foreach (DataGridViewRow fila in dataGridFacturaProductos.Rows)
             {
                 int i = 0;
                 foreach (DataGridViewCell celda in fila.Cells)
                 {
-                    e.Graphics.DrawString("   "+Convert.ToString(fila.Cells[i].Value) + "    " + Convert.ToString(fila.Cells[i+1].Value) +"   "+ Convert.ToString(fila.Cells[i+2].Value) +"    "+  Convert.ToString(fila.Cells[i+3].Value) +"   "+  Convert.ToString(fila.Cells[i+4].Value), font, Brushes.Black, new RectangleF(0, y + j, ancho, 14));
+                    e.Graphics.DrawString("    "+Convert.ToString(fila.Cells[i].Value) + " " + Convert.ToString(fila.Cells[i+2].Value) +" "+  Convert.ToString(fila.Cells[i+3].Value) +" "+  Convert.ToString(fila.Cells[i+4].Value), font, Brushes.Black, new RectangleF(0, y + j, ancho, 14));
                     j = j + 14;
                     int x = y + j;
                     r = x;
                     break;
                 }
             }
-            e.Graphics.DrawString("Total sin redondeo: " + totalSinRedondeo, font, Brushes.Black, new RectangleF(0, r + 30, ancho, 14), stringFormatRight);
-            e.Graphics.DrawString("Total con redondeo: " + totalConRedondeo, font, Brushes.Black, new RectangleF(0, r + 44, ancho, 14), stringFormatRight);
-            e.Graphics.DrawString("Valor de redondeo: " + valorDeRedondeo, font, Brushes.Black, new RectangleF(0, r + 58, ancho, 14), stringFormatRight);
-            e.Graphics.DrawString("Forma de pago: " + formaDePago, font, Brushes.Black, new RectangleF(0, r + 72, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Total sin redondeo: " + totalSinRedondeo, font, Brushes.Black, new RectangleF(-30, r + 30, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Total con redondeo: " + totalConRedondeo, font, Brushes.Black, new RectangleF(-30, r + 44, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Valor de redondeo: " + valorDeRedondeo, font, Brushes.Black, new RectangleF(-30, r + 58, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Forma de pago: " + formaDePago, font, Brushes.Black, new RectangleF(-30, r + 72, ancho, 14), stringFormatRight);
 
-            e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(0, r + 98, ancho, 14), stringFormatCenter);
-            e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(0, r + 112, ancho, 14), stringFormatCenter);
+            e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(-20, r + 98, ancho, 14), stringFormatCenter);
+            e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(-20, r + 112, ancho, 14), stringFormatCenter);
         }
 //*************************************************Botones*****************************************************
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -569,7 +631,6 @@ namespace Presentacion
             textSearchCliente.Visible = true;
             btnCloseCliente.Visible = true;
         }
-
         private void btnCloseCliente_Click(object sender, EventArgs e)
         {
             textSearchCliente.Visible = false;
@@ -583,8 +644,12 @@ namespace Presentacion
             ContarProductosVendidos();
             ModificarCashCaja();
             ConsultarCajaAbierta();
-            Imprimirfactura();
+            GuardarFactura();
             EliminarFactura();
+            FormVisorDeFactura frm = new FormVisorDeFactura();
+            frm.nombreDeArchivo = nombreFactura;
+            frm.rutaDeGuardado = notExistingFileName;
+            frm.ShowDialog();
             this.Close();
         }
 

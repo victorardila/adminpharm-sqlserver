@@ -191,9 +191,9 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
-        public ConteoCajaRegistradoraRespuesta Totalizar()
+        public ConteoEmpleadoRespuesta Totalizar()
         {
-            ConteoCajaRegistradoraRespuesta respuesta = new ConteoCajaRegistradoraRespuesta();
+            ConteoEmpleadoRespuesta respuesta = new ConteoEmpleadoRespuesta();
             try
             {
 
@@ -213,9 +213,31 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
-        public ConteoCajaRegistradoraRespuesta TotalizarTipo(string tipo)
+        public ConteoEmpleadoRespuesta TotalizarTipoRol(string tipo)
         {
-            ConteoCajaRegistradoraRespuesta respuesta = new ConteoCajaRegistradoraRespuesta();
+            ConteoEmpleadoRespuesta respuesta = new ConteoEmpleadoRespuesta();
+            try
+            {
+
+                conexion.Open();
+                respuesta.Cuenta = repositorio.TotalizarTipoRol(tipo);
+                conexion.Close();
+                respuesta.Error = false;
+                respuesta.Mensaje = "Se consultan los Datos";
+
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
+        }
+        public ConteoEmpleadoRespuesta TotalizarTipo(string tipo)
+        {
+            ConteoEmpleadoRespuesta respuesta = new ConteoEmpleadoRespuesta();
             try
             {
 

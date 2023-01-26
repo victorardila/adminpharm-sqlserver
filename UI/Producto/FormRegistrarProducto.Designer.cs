@@ -32,10 +32,11 @@ namespace Presentacion
             this.menuTop = new System.Windows.Forms.Panel();
             this.btnCerrar = new FontAwesome.Sharp.IconButton();
             this.panelRegistroDeProductos = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelAdvertencia = new System.Windows.Forms.Label();
             this.comboLaboratorio = new System.Windows.Forms.ComboBox();
             this.labelLaboratorio = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.comboTipo = new System.Windows.Forms.ComboBox();
             this.labelTipo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -70,6 +71,7 @@ namespace Presentacion
             this.labelLote = new System.Windows.Forms.Label();
             this.menuTop.SuspendLayout();
             this.panelRegistroDeProductos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelTituloDeRegistroProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
@@ -107,10 +109,11 @@ namespace Presentacion
             // panelRegistroDeProductos
             // 
             this.panelRegistroDeProductos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRegistroDeProductos.Controls.Add(this.pictureBox2);
+            this.panelRegistroDeProductos.Controls.Add(this.pictureBox1);
             this.panelRegistroDeProductos.Controls.Add(this.labelAdvertencia);
             this.panelRegistroDeProductos.Controls.Add(this.comboLaboratorio);
             this.panelRegistroDeProductos.Controls.Add(this.labelLaboratorio);
-            this.panelRegistroDeProductos.Controls.Add(this.pictureBox1);
             this.panelRegistroDeProductos.Controls.Add(this.comboTipo);
             this.panelRegistroDeProductos.Controls.Add(this.labelTipo);
             this.panelRegistroDeProductos.Controls.Add(this.label1);
@@ -145,6 +148,26 @@ namespace Presentacion
             this.panelRegistroDeProductos.TabIndex = 49;
             this.panelRegistroDeProductos.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelRegistroDeProductos_MouseDown);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Presentacion.Properties.Resources.Medicamentos;
+            this.pictureBox2.Location = new System.Drawing.Point(254, 53);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(154, 78);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 69;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Presentacion.Properties.Resources.CodigoDeBarras;
+            this.pictureBox1.Location = new System.Drawing.Point(101, 53);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(154, 78);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 68;
+            this.pictureBox1.TabStop = false;
+            // 
             // labelAdvertencia
             // 
             this.labelAdvertencia.AutoSize = true;
@@ -160,11 +183,6 @@ namespace Presentacion
             // comboLaboratorio
             // 
             this.comboLaboratorio.FormattingEnabled = true;
-            this.comboLaboratorio.Items.AddRange(new object[] {
-            "Disprofar",
-            "Asociados S.A.S",
-            "Nancy S.A.S",
-            "Funsovida"});
             this.comboLaboratorio.Location = new System.Drawing.Point(387, 248);
             this.comboLaboratorio.Name = "comboLaboratorio";
             this.comboLaboratorio.Size = new System.Drawing.Size(115, 21);
@@ -178,16 +196,6 @@ namespace Presentacion
             this.labelLaboratorio.Size = new System.Drawing.Size(63, 13);
             this.labelLaboratorio.TabIndex = 66;
             this.labelLaboratorio.Text = "Laboratorio:";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Presentacion.Properties.Resources.Medicamentos;
-            this.pictureBox1.Location = new System.Drawing.Point(187, 59);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(148, 82);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 65;
-            this.pictureBox1.TabStop = false;
             // 
             // comboTipo
             // 
@@ -240,6 +248,8 @@ namespace Presentacion
             this.textCantidad.Size = new System.Drawing.Size(144, 20);
             this.textCantidad.TabIndex = 61;
             this.textCantidad.Text = "0";
+            this.textCantidad.Enter += new System.EventHandler(this.textCantidad_Enter);
+            this.textCantidad.Leave += new System.EventHandler(this.textCantidad_Leave);
             // 
             // comboNumeroEstante
             // 
@@ -425,6 +435,7 @@ namespace Presentacion
             this.textReferencia.Name = "textReferencia";
             this.textReferencia.Size = new System.Drawing.Size(144, 20);
             this.textReferencia.TabIndex = 33;
+            this.textReferencia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textReferencia_KeyPress);
             // 
             // labelPorcentajeDeVenta
             // 
@@ -451,6 +462,8 @@ namespace Presentacion
             this.textPorcentajeDeVenta.Size = new System.Drawing.Size(88, 20);
             this.textPorcentajeDeVenta.TabIndex = 46;
             this.textPorcentajeDeVenta.Text = "0";
+            this.textPorcentajeDeVenta.Enter += new System.EventHandler(this.textPorcentajeDeVenta_Enter);
+            this.textPorcentajeDeVenta.Leave += new System.EventHandler(this.textPorcentajeDeVenta_Leave);
             // 
             // label2
             // 
@@ -468,6 +481,8 @@ namespace Presentacion
             this.textPrecioDeNegocio.Size = new System.Drawing.Size(144, 20);
             this.textPrecioDeNegocio.TabIndex = 45;
             this.textPrecioDeNegocio.Text = "0";
+            this.textPrecioDeNegocio.Enter += new System.EventHandler(this.textPrecioDeNegocio_Enter);
+            this.textPrecioDeNegocio.Leave += new System.EventHandler(this.textPrecioDeNegocio_Leave);
             // 
             // textNombreFarmaceutico
             // 
@@ -529,7 +544,7 @@ namespace Presentacion
             // 
             // dateTimeFechaVencimiento
             // 
-            this.dateTimeFechaVencimiento.Location = new System.Drawing.Point(122, 250);
+            this.dateTimeFechaVencimiento.Location = new System.Drawing.Point(123, 250);
             this.dateTimeFechaVencimiento.Name = "dateTimeFechaVencimiento";
             this.dateTimeFechaVencimiento.Size = new System.Drawing.Size(200, 20);
             this.dateTimeFechaVencimiento.TabIndex = 39;
@@ -556,6 +571,7 @@ namespace Presentacion
             this.menuTop.ResumeLayout(false);
             this.panelRegistroDeProductos.ResumeLayout(false);
             this.panelRegistroDeProductos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelTituloDeRegistroProductos.ResumeLayout(false);
             this.panelTituloDeRegistroProductos.PerformLayout();
@@ -599,12 +615,13 @@ namespace Presentacion
         private System.Windows.Forms.TextBox textCantidad;
         private System.Windows.Forms.ComboBox comboTipo;
         private System.Windows.Forms.Label labelTipo;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ComboBox comboLaboratorio;
         private System.Windows.Forms.Label labelLaboratorio;
         private FontAwesome.Sharp.IconPictureBox btnClose;
         private System.Windows.Forms.TextBox textSearch;
         private FontAwesome.Sharp.IconPictureBox btnSearch;
         private System.Windows.Forms.Label labelAdvertencia;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

@@ -23,6 +23,11 @@ namespace Presentacion
         List<Estante> estantes;
         Producto producto;
         Estante estante;
+        double precioDeNegocio;
+        string cantidadDelContenedor;
+        int cantidadSumatoriaTotal;
+        int cantidadAlmacenada;
+        int cantidadASumar;
         int cantidad;
         string ubicacion;
         string codigo;
@@ -35,6 +40,7 @@ namespace Presentacion
             estanteService = new EstanteService(ConfigConnection.ConnectionString);
             InitializeComponent();
             ConsultarEstantes();
+            LlenarComboLaboratorio();
         }
         //Drag Form
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -44,7 +50,11 @@ namespace Presentacion
         private Producto MapearProducto()
         {
             producto = new Producto();
-            producto.Cantidad = int.Parse(textCantidad.Text);
+
+            cantidadASumar = int.Parse(textCantidad.Text);
+            cantidadSumatoriaTotal = cantidadAlmacenada + cantidadASumar;
+
+            producto.Cantidad = cantidadSumatoriaTotal;
             producto.Referencia = textReferencia.Text;
             producto.Nombre = textNombreFarmaceutico.Text;
             producto.FechaDeRegistro = dateTimeFechaRegistro.Value;
@@ -54,7 +64,7 @@ namespace Presentacion
             producto.Detalle = textDetalle.Text;
             producto.Via = comboVia.Text;
             producto.Tipo = comboTipo.Text;
-            producto.PrecioDeNegocio = int.Parse(textPrecioDeNegocio.Text);
+            producto.PrecioDeNegocio = precioDeNegocio;
             producto.PorcentajeDeVenta = int.Parse(textPorcentajeDeVenta.Text);
             producto.NumeroDeEstante = int.Parse(comboNumeroEstante.Text);
             numeroEstante = int.Parse(comboNumeroEstante.Text);
@@ -157,6 +167,35 @@ namespace Presentacion
                 }
             }
         }
+        private void LlenarGridLaboratorios(List<Producto> productos)
+        {
+            for(int i = 1; i <= cantidad; i++)
+            {
+                comboLaboratorio.Items.Add(producto.Laboratorio);
+            }
+        }
+        private void LlenarComboLaboratorio()
+        {
+            ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
+            respuesta = productoService.ConsultaTodosLaboratorios();
+            
+        }
+        private void ConsultarLaboratorio()
+        {
+            ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
+            string laboratorio = comboLaboratorio.Text;
+            if (laboratorio != "")
+            {
+                respuesta = productoService.ConsultaPorLaboratorios(laboratorio);
+                productos = respuesta.Productos.ToList();
+                if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
+                {
+                    cantidad = productoService.Totalizar().Cuenta;
+                    var busqueda = productoService.BuscarExistenciaDeLaboratorio(laboratorio);
+                    
+                }
+            }
+        }
         private void btnClose_Click(object sender, EventArgs e)
         {
             textSearch.Visible = false;
@@ -215,6 +254,101 @@ namespace Presentacion
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+        private void BuscarReferenciaEscaneada()
+        {
+            string referencia = textReferencia.Text;
+            var respuesta = productoService.BuscarPorReferencia(referencia);
+            if (respuesta.Producto != null)
+            {
+                labelAdvertencia.Text = "Producto existente se sumará a: " + respuesta.Producto.Nombre;
+                cantidadAlmacenada = respuesta.Producto.Cantidad;
+                textReferencia.ForeColor = Color.Maroon;
+
+                textNombreFarmaceutico.Text = respuesta.Producto.Nombre;
+                textDetalle.Text = respuesta.Producto.Detalle;
+                dateTimeFechaRegistro.Value = respuesta.Producto.FechaDeRegistro;
+                textLote.Text = respuesta.Producto.Lote;
+                dateTimeFechaVencimiento.Value = respuesta.Producto.FechaDeVencimiento;
+                comboLaboratorio.Text = respuesta.Producto.Laboratorio;
+                comboTipo.Text = respuesta.Producto.Tipo;
+                comboVia.Text = respuesta.Producto.Via;
+                textPrecioDeNegocio.Text = respuesta.Producto.PrecioDeNegocio.ToString();
+                textPorcentajeDeVenta.Text = respuesta.Producto.PorcentajeDeVenta.ToString();
+                comboNumeroEstante.Text = respuesta.Producto.NumeroDeEstante.ToString();
+            }
+            else
+            {
+                if (respuesta.Producto == null)
+                {
+
+                }
+            }
+        }
+        private void textReferencia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                BuscarReferenciaEscaneada();
+            }
+        }
+
+        private void textPrecioDeNegocio_Enter(object sender, EventArgs e)
+        {
+            if (textPrecioDeNegocio.Text == "0" || textPrecioDeNegocio.Text==cantidadDelContenedor)
+            {
+                textPrecioDeNegocio.Text = "";
+            }
+        }
+
+        private void textPrecioDeNegocio_Leave(object sender, EventArgs e)
+        {
+            if (textPrecioDeNegocio.Text != "" && textPrecioDeNegocio.Text != "0" && textPrecioDeNegocio.Text != "$")
+            {
+                precioDeNegocio = int.Parse(textPrecioDeNegocio.Text);
+                decimal money = Convert.ToDecimal(textPrecioDeNegocio.Text);
+                textPrecioDeNegocio.Text = String.Format("{0:C}", money);
+                cantidadDelContenedor = textPrecioDeNegocio.Text;
+            }
+            else
+            {
+                if(textPrecioDeNegocio.Text == "")
+                {
+                    textPrecioDeNegocio.Text = "0";
+                }
+            }
+        }
+
+        private void textPorcentajeDeVenta_Enter(object sender, EventArgs e)
+        {
+            if (textPorcentajeDeVenta.Text == "0")
+            {
+                textPorcentajeDeVenta.Text = "";
+            }
+        }
+
+        private void textPorcentajeDeVenta_Leave(object sender, EventArgs e)
+        {
+            if (textPorcentajeDeVenta.Text == "")
+            {
+                textPorcentajeDeVenta.Text = "0";
+            }
+        }
+
+        private void textCantidad_Enter(object sender, EventArgs e)
+        {
+            if (textCantidad.Text == "0")
+            {
+                textCantidad.Text = "";
+            }
+        }
+
+        private void textCantidad_Leave(object sender, EventArgs e)
+        {
+            if (textCantidad.Text == "")
+            {
+                textCantidad.Text = "0";
+            }
         }
     }
 }

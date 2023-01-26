@@ -48,6 +48,8 @@
     <Compile Include="EmpleadoService.cs" />
     <Compile Include="EstanteService.cs" />
     <Compile Include="FacturaService.cs" />
+    <Compile Include="IdEmpleadoTxtConsultaResponse.cs" />
+    <Compile Include="IdEmpleadoTxtService.cs" />
     <Compile Include="ProductoService.cs" />
     <Compile Include="ProductoFacturaTxtConsultaResponse.cs" />
     <Compile Include="ProductoFacturaTxtService.cs" />
