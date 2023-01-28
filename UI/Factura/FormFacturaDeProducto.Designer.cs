@@ -96,6 +96,7 @@ namespace Presentacion
             this.labelDireccion = new System.Windows.Forms.Label();
             this.textDireccion = new System.Windows.Forms.TextBox();
             this.ImprimirDocumento = new System.Drawing.Printing.PrintDocument();
+            this.btnSoloVender = new FontAwesome.Sharp.IconButton();
             this.menuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFacturaProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconCash)).BeginInit();
@@ -200,7 +201,7 @@ namespace Presentacion
             this.btnImprimirFactura.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnImprimirFactura.IconSize = 30;
             this.btnImprimirFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImprimirFactura.Location = new System.Drawing.Point(238, 481);
+            this.btnImprimirFactura.Location = new System.Drawing.Point(334, 484);
             this.btnImprimirFactura.Name = "btnImprimirFactura";
             this.btnImprimirFactura.Size = new System.Drawing.Size(151, 35);
             this.btnImprimirFactura.TabIndex = 60;
@@ -841,11 +842,34 @@ namespace Presentacion
             // 
             this.ImprimirDocumento.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Imprimir);
             // 
+            // btnSoloVender
+            // 
+            this.btnSoloVender.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnSoloVender.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSoloVender.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSoloVender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSoloVender.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSoloVender.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSoloVender.IconChar = FontAwesome.Sharp.IconChar.CashRegister;
+            this.btnSoloVender.IconColor = System.Drawing.Color.Black;
+            this.btnSoloVender.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSoloVender.IconSize = 30;
+            this.btnSoloVender.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSoloVender.Location = new System.Drawing.Point(180, 484);
+            this.btnSoloVender.Name = "btnSoloVender";
+            this.btnSoloVender.Size = new System.Drawing.Size(151, 35);
+            this.btnSoloVender.TabIndex = 80;
+            this.btnSoloVender.Text = "   Solo Vender";
+            this.btnSoloVender.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSoloVender.UseVisualStyleBackColor = false;
+            this.btnSoloVender.Click += new System.EventHandler(this.btnSoloVender_Click);
+            // 
             // FormFacturaDeProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(643, 525);
+            this.Controls.Add(this.btnSoloVender);
             this.Controls.Add(this.labelTextFondo);
             this.Controls.Add(this.labelCash);
             this.Controls.Add(this.iconCash);
@@ -954,5 +978,6 @@ namespace Presentacion
         private System.Windows.Forms.ComboBox comboFormaDePago;
         private System.Drawing.Printing.PrintDocument ImprimirDocumento;
         private System.Windows.Forms.Label label2;
+        private FontAwesome.Sharp.IconButton btnSoloVender;
     }
 }

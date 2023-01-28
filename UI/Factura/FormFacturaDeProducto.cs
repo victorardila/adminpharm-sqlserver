@@ -652,7 +652,15 @@ namespace Presentacion
             frm.ShowDialog();
             this.Close();
         }
-
+        private void btnSoloVender_Click(object sender, EventArgs e)
+        {
+            Factura factura = MapearFactura();
+            MapearDatosActualesDeFactura(factura);
+            facturaService.Guardar(factura);
+            ContarProductosVendidos();
+            ModificarCashCaja();
+            ConsultarCajaAbierta();
+        }
         private void menuTop_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
