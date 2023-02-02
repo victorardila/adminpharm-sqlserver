@@ -29,7 +29,6 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelBarraVolver = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelConsultaDeProductos = new System.Windows.Forms.Panel();
             this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
@@ -51,6 +50,8 @@ namespace Presentacion
             this.btnRegistrarEstantes = new FontAwesome.Sharp.IconButton();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnVolver = new FontAwesome.Sharp.IconButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panelConsultaDeProductos.SuspendLayout();
             this.panelSubDataGridFarmacos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).BeginInit();
@@ -58,22 +59,15 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseEstante)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchEstante)).BeginInit();
             this.panelContenedorGestionProductos.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panelBarraVolver
-            // 
-            this.panelBarraVolver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.panelBarraVolver.Location = new System.Drawing.Point(8, 6);
-            this.panelBarraVolver.Name = "panelBarraVolver";
-            this.panelBarraVolver.Size = new System.Drawing.Size(7, 35);
-            this.panelBarraVolver.TabIndex = 33;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.label1.Location = new System.Drawing.Point(56, 9);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(56, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(233, 29);
             this.label1.TabIndex = 32;
@@ -269,7 +263,7 @@ namespace Presentacion
             this.panelContenedorGestionProductos.Controls.Add(this.btnRegistrarEstantes);
             this.panelContenedorGestionProductos.Location = new System.Drawing.Point(12, 47);
             this.panelContenedorGestionProductos.Name = "panelContenedorGestionProductos";
-            this.panelContenedorGestionProductos.Size = new System.Drawing.Size(755, 397);
+            this.panelContenedorGestionProductos.Size = new System.Drawing.Size(770, 397);
             this.panelContenedorGestionProductos.TabIndex = 53;
             // 
             // btnEliminarEstantes
@@ -333,11 +327,11 @@ namespace Presentacion
             this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolver.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnVolver.IconChar = FontAwesome.Sharp.IconChar.CaretLeft;
-            this.btnVolver.IconColor = System.Drawing.SystemColors.WindowText;
+            this.btnVolver.IconColor = System.Drawing.Color.White;
             this.btnVolver.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVolver.IconSize = 30;
             this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(19, 6);
+            this.btnVolver.Location = new System.Drawing.Point(18, 0);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(31, 35);
             this.btnVolver.TabIndex = 34;
@@ -345,15 +339,34 @@ namespace Presentacion
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.SystemColors.MenuText;
+            this.panel1.Controls.Add(this.btnVolver);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Location = new System.Drawing.Point(0, 5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(795, 36);
+            this.panel1.TabIndex = 62;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.panel2.Location = new System.Drawing.Point(8, 1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(7, 35);
+            this.panel2.TabIndex = 54;
+            // 
             // FormGestionDeEstantes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 467);
+            this.ClientSize = new System.Drawing.Size(794, 467);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelContenedorGestionProductos);
-            this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.panelBarraVolver);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormGestionDeEstantes";
             this.Text = "FormGestionDeEstantes";
@@ -366,15 +379,15 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseEstante)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchEstante)).EndInit();
             this.panelContenedorGestionProductos.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private FontAwesome.Sharp.IconButton btnVolver;
-        private System.Windows.Forms.Panel panelBarraVolver;
         private System.Windows.Forms.Label label1;
         private FontAwesome.Sharp.IconButton btnEliminarEstantes;
         private FontAwesome.Sharp.IconButton btnRegistrarEstantes;
@@ -395,5 +408,7 @@ namespace Presentacion
         private System.Windows.Forms.Panel panelContenedorGestionProductos;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.Label labelAdvertencia;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

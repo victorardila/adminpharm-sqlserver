@@ -64,14 +64,15 @@ namespace Presentacion
             this.btnNuevoProducto = new FontAwesome.Sharp.IconButton();
             this.btnModificarProducto = new FontAwesome.Sharp.IconButton();
             this.btnFarmacosVencidos = new FontAwesome.Sharp.IconButton();
-            this.labelTextFondo = new System.Windows.Forms.Label();
             this.labelCash = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.iconCash = new FontAwesome.Sharp.IconPictureBox();
             this.btnVolver = new FontAwesome.Sharp.IconButton();
             this.labelMedicamentosAgotados = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panelConsultaDeProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFarmacos)).BeginInit();
             this.panelTituloDataGridFarmacos.SuspendLayout();
@@ -81,15 +82,16 @@ namespace Presentacion
             this.panelContenedorGestionProductos.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconCash)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.label1.Location = new System.Drawing.Point(58, 15);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(54, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(251, 29);
             this.label1.TabIndex = 0;
@@ -98,7 +100,7 @@ namespace Presentacion
             // panelBarraVolver
             // 
             this.panelBarraVolver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.panelBarraVolver.Location = new System.Drawing.Point(10, 12);
+            this.panelBarraVolver.Location = new System.Drawing.Point(8, 0);
             this.panelBarraVolver.Name = "panelBarraVolver";
             this.panelBarraVolver.Size = new System.Drawing.Size(7, 35);
             this.panelBarraVolver.TabIndex = 30;
@@ -109,7 +111,7 @@ namespace Presentacion
             this.panelConsultaDeProductos.Controls.Add(this.panelTituloDataGridFarmacos);
             this.panelConsultaDeProductos.Location = new System.Drawing.Point(3, 3);
             this.panelConsultaDeProductos.Name = "panelConsultaDeProductos";
-            this.panelConsultaDeProductos.Size = new System.Drawing.Size(786, 446);
+            this.panelConsultaDeProductos.Size = new System.Drawing.Size(763, 446);
             this.panelConsultaDeProductos.TabIndex = 49;
             // 
             // dataGridFarmacos
@@ -125,14 +127,13 @@ namespace Presentacion
             this.Cash,
             this.CantidadVenta});
             this.dataGridFarmacos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridFarmacos.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridFarmacos.Location = new System.Drawing.Point(0, 24);
             this.dataGridFarmacos.Name = "dataGridFarmacos";
             this.dataGridFarmacos.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridFarmacos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dataGridFarmacos.RowHeadersVisible = false;
-            this.dataGridFarmacos.Size = new System.Drawing.Size(786, 422);
+            this.dataGridFarmacos.Size = new System.Drawing.Size(762, 422);
             this.dataGridFarmacos.TabIndex = 50;
             this.dataGridFarmacos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridFarmacos_CellClick);
             // 
@@ -180,7 +181,7 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTituloDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
             this.panelTituloDataGridFarmacos.Name = "panelTituloDataGridFarmacos";
-            this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(786, 24);
+            this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(763, 24);
             this.panelTituloDataGridFarmacos.TabIndex = 49;
             // 
             // btnClose
@@ -192,7 +193,7 @@ namespace Presentacion
             this.btnClose.IconColor = System.Drawing.Color.DarkRed;
             this.btnClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnClose.IconSize = 18;
-            this.btnClose.Location = new System.Drawing.Point(743, 2);
+            this.btnClose.Location = new System.Drawing.Point(716, 2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(18, 18);
             this.btnClose.TabIndex = 56;
@@ -202,7 +203,7 @@ namespace Presentacion
             // 
             // textSearch
             // 
-            this.textSearch.Location = new System.Drawing.Point(616, 1);
+            this.textSearch.Location = new System.Drawing.Point(589, 1);
             this.textSearch.Name = "textSearch";
             this.textSearch.Size = new System.Drawing.Size(127, 20);
             this.textSearch.TabIndex = 54;
@@ -221,7 +222,7 @@ namespace Presentacion
             this.btnSearch.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSearch.IconSize = 20;
-            this.btnSearch.Location = new System.Drawing.Point(762, 1);
+            this.btnSearch.Location = new System.Drawing.Point(739, 1);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(20, 20);
             this.btnSearch.TabIndex = 55;
@@ -329,9 +330,9 @@ namespace Presentacion
             this.panelSubDataGridFarmacos.Controls.Add(this.labelVigentes);
             this.panelSubDataGridFarmacos.Controls.Add(this.textTotal);
             this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalFarmacos);
-            this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(0, 446);
+            this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(3, 448);
             this.panelSubDataGridFarmacos.Name = "panelSubDataGridFarmacos";
-            this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(778, 26);
+            this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(763, 24);
             this.panelSubDataGridFarmacos.TabIndex = 51;
             // 
             // labelAdvertencia
@@ -347,7 +348,8 @@ namespace Presentacion
             // 
             // textCuarentena
             // 
-            this.textCuarentena.Location = new System.Drawing.Point(402, 2);
+            this.textCuarentena.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textCuarentena.Location = new System.Drawing.Point(408, 1);
             this.textCuarentena.Name = "textCuarentena";
             this.textCuarentena.Size = new System.Drawing.Size(47, 20);
             this.textCuarentena.TabIndex = 53;
@@ -356,15 +358,17 @@ namespace Presentacion
             // labelCuarentena
             // 
             this.labelCuarentena.AutoSize = true;
-            this.labelCuarentena.Location = new System.Drawing.Point(312, 5);
+            this.labelCuarentena.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCuarentena.Location = new System.Drawing.Point(301, 5);
             this.labelCuarentena.Name = "labelCuarentena";
-            this.labelCuarentena.Size = new System.Drawing.Size(92, 13);
+            this.labelCuarentena.Size = new System.Drawing.Size(109, 13);
             this.labelCuarentena.TabIndex = 52;
             this.labelCuarentena.Text = "Total Cuarentena:";
             // 
             // textVigentes
             // 
-            this.textVigentes.Location = new System.Drawing.Point(237, 2);
+            this.textVigentes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textVigentes.Location = new System.Drawing.Point(249, 1);
             this.textVigentes.Name = "textVigentes";
             this.textVigentes.Size = new System.Drawing.Size(47, 20);
             this.textVigentes.TabIndex = 50;
@@ -373,15 +377,17 @@ namespace Presentacion
             // labelVigentes
             // 
             this.labelVigentes.AutoSize = true;
-            this.labelVigentes.Location = new System.Drawing.Point(162, 5);
+            this.labelVigentes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVigentes.Location = new System.Drawing.Point(160, 5);
             this.labelVigentes.Name = "labelVigentes";
-            this.labelVigentes.Size = new System.Drawing.Size(78, 13);
+            this.labelVigentes.Size = new System.Drawing.Size(93, 13);
             this.labelVigentes.TabIndex = 51;
             this.labelVigentes.Text = "Total Vigentes:";
             // 
             // textTotal
             // 
-            this.textTotal.Location = new System.Drawing.Point(95, 2);
+            this.textTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textTotal.Location = new System.Drawing.Point(108, 1);
             this.textTotal.Name = "textTotal";
             this.textTotal.Size = new System.Drawing.Size(47, 20);
             this.textTotal.TabIndex = 49;
@@ -390,9 +396,10 @@ namespace Presentacion
             // labelTotalFarmacos
             // 
             this.labelTotalFarmacos.AutoSize = true;
-            this.labelTotalFarmacos.Location = new System.Drawing.Point(4, 5);
+            this.labelTotalFarmacos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalFarmacos.Location = new System.Drawing.Point(-3, 5);
             this.labelTotalFarmacos.Name = "labelTotalFarmacos";
-            this.labelTotalFarmacos.Size = new System.Drawing.Size(93, 13);
+            this.labelTotalFarmacos.Size = new System.Drawing.Size(111, 13);
             this.labelTotalFarmacos.TabIndex = 49;
             this.labelTotalFarmacos.Text = "Total Registrados:";
             // 
@@ -410,9 +417,9 @@ namespace Presentacion
             this.panelContenedorGestionProductos.Controls.Add(this.btnModificarProducto);
             this.panelContenedorGestionProductos.Controls.Add(this.panelConsultaDeProductos);
             this.panelContenedorGestionProductos.Controls.Add(this.btnFarmacosVencidos);
-            this.panelContenedorGestionProductos.Location = new System.Drawing.Point(3, 53);
+            this.panelContenedorGestionProductos.Location = new System.Drawing.Point(14, 53);
             this.panelContenedorGestionProductos.Name = "panelContenedorGestionProductos";
-            this.panelContenedorGestionProductos.Size = new System.Drawing.Size(792, 534);
+            this.panelContenedorGestionProductos.Size = new System.Drawing.Size(766, 534);
             this.panelContenedorGestionProductos.TabIndex = 52;
             // 
             // btnProductosVendidos
@@ -429,7 +436,7 @@ namespace Presentacion
             this.btnProductosVendidos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnProductosVendidos.IconSize = 30;
             this.btnProductosVendidos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductosVendidos.Location = new System.Drawing.Point(615, 498);
+            this.btnProductosVendidos.Location = new System.Drawing.Point(614, 498);
             this.btnProductosVendidos.Name = "btnProductosVendidos";
             this.btnProductosVendidos.Size = new System.Drawing.Size(151, 35);
             this.btnProductosVendidos.TabIndex = 60;
@@ -451,9 +458,9 @@ namespace Presentacion
             this.btnVenderProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVenderProducto.IconSize = 30;
             this.btnVenderProducto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVenderProducto.Location = new System.Drawing.Point(465, 498);
+            this.btnVenderProducto.Location = new System.Drawing.Point(448, 498);
             this.btnVenderProducto.Name = "btnVenderProducto";
-            this.btnVenderProducto.Size = new System.Drawing.Size(151, 35);
+            this.btnVenderProducto.Size = new System.Drawing.Size(167, 35);
             this.btnVenderProducto.TabIndex = 59;
             this.btnVenderProducto.Text = "   Vender $";
             this.btnVenderProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -462,18 +469,19 @@ namespace Presentacion
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.Black;
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(448, 472);
+            this.panel2.Location = new System.Drawing.Point(448, 470);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(330, 24);
+            this.panel2.Size = new System.Drawing.Size(318, 28);
             this.panel2.TabIndex = 58;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(109, 6);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(109, 7);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(119, 13);
             this.label3.TabIndex = 57;
@@ -481,10 +489,11 @@ namespace Presentacion
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(0, 472);
+            this.panel1.Location = new System.Drawing.Point(0, 470);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(450, 24);
+            this.panel1.Size = new System.Drawing.Size(450, 28);
             this.panel1.TabIndex = 55;
             // 
             // label2
@@ -492,7 +501,7 @@ namespace Presentacion
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(138, 5);
+            this.label2.Location = new System.Drawing.Point(138, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(119, 13);
             this.label2.TabIndex = 57;
@@ -564,25 +573,13 @@ namespace Presentacion
             this.btnFarmacosVencidos.UseVisualStyleBackColor = false;
             this.btnFarmacosVencidos.Click += new System.EventHandler(this.btnFarmacosVencidos_Click);
             // 
-            // labelTextFondo
-            // 
-            this.labelTextFondo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelTextFondo.AutoSize = true;
-            this.labelTextFondo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTextFondo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelTextFondo.Location = new System.Drawing.Point(726, 9);
-            this.labelTextFondo.Name = "labelTextFondo";
-            this.labelTextFondo.Size = new System.Drawing.Size(45, 12);
-            this.labelTextFondo.TabIndex = 62;
-            this.labelTextFondo.Text = "MONTO";
-            // 
             // labelCash
             // 
             this.labelCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelCash.AutoSize = true;
             this.labelCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCash.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelCash.Location = new System.Drawing.Point(730, 25);
+            this.labelCash.ForeColor = System.Drawing.Color.White;
+            this.labelCash.Location = new System.Drawing.Point(742, 16);
             this.labelCash.Name = "labelCash";
             this.labelCash.Size = new System.Drawing.Size(14, 16);
             this.labelCash.TabIndex = 61;
@@ -612,20 +609,6 @@ namespace Presentacion
             this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
             this.dataGridViewImageColumn3.Width = 30;
             // 
-            // iconCash
-            // 
-            this.iconCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconCash.BackColor = System.Drawing.SystemColors.Control;
-            this.iconCash.ForeColor = System.Drawing.Color.Olive;
-            this.iconCash.IconChar = FontAwesome.Sharp.IconChar.Coins;
-            this.iconCash.IconColor = System.Drawing.Color.Olive;
-            this.iconCash.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconCash.Location = new System.Drawing.Point(692, 12);
-            this.iconCash.Name = "iconCash";
-            this.iconCash.Size = new System.Drawing.Size(32, 32);
-            this.iconCash.TabIndex = 60;
-            this.iconCash.TabStop = false;
-            // 
             // btnVolver
             // 
             this.btnVolver.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
@@ -633,11 +616,11 @@ namespace Presentacion
             this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolver.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnVolver.IconChar = FontAwesome.Sharp.IconChar.CaretLeft;
-            this.btnVolver.IconColor = System.Drawing.SystemColors.WindowText;
+            this.btnVolver.IconColor = System.Drawing.Color.White;
             this.btnVolver.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVolver.IconSize = 30;
             this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(21, 12);
+            this.btnVolver.Location = new System.Drawing.Point(18, 0);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(31, 35);
             this.btnVolver.TabIndex = 31;
@@ -649,28 +632,65 @@ namespace Presentacion
             // 
             this.labelMedicamentosAgotados.AutoSize = true;
             this.labelMedicamentosAgotados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMedicamentosAgotados.ForeColor = System.Drawing.Color.DarkRed;
-            this.labelMedicamentosAgotados.Location = new System.Drawing.Point(309, 25);
+            this.labelMedicamentosAgotados.ForeColor = System.Drawing.Color.Red;
+            this.labelMedicamentosAgotados.Location = new System.Drawing.Point(311, 10);
             this.labelMedicamentosAgotados.Name = "labelMedicamentosAgotados";
             this.labelMedicamentosAgotados.Size = new System.Drawing.Size(225, 16);
             this.labelMedicamentosAgotados.TabIndex = 55;
             this.labelMedicamentosAgotados.Text = "No hay productos registrados!!!";
             this.labelMedicamentosAgotados.Visible = false;
             // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BackColor = System.Drawing.SystemColors.MenuText;
+            this.panel3.Controls.Add(this.btnVolver);
+            this.panel3.Controls.Add(this.labelCash);
+            this.panel3.Controls.Add(this.labelMedicamentosAgotados);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.iconPictureBox1);
+            this.panel3.Controls.Add(this.panelBarraVolver);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Location = new System.Drawing.Point(0, 9);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(795, 36);
+            this.panel3.TabIndex = 63;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(745, 3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(45, 12);
+            this.label6.TabIndex = 59;
+            this.label6.Text = "MONTO";
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconPictureBox1.BackColor = System.Drawing.SystemColors.MenuText;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.Gold;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Coins;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.Gold;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.Location = new System.Drawing.Point(711, 4);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.iconPictureBox1.TabIndex = 57;
+            this.iconPictureBox1.TabStop = false;
+            // 
             // FormGestionProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(800, 599);
-            this.Controls.Add(this.labelMedicamentosAgotados);
-            this.Controls.Add(this.labelTextFondo);
-            this.Controls.Add(this.labelCash);
-            this.Controls.Add(this.iconCash);
+            this.ClientSize = new System.Drawing.Size(795, 599);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panelContenedorGestionProductos);
-            this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.panelBarraVolver);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormGestionProducto";
             this.Text = "s";
@@ -687,9 +707,10 @@ namespace Presentacion
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconCash)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -729,15 +750,16 @@ namespace Presentacion
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label labelTextFondo;
         private System.Windows.Forms.Label labelCash;
-        private FontAwesome.Sharp.IconPictureBox iconCash;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
         private System.Windows.Forms.DataGridViewImageColumn Eliminar;
         private System.Windows.Forms.DataGridViewImageColumn Cash;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantidadVenta;
         private System.Windows.Forms.Label labelMedicamentosAgotados;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label6;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
     }
 }
 

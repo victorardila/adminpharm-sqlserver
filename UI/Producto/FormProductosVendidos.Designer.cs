@@ -154,12 +154,12 @@ namespace Presentacion
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.label4.ForeColor = System.Drawing.Color.Green;
             this.label4.Location = new System.Drawing.Point(3, 4);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(140, 16);
+            this.label4.Size = new System.Drawing.Size(152, 16);
             this.label4.TabIndex = 51;
-            this.label4.Text = "Produtos Vendidos";
+            this.label4.Text = "Produtos Vendidos $";
             // 
             // dataGridViewImageColumn1
             // 
@@ -249,14 +249,14 @@ namespace Presentacion
             // 
             // btnLimpiarHistorial
             // 
-            this.btnLimpiarHistorial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnLimpiarHistorial.BackColor = System.Drawing.Color.DarkRed;
             this.btnLimpiarHistorial.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnLimpiarHistorial.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnLimpiarHistorial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpiarHistorial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiarHistorial.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnLimpiarHistorial.ForeColor = System.Drawing.Color.White;
             this.btnLimpiarHistorial.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            this.btnLimpiarHistorial.IconColor = System.Drawing.Color.Black;
+            this.btnLimpiarHistorial.IconColor = System.Drawing.Color.White;
             this.btnLimpiarHistorial.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnLimpiarHistorial.IconSize = 30;
             this.btnLimpiarHistorial.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

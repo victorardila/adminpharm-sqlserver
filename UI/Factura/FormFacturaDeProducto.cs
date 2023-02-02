@@ -660,6 +660,7 @@ namespace Presentacion
             ContarProductosVendidos();
             ModificarCashCaja();
             ConsultarCajaAbierta();
+            this.Close();
         }
         private void menuTop_MouseDown(object sender, MouseEventArgs e)
         {

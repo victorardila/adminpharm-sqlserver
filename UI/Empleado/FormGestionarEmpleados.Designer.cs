@@ -30,7 +30,6 @@ namespace Presentacion
         private void InitializeComponent()
         {
             this.btnVolver = new FontAwesome.Sharp.IconButton();
-            this.panelBarraVolver = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelRegistrarCliente = new System.Windows.Forms.Panel();
@@ -60,7 +59,7 @@ namespace Presentacion
             this.labelIdentificacion = new System.Windows.Forms.Label();
             this.labelApellido = new System.Windows.Forms.Label();
             this.labelNombre = new System.Windows.Forms.Label();
-            this.panelConsultaDeClientes = new System.Windows.Forms.Panel();
+            this.panelConsultaDeEmpleados = new System.Windows.Forms.Panel();
             this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
             this.labelAdvertencia = new System.Windows.Forms.Label();
             this.textTotalMujeres = new System.Windows.Forms.TextBox();
@@ -79,14 +78,17 @@ namespace Presentacion
             this.comboSexo = new System.Windows.Forms.ComboBox();
             this.labelFiltro = new System.Windows.Forms.Label();
             this.labelConsultaDeEmpleados = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panelRegistrarCliente.SuspendLayout();
-            this.panelConsultaDeClientes.SuspendLayout();
+            this.panelConsultaDeEmpleados.SuspendLayout();
             this.panelSubDataGridFarmacos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEmpleados)).BeginInit();
             this.panelTituloDataGridFarmacos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseEmpleado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchEmpleado)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnVolver
@@ -96,32 +98,24 @@ namespace Presentacion
             this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolver.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnVolver.IconChar = FontAwesome.Sharp.IconChar.CaretLeft;
-            this.btnVolver.IconColor = System.Drawing.SystemColors.WindowText;
+            this.btnVolver.IconColor = System.Drawing.Color.White;
             this.btnVolver.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVolver.IconSize = 30;
             this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(21, 12);
+            this.btnVolver.Location = new System.Drawing.Point(22, 2);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(31, 35);
+            this.btnVolver.Size = new System.Drawing.Size(31, 32);
             this.btnVolver.TabIndex = 37;
             this.btnVolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
-            // panelBarraVolver
-            // 
-            this.panelBarraVolver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.panelBarraVolver.Location = new System.Drawing.Point(10, 12);
-            this.panelBarraVolver.Name = "panelBarraVolver";
-            this.panelBarraVolver.Size = new System.Drawing.Size(7, 35);
-            this.panelBarraVolver.TabIndex = 36;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.label1.Location = new System.Drawing.Point(58, 18);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(58, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(265, 29);
             this.label1.TabIndex = 35;
@@ -130,10 +124,10 @@ namespace Presentacion
             // panel2
             // 
             this.panel2.Controls.Add(this.panelRegistrarCliente);
-            this.panel2.Controls.Add(this.panelConsultaDeClientes);
+            this.panel2.Controls.Add(this.panelConsultaDeEmpleados);
             this.panel2.Location = new System.Drawing.Point(12, 53);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(776, 463);
+            this.panel2.Size = new System.Drawing.Size(770, 463);
             this.panel2.TabIndex = 53;
             // 
             // panelRegistrarCliente
@@ -164,9 +158,9 @@ namespace Presentacion
             this.panelRegistrarCliente.Controls.Add(this.labelIdentificacion);
             this.panelRegistrarCliente.Controls.Add(this.labelApellido);
             this.panelRegistrarCliente.Controls.Add(this.labelNombre);
-            this.panelRegistrarCliente.Location = new System.Drawing.Point(9, 257);
+            this.panelRegistrarCliente.Location = new System.Drawing.Point(3, 252);
             this.panelRegistrarCliente.Name = "panelRegistrarCliente";
-            this.panelRegistrarCliente.Size = new System.Drawing.Size(744, 203);
+            this.panelRegistrarCliente.Size = new System.Drawing.Size(767, 209);
             this.panelRegistrarCliente.TabIndex = 35;
             // 
             // textContraseña
@@ -429,15 +423,15 @@ namespace Presentacion
             this.labelNombre.TabIndex = 0;
             this.labelNombre.Text = "Nombre:";
             // 
-            // panelConsultaDeClientes
+            // panelConsultaDeEmpleados
             // 
-            this.panelConsultaDeClientes.Controls.Add(this.panelSubDataGridFarmacos);
-            this.panelConsultaDeClientes.Controls.Add(this.dataGridEmpleados);
-            this.panelConsultaDeClientes.Controls.Add(this.panelTituloDataGridFarmacos);
-            this.panelConsultaDeClientes.Location = new System.Drawing.Point(3, 3);
-            this.panelConsultaDeClientes.Name = "panelConsultaDeClientes";
-            this.panelConsultaDeClientes.Size = new System.Drawing.Size(750, 248);
-            this.panelConsultaDeClientes.TabIndex = 50;
+            this.panelConsultaDeEmpleados.Controls.Add(this.panelSubDataGridFarmacos);
+            this.panelConsultaDeEmpleados.Controls.Add(this.dataGridEmpleados);
+            this.panelConsultaDeEmpleados.Controls.Add(this.panelTituloDataGridFarmacos);
+            this.panelConsultaDeEmpleados.Location = new System.Drawing.Point(3, 3);
+            this.panelConsultaDeEmpleados.Name = "panelConsultaDeEmpleados";
+            this.panelConsultaDeEmpleados.Size = new System.Drawing.Size(767, 248);
+            this.panelConsultaDeEmpleados.TabIndex = 50;
             // 
             // panelSubDataGridFarmacos
             // 
@@ -452,7 +446,7 @@ namespace Presentacion
             this.panelSubDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(0, 226);
             this.panelSubDataGridFarmacos.Name = "panelSubDataGridFarmacos";
-            this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(750, 22);
+            this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(767, 22);
             this.panelSubDataGridFarmacos.TabIndex = 51;
             // 
             // labelAdvertencia
@@ -462,9 +456,9 @@ namespace Presentacion
             this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
             this.labelAdvertencia.Location = new System.Drawing.Point(487, 1);
             this.labelAdvertencia.Name = "labelAdvertencia";
-            this.labelAdvertencia.Size = new System.Drawing.Size(225, 16);
+            this.labelAdvertencia.Size = new System.Drawing.Size(234, 16);
             this.labelAdvertencia.TabIndex = 55;
-            this.labelAdvertencia.Text = "No hay productos registrados!!!";
+            this.labelAdvertencia.Text = "No hay empleados registrados!!!";
             // 
             // textTotalMujeres
             // 
@@ -526,7 +520,7 @@ namespace Presentacion
             this.dataGridEmpleados.Location = new System.Drawing.Point(0, 24);
             this.dataGridEmpleados.Name = "dataGridEmpleados";
             this.dataGridEmpleados.RowHeadersVisible = false;
-            this.dataGridEmpleados.Size = new System.Drawing.Size(750, 204);
+            this.dataGridEmpleados.Size = new System.Drawing.Size(767, 204);
             this.dataGridEmpleados.TabIndex = 50;
             this.dataGridEmpleados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEmpleados_CellClick);
             // 
@@ -551,7 +545,7 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTituloDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
             this.panelTituloDataGridFarmacos.Name = "panelTituloDataGridFarmacos";
-            this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(750, 24);
+            this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(767, 24);
             this.panelTituloDataGridFarmacos.TabIndex = 49;
             // 
             // labelAdvertenciaEmpleado
@@ -645,22 +639,41 @@ namespace Presentacion
             this.labelConsultaDeEmpleados.TabIndex = 51;
             this.labelConsultaDeEmpleados.Text = "Consultar empleados";
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.SystemColors.MenuText;
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btnVolver);
+            this.panel1.Location = new System.Drawing.Point(0, 8);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(795, 36);
+            this.panel1.TabIndex = 64;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.panel3.Location = new System.Drawing.Point(10, 1);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(7, 35);
+            this.panel3.TabIndex = 54;
+            // 
             // FormGestionarEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 525);
+            this.ClientSize = new System.Drawing.Size(794, 525);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.panelBarraVolver);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormGestionarEmpleados";
             this.Text = "FormGestionarEmpleados";
             this.panel2.ResumeLayout(false);
             this.panelRegistrarCliente.ResumeLayout(false);
             this.panelRegistrarCliente.PerformLayout();
-            this.panelConsultaDeClientes.ResumeLayout(false);
+            this.panelConsultaDeEmpleados.ResumeLayout(false);
             this.panelSubDataGridFarmacos.ResumeLayout(false);
             this.panelSubDataGridFarmacos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEmpleados)).EndInit();
@@ -668,15 +681,15 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseEmpleado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchEmpleado)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private FontAwesome.Sharp.IconButton btnVolver;
-        private System.Windows.Forms.Panel panelBarraVolver;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panelRegistrarCliente;
@@ -697,7 +710,7 @@ namespace Presentacion
         private System.Windows.Forms.Label labelIdentificacion;
         private System.Windows.Forms.Label labelApellido;
         private System.Windows.Forms.Label labelNombre;
-        private System.Windows.Forms.Panel panelConsultaDeClientes;
+        private System.Windows.Forms.Panel panelConsultaDeEmpleados;
         private System.Windows.Forms.Panel panelSubDataGridFarmacos;
         private System.Windows.Forms.TextBox textTotal;
         private System.Windows.Forms.Label labelTotalFarmacos;
@@ -725,5 +738,7 @@ namespace Presentacion
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridViewImageColumn Eliminar;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel3;
     }
 }

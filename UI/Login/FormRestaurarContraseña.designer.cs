@@ -124,6 +124,7 @@ namespace Presentacion
             // 
             // panel2
             // 
+            this.panel2.BackgroundImage = global::Presentacion.Properties.Resources.Fondo;
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Location = new System.Drawing.Point(0, 57);
             this.panel2.Name = "panel2";
@@ -133,6 +134,7 @@ namespace Presentacion
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackgroundImage = global::Presentacion.Properties.Resources.Fondo;
             this.pictureBox1.Image = global::Presentacion.Properties.Resources.Contraseña;
             this.pictureBox1.Location = new System.Drawing.Point(110, 3);
             this.pictureBox1.Name = "pictureBox1";

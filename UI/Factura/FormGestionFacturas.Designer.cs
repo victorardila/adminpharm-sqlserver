@@ -30,7 +30,6 @@ namespace Presentacion
         private void InitializeComponent()
         {
             this.btnVolver = new FontAwesome.Sharp.IconButton();
-            this.panelBarraVolver = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelContenedorGestionProductos = new System.Windows.Forms.Panel();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
@@ -54,6 +53,8 @@ namespace Presentacion
             this.comboIdCaja = new System.Windows.Forms.ComboBox();
             this.labelFiltro = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panelContenedorGestionProductos.SuspendLayout();
             this.panelConsultaDeProductos.SuspendLayout();
             this.panelSubDataGridFarmacos.SuspendLayout();
@@ -61,6 +62,7 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseFactura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchFactura)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnVolver
@@ -70,11 +72,11 @@ namespace Presentacion
             this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolver.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnVolver.IconChar = FontAwesome.Sharp.IconChar.CaretLeft;
-            this.btnVolver.IconColor = System.Drawing.SystemColors.WindowText;
+            this.btnVolver.IconColor = System.Drawing.Color.White;
             this.btnVolver.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVolver.IconSize = 30;
             this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(19, 6);
+            this.btnVolver.Location = new System.Drawing.Point(19, 0);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(31, 35);
             this.btnVolver.TabIndex = 37;
@@ -82,20 +84,12 @@ namespace Presentacion
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
-            // panelBarraVolver
-            // 
-            this.panelBarraVolver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.panelBarraVolver.Location = new System.Drawing.Point(8, 6);
-            this.panelBarraVolver.Name = "panelBarraVolver";
-            this.panelBarraVolver.Size = new System.Drawing.Size(7, 35);
-            this.panelBarraVolver.TabIndex = 36;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.label1.Location = new System.Drawing.Point(56, 9);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(57, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(233, 29);
             this.label1.TabIndex = 35;
@@ -111,7 +105,7 @@ namespace Presentacion
             this.panelContenedorGestionProductos.Controls.Add(this.panelConsultaDeProductos);
             this.panelContenedorGestionProductos.Location = new System.Drawing.Point(19, 58);
             this.panelContenedorGestionProductos.Name = "panelContenedorGestionProductos";
-            this.panelContenedorGestionProductos.Size = new System.Drawing.Size(755, 397);
+            this.panelContenedorGestionProductos.Size = new System.Drawing.Size(749, 397);
             this.panelContenedorGestionProductos.TabIndex = 54;
             // 
             // iconButton1
@@ -167,7 +161,7 @@ namespace Presentacion
             this.panelConsultaDeProductos.Controls.Add(this.panelTituloDataGridFarmacos);
             this.panelConsultaDeProductos.Location = new System.Drawing.Point(3, 3);
             this.panelConsultaDeProductos.Name = "panelConsultaDeProductos";
-            this.panelConsultaDeProductos.Size = new System.Drawing.Size(750, 349);
+            this.panelConsultaDeProductos.Size = new System.Drawing.Size(746, 349);
             this.panelConsultaDeProductos.TabIndex = 49;
             // 
             // panelSubDataGridFarmacos
@@ -257,7 +251,7 @@ namespace Presentacion
             this.dataGridFacturas.Location = new System.Drawing.Point(0, 23);
             this.dataGridFacturas.Name = "dataGridFacturas";
             this.dataGridFacturas.RowHeadersVisible = false;
-            this.dataGridFacturas.Size = new System.Drawing.Size(750, 304);
+            this.dataGridFacturas.Size = new System.Drawing.Size(743, 304);
             this.dataGridFacturas.TabIndex = 50;
             // 
             // Eliminar
@@ -281,7 +275,7 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTituloDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
             this.panelTituloDataGridFarmacos.Name = "panelTituloDataGridFarmacos";
-            this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(750, 24);
+            this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(746, 24);
             this.panelTituloDataGridFarmacos.TabIndex = 49;
             // 
             // labelAdvertenciaCliente
@@ -372,15 +366,34 @@ namespace Presentacion
             this.label4.TabIndex = 51;
             this.label4.Text = "Consultar Facturas";
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.SystemColors.MenuText;
+            this.panel1.Controls.Add(this.btnVolver);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Location = new System.Drawing.Point(0, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(795, 36);
+            this.panel1.TabIndex = 61;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.panel2.Location = new System.Drawing.Point(10, 1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(7, 35);
+            this.panel2.TabIndex = 54;
+            // 
             // FormGestionFacturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 494);
+            this.ClientSize = new System.Drawing.Size(794, 494);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelContenedorGestionProductos);
-            this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.panelBarraVolver);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormGestionFacturas";
             this.Text = "FormGestionFacturas";
@@ -393,15 +406,15 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseFactura)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchFactura)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private FontAwesome.Sharp.IconButton btnVolver;
-        private System.Windows.Forms.Panel panelBarraVolver;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelContenedorGestionProductos;
         private FontAwesome.Sharp.IconButton btnEliminarHistorial;
@@ -425,5 +438,7 @@ namespace Presentacion
         private System.Windows.Forms.TextBox textTotalEfectivo;
         private System.Windows.Forms.Label labelTotalEfectivo;
         private FontAwesome.Sharp.IconButton iconButton1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

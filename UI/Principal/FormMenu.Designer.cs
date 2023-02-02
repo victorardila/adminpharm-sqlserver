@@ -101,7 +101,7 @@ namespace Presentacion
             this.panelHeaderbar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeaderbar.Location = new System.Drawing.Point(0, 0);
             this.panelHeaderbar.Name = "panelHeaderbar";
-            this.panelHeaderbar.Size = new System.Drawing.Size(970, 27);
+            this.panelHeaderbar.Size = new System.Drawing.Size(980, 27);
             this.panelHeaderbar.TabIndex = 1;
             // 
             // btnWindowMaximize
@@ -113,7 +113,7 @@ namespace Presentacion
             this.btnWindowMaximize.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnWindowMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnWindowMaximize.IconSize = 20;
-            this.btnWindowMaximize.Location = new System.Drawing.Point(917, 4);
+            this.btnWindowMaximize.Location = new System.Drawing.Point(927, 4);
             this.btnWindowMaximize.Name = "btnWindowMaximize";
             this.btnWindowMaximize.Size = new System.Drawing.Size(20, 20);
             this.btnWindowMaximize.TabIndex = 4;
@@ -129,7 +129,7 @@ namespace Presentacion
             this.btnWindowRestore.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnWindowRestore.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnWindowRestore.IconSize = 20;
-            this.btnWindowRestore.Location = new System.Drawing.Point(918, 4);
+            this.btnWindowRestore.Location = new System.Drawing.Point(928, 4);
             this.btnWindowRestore.Name = "btnWindowRestore";
             this.btnWindowRestore.Size = new System.Drawing.Size(20, 20);
             this.btnWindowRestore.TabIndex = 5;
@@ -145,7 +145,7 @@ namespace Presentacion
             this.btnWindowCerrar.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnWindowCerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnWindowCerrar.IconSize = 20;
-            this.btnWindowCerrar.Location = new System.Drawing.Point(941, 4);
+            this.btnWindowCerrar.Location = new System.Drawing.Point(951, 4);
             this.btnWindowCerrar.Name = "btnWindowCerrar";
             this.btnWindowCerrar.Size = new System.Drawing.Size(20, 20);
             this.btnWindowCerrar.TabIndex = 3;
@@ -161,7 +161,7 @@ namespace Presentacion
             this.btnWindowMinimize.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnWindowMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnWindowMinimize.IconSize = 20;
-            this.btnWindowMinimize.Location = new System.Drawing.Point(895, 4);
+            this.btnWindowMinimize.Location = new System.Drawing.Point(905, 4);
             this.btnWindowMinimize.Name = "btnWindowMinimize";
             this.btnWindowMinimize.Size = new System.Drawing.Size(20, 20);
             this.btnWindowMinimize.TabIndex = 1;
@@ -599,14 +599,14 @@ namespace Presentacion
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(186, 27);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(784, 25);
+            this.panelHeader.Size = new System.Drawing.Size(794, 25);
             this.panelHeader.TabIndex = 3;
             // 
             // labelAvsio
             // 
             this.labelAvsio.AutoSize = true;
             this.labelAvsio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAvsio.Location = new System.Drawing.Point(106, 7);
+            this.labelAvsio.Location = new System.Drawing.Point(328, 6);
             this.labelAvsio.Name = "labelAvsio";
             this.labelAvsio.Size = new System.Drawing.Size(91, 13);
             this.labelAvsio.TabIndex = 11;
@@ -632,7 +632,7 @@ namespace Presentacion
             this.iconThemeSun.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
             this.iconThemeSun.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconThemeSun.IconSize = 24;
-            this.iconThemeSun.Location = new System.Drawing.Point(756, 0);
+            this.iconThemeSun.Location = new System.Drawing.Point(766, 1);
             this.iconThemeSun.Name = "iconThemeSun";
             this.iconThemeSun.Size = new System.Drawing.Size(24, 25);
             this.iconThemeSun.TabIndex = 9;
@@ -647,7 +647,7 @@ namespace Presentacion
             this.iconThemeMoon.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
             this.iconThemeMoon.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconThemeMoon.IconSize = 24;
-            this.iconThemeMoon.Location = new System.Drawing.Point(756, 0);
+            this.iconThemeMoon.Location = new System.Drawing.Point(766, 0);
             this.iconThemeMoon.Name = "iconThemeMoon";
             this.iconThemeMoon.Size = new System.Drawing.Size(24, 25);
             this.iconThemeMoon.TabIndex = 8;
@@ -658,7 +658,7 @@ namespace Presentacion
             this.labelHeaderTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelHeaderTheme.AutoSize = true;
             this.labelHeaderTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHeaderTheme.Location = new System.Drawing.Point(668, 5);
+            this.labelHeaderTheme.Location = new System.Drawing.Point(678, 4);
             this.labelHeaderTheme.Name = "labelHeaderTheme";
             this.labelHeaderTheme.Size = new System.Drawing.Size(60, 16);
             this.labelHeaderTheme.TabIndex = 6;
@@ -673,7 +673,7 @@ namespace Presentacion
             this.btnModeLight.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
             this.btnModeLight.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnModeLight.IconSize = 24;
-            this.btnModeLight.Location = new System.Drawing.Point(729, 0);
+            this.btnModeLight.Location = new System.Drawing.Point(739, 1);
             this.btnModeLight.Name = "btnModeLight";
             this.btnModeLight.Size = new System.Drawing.Size(24, 25);
             this.btnModeLight.TabIndex = 6;
@@ -688,7 +688,7 @@ namespace Presentacion
             this.btnModeDark.IconColor = System.Drawing.Color.White;
             this.btnModeDark.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnModeDark.IconSize = 24;
-            this.btnModeDark.Location = new System.Drawing.Point(729, 0);
+            this.btnModeDark.Location = new System.Drawing.Point(739, 0);
             this.btnModeDark.Name = "btnModeDark";
             this.btnModeDark.Size = new System.Drawing.Size(24, 25);
             this.btnModeDark.TabIndex = 7;
@@ -700,7 +700,7 @@ namespace Presentacion
             this.panelContenedorInterno.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedorInterno.Location = new System.Drawing.Point(186, 52);
             this.panelContenedorInterno.Name = "panelContenedorInterno";
-            this.panelContenedorInterno.Size = new System.Drawing.Size(784, 448);
+            this.panelContenedorInterno.Size = new System.Drawing.Size(794, 448);
             this.panelContenedorInterno.TabIndex = 4;
             // 
             // FormMenu
@@ -708,7 +708,7 @@ namespace Presentacion
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(970, 500);
+            this.ClientSize = new System.Drawing.Size(980, 500);
             this.Controls.Add(this.panelContenedorInterno);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelSidebar);

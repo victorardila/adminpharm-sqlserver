@@ -123,6 +123,8 @@ namespace Presentacion
             this.labelInicioSesion.AutoSize = true;
             this.labelInicioSesion.BackColor = System.Drawing.Color.Transparent;
             this.labelInicioSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelInicioSesion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.labelInicioSesion.Image = global::Presentacion.Properties.Resources.Fondo;
             this.labelInicioSesion.Location = new System.Drawing.Point(129, 102);
             this.labelInicioSesion.Name = "labelInicioSesion";
             this.labelInicioSesion.Size = new System.Drawing.Size(115, 20);
@@ -132,6 +134,8 @@ namespace Presentacion
             // pictureLogo
             // 
             this.pictureLogo.BackColor = System.Drawing.Color.Transparent;
+            this.pictureLogo.BackgroundImage = global::Presentacion.Properties.Resources.Fondo;
+            this.pictureLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureLogo.Image")));
             this.pictureLogo.Location = new System.Drawing.Point(131, 15);
             this.pictureLogo.Name = "pictureLogo";

@@ -215,7 +215,7 @@ namespace Presentacion
             this.labelTitleFactura.AutoSize = true;
             this.labelTitleFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTitleFactura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
-            this.labelTitleFactura.Location = new System.Drawing.Point(22, 36);
+            this.labelTitleFactura.Location = new System.Drawing.Point(6, 34);
             this.labelTitleFactura.Name = "labelTitleFactura";
             this.labelTitleFactura.Size = new System.Drawing.Size(260, 29);
             this.labelTitleFactura.TabIndex = 61;

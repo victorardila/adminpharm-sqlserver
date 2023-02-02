@@ -270,7 +270,7 @@ namespace Presentacion
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnModificar.IconChar = FontAwesome.Sharp.IconChar.Pen;
-            this.btnModificar.IconColor = System.Drawing.Color.Black;
+            this.btnModificar.IconColor = System.Drawing.Color.Indigo;
             this.btnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnModificar.IconSize = 30;
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -292,7 +292,7 @@ namespace Presentacion
             this.btnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnRegistrar.IconChar = FontAwesome.Sharp.IconChar.HouseMedical;
-            this.btnRegistrar.IconColor = System.Drawing.Color.Black;
+            this.btnRegistrar.IconColor = System.Drawing.Color.Navy;
             this.btnRegistrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRegistrar.IconSize = 30;
             this.btnRegistrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -364,6 +364,7 @@ namespace Presentacion
             // 
             // panelTituloDeRegistroProductos
             // 
+            this.panelTituloDeRegistroProductos.BackColor = System.Drawing.Color.Black;
             this.panelTituloDeRegistroProductos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTituloDeRegistroProductos.Controls.Add(this.btnClose);
             this.panelTituloDeRegistroProductos.Controls.Add(this.textSearch);
@@ -377,11 +378,10 @@ namespace Presentacion
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.SystemColors.Control;
             this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClose.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnClose.ForeColor = System.Drawing.Color.Red;
             this.btnClose.IconChar = FontAwesome.Sharp.IconChar.X;
-            this.btnClose.IconColor = System.Drawing.Color.DarkRed;
+            this.btnClose.IconColor = System.Drawing.Color.Red;
             this.btnClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnClose.IconSize = 18;
             this.btnClose.Location = new System.Drawing.Point(480, 2);
@@ -404,11 +404,9 @@ namespace Presentacion
             // 
             // btnSearch
             // 
-            this.btnSearch.BackColor = System.Drawing.SystemColors.Control;
             this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSearch.IconChar = FontAwesome.Sharp.IconChar.Search;
-            this.btnSearch.IconColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearch.IconColor = System.Drawing.Color.White;
             this.btnSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSearch.IconSize = 20;
             this.btnSearch.Location = new System.Drawing.Point(499, 1);
@@ -422,7 +420,7 @@ namespace Presentacion
             // 
             this.labelTitle.AutoSize = true;
             this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.ForeColor = System.Drawing.Color.Black;
+            this.labelTitle.ForeColor = System.Drawing.Color.White;
             this.labelTitle.Location = new System.Drawing.Point(4, 4);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(138, 16);

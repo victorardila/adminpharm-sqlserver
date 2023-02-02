@@ -179,11 +179,14 @@
             // 
             // lblFecha
             // 
+            this.lblFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFecha.AutoSize = true;
             this.lblFecha.BackColor = System.Drawing.Color.Transparent;
             this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFecha.ForeColor = System.Drawing.Color.Black;
-            this.lblFecha.Location = new System.Drawing.Point(250, 371);
+            this.lblFecha.Location = new System.Drawing.Point(208, 371);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(490, 39);
             this.lblFecha.TabIndex = 29;
@@ -195,7 +198,7 @@
             this.lblhora.BackColor = System.Drawing.Color.Transparent;
             this.lblhora.Font = new System.Drawing.Font("Microsoft Sans Serif", 80F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblhora.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.lblhora.Location = new System.Drawing.Point(252, 251);
+            this.lblhora.Location = new System.Drawing.Point(216, 251);
             this.lblhora.Name = "lblhora";
             this.lblhora.Size = new System.Drawing.Size(470, 120);
             this.lblhora.TabIndex = 28;
@@ -208,6 +211,7 @@
             // 
             // panel13
             // 
+            this.panel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel13.Controls.Add(this.labelEstantes);
             this.panel13.Controls.Add(this.labelTitleAcerca);
@@ -450,6 +454,7 @@
             // 
             // panel7
             // 
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel7.Controls.Add(this.iconPictureBox6);
             this.panel7.Controls.Add(this.labelEmpleados);
@@ -475,6 +480,8 @@
             // 
             // labelEmpleados
             // 
+            this.labelEmpleados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelEmpleados.FlatAppearance.BorderSize = 0;
             this.labelEmpleados.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.labelEmpleados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
@@ -527,7 +534,7 @@
             this.btnRefresh.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnRefresh.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnRefresh.IconSize = 30;
-            this.btnRefresh.Location = new System.Drawing.Point(885, 1);
+            this.btnRefresh.Location = new System.Drawing.Point(762, 1);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(27, 28);
             this.btnRefresh.TabIndex = 40;
@@ -541,7 +548,7 @@
             this.labelRefresh.AutoSize = true;
             this.labelRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelRefresh.ForeColor = System.Drawing.Color.Black;
-            this.labelRefresh.Location = new System.Drawing.Point(846, 31);
+            this.labelRefresh.Location = new System.Drawing.Point(723, 31);
             this.labelRefresh.Name = "labelRefresh";
             this.labelRefresh.Size = new System.Drawing.Size(105, 16);
             this.labelRefresh.TabIndex = 41;
@@ -550,14 +557,15 @@
             // 
             // panel4
             // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.SystemColors.Control;
             this.panel4.Controls.Add(this.iconPapelera);
             this.panel4.Controls.Add(this.label15);
             this.panel4.Controls.Add(this.btnRefresh);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(988, 30);
+            this.panel4.Size = new System.Drawing.Size(865, 30);
             this.panel4.TabIndex = 42;
             // 
             // iconPapelera
@@ -575,7 +583,7 @@
             this.iconPapelera.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.iconPapelera.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconPapelera.IconSize = 30;
-            this.iconPapelera.Location = new System.Drawing.Point(918, 1);
+            this.iconPapelera.Location = new System.Drawing.Point(795, 1);
             this.iconPapelera.Name = "iconPapelera";
             this.iconPapelera.Size = new System.Drawing.Size(27, 28);
             this.iconPapelera.TabIndex = 41;
@@ -588,7 +596,7 @@
             this.labelPapelera.AutoSize = true;
             this.labelPapelera.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPapelera.ForeColor = System.Drawing.Color.Black;
-            this.labelPapelera.Location = new System.Drawing.Point(901, 31);
+            this.labelPapelera.Location = new System.Drawing.Point(778, 31);
             this.labelPapelera.Name = "labelPapelera";
             this.labelPapelera.Size = new System.Drawing.Size(64, 16);
             this.labelPapelera.TabIndex = 43;
@@ -597,6 +605,7 @@
             // 
             // panel5
             // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.labelBodega);
             this.panel5.Controls.Add(this.label1);
@@ -662,7 +671,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(988, 610);
+            this.ClientSize = new System.Drawing.Size(865, 610);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.labelPapelera);
             this.Controls.Add(this.labelRefresh);

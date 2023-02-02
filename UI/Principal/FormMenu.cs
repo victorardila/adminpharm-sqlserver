@@ -29,6 +29,10 @@ namespace Presentacion
             InitializeComponent();
             customizeDesign();
             AbrirFormulario<FormGestionCaja>();
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            this.DoubleBuffered = true;
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
         public void ValidarUsuario()
         {
@@ -70,6 +74,7 @@ namespace Presentacion
         }
         private void AbrirSumadorDelSistema()
         {
+            labelHeaderRuta.Text = "Inicio";
             AbrirFormulario<InicioResumen>();
         }
         private void btnOpenSidebar_Click(object sender, EventArgs e)
@@ -162,6 +167,7 @@ namespace Presentacion
         
         private void btnGestionCaja_Click(object sender, EventArgs e)
         {
+            labelHeaderRuta.Text = "Inicio > Gestion Caja Registradora";
             panelSelectionCaja.Location = btnGestionCaja.Location;
             panelSelectionCaja.Visible = true;
             panelSelectionAjustes.Visible = false;
@@ -176,6 +182,7 @@ namespace Presentacion
         
         private void btnGestionProductos_Click(object sender, EventArgs e)
         {
+            labelHeaderRuta.Text = "Inicio > Gestion Productos";
             showSubMenu(subMenuProductos);
             panelSelectionProducto.Location = btnGestionProductos.Location;
             panelSelectionCaja.Visible = false;
@@ -187,16 +194,19 @@ namespace Presentacion
         }
         private void btnProductos_Click(object sender, EventArgs e)
         {
+            labelHeaderRuta.Text = "Inicio > Gestion Productos > Productos";
             CerrarFormulariosCiclo();
             AbrirFormulario<FormGestionProducto>();
         }
         private void btnEstantes_Click(object sender, EventArgs e)
         {
+            labelHeaderRuta.Text = "Inicio > Gestion Productos > Estantes";
             CerrarFormulariosCiclo();
             AbrirFormulario<FormGestionDeEstantes>();
         }
         private void btnBodega_Click(object sender, EventArgs e)
         {
+            labelHeaderRuta.Text = "Inicio > Gestion Productos > Bodega";
             CerrarFormulariosCiclo();
             AbrirFormulario<FormGestionBodega>();
         }
@@ -205,6 +215,7 @@ namespace Presentacion
         
         private void btnGestionUsuarios_Click(object sender, EventArgs e)
         {
+            labelHeaderRuta.Text = "Inicio > Gestion Usuarios";
             showSubMenu(subMenuUsuarios);
             panelSelectionUsuarios.Location = btnGestionUsuarios.Location;
             panelSelectionCaja.Visible = false;
@@ -215,17 +226,20 @@ namespace Presentacion
         }
         private void btnClientes_Click(object sender, EventArgs e)
         {
+            labelHeaderRuta.Text = "Inicio > Gestion Usuarios > Clientes";
             CerrarFormulariosCiclo();
             AbrirFormulario<FormGestionClientes>();
         }
         private void btnEmpleados_Click(object sender, EventArgs e)
         {
+            labelHeaderRuta.Text = "Inicio > Gestion Usuarios > Empleados";
             CerrarFormulariosCiclo();
             AbrirFormulario<FormGestionarEmpleados>();
         }
 //**********************************************GESTION DE FACTURA******************************************************
         private void btnGestionFactura_Click(object sender, EventArgs e)
         {
+            labelHeaderRuta.Text = "Inicio > Gestion Factura";
             panelSelectionFactura.Location = btnGestionFactura.Location;
             panelSelectionFactura.Visible = true;
             panelSelectionCaja.Visible = false;
@@ -238,6 +252,7 @@ namespace Presentacion
 //**********************************************GESTION DE AJUSTES******************************************************
         private void btnAjustes_Click(object sender, EventArgs e)
         {
+            labelHeaderRuta.Text = "Inicio > Ajustes";
             panelSelectionAjustes.Location = btnAjustes.Location;
             panelSelectionAjustes.Visible = true;
             panelSelectionCaja.Visible = false;
@@ -250,11 +265,17 @@ namespace Presentacion
 //**********************************************************************************************************************
         private void btnDarkMode_Click(object sender, EventArgs e)
         {
-           
+            btnModeDark.Visible = false;
+            iconThemeMoon.Visible = false;
+            btnModeLight.Visible = true;
+            iconThemeSun.Visible = true;
         }
         private void btnLightMode_Click(object sender, EventArgs e)
         {
-
+            btnModeLight.Visible = false;
+            iconThemeSun.Visible = false;
+            btnModeDark.Visible = true;
+            iconThemeMoon.Visible = true;
         }
         //funcion Abrir Formularios
         private void AbrirFormulario<MiForm>() where MiForm : Form, new()
