@@ -123,6 +123,8 @@ namespace Presentacion
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.panelRegistrarCliente);
             this.panel2.Controls.Add(this.panelConsultaDeEmpleados);
             this.panel2.Location = new System.Drawing.Point(12, 53);
@@ -132,6 +134,8 @@ namespace Presentacion
             // 
             // panelRegistrarCliente
             // 
+            this.panelRegistrarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelRegistrarCliente.Controls.Add(this.textContraseña);
             this.panelRegistrarCliente.Controls.Add(this.label5);
             this.panelRegistrarCliente.Controls.Add(this.label4);
@@ -183,7 +187,7 @@ namespace Presentacion
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(5, 149);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(127, 16);
@@ -194,7 +198,7 @@ namespace Presentacion
             // 
             this.labelCodigoEmpleado.AutoSize = true;
             this.labelCodigoEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCodigoEmpleado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.labelCodigoEmpleado.ForeColor = System.Drawing.Color.Black;
             this.labelCodigoEmpleado.Location = new System.Drawing.Point(646, 3);
             this.labelCodigoEmpleado.Name = "labelCodigoEmpleado";
             this.labelCodigoEmpleado.Size = new System.Drawing.Size(92, 16);
@@ -205,7 +209,7 @@ namespace Presentacion
             // 
             this.labelCodigo.AutoSize = true;
             this.labelCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.labelCodigo.ForeColor = System.Drawing.Color.Black;
             this.labelCodigo.Location = new System.Drawing.Point(482, 3);
             this.labelCodigo.Name = "labelCodigo";
             this.labelCodigo.Size = new System.Drawing.Size(158, 16);
@@ -253,7 +257,7 @@ namespace Presentacion
             // 
             this.labelRegistroDeEmpleados.AutoSize = true;
             this.labelRegistroDeEmpleados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRegistroDeEmpleados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.labelRegistroDeEmpleados.ForeColor = System.Drawing.Color.Black;
             this.labelRegistroDeEmpleados.Location = new System.Drawing.Point(4, 3);
             this.labelRegistroDeEmpleados.Name = "labelRegistroDeEmpleados";
             this.labelRegistroDeEmpleados.Size = new System.Drawing.Size(154, 16);
@@ -425,6 +429,8 @@ namespace Presentacion
             // 
             // panelConsultaDeEmpleados
             // 
+            this.panelConsultaDeEmpleados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelConsultaDeEmpleados.Controls.Add(this.panelSubDataGridFarmacos);
             this.panelConsultaDeEmpleados.Controls.Add(this.dataGridEmpleados);
             this.panelConsultaDeEmpleados.Controls.Add(this.panelTituloDataGridFarmacos);
@@ -443,8 +449,8 @@ namespace Presentacion
             this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalHombres);
             this.panelSubDataGridFarmacos.Controls.Add(this.textTotal);
             this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalFarmacos);
-            this.panelSubDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(0, 226);
+            this.panelSubDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
             this.panelSubDataGridFarmacos.Name = "panelSubDataGridFarmacos";
             this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(767, 22);
             this.panelSubDataGridFarmacos.TabIndex = 51;
@@ -514,6 +520,8 @@ namespace Presentacion
             // dataGridEmpleados
             // 
             this.dataGridEmpleados.AllowUserToAddRows = false;
+            this.dataGridEmpleados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridEmpleados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Eliminar});
@@ -534,6 +542,8 @@ namespace Presentacion
             // 
             // panelTituloDataGridFarmacos
             // 
+            this.panelTituloDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTituloDataGridFarmacos.Controls.Add(this.labelAdvertenciaEmpleado);
             this.panelTituloDataGridFarmacos.Controls.Add(this.btnCloseEmpleado);
@@ -542,7 +552,6 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Controls.Add(this.comboSexo);
             this.panelTituloDataGridFarmacos.Controls.Add(this.labelFiltro);
             this.panelTituloDataGridFarmacos.Controls.Add(this.labelConsultaDeEmpleados);
-            this.panelTituloDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTituloDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
             this.panelTituloDataGridFarmacos.Name = "panelTituloDataGridFarmacos";
             this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(767, 24);
@@ -632,7 +641,7 @@ namespace Presentacion
             // 
             this.labelConsultaDeEmpleados.AutoSize = true;
             this.labelConsultaDeEmpleados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelConsultaDeEmpleados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.labelConsultaDeEmpleados.ForeColor = System.Drawing.Color.Black;
             this.labelConsultaDeEmpleados.Location = new System.Drawing.Point(3, 4);
             this.labelConsultaDeEmpleados.Name = "labelConsultaDeEmpleados";
             this.labelConsultaDeEmpleados.Size = new System.Drawing.Size(155, 16);

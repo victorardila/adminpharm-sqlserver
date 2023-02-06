@@ -26,7 +26,6 @@ namespace Presentacion
         CajaRegistradoraService cajaRegistradoraService;
         EstanteService estanteService;
         List<Estante> estantes;
-
         int cantidadDrogueria;
         bool cajaAbierta;
         string referenciaProducto;

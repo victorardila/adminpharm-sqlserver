@@ -366,7 +366,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="faticon.ico" />
-    <None Include="Resources\Sesion.gif" />
     <None Include="Resources\Sesion2.gif" />
     <None Include="Resources\Fondo2.jpg" />
     <None Include="Resources\LectoraDeBarras.gif" />

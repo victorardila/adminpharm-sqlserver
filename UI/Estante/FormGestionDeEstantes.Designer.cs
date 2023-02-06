@@ -30,6 +30,10 @@ namespace Presentacion
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnVolver = new FontAwesome.Sharp.IconButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panelConsultaDeProductos = new System.Windows.Forms.Panel();
             this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
             this.labelAdvertencia = new System.Windows.Forms.Label();
@@ -45,21 +49,15 @@ namespace Presentacion
             this.comboEstado = new System.Windows.Forms.ComboBox();
             this.labelFiltro = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.panelContenedorGestionProductos = new System.Windows.Forms.Panel();
             this.btnEliminarEstantes = new FontAwesome.Sharp.IconButton();
             this.btnRegistrarEstantes = new FontAwesome.Sharp.IconButton();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnVolver = new FontAwesome.Sharp.IconButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.panelConsultaDeProductos.SuspendLayout();
             this.panelSubDataGridFarmacos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).BeginInit();
             this.panelTituloDataGridFarmacos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseEstante)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchEstante)).BeginInit();
-            this.panelContenedorGestionProductos.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -72,245 +70,6 @@ namespace Presentacion
             this.label1.Size = new System.Drawing.Size(233, 29);
             this.label1.TabIndex = 32;
             this.label1.Text = "Gestionar Estantes";
-            // 
-            // panelConsultaDeProductos
-            // 
-            this.panelConsultaDeProductos.Controls.Add(this.panelSubDataGridFarmacos);
-            this.panelConsultaDeProductos.Controls.Add(this.dataGridEstantes);
-            this.panelConsultaDeProductos.Controls.Add(this.panelTituloDataGridFarmacos);
-            this.panelConsultaDeProductos.Location = new System.Drawing.Point(3, 3);
-            this.panelConsultaDeProductos.Name = "panelConsultaDeProductos";
-            this.panelConsultaDeProductos.Size = new System.Drawing.Size(750, 349);
-            this.panelConsultaDeProductos.TabIndex = 49;
-            // 
-            // panelSubDataGridFarmacos
-            // 
-            this.panelSubDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelSubDataGridFarmacos.Controls.Add(this.labelAdvertencia);
-            this.panelSubDataGridFarmacos.Controls.Add(this.textTotalEstantes);
-            this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalFarmacos);
-            this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(0, 324);
-            this.panelSubDataGridFarmacos.Name = "panelSubDataGridFarmacos";
-            this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(750, 22);
-            this.panelSubDataGridFarmacos.TabIndex = 51;
-            // 
-            // labelAdvertencia
-            // 
-            this.labelAdvertencia.AutoSize = true;
-            this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
-            this.labelAdvertencia.Location = new System.Drawing.Point(548, 2);
-            this.labelAdvertencia.Name = "labelAdvertencia";
-            this.labelAdvertencia.Size = new System.Drawing.Size(195, 16);
-            this.labelAdvertencia.TabIndex = 87;
-            this.labelAdvertencia.Text = "No hay datos registrados!!!";
-            this.labelAdvertencia.Visible = false;
-            // 
-            // textTotalEstantes
-            // 
-            this.textTotalEstantes.Location = new System.Drawing.Point(95, 0);
-            this.textTotalEstantes.Name = "textTotalEstantes";
-            this.textTotalEstantes.Size = new System.Drawing.Size(47, 20);
-            this.textTotalEstantes.TabIndex = 49;
-            this.textTotalEstantes.Text = "0";
-            // 
-            // labelTotalFarmacos
-            // 
-            this.labelTotalFarmacos.AutoSize = true;
-            this.labelTotalFarmacos.Location = new System.Drawing.Point(4, 5);
-            this.labelTotalFarmacos.Name = "labelTotalFarmacos";
-            this.labelTotalFarmacos.Size = new System.Drawing.Size(93, 13);
-            this.labelTotalFarmacos.TabIndex = 49;
-            this.labelTotalFarmacos.Text = "Total Registrados:";
-            // 
-            // dataGridEstantes
-            // 
-            this.dataGridEstantes.AllowUserToAddRows = false;
-            this.dataGridEstantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridEstantes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Eliminar});
-            this.dataGridEstantes.Location = new System.Drawing.Point(0, 23);
-            this.dataGridEstantes.Name = "dataGridEstantes";
-            this.dataGridEstantes.RowHeadersVisible = false;
-            this.dataGridEstantes.Size = new System.Drawing.Size(750, 304);
-            this.dataGridEstantes.TabIndex = 50;
-            this.dataGridEstantes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEstantes_CellClick);
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
-            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Width = 50;
-            // 
-            // panelTituloDataGridFarmacos
-            // 
-            this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTituloDataGridFarmacos.Controls.Add(this.labelAdvertenciaCliente);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.btnCloseEstante);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.textSearchEstante);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.btnSearchEstante);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.comboEstado);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.labelFiltro);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.label4);
-            this.panelTituloDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTituloDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
-            this.panelTituloDataGridFarmacos.Name = "panelTituloDataGridFarmacos";
-            this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(750, 24);
-            this.panelTituloDataGridFarmacos.TabIndex = 49;
-            // 
-            // labelAdvertenciaCliente
-            // 
-            this.labelAdvertenciaCliente.AutoSize = true;
-            this.labelAdvertenciaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdvertenciaCliente.ForeColor = System.Drawing.Color.DarkRed;
-            this.labelAdvertenciaCliente.Location = new System.Drawing.Point(405, 3);
-            this.labelAdvertenciaCliente.Name = "labelAdvertenciaCliente";
-            this.labelAdvertenciaCliente.Size = new System.Drawing.Size(157, 16);
-            this.labelAdvertenciaCliente.TabIndex = 86;
-            this.labelAdvertenciaCliente.Text = "No hay coincidencias";
-            this.labelAdvertenciaCliente.Visible = false;
-            // 
-            // btnCloseEstante
-            // 
-            this.btnCloseEstante.BackColor = System.Drawing.SystemColors.Control;
-            this.btnCloseEstante.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCloseEstante.ForeColor = System.Drawing.Color.DarkRed;
-            this.btnCloseEstante.IconChar = FontAwesome.Sharp.IconChar.X;
-            this.btnCloseEstante.IconColor = System.Drawing.Color.DarkRed;
-            this.btnCloseEstante.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCloseEstante.IconSize = 18;
-            this.btnCloseEstante.Location = new System.Drawing.Point(704, 2);
-            this.btnCloseEstante.Name = "btnCloseEstante";
-            this.btnCloseEstante.Size = new System.Drawing.Size(18, 18);
-            this.btnCloseEstante.TabIndex = 85;
-            this.btnCloseEstante.TabStop = false;
-            this.btnCloseEstante.Visible = false;
-            this.btnCloseEstante.Click += new System.EventHandler(this.btnCloseCliente_Click);
-            // 
-            // textSearchEstante
-            // 
-            this.textSearchEstante.Location = new System.Drawing.Point(577, 1);
-            this.textSearchEstante.Name = "textSearchEstante";
-            this.textSearchEstante.Size = new System.Drawing.Size(127, 20);
-            this.textSearchEstante.TabIndex = 83;
-            this.textSearchEstante.Text = "Buscar numero";
-            this.textSearchEstante.Visible = false;
-            this.textSearchEstante.TextChanged += new System.EventHandler(this.textSearchEstante_TextChanged);
-            this.textSearchEstante.Enter += new System.EventHandler(this.textSearchCliente_Enter);
-            // 
-            // btnSearchEstante
-            // 
-            this.btnSearchEstante.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSearchEstante.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearchEstante.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSearchEstante.IconChar = FontAwesome.Sharp.IconChar.Search;
-            this.btnSearchEstante.IconColor = System.Drawing.SystemColors.ControlText;
-            this.btnSearchEstante.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSearchEstante.IconSize = 20;
-            this.btnSearchEstante.Location = new System.Drawing.Point(723, 1);
-            this.btnSearchEstante.Name = "btnSearchEstante";
-            this.btnSearchEstante.Size = new System.Drawing.Size(20, 20);
-            this.btnSearchEstante.TabIndex = 84;
-            this.btnSearchEstante.TabStop = false;
-            this.btnSearchEstante.Click += new System.EventHandler(this.btnSearchCliente_Click);
-            // 
-            // comboEstado
-            // 
-            this.comboEstado.FormattingEnabled = true;
-            this.comboEstado.Items.AddRange(new object[] {
-            "Todos",
-            "Vacio",
-            "Medio Vacio",
-            "Medio Lleno",
-            "Casi Lleno",
-            "Lleno"});
-            this.comboEstado.Location = new System.Drawing.Point(300, 2);
-            this.comboEstado.Name = "comboEstado";
-            this.comboEstado.Size = new System.Drawing.Size(86, 21);
-            this.comboEstado.TabIndex = 52;
-            this.comboEstado.Text = "Todos";
-            this.comboEstado.SelectedIndexChanged += new System.EventHandler(this.comboEstado_SelectedIndexChanged);
-            // 
-            // labelFiltro
-            // 
-            this.labelFiltro.AutoSize = true;
-            this.labelFiltro.Location = new System.Drawing.Point(210, 6);
-            this.labelFiltro.Name = "labelFiltro";
-            this.labelFiltro.Size = new System.Drawing.Size(88, 13);
-            this.labelFiltro.TabIndex = 50;
-            this.labelFiltro.Text = "Filtrar por estado:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.label4.Location = new System.Drawing.Point(3, 4);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(137, 16);
-            this.label4.TabIndex = 51;
-            this.label4.Text = "Consultar Estantes";
-            // 
-            // panelContenedorGestionProductos
-            // 
-            this.panelContenedorGestionProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelContenedorGestionProductos.Controls.Add(this.btnEliminarEstantes);
-            this.panelContenedorGestionProductos.Controls.Add(this.panelConsultaDeProductos);
-            this.panelContenedorGestionProductos.Controls.Add(this.btnRegistrarEstantes);
-            this.panelContenedorGestionProductos.Location = new System.Drawing.Point(12, 47);
-            this.panelContenedorGestionProductos.Name = "panelContenedorGestionProductos";
-            this.panelContenedorGestionProductos.Size = new System.Drawing.Size(770, 397);
-            this.panelContenedorGestionProductos.TabIndex = 53;
-            // 
-            // btnEliminarEstantes
-            // 
-            this.btnEliminarEstantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.btnEliminarEstantes.FlatAppearance.BorderSize = 0;
-            this.btnEliminarEstantes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btnEliminarEstantes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.btnEliminarEstantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarEstantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarEstantes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnEliminarEstantes.IconChar = FontAwesome.Sharp.IconChar.Trash;
-            this.btnEliminarEstantes.IconColor = System.Drawing.Color.Black;
-            this.btnEliminarEstantes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEliminarEstantes.IconSize = 30;
-            this.btnEliminarEstantes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarEstantes.Location = new System.Drawing.Point(354, 359);
-            this.btnEliminarEstantes.Name = "btnEliminarEstantes";
-            this.btnEliminarEstantes.Size = new System.Drawing.Size(110, 35);
-            this.btnEliminarEstantes.TabIndex = 51;
-            this.btnEliminarEstantes.Text = "   Eliminar Estantes";
-            this.btnEliminarEstantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEliminarEstantes.UseVisualStyleBackColor = false;
-            this.btnEliminarEstantes.Click += new System.EventHandler(this.btnEliminarEstantes_Click);
-            // 
-            // btnRegistrarEstantes
-            // 
-            this.btnRegistrarEstantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.btnRegistrarEstantes.FlatAppearance.BorderSize = 0;
-            this.btnRegistrarEstantes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btnRegistrarEstantes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.btnRegistrarEstantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegistrarEstantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrarEstantes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRegistrarEstantes.IconChar = FontAwesome.Sharp.IconChar.HouseMedical;
-            this.btnRegistrarEstantes.IconColor = System.Drawing.Color.Black;
-            this.btnRegistrarEstantes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnRegistrarEstantes.IconSize = 30;
-            this.btnRegistrarEstantes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistrarEstantes.Location = new System.Drawing.Point(238, 358);
-            this.btnRegistrarEstantes.Name = "btnRegistrarEstantes";
-            this.btnRegistrarEstantes.Size = new System.Drawing.Size(110, 35);
-            this.btnRegistrarEstantes.TabIndex = 50;
-            this.btnRegistrarEstantes.Text = "   Registrar Estantes";
-            this.btnRegistrarEstantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRegistrarEstantes.UseVisualStyleBackColor = false;
-            this.btnRegistrarEstantes.Click += new System.EventHandler(this.btnRegistrarEstantes_Click);
             // 
             // dataGridViewImageColumn1
             // 
@@ -360,16 +119,245 @@ namespace Presentacion
             this.panel2.Size = new System.Drawing.Size(7, 35);
             this.panel2.TabIndex = 54;
             // 
+            // panelConsultaDeProductos
+            // 
+            this.panelConsultaDeProductos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelConsultaDeProductos.Controls.Add(this.panelSubDataGridFarmacos);
+            this.panelConsultaDeProductos.Controls.Add(this.dataGridEstantes);
+            this.panelConsultaDeProductos.Controls.Add(this.panelTituloDataGridFarmacos);
+            this.panelConsultaDeProductos.Location = new System.Drawing.Point(22, 57);
+            this.panelConsultaDeProductos.Name = "panelConsultaDeProductos";
+            this.panelConsultaDeProductos.Size = new System.Drawing.Size(750, 349);
+            this.panelConsultaDeProductos.TabIndex = 63;
+            // 
+            // panelSubDataGridFarmacos
+            // 
+            this.panelSubDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelSubDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSubDataGridFarmacos.Controls.Add(this.labelAdvertencia);
+            this.panelSubDataGridFarmacos.Controls.Add(this.textTotalEstantes);
+            this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalFarmacos);
+            this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(0, 324);
+            this.panelSubDataGridFarmacos.Name = "panelSubDataGridFarmacos";
+            this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(750, 22);
+            this.panelSubDataGridFarmacos.TabIndex = 51;
+            // 
+            // labelAdvertencia
+            // 
+            this.labelAdvertencia.AutoSize = true;
+            this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelAdvertencia.Location = new System.Drawing.Point(548, 2);
+            this.labelAdvertencia.Name = "labelAdvertencia";
+            this.labelAdvertencia.Size = new System.Drawing.Size(195, 16);
+            this.labelAdvertencia.TabIndex = 87;
+            this.labelAdvertencia.Text = "No hay datos registrados!!!";
+            this.labelAdvertencia.Visible = false;
+            // 
+            // textTotalEstantes
+            // 
+            this.textTotalEstantes.Location = new System.Drawing.Point(95, 0);
+            this.textTotalEstantes.Name = "textTotalEstantes";
+            this.textTotalEstantes.Size = new System.Drawing.Size(47, 20);
+            this.textTotalEstantes.TabIndex = 49;
+            this.textTotalEstantes.Text = "0";
+            // 
+            // labelTotalFarmacos
+            // 
+            this.labelTotalFarmacos.AutoSize = true;
+            this.labelTotalFarmacos.Location = new System.Drawing.Point(4, 5);
+            this.labelTotalFarmacos.Name = "labelTotalFarmacos";
+            this.labelTotalFarmacos.Size = new System.Drawing.Size(93, 13);
+            this.labelTotalFarmacos.TabIndex = 49;
+            this.labelTotalFarmacos.Text = "Total Registrados:";
+            // 
+            // dataGridEstantes
+            // 
+            this.dataGridEstantes.AllowUserToAddRows = false;
+            this.dataGridEstantes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridEstantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridEstantes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Eliminar});
+            this.dataGridEstantes.Location = new System.Drawing.Point(0, 23);
+            this.dataGridEstantes.Name = "dataGridEstantes";
+            this.dataGridEstantes.RowHeadersVisible = false;
+            this.dataGridEstantes.Size = new System.Drawing.Size(750, 304);
+            this.dataGridEstantes.TabIndex = 50;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Width = 50;
+            // 
+            // panelTituloDataGridFarmacos
+            // 
+            this.panelTituloDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTituloDataGridFarmacos.Controls.Add(this.labelAdvertenciaCliente);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.btnCloseEstante);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.textSearchEstante);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.btnSearchEstante);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.comboEstado);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.labelFiltro);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.label4);
+            this.panelTituloDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
+            this.panelTituloDataGridFarmacos.Name = "panelTituloDataGridFarmacos";
+            this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(750, 24);
+            this.panelTituloDataGridFarmacos.TabIndex = 49;
+            // 
+            // labelAdvertenciaCliente
+            // 
+            this.labelAdvertenciaCliente.AutoSize = true;
+            this.labelAdvertenciaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdvertenciaCliente.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelAdvertenciaCliente.Location = new System.Drawing.Point(405, 3);
+            this.labelAdvertenciaCliente.Name = "labelAdvertenciaCliente";
+            this.labelAdvertenciaCliente.Size = new System.Drawing.Size(157, 16);
+            this.labelAdvertenciaCliente.TabIndex = 86;
+            this.labelAdvertenciaCliente.Text = "No hay coincidencias";
+            this.labelAdvertenciaCliente.Visible = false;
+            // 
+            // btnCloseEstante
+            // 
+            this.btnCloseEstante.BackColor = System.Drawing.SystemColors.Control;
+            this.btnCloseEstante.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCloseEstante.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnCloseEstante.IconChar = FontAwesome.Sharp.IconChar.X;
+            this.btnCloseEstante.IconColor = System.Drawing.Color.DarkRed;
+            this.btnCloseEstante.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCloseEstante.IconSize = 18;
+            this.btnCloseEstante.Location = new System.Drawing.Point(704, 2);
+            this.btnCloseEstante.Name = "btnCloseEstante";
+            this.btnCloseEstante.Size = new System.Drawing.Size(18, 18);
+            this.btnCloseEstante.TabIndex = 85;
+            this.btnCloseEstante.TabStop = false;
+            this.btnCloseEstante.Visible = false;
+            // 
+            // textSearchEstante
+            // 
+            this.textSearchEstante.Location = new System.Drawing.Point(577, 1);
+            this.textSearchEstante.Name = "textSearchEstante";
+            this.textSearchEstante.Size = new System.Drawing.Size(127, 20);
+            this.textSearchEstante.TabIndex = 83;
+            this.textSearchEstante.Text = "Buscar numero";
+            this.textSearchEstante.Visible = false;
+            // 
+            // btnSearchEstante
+            // 
+            this.btnSearchEstante.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSearchEstante.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchEstante.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearchEstante.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.btnSearchEstante.IconColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearchEstante.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSearchEstante.IconSize = 20;
+            this.btnSearchEstante.Location = new System.Drawing.Point(723, 1);
+            this.btnSearchEstante.Name = "btnSearchEstante";
+            this.btnSearchEstante.Size = new System.Drawing.Size(20, 20);
+            this.btnSearchEstante.TabIndex = 84;
+            this.btnSearchEstante.TabStop = false;
+            // 
+            // comboEstado
+            // 
+            this.comboEstado.FormattingEnabled = true;
+            this.comboEstado.Items.AddRange(new object[] {
+            "Todos",
+            "Vacio",
+            "Medio Vacio",
+            "Medio Lleno",
+            "Casi Lleno",
+            "Lleno"});
+            this.comboEstado.Location = new System.Drawing.Point(300, 2);
+            this.comboEstado.Name = "comboEstado";
+            this.comboEstado.Size = new System.Drawing.Size(86, 21);
+            this.comboEstado.TabIndex = 52;
+            this.comboEstado.Text = "Todos";
+            // 
+            // labelFiltro
+            // 
+            this.labelFiltro.AutoSize = true;
+            this.labelFiltro.Location = new System.Drawing.Point(210, 6);
+            this.labelFiltro.Name = "labelFiltro";
+            this.labelFiltro.Size = new System.Drawing.Size(88, 13);
+            this.labelFiltro.TabIndex = 50;
+            this.labelFiltro.Text = "Filtrar por estado:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(3, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(137, 16);
+            this.label4.TabIndex = 51;
+            this.label4.Text = "Consultar Estantes";
+            // 
+            // btnEliminarEstantes
+            // 
+            this.btnEliminarEstantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnEliminarEstantes.FlatAppearance.BorderSize = 0;
+            this.btnEliminarEstantes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnEliminarEstantes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnEliminarEstantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarEstantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarEstantes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnEliminarEstantes.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.btnEliminarEstantes.IconColor = System.Drawing.Color.Black;
+            this.btnEliminarEstantes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEliminarEstantes.IconSize = 30;
+            this.btnEliminarEstantes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminarEstantes.Location = new System.Drawing.Point(373, 413);
+            this.btnEliminarEstantes.Name = "btnEliminarEstantes";
+            this.btnEliminarEstantes.Size = new System.Drawing.Size(110, 35);
+            this.btnEliminarEstantes.TabIndex = 65;
+            this.btnEliminarEstantes.Text = "   Eliminar Estantes";
+            this.btnEliminarEstantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEliminarEstantes.UseVisualStyleBackColor = false;
+            // 
+            // btnRegistrarEstantes
+            // 
+            this.btnRegistrarEstantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnRegistrarEstantes.FlatAppearance.BorderSize = 0;
+            this.btnRegistrarEstantes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnRegistrarEstantes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnRegistrarEstantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrarEstantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrarEstantes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRegistrarEstantes.IconChar = FontAwesome.Sharp.IconChar.HouseMedical;
+            this.btnRegistrarEstantes.IconColor = System.Drawing.Color.Black;
+            this.btnRegistrarEstantes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnRegistrarEstantes.IconSize = 30;
+            this.btnRegistrarEstantes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRegistrarEstantes.Location = new System.Drawing.Point(257, 412);
+            this.btnRegistrarEstantes.Name = "btnRegistrarEstantes";
+            this.btnRegistrarEstantes.Size = new System.Drawing.Size(110, 35);
+            this.btnRegistrarEstantes.TabIndex = 64;
+            this.btnRegistrarEstantes.Text = "   Registrar Estantes";
+            this.btnRegistrarEstantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRegistrarEstantes.UseVisualStyleBackColor = false;
+            // 
             // FormGestionDeEstantes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 467);
+            this.Controls.Add(this.panelConsultaDeProductos);
+            this.Controls.Add(this.btnEliminarEstantes);
+            this.Controls.Add(this.btnRegistrarEstantes);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panelContenedorGestionProductos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormGestionDeEstantes";
             this.Text = "FormGestionDeEstantes";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panelConsultaDeProductos.ResumeLayout(false);
             this.panelSubDataGridFarmacos.ResumeLayout(false);
             this.panelSubDataGridFarmacos.PerformLayout();
@@ -378,9 +366,6 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseEstante)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchEstante)).EndInit();
-            this.panelContenedorGestionProductos.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -389,10 +374,12 @@ namespace Presentacion
 
         private FontAwesome.Sharp.IconButton btnVolver;
         private System.Windows.Forms.Label label1;
-        private FontAwesome.Sharp.IconButton btnEliminarEstantes;
-        private FontAwesome.Sharp.IconButton btnRegistrarEstantes;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panelConsultaDeProductos;
         private System.Windows.Forms.Panel panelSubDataGridFarmacos;
+        private System.Windows.Forms.Label labelAdvertencia;
         private System.Windows.Forms.TextBox textTotalEstantes;
         private System.Windows.Forms.Label labelTotalFarmacos;
         private System.Windows.Forms.DataGridView dataGridEstantes;
@@ -405,10 +392,7 @@ namespace Presentacion
         private System.Windows.Forms.ComboBox comboEstado;
         private System.Windows.Forms.Label labelFiltro;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panelContenedorGestionProductos;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        private System.Windows.Forms.Label labelAdvertencia;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private FontAwesome.Sharp.IconButton btnEliminarEstantes;
+        private FontAwesome.Sharp.IconButton btnRegistrarEstantes;
     }
 }

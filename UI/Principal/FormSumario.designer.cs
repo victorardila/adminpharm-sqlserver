@@ -73,6 +73,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
@@ -92,10 +94,13 @@
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel15.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.iconPictureBox4);
@@ -103,7 +108,7 @@
             this.panel1.Controls.Add(this.labelProductos);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.ForeColor = System.Drawing.Color.SeaGreen;
-            this.panel1.Location = new System.Drawing.Point(158, 47);
+            this.panel1.Location = new System.Drawing.Point(159, 18);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(110, 150);
             this.panel1.TabIndex = 30;
@@ -179,30 +184,33 @@
             // 
             // lblFecha
             // 
-            this.lblFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFecha.AutoSize = true;
             this.lblFecha.BackColor = System.Drawing.Color.Transparent;
+            this.lblFecha.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblFecha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFecha.ForeColor = System.Drawing.Color.Black;
-            this.lblFecha.Location = new System.Drawing.Point(208, 371);
+            this.lblFecha.Location = new System.Drawing.Point(0, 130);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(490, 39);
+            this.lblFecha.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblFecha.Size = new System.Drawing.Size(865, 39);
             this.lblFecha.TabIndex = 29;
             this.lblFecha.Text = "Miercoles, 10  noviembre  2017";
+            this.lblFecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblhora
             // 
-            this.lblhora.AutoSize = true;
             this.lblhora.BackColor = System.Drawing.Color.Transparent;
+            this.lblhora.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblhora.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblhora.Font = new System.Drawing.Font("Microsoft Sans Serif", 80F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblhora.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.lblhora.Location = new System.Drawing.Point(216, 251);
+            this.lblhora.Location = new System.Drawing.Point(0, 0);
             this.lblhora.Name = "lblhora";
-            this.lblhora.Size = new System.Drawing.Size(470, 120);
+            this.lblhora.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblhora.Size = new System.Drawing.Size(865, 120);
             this.lblhora.TabIndex = 28;
             this.lblhora.Text = "10:59:58";
+            this.lblhora.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timer1
             // 
@@ -211,13 +219,13 @@
             // 
             // panel13
             // 
-            this.panel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel13.Controls.Add(this.labelEstantes);
             this.panel13.Controls.Add(this.labelTitleAcerca);
             this.panel13.Controls.Add(this.pictureBox7);
             this.panel13.Controls.Add(this.panel14);
-            this.panel13.Location = new System.Drawing.Point(587, 49);
+            this.panel13.Location = new System.Drawing.Point(588, 20);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(110, 150);
             this.panel13.TabIndex = 34;
@@ -284,13 +292,14 @@
             // 
             // panel11
             // 
+            this.panel11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel11.BackColor = System.Drawing.Color.Transparent;
             this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel11.Controls.Add(this.iconPictureBox5);
             this.panel11.Controls.Add(this.labelClientes);
             this.panel11.Controls.Add(this.iconPictureBox1);
             this.panel11.Controls.Add(this.panel12);
-            this.panel11.Location = new System.Drawing.Point(303, 48);
+            this.panel11.Location = new System.Drawing.Point(304, 19);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(110, 150);
             this.panel11.TabIndex = 35;
@@ -365,12 +374,13 @@
             // 
             // panel9
             // 
+            this.panel9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel9.BackColor = System.Drawing.Color.Transparent;
             this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel9.Controls.Add(this.iconPictureBox2);
             this.panel9.Controls.Add(this.labelCaja);
             this.panel9.Controls.Add(this.panel10);
-            this.panel9.Location = new System.Drawing.Point(14, 46);
+            this.panel9.Location = new System.Drawing.Point(15, 17);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(110, 150);
             this.panel9.TabIndex = 36;
@@ -454,12 +464,12 @@
             // 
             // panel7
             // 
-            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel7.Controls.Add(this.iconPictureBox6);
             this.panel7.Controls.Add(this.labelEmpleados);
             this.panel7.Controls.Add(this.panel8);
-            this.panel7.Location = new System.Drawing.Point(444, 49);
+            this.panel7.Location = new System.Drawing.Point(445, 20);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(110, 150);
             this.panel7.TabIndex = 33;
@@ -605,13 +615,13 @@
             // 
             // panel5
             // 
-            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.labelBodega);
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.pictureBox1);
             this.panel5.Controls.Add(this.panel6);
-            this.panel5.Location = new System.Drawing.Point(737, 49);
+            this.panel5.Location = new System.Drawing.Point(738, 20);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(110, 150);
             this.panel5.TabIndex = 35;
@@ -665,6 +675,33 @@
             this.panel6.Size = new System.Drawing.Size(108, 30);
             this.panel6.TabIndex = 0;
             // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.panel15);
+            this.panel3.Controls.Add(this.panel1);
+            this.panel3.Controls.Add(this.panel5);
+            this.panel3.Controls.Add(this.panel7);
+            this.panel3.Controls.Add(this.panel9);
+            this.panel3.Controls.Add(this.panel11);
+            this.panel3.Controls.Add(this.panel13);
+            this.panel3.Location = new System.Drawing.Point(0, 36);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(865, 379);
+            this.panel3.TabIndex = 44;
+            // 
+            // panel15
+            // 
+            this.panel15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel15.Controls.Add(this.lblhora);
+            this.panel15.Controls.Add(this.lblFecha);
+            this.panel15.Location = new System.Drawing.Point(0, 198);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(865, 169);
+            this.panel15.TabIndex = 37;
+            // 
             // InicioResumen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -672,16 +709,9 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(865, 610);
-            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.labelPapelera);
             this.Controls.Add(this.labelRefresh);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.lblFecha);
-            this.Controls.Add(this.lblhora);
-            this.Controls.Add(this.panel13);
-            this.Controls.Add(this.panel11);
-            this.Controls.Add(this.panel9);
-            this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "InicioResumen";
@@ -712,6 +742,8 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel15.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -761,5 +793,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel15;
     }
 }

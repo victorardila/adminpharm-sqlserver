@@ -156,6 +156,8 @@ namespace Presentacion
             // 
             // panelConsultaDeProductos
             // 
+            this.panelConsultaDeProductos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelConsultaDeProductos.Controls.Add(this.panelSubDataGridFarmacos);
             this.panelConsultaDeProductos.Controls.Add(this.dataGridFacturas);
             this.panelConsultaDeProductos.Controls.Add(this.panelTituloDataGridFarmacos);
@@ -166,6 +168,8 @@ namespace Presentacion
             // 
             // panelSubDataGridFarmacos
             // 
+            this.panelSubDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelSubDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelSubDataGridFarmacos.Controls.Add(this.textTotalTarjeta);
             this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalTarjeta);
@@ -245,6 +249,8 @@ namespace Presentacion
             // dataGridFacturas
             // 
             this.dataGridFacturas.AllowUserToAddRows = false;
+            this.dataGridFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridFacturas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Eliminar});
@@ -264,6 +270,8 @@ namespace Presentacion
             // 
             // panelTituloDataGridFarmacos
             // 
+            this.panelTituloDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTituloDataGridFarmacos.Controls.Add(this.labelAdvertenciaCliente);
             this.panelTituloDataGridFarmacos.Controls.Add(this.btnCloseFactura);
@@ -272,7 +280,6 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Controls.Add(this.comboIdCaja);
             this.panelTituloDataGridFarmacos.Controls.Add(this.labelFiltro);
             this.panelTituloDataGridFarmacos.Controls.Add(this.label4);
-            this.panelTituloDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTituloDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
             this.panelTituloDataGridFarmacos.Name = "panelTituloDataGridFarmacos";
             this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(746, 24);
