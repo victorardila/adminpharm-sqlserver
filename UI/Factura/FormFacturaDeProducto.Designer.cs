@@ -226,7 +226,7 @@ namespace Presentacion
             this.labelPago.AutoSize = true;
             this.labelPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPago.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.labelPago.Location = new System.Drawing.Point(161, 2);
+            this.labelPago.Location = new System.Drawing.Point(164, 2);
             this.labelPago.Name = "labelPago";
             this.labelPago.Size = new System.Drawing.Size(65, 20);
             this.labelPago.TabIndex = 62;
@@ -261,16 +261,16 @@ namespace Presentacion
             this.labelTotalFactura.ForeColor = System.Drawing.Color.White;
             this.labelTotalFactura.Location = new System.Drawing.Point(-4, 2);
             this.labelTotalFactura.Name = "labelTotalFactura";
-            this.labelTotalFactura.Size = new System.Drawing.Size(126, 20);
+            this.labelTotalFactura.Size = new System.Drawing.Size(121, 20);
             this.labelTotalFactura.TabIndex = 66;
-            this.labelTotalFactura.Text = "Total factura $";
+            this.labelTotalFactura.Text = "Total factura$";
             // 
             // labelTotalFacturaGenerada
             // 
             this.labelTotalFacturaGenerada.AutoSize = true;
             this.labelTotalFacturaGenerada.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTotalFacturaGenerada.ForeColor = System.Drawing.Color.White;
-            this.labelTotalFacturaGenerada.Location = new System.Drawing.Point(118, 2);
+            this.labelTotalFacturaGenerada.Location = new System.Drawing.Point(114, 3);
             this.labelTotalFacturaGenerada.Name = "labelTotalFacturaGenerada";
             this.labelTotalFacturaGenerada.Size = new System.Drawing.Size(40, 18);
             this.labelTotalFacturaGenerada.TabIndex = 67;
@@ -355,6 +355,7 @@ namespace Presentacion
             // 
             // comboFormaDePago
             // 
+            this.comboFormaDePago.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboFormaDePago.FormattingEnabled = true;
             this.comboFormaDePago.Items.AddRange(new object[] {
             "Efectivo",

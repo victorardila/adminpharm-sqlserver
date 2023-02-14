@@ -422,6 +422,7 @@ namespace Presentacion
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormGestionCaja";
             this.Text = "FormGestionCaja";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormGestionCaja_MouseDown);
             this.panelSubMenu.ResumeLayout(false);
             this.panelSubDataGridFarmacos.ResumeLayout(false);
             this.panelSubDataGridFarmacos.PerformLayout();

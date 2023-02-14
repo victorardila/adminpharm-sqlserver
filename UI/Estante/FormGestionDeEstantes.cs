@@ -17,6 +17,7 @@ namespace Presentacion
     {
         EstanteService estanteService;
         List<Estante> estantes;
+        string estado;
         public FormGestionDeEstantes()
         {
             estanteService = new EstanteService(ConfigConnection.ConnectionString);
@@ -184,9 +185,16 @@ namespace Presentacion
             string estado = "Medio Vacio";
             estanteService.EliminarEstantes(estado);
         }
-        private void btnEliminarEstantes_Click(object sender, EventArgs e)
+
+        private void btnRegistrarEstantes_Click_1(object sender, EventArgs e)
         {
-            var respuesta = MessageBox.Show("¿Está seguro de eliminar todos los estantes?", "Mensaje de Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            FormRegistrarEstante frm = new FormRegistrarEstante();
+            frm.ShowDialog();
+            ConsultarEstantes();
+        }
+        private void btnEliminarEstantes_Click_1(object sender, EventArgs e)
+        {
+            var respuesta = MessageBox.Show("¿Está seguro de eliminar el historial de estantes registrados?", "Mensaje de Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
                 EliminarVacios();
@@ -194,6 +202,8 @@ namespace Presentacion
                 EliminarCasiLlenos();
                 EliminarMedioLlenos();
                 EliminarMedioVacios();
+                string mensaje = "Se han eliminado los estantes correctamente";
+                MessageBox.Show(mensaje, "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             ConsultarEstantes();
         }

@@ -30,18 +30,15 @@ namespace Presentacion
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnVolver = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnVolver = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelConsultaDeProductos = new System.Windows.Forms.Panel();
-            this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
+            this.panelSubDataGridEstantes = new System.Windows.Forms.Panel();
             this.labelAdvertencia = new System.Windows.Forms.Label();
             this.textTotalEstantes = new System.Windows.Forms.TextBox();
             this.labelTotalFarmacos = new System.Windows.Forms.Label();
-            this.dataGridEstantes = new System.Windows.Forms.DataGridView();
-            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
-            this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
+            this.panelTituloDataGridEstantes = new System.Windows.Forms.Panel();
             this.labelAdvertenciaCliente = new System.Windows.Forms.Label();
             this.btnCloseEstante = new FontAwesome.Sharp.IconPictureBox();
             this.textSearchEstante = new System.Windows.Forms.TextBox();
@@ -49,15 +46,18 @@ namespace Presentacion
             this.comboEstado = new System.Windows.Forms.ComboBox();
             this.labelFiltro = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnEliminarEstantes = new FontAwesome.Sharp.IconButton();
             this.btnRegistrarEstantes = new FontAwesome.Sharp.IconButton();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridEstantes = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panelConsultaDeProductos.SuspendLayout();
-            this.panelSubDataGridFarmacos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).BeginInit();
-            this.panelTituloDataGridFarmacos.SuspendLayout();
+            this.panelSubDataGridEstantes.SuspendLayout();
+            this.panelTituloDataGridEstantes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseEstante)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchEstante)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,13 +71,18 @@ namespace Presentacion
             this.label1.TabIndex = 32;
             this.label1.Text = "Gestionar Estantes";
             // 
-            // dataGridViewImageColumn1
+            // panel1
             // 
-            this.dataGridViewImageColumn1.HeaderText = "Eliminar";
-            this.dataGridViewImageColumn1.Image = global::Presentacion.Properties.Resources.deleRojBlack;
-            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Width = 50;
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.SystemColors.MenuText;
+            this.panel1.Controls.Add(this.btnVolver);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Location = new System.Drawing.Point(0, 5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(795, 36);
+            this.panel1.TabIndex = 62;
             // 
             // btnVolver
             // 
@@ -98,19 +103,6 @@ namespace Presentacion
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.SystemColors.MenuText;
-            this.panel1.Controls.Add(this.btnVolver);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(0, 5);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(795, 36);
-            this.panel1.TabIndex = 62;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
@@ -123,26 +115,26 @@ namespace Presentacion
             // 
             this.panelConsultaDeProductos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelConsultaDeProductos.Controls.Add(this.panelSubDataGridFarmacos);
+            this.panelConsultaDeProductos.Controls.Add(this.panelSubDataGridEstantes);
             this.panelConsultaDeProductos.Controls.Add(this.dataGridEstantes);
-            this.panelConsultaDeProductos.Controls.Add(this.panelTituloDataGridFarmacos);
+            this.panelConsultaDeProductos.Controls.Add(this.panelTituloDataGridEstantes);
             this.panelConsultaDeProductos.Location = new System.Drawing.Point(22, 57);
             this.panelConsultaDeProductos.Name = "panelConsultaDeProductos";
             this.panelConsultaDeProductos.Size = new System.Drawing.Size(750, 349);
             this.panelConsultaDeProductos.TabIndex = 63;
             // 
-            // panelSubDataGridFarmacos
+            // panelSubDataGridEstantes
             // 
-            this.panelSubDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelSubDataGridEstantes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelSubDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelSubDataGridFarmacos.Controls.Add(this.labelAdvertencia);
-            this.panelSubDataGridFarmacos.Controls.Add(this.textTotalEstantes);
-            this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalFarmacos);
-            this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(0, 324);
-            this.panelSubDataGridFarmacos.Name = "panelSubDataGridFarmacos";
-            this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(750, 22);
-            this.panelSubDataGridFarmacos.TabIndex = 51;
+            this.panelSubDataGridEstantes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSubDataGridEstantes.Controls.Add(this.labelAdvertencia);
+            this.panelSubDataGridEstantes.Controls.Add(this.textTotalEstantes);
+            this.panelSubDataGridEstantes.Controls.Add(this.labelTotalFarmacos);
+            this.panelSubDataGridEstantes.Location = new System.Drawing.Point(0, 324);
+            this.panelSubDataGridEstantes.Name = "panelSubDataGridEstantes";
+            this.panelSubDataGridEstantes.Size = new System.Drawing.Size(750, 22);
+            this.panelSubDataGridEstantes.TabIndex = 51;
             // 
             // labelAdvertencia
             // 
@@ -173,44 +165,22 @@ namespace Presentacion
             this.labelTotalFarmacos.TabIndex = 49;
             this.labelTotalFarmacos.Text = "Total Registrados:";
             // 
-            // dataGridEstantes
+            // panelTituloDataGridEstantes
             // 
-            this.dataGridEstantes.AllowUserToAddRows = false;
-            this.dataGridEstantes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelTituloDataGridEstantes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridEstantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridEstantes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Eliminar});
-            this.dataGridEstantes.Location = new System.Drawing.Point(0, 23);
-            this.dataGridEstantes.Name = "dataGridEstantes";
-            this.dataGridEstantes.RowHeadersVisible = false;
-            this.dataGridEstantes.Size = new System.Drawing.Size(750, 304);
-            this.dataGridEstantes.TabIndex = 50;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
-            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Width = 50;
-            // 
-            // panelTituloDataGridFarmacos
-            // 
-            this.panelTituloDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTituloDataGridFarmacos.Controls.Add(this.labelAdvertenciaCliente);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.btnCloseEstante);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.textSearchEstante);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.btnSearchEstante);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.comboEstado);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.labelFiltro);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.label4);
-            this.panelTituloDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
-            this.panelTituloDataGridFarmacos.Name = "panelTituloDataGridFarmacos";
-            this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(750, 24);
-            this.panelTituloDataGridFarmacos.TabIndex = 49;
+            this.panelTituloDataGridEstantes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTituloDataGridEstantes.Controls.Add(this.labelAdvertenciaCliente);
+            this.panelTituloDataGridEstantes.Controls.Add(this.btnCloseEstante);
+            this.panelTituloDataGridEstantes.Controls.Add(this.textSearchEstante);
+            this.panelTituloDataGridEstantes.Controls.Add(this.btnSearchEstante);
+            this.panelTituloDataGridEstantes.Controls.Add(this.comboEstado);
+            this.panelTituloDataGridEstantes.Controls.Add(this.labelFiltro);
+            this.panelTituloDataGridEstantes.Controls.Add(this.label4);
+            this.panelTituloDataGridEstantes.Location = new System.Drawing.Point(0, 0);
+            this.panelTituloDataGridEstantes.Name = "panelTituloDataGridEstantes";
+            this.panelTituloDataGridEstantes.Size = new System.Drawing.Size(750, 24);
+            this.panelTituloDataGridEstantes.TabIndex = 49;
             // 
             // labelAdvertenciaCliente
             // 
@@ -251,6 +221,7 @@ namespace Presentacion
             // 
             // btnSearchEstante
             // 
+            this.btnSearchEstante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearchEstante.BackColor = System.Drawing.SystemColors.Control;
             this.btnSearchEstante.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearchEstante.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -300,6 +271,14 @@ namespace Presentacion
             this.label4.TabIndex = 51;
             this.label4.Text = "Consultar Estantes";
             // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Eliminar";
+            this.dataGridViewImageColumn1.Image = global::Presentacion.Properties.Resources.deleRojBlack;
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 50;
+            // 
             // btnEliminarEstantes
             // 
             this.btnEliminarEstantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
@@ -321,6 +300,7 @@ namespace Presentacion
             this.btnEliminarEstantes.Text = "   Eliminar Estantes";
             this.btnEliminarEstantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEliminarEstantes.UseVisualStyleBackColor = false;
+            this.btnEliminarEstantes.Click += new System.EventHandler(this.btnEliminarEstantes_Click_1);
             // 
             // btnRegistrarEstantes
             // 
@@ -343,6 +323,29 @@ namespace Presentacion
             this.btnRegistrarEstantes.Text = "   Registrar Estantes";
             this.btnRegistrarEstantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRegistrarEstantes.UseVisualStyleBackColor = false;
+            this.btnRegistrarEstantes.Click += new System.EventHandler(this.btnRegistrarEstantes_Click_1);
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Width = 50;
+            // 
+            // dataGridEstantes
+            // 
+            this.dataGridEstantes.AllowUserToAddRows = false;
+            this.dataGridEstantes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridEstantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridEstantes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Eliminar});
+            this.dataGridEstantes.Location = new System.Drawing.Point(0, 23);
+            this.dataGridEstantes.Name = "dataGridEstantes";
+            this.dataGridEstantes.RowHeadersVisible = false;
+            this.dataGridEstantes.Size = new System.Drawing.Size(750, 304);
+            this.dataGridEstantes.TabIndex = 50;
             // 
             // FormGestionDeEstantes
             // 
@@ -359,13 +362,13 @@ namespace Presentacion
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelConsultaDeProductos.ResumeLayout(false);
-            this.panelSubDataGridFarmacos.ResumeLayout(false);
-            this.panelSubDataGridFarmacos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).EndInit();
-            this.panelTituloDataGridFarmacos.ResumeLayout(false);
-            this.panelTituloDataGridFarmacos.PerformLayout();
+            this.panelSubDataGridEstantes.ResumeLayout(false);
+            this.panelSubDataGridEstantes.PerformLayout();
+            this.panelTituloDataGridEstantes.ResumeLayout(false);
+            this.panelTituloDataGridEstantes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseEstante)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchEstante)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -378,13 +381,11 @@ namespace Presentacion
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panelConsultaDeProductos;
-        private System.Windows.Forms.Panel panelSubDataGridFarmacos;
+        private System.Windows.Forms.Panel panelSubDataGridEstantes;
         private System.Windows.Forms.Label labelAdvertencia;
         private System.Windows.Forms.TextBox textTotalEstantes;
         private System.Windows.Forms.Label labelTotalFarmacos;
-        private System.Windows.Forms.DataGridView dataGridEstantes;
-        private System.Windows.Forms.DataGridViewImageColumn Eliminar;
-        private System.Windows.Forms.Panel panelTituloDataGridFarmacos;
+        private System.Windows.Forms.Panel panelTituloDataGridEstantes;
         private System.Windows.Forms.Label labelAdvertenciaCliente;
         private FontAwesome.Sharp.IconPictureBox btnCloseEstante;
         private System.Windows.Forms.TextBox textSearchEstante;
@@ -394,5 +395,7 @@ namespace Presentacion
         private System.Windows.Forms.Label label4;
         private FontAwesome.Sharp.IconButton btnEliminarEstantes;
         private FontAwesome.Sharp.IconButton btnRegistrarEstantes;
+        private System.Windows.Forms.DataGridView dataGridEstantes;
+        private System.Windows.Forms.DataGridViewImageColumn Eliminar;
     }
 }

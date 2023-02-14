@@ -49,6 +49,8 @@ namespace Presentacion
             this.btnGestionUsuarios = new FontAwesome.Sharp.IconButton();
             this.subMenuProductos = new System.Windows.Forms.Panel();
             this.btnBodega = new FontAwesome.Sharp.IconButton();
+            this.btnNevera = new FontAwesome.Sharp.IconButton();
+            this.btnVitrina = new FontAwesome.Sharp.IconButton();
             this.btnEstantes = new FontAwesome.Sharp.IconButton();
             this.btnProductos = new FontAwesome.Sharp.IconButton();
             this.btnGestionProductos = new FontAwesome.Sharp.IconButton();
@@ -103,6 +105,7 @@ namespace Presentacion
             this.panelHeaderbar.Name = "panelHeaderbar";
             this.panelHeaderbar.Size = new System.Drawing.Size(980, 27);
             this.panelHeaderbar.TabIndex = 1;
+            this.panelHeaderbar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelHeaderbar_MouseDown);
             // 
             // btnWindowMaximize
             // 
@@ -188,13 +191,13 @@ namespace Presentacion
             this.panelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelSidebar.Location = new System.Drawing.Point(0, 27);
             this.panelSidebar.Name = "panelSidebar";
-            this.panelSidebar.Size = new System.Drawing.Size(186, 473);
+            this.panelSidebar.Size = new System.Drawing.Size(186, 564);
             this.panelSidebar.TabIndex = 2;
             // 
             // panelSelectionAjustes
             // 
             this.panelSelectionAjustes.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panelSelectionAjustes.Location = new System.Drawing.Point(0, 435);
+            this.panelSelectionAjustes.Location = new System.Drawing.Point(0, 509);
             this.panelSelectionAjustes.Name = "panelSelectionAjustes";
             this.panelSelectionAjustes.Size = new System.Drawing.Size(6, 37);
             this.panelSelectionAjustes.TabIndex = 9;
@@ -203,7 +206,7 @@ namespace Presentacion
             // panelSelectionFactura
             // 
             this.panelSelectionFactura.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panelSelectionFactura.Location = new System.Drawing.Point(0, 398);
+            this.panelSelectionFactura.Location = new System.Drawing.Point(0, 472);
             this.panelSelectionFactura.Name = "panelSelectionFactura";
             this.panelSelectionFactura.Size = new System.Drawing.Size(6, 37);
             this.panelSelectionFactura.TabIndex = 10;
@@ -224,10 +227,10 @@ namespace Presentacion
             this.btnAjustes.IconColor = System.Drawing.Color.White;
             this.btnAjustes.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAjustes.IconSize = 22;
-            this.btnAjustes.Location = new System.Drawing.Point(0, 435);
+            this.btnAjustes.Location = new System.Drawing.Point(0, 509);
             this.btnAjustes.Name = "btnAjustes";
             this.btnAjustes.Size = new System.Drawing.Size(186, 37);
-            this.btnAjustes.TabIndex = 9;
+            this.btnAjustes.TabIndex = 14;
             this.btnAjustes.Text = "   Ajustes";
             this.btnAjustes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAjustes.UseVisualStyleBackColor = false;
@@ -248,10 +251,10 @@ namespace Presentacion
             this.btnGestionFactura.IconColor = System.Drawing.Color.White;
             this.btnGestionFactura.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGestionFactura.IconSize = 22;
-            this.btnGestionFactura.Location = new System.Drawing.Point(0, 398);
+            this.btnGestionFactura.Location = new System.Drawing.Point(0, 472);
             this.btnGestionFactura.Name = "btnGestionFactura";
             this.btnGestionFactura.Size = new System.Drawing.Size(186, 37);
-            this.btnGestionFactura.TabIndex = 9;
+            this.btnGestionFactura.TabIndex = 13;
             this.btnGestionFactura.Text = "   Gestion de factura";
             this.btnGestionFactura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGestionFactura.UseVisualStyleBackColor = false;
@@ -260,7 +263,7 @@ namespace Presentacion
             // panelSelectionUsuarios
             // 
             this.panelSelectionUsuarios.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panelSelectionUsuarios.Location = new System.Drawing.Point(0, 284);
+            this.panelSelectionUsuarios.Location = new System.Drawing.Point(0, 359);
             this.panelSelectionUsuarios.Name = "panelSelectionUsuarios";
             this.panelSelectionUsuarios.Size = new System.Drawing.Size(6, 37);
             this.panelSelectionUsuarios.TabIndex = 8;
@@ -290,10 +293,10 @@ namespace Presentacion
             this.subMenuUsuarios.Controls.Add(this.btnEmpleados);
             this.subMenuUsuarios.Controls.Add(this.btnClientes);
             this.subMenuUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
-            this.subMenuUsuarios.Location = new System.Drawing.Point(0, 322);
+            this.subMenuUsuarios.Location = new System.Drawing.Point(0, 396);
             this.subMenuUsuarios.Name = "subMenuUsuarios";
             this.subMenuUsuarios.Size = new System.Drawing.Size(186, 76);
-            this.subMenuUsuarios.TabIndex = 6;
+            this.subMenuUsuarios.TabIndex = 10;
             // 
             // btnEmpleados
             // 
@@ -312,7 +315,7 @@ namespace Presentacion
             this.btnEmpleados.Location = new System.Drawing.Point(0, 37);
             this.btnEmpleados.Name = "btnEmpleados";
             this.btnEmpleados.Size = new System.Drawing.Size(186, 39);
-            this.btnEmpleados.TabIndex = 6;
+            this.btnEmpleados.TabIndex = 12;
             this.btnEmpleados.Text = "Empleados";
             this.btnEmpleados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEmpleados.UseVisualStyleBackColor = false;
@@ -335,7 +338,7 @@ namespace Presentacion
             this.btnClientes.Location = new System.Drawing.Point(0, 0);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(186, 37);
-            this.btnClientes.TabIndex = 5;
+            this.btnClientes.TabIndex = 11;
             this.btnClientes.Text = "Clientes";
             this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClientes.UseVisualStyleBackColor = false;
@@ -356,10 +359,10 @@ namespace Presentacion
             this.btnGestionUsuarios.IconColor = System.Drawing.Color.White;
             this.btnGestionUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGestionUsuarios.IconSize = 22;
-            this.btnGestionUsuarios.Location = new System.Drawing.Point(0, 285);
+            this.btnGestionUsuarios.Location = new System.Drawing.Point(0, 359);
             this.btnGestionUsuarios.Name = "btnGestionUsuarios";
             this.btnGestionUsuarios.Size = new System.Drawing.Size(186, 37);
-            this.btnGestionUsuarios.TabIndex = 5;
+            this.btnGestionUsuarios.TabIndex = 9;
             this.btnGestionUsuarios.Text = "   Gestion de usuario";
             this.btnGestionUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGestionUsuarios.UseVisualStyleBackColor = false;
@@ -368,13 +371,15 @@ namespace Presentacion
             // subMenuProductos
             // 
             this.subMenuProductos.Controls.Add(this.btnBodega);
+            this.subMenuProductos.Controls.Add(this.btnNevera);
+            this.subMenuProductos.Controls.Add(this.btnVitrina);
             this.subMenuProductos.Controls.Add(this.btnEstantes);
             this.subMenuProductos.Controls.Add(this.btnProductos);
             this.subMenuProductos.Dock = System.Windows.Forms.DockStyle.Top;
             this.subMenuProductos.Location = new System.Drawing.Point(0, 174);
             this.subMenuProductos.Name = "subMenuProductos";
-            this.subMenuProductos.Size = new System.Drawing.Size(186, 111);
-            this.subMenuProductos.TabIndex = 4;
+            this.subMenuProductos.Size = new System.Drawing.Size(186, 185);
+            this.subMenuProductos.TabIndex = 3;
             // 
             // btnBodega
             // 
@@ -391,14 +396,60 @@ namespace Presentacion
             this.btnBodega.IconColor = System.Drawing.Color.White;
             this.btnBodega.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnBodega.IconSize = 10;
-            this.btnBodega.Location = new System.Drawing.Point(0, 74);
+            this.btnBodega.Location = new System.Drawing.Point(0, 148);
             this.btnBodega.Name = "btnBodega";
             this.btnBodega.Size = new System.Drawing.Size(186, 37);
-            this.btnBodega.TabIndex = 6;
+            this.btnBodega.TabIndex = 8;
             this.btnBodega.Text = "Bodega";
             this.btnBodega.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBodega.UseVisualStyleBackColor = false;
             this.btnBodega.Click += new System.EventHandler(this.btnBodega_Click);
+            // 
+            // btnNevera
+            // 
+            this.btnNevera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
+            this.btnNevera.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNevera.FlatAppearance.BorderSize = 0;
+            this.btnNevera.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnNevera.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnNevera.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNevera.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNevera.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNevera.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
+            this.btnNevera.IconColor = System.Drawing.Color.White;
+            this.btnNevera.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnNevera.IconSize = 10;
+            this.btnNevera.Location = new System.Drawing.Point(0, 111);
+            this.btnNevera.Name = "btnNevera";
+            this.btnNevera.Size = new System.Drawing.Size(186, 37);
+            this.btnNevera.TabIndex = 7;
+            this.btnNevera.Text = "Nevera";
+            this.btnNevera.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNevera.UseVisualStyleBackColor = false;
+            this.btnNevera.Click += new System.EventHandler(this.btnNevera_Click);
+            // 
+            // btnVitrina
+            // 
+            this.btnVitrina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
+            this.btnVitrina.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnVitrina.FlatAppearance.BorderSize = 0;
+            this.btnVitrina.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnVitrina.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnVitrina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVitrina.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVitrina.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnVitrina.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
+            this.btnVitrina.IconColor = System.Drawing.Color.White;
+            this.btnVitrina.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVitrina.IconSize = 10;
+            this.btnVitrina.Location = new System.Drawing.Point(0, 74);
+            this.btnVitrina.Name = "btnVitrina";
+            this.btnVitrina.Size = new System.Drawing.Size(186, 37);
+            this.btnVitrina.TabIndex = 6;
+            this.btnVitrina.Text = "Vitrina";
+            this.btnVitrina.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVitrina.UseVisualStyleBackColor = false;
+            this.btnVitrina.Click += new System.EventHandler(this.btnVitrina_Click);
             // 
             // btnEstantes
             // 
@@ -463,7 +514,7 @@ namespace Presentacion
             this.btnGestionProductos.Location = new System.Drawing.Point(0, 137);
             this.btnGestionProductos.Name = "btnGestionProductos";
             this.btnGestionProductos.Size = new System.Drawing.Size(186, 37);
-            this.btnGestionProductos.TabIndex = 3;
+            this.btnGestionProductos.TabIndex = 2;
             this.btnGestionProductos.Text = "   Gestion de Producto";
             this.btnGestionProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGestionProductos.UseVisualStyleBackColor = false;
@@ -505,6 +556,7 @@ namespace Presentacion
             this.panelLogoContainer.Name = "panelLogoContainer";
             this.panelLogoContainer.Size = new System.Drawing.Size(186, 100);
             this.panelLogoContainer.TabIndex = 0;
+            this.panelLogoContainer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelLogoContainer_MouseDown);
             // 
             // panelSidebarClose
             // 
@@ -601,6 +653,7 @@ namespace Presentacion
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(794, 25);
             this.panelHeader.TabIndex = 3;
+            this.panelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelHeader_MouseDown);
             // 
             // labelAvsio
             // 
@@ -700,7 +753,7 @@ namespace Presentacion
             this.panelContenedorInterno.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedorInterno.Location = new System.Drawing.Point(186, 52);
             this.panelContenedorInterno.Name = "panelContenedorInterno";
-            this.panelContenedorInterno.Size = new System.Drawing.Size(794, 448);
+            this.panelContenedorInterno.Size = new System.Drawing.Size(794, 539);
             this.panelContenedorInterno.TabIndex = 4;
             // 
             // FormMenu
@@ -708,7 +761,7 @@ namespace Presentacion
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(980, 500);
+            this.ClientSize = new System.Drawing.Size(980, 591);
             this.Controls.Add(this.panelContenedorInterno);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelSidebar);
@@ -777,7 +830,7 @@ namespace Presentacion
         private FontAwesome.Sharp.IconButton btnEstantes;
         private FontAwesome.Sharp.IconButton btnProductos;
         private FontAwesome.Sharp.IconButton btnEmpleados;
-        private FontAwesome.Sharp.IconButton btnBodega;
+        private FontAwesome.Sharp.IconButton btnVitrina;
         private System.Windows.Forms.Label labelMenu;
         private System.Windows.Forms.Panel panelSidebarClose;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -786,5 +839,7 @@ namespace Presentacion
         private System.Windows.Forms.Panel panelSelectionAjustes;
         private FontAwesome.Sharp.IconButton btnGestionFactura;
         private System.Windows.Forms.Panel panelSelectionFactura;
+        private FontAwesome.Sharp.IconButton btnBodega;
+        private FontAwesome.Sharp.IconButton btnNevera;
     }
 }

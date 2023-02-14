@@ -50,11 +50,13 @@
     <Compile Include="EstanteRepository.cs" />
     <Compile Include="FacturaRepository.cs" />
     <Compile Include="IdEmpleadoTxtRepository.cs" />
+    <Compile Include="NeveraRepository.cs" />
     <Compile Include="ProductoRepository.cs" />
     <Compile Include="ProductoFacturaTxtRepository.cs" />
     <Compile Include="ProductoVencidoTxtRepository.cs" />
     <Compile Include="ProductoVendidoTxtRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VitrinaRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entity\Entity.csproj">

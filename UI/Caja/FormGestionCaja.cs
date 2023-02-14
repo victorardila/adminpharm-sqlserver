@@ -12,6 +12,8 @@ using System.Drawing.Printing;
 using System.IO;
 using BLL;
 using Entity;
+//se importa la libreria para arrastrar formulario
+using System.Runtime.InteropServices;
 
 namespace Presentacion
 {
@@ -72,6 +74,11 @@ namespace Presentacion
             BuscararDrogueria();
             BuscarPorEstado();
         }
+        //Drag Form
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -442,6 +449,12 @@ namespace Presentacion
 
             e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(-20, r + 72, ancho, 14), stringFormatCenter);
             e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(-20, r + 98, ancho, 14), stringFormatCenter);
+        }
+
+        private void FormGestionCaja_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

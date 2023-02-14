@@ -36,8 +36,7 @@ namespace Presentacion
             InitializeComponent();
             MostrarDatos();
         }
-
-        private void ConsultarDatoDeProductos()
+       private void ConsultarDatoDeProductos()
         {
             ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
             respuesta = productoService.ConsultarTodos();

@@ -18,7 +18,7 @@ namespace Presentacion
         EstanteService estanteService;
         Estante estante;
         int cantidadDeEstante;
-        int numeroDeEstante;
+        string numeroDeEstante;
         public FormRegistrarEstante()
         {
             estanteService = new EstanteService(ConfigConnection.ConnectionString);
@@ -38,7 +38,7 @@ namespace Presentacion
             cantidadDeEstante = int.Parse(textNumeroEstante.Text);
             for(int i=1;i<= cantidadDeEstante; i++)
             {
-                numeroDeEstante = i;
+                numeroDeEstante = "ESTANTE " + i;
                 RegistrarEstantes();
             }
         }

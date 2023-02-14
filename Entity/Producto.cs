@@ -9,7 +9,7 @@ namespace Entity
     public class Producto
     {
         //Constructor
-        public Producto(int cantidad, string referencia, string nombre, string detalle, DateTime fechaDeRegistro, DateTime fechaDeVencimiento, string lote, string laboratorio, string estado, string tipo, string via, double precioDeVenta, double precioDeNegocio, double gananciaPorProducto)
+        public Producto(int cantidad, string referencia, string nombre, string detalle, DateTime fechaDeRegistro, DateTime fechaDeVencimiento, string lote, string laboratorio, string estado, string tipo, string via, double valorPorUnidad, double valorPorBlister, double valorPorPaquete, double precioDeVenta, double precioDeNegocio, double gananciaPorProducto, string ubicacion)
         {
             Cantidad = cantidad;
             Referencia = referencia;
@@ -22,9 +22,13 @@ namespace Entity
             Estado = estado;
             Tipo = tipo;
             Via = via;
+            ValorPorUnidad = valorPorUnidad;
+            ValorPorBlister = valorPorBlister;
+            ValorPorPaquete = valorPorPaquete;
             PrecioDeNegocio = precioDeNegocio;
             PrecioDeVenta = precioDeVenta;
             GananciaPorProducto = gananciaPorProducto;
+            Ubicacion = ubicacion;
         }
         //Constructor Sobrecargado
         public Producto()
@@ -43,11 +47,14 @@ namespace Entity
         public string Estado { get; set; }
         public string Tipo { get; set; }
         public string Via { get; set; }
+        public double ValorPorUnidad { get; set; }
+        public double ValorPorBlister { get; set; }
+        public double ValorPorPaquete { get; set; }
         public double PorcentajeDeVenta { get; set; }
         public double PrecioDeNegocio { get; set; }
         public double PrecioDeVenta { get; set; }
         public double GananciaPorProducto { get; set; }
-        public int NumeroDeEstante { get; set; }
+        public string Ubicacion { get; set; }
         /*Metodos de la clase*/
         public void calcularEstado()
         {
@@ -120,13 +127,23 @@ namespace Entity
         }
         public void calcularPrecioDeVenta()
         {
-            double procedimientoporcentaje;
-            procedimientoporcentaje = (PorcentajeDeVenta / 100) * PrecioDeNegocio;
-            PrecioDeVenta = procedimientoporcentaje + PrecioDeNegocio;
+            PrecioDeVenta = ValorPorUnidad;
         }
         public void calcularGanancia()
         {
-            GananciaPorProducto = PrecioDeVenta - PrecioDeNegocio;
+            if (PrecioDeNegocio != 0)
+            {
+                GananciaPorProducto = PrecioDeVenta - PrecioDeNegocio;
+                PorcentajeDeVenta = (GananciaPorProducto * 100) / PrecioDeVenta;
+            }
+            else
+            {
+                if (PrecioDeNegocio == 0)
+                {
+                    GananciaPorProducto = 0;
+                    PorcentajeDeVenta =0;
+                }
+            }
         }
     }
 }

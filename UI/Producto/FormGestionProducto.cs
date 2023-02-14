@@ -18,14 +18,24 @@ namespace Presentacion
     {
         ProductoService productoService;
         DrogueriaService drogueriaService;
+        EstanteService estanteService;
+        VitrinaService vitrinaService;
+        NeveraService neveraService;
         ProductoFacturaTxtService productoTxtService=new ProductoFacturaTxtService();
         ProductoVencidoTxtService productoVencidoTxtService = new ProductoVencidoTxtService();
         List<Producto> productos;
+        List<Estante> estantes;
         List<Drogueria> droguerias;
+        List<Vitrina> vitrinas;
+        List<Nevera> neveras;
         Producto producto;
         CajaRegistradoraService cajaRegistradoraService;
-        EstanteService estanteService;
-        List<Estante> estantes;
+        int cantidadDeRegistros=20;
+        int totalRegistros;
+        int paginaSeleccionada=0;
+        int paginaSeleccion;
+        int totalPaginas;
+        int contador;
         int cantidadDrogueria;
         bool cajaAbierta;
         string referenciaProducto;
@@ -45,6 +55,8 @@ namespace Presentacion
         double precioDeNegocio;
         double gananciaDeProducto;
         int cantidadEstante;
+        int cantidadVitrinas;
+        int cantidadNeveras;
         int cantidad;
         object sender;
         EventArgs e;
@@ -54,12 +66,46 @@ namespace Presentacion
             productoService = new ProductoService(ConfigConnection.ConnectionString);
             drogueriaService = new DrogueriaService(ConfigConnection.ConnectionString);
             estanteService = new EstanteService(ConfigConnection.ConnectionString);
+            vitrinaService = new VitrinaService(ConfigConnection.ConnectionString);
+            neveraService = new NeveraService(ConfigConnection.ConnectionString);
             InitializeComponent();
-            ConsultarYLlenarGridDeProductos();
+            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
             ConsultarDroguerias();
             ConsultarEstantes();
+            ConsultarVitrinas();
+            ConsultarNeveras();
             CalcularProvisiones();
             CalculoDeEstadoAutomatico();
+        }
+        private void LlenarComboUbicacionDeEstantes(int cantidad)
+        {
+            int i = contador;
+            for (i = 1; i <= cantidad; i = i + 1)
+            {
+                string estante = "ESTANTE " + i;
+                comboUbicacion.Items.Add(estante);
+                contador = i;
+            }
+        }
+        private void LlenarComboUbicacionDeVitrinas(int cantidad)
+        {
+            int i = contador;
+            for (i = 1; i <= cantidad; i = i + 1)
+            {
+                string vitrina = "VITRINA " + i;
+                comboUbicacion.Items.Add(vitrina);
+                contador = i;
+            }
+        }
+        private void LlenarComboUbicacionDeNeveras(int cantidad)
+        {
+            int i = contador;
+            for (i = 1; i <= cantidad; i = i + 1)
+            {
+                string nevera = "NEVERA " + i;
+                comboUbicacion.Items.Add(nevera);
+                contador = i;
+            }
         }
         private void CalcularProvisiones()
         {
@@ -74,7 +120,7 @@ namespace Presentacion
                         string referencia = Convert.ToString(fila.Cells[5].Value);
                         respuesta = productoService.BuscarPorReferencia(referencia);
                         int cantidad= respuesta.Producto.Cantidad;
-                        if (cantidad > 0 && cantidad < 5)
+                        if (cantidad >= 0 && cantidad < 5)
                         {
                             respuesta = productoService.BuscarPorReferencia(referencia);
                             if (respuesta.Producto != null)
@@ -148,7 +194,7 @@ namespace Presentacion
                                     porcentajeDeVenta, precioDeNegocio, precioProducto, gananciaDeProducto);
                                 productoVencidoTxtService.Guardar(productoTxt);
                                 productoService.Eliminar(referenciaProducto);
-                                ConsultarYLlenarGridDeProductos();
+                                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
                             }
                         }
                     }
@@ -187,12 +233,35 @@ namespace Presentacion
             if (respuesta.Estantes.Count != 0 && respuesta.Estantes != null)
             {
                 cantidadEstante = estanteService.Totalizar().Cuenta;
+                LlenarComboUbicacionDeEstantes(cantidadEstante);
             }
         }
-        private void ConsultarYLlenarGridDeProductos()
+        private void ConsultarVitrinas()
         {
+            ConsultaVitrinaRespuesta respuesta = new ConsultaVitrinaRespuesta();
+            respuesta = vitrinaService.ConsultarTodos();
+            vitrinas = respuesta.Vitrinas.ToList();
+            if (respuesta.Vitrinas.Count != 0 && respuesta.Vitrinas != null)
+            {
+                cantidadVitrinas = vitrinaService.Totalizar().Cuenta;
+                LlenarComboUbicacionDeVitrinas(cantidadEstante);
+            }
+        }
+        private void ConsultarNeveras()
+        {
+            ConsultaNeveraRespuesta respuesta = new ConsultaNeveraRespuesta();
+            respuesta = neveraService.ConsultarTodos();
+            neveras = respuesta.Neveras.ToList();
+            if (respuesta.Neveras.Count != 0 && respuesta.Neveras != null)
+            {
+                cantidadNeveras = neveraService.Totalizar().Cuenta;
+                LlenarComboUbicacionDeNeveras(cantidadEstante);
+            }
+        }
+        private void ConsultarYLlenarGridDeProductos(int paginaSelecciona)
+        {
+            paginaSeleccionada = paginaSelecciona;
             textSearch.SelectionStart = 0;
-
             BuscarPorEstado();
             ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
             string via = comboFiltroVia.Text;
@@ -207,7 +276,10 @@ namespace Presentacion
                 productos = respuesta.Productos.ToList();
                 if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
                 {
-                    dataGridFarmacos.DataSource = respuesta.Productos;
+                    totalRegistros = productoService.Totalizar().Cuenta;
+                    totalPaginas = (int)Math.Ceiling(decimal.Parse(totalRegistros.ToString()) / decimal.Parse(cantidadDeRegistros.ToString()));
+                    dataGridFarmacos.DataSource = respuesta.Productos.OrderBy(d=>d.Referencia).Skip(paginaSeleccionada*cantidadDeRegistros).Take(cantidadDeRegistros).ToList();
+                    textNumeroPagina.Text = paginaSeleccionada.ToString();
                     dataGridFarmacos.ClearSelection();
                     Eliminar.Visible = true;
                     textTotal.Text = productoService.Totalizar().Cuenta.ToString();
@@ -223,6 +295,54 @@ namespace Presentacion
                         Eliminar.Visible = false;
                         labelAdvertencia.Visible = true;
                     }
+                }
+            }
+        }
+        private void textNumeroPagina_Enter(object sender, EventArgs e)
+        {
+            if (textNumeroPagina.Text != "")
+            {
+                textNumeroPagina.Text = "";
+            }
+        }
+        private void textNumeroPagina_Leave(object sender, EventArgs e)
+        {
+            if (textNumeroPagina.Text == "")
+            {
+                textNumeroPagina.Text = "0";
+            }
+        }
+        private void btnPaginaAnterior_Click(object sender, EventArgs e)
+        {
+            paginaSeleccionada = paginaSeleccionada - 1;
+            if (paginaSeleccionada <= totalPaginas && paginaSeleccionada >=0)
+            {
+                textNumeroPagina.Text = paginaSeleccionada.ToString();
+                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                if(paginaSeleccionada < 1)
+                {
+                    btnPaginaAnterior.Enabled = false;
+                    string mensaje = "Llego al inicio de las paginas";
+                    MessageBox.Show(mensaje, "Paginado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnPaginaAnterior.Enabled = false;
+                    paginaSeleccionada = paginaSeleccionada + 1;
+                }
+            }
+        }
+
+        private void btnSiguientePagina_Click(object sender, EventArgs e)
+        {
+            paginaSeleccionada = paginaSeleccionada + 1;
+            if (paginaSeleccionada <= totalPaginas)
+            {
+                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                btnPaginaAnterior.Enabled = true;
+                if (paginaSeleccion == totalPaginas)
+                {
+                    string mensaje = "No hay mas paginas para mostrar";
+                    MessageBox.Show(mensaje, "Paginado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnSiguientePagina.Enabled = false;
+                    paginaSeleccionada = paginaSeleccionada - 1;
                 }
             }
         }
@@ -249,7 +369,7 @@ namespace Presentacion
                     textSearch.Text = "";
                     string msg = "¡No se encontró medicamentos asociados!";
                     MessageBox.Show(msg, "Filtro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ConsultarYLlenarGridDeProductos();
+                    ConsultarYLlenarGridDeProductos(paginaSeleccionada);
                 }
             }
         }
@@ -258,6 +378,27 @@ namespace Presentacion
             ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
             string via = comboFiltroVia.Text;
             respuesta = productoService.BuscarPorViaAdminitracion(via);
+            if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
+            {
+                dataGridFarmacos.DataSource = respuesta.Productos;
+            }
+            else
+            {
+                if (respuesta.Productos == null || respuesta.Productos.Count == 0)
+                {
+                    labelAdvertencia.Enabled = true;
+                    labelAdvertencia.Text = "No hay medicametos de este tipo";
+                    string msg = "¡No se encontró medicamentos asociados!";
+                    MessageBox.Show(msg, "Filtro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    comboFiltroVia.Text = "Todos";
+                }
+            }
+        }
+        private void BuscarPorUbicacion()
+        {
+            ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
+            string ubicacion = comboUbicacion.Text;
+            respuesta = productoService.BuscarPorUbicacion(ubicacion);
             if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
             {
                 dataGridFarmacos.DataSource = respuesta.Productos;
@@ -305,7 +446,7 @@ namespace Presentacion
             textSearch.Visible = false;
             textSearch.Text = "Buscar medicamento";
             btnClose.Visible = false;
-            ConsultarYLlenarGridDeProductos();
+            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
         }
         private void dataGridFarmacos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -320,7 +461,7 @@ namespace Presentacion
                     if (respuesta == DialogResult.OK)
                     {
                         EliminarProducto(referencia);
-                        ConsultarYLlenarGridDeProductos();
+                        ConsultarYLlenarGridDeProductos(paginaSeleccionada);
                     }
                 }
             }
@@ -357,7 +498,9 @@ namespace Presentacion
                             }
                             FormFacturaDeProducto frm = new FormFacturaDeProducto();
                             frm.ShowDialog();
-                            ConsultarYLlenarGridDeProductos();
+                            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                            CalcularProvisiones();
+                            CalculoDeEstadoAutomatico();
                         }
                         else
                         {
@@ -376,7 +519,7 @@ namespace Presentacion
                 }
                 else
                 {
-                    string mensaje = "No hay estantes registrados por lo que tampoco hay productos registrados";
+                    string mensaje = "No hay ubicaciones registradas por lo que tampoco hay productos registrados";
                     MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -442,24 +585,36 @@ namespace Presentacion
         }
         private void btnNuevoProducto_Click(object sender, EventArgs e)
         {
-            FormRegistrarProducto frm = new FormRegistrarProducto();
-            frm.ShowDialog();
-            ConsultarYLlenarGridDeProductos();
-            CalculoDeEstadoAutomatico();
+            if (cantidadEstante!=0 || cantidadVitrinas!=0 || cantidadNeveras!=0)
+            {
+                FormRegistrarProducto frm = new FormRegistrarProducto();
+                frm.ShowDialog();
+                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                CalculoDeEstadoAutomatico();
+                CalcularProvisiones();
+            }
+            else
+            {
+                if (cantidadEstante == 0)
+                {
+                    string mensaje = "No se han registrado datos de estante por lo que no podra registrar productos";
+                    MessageBox.Show(mensaje, "Registrar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
         private void btnProductosVendidos_Click(object sender, EventArgs e)
         {
             FormProductosVendidos frm = new FormProductosVendidos();
             frm.ShowDialog();
-            ConsultarYLlenarGridDeProductos();
             CalculoDeEstadoAutomatico();
+            CalcularProvisiones();
         }
         private void btnFarmacosVencidos_Click(object sender, EventArgs e)
         {
             FormProductosVencidos frm = new FormProductosVencidos();
             frm.ShowDialog();
-            ConsultarYLlenarGridDeProductos();
             CalculoDeEstadoAutomatico();
+            CalcularProvisiones();
         }
         private Producto CalculosDefactura()
         {
@@ -482,7 +637,9 @@ namespace Presentacion
         {
             FormRegistrarProducto frm = new FormRegistrarProducto();
             frm.ShowDialog();
-            ConsultarYLlenarGridDeProductos();
+            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+            CalcularProvisiones();
+            CalculoDeEstadoAutomatico();
         }
 
         private void UpdateGrid(String query, String tbl)
@@ -499,7 +656,7 @@ namespace Presentacion
             UpdateGrid(query, "PRODUCTO");
             if (comboFiltroVia.Text == "Todos")
             {
-                ConsultarYLlenarGridDeProductos();
+                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
                 textTotal.Enabled = true;
                 textVigentes.Enabled = true;
                 textCuarentena.Enabled = true;
@@ -515,7 +672,7 @@ namespace Presentacion
             UpdateGrid(query, "PRODUCTO");
             if (comboFiltroTipo.Text == "Todos")
             {
-                ConsultarYLlenarGridDeProductos();
+                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
                 textTotal.Enabled = true;
                 textVigentes.Enabled = true;
                 textCuarentena.Enabled = true;
@@ -560,7 +717,7 @@ namespace Presentacion
             }
             else
             {
-                ConsultarYLlenarGridDeProductos();
+                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
             }
         }
 
@@ -569,6 +726,130 @@ namespace Presentacion
             if (e.KeyChar == (char)Keys.Enter)
             {
                 BuscarPorReferencia();
+            }
+        }
+
+        private void textNumeroPagina_TextChanged(object sender, EventArgs e)
+        {
+            if (textNumeroPagina.Text !="")
+            {
+                paginaSeleccionada = int.Parse(textNumeroPagina.Text);
+                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+            }
+        }
+
+        private void comboUbicacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            String query = "select * from PRODUCTO where Ubicacion='" + comboUbicacion.Text + "'";
+            UpdateGrid(query, "PRODUCTO");
+            if (comboUbicacion.Text == "Todos")
+            {
+                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                textTotal.Enabled = true;
+                textVigentes.Enabled = true;
+                textCuarentena.Enabled = true;
+            }
+            else
+            {
+                BuscarPorUbicacion();
+            }
+        }
+
+        private void dataGridFarmacos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (this.dataGridFarmacos.Columns[e.ColumnIndex].Name == "Cantidad")
+            {
+                if (e.Value != null)
+                {
+                    if (e.Value.GetType() != typeof(System.DBNull))
+                    {
+                        //Stock menor a 20
+                        if (Convert.ToInt32(e.Value) >= 20)
+                        {
+                            e.CellStyle.BackColor = Color.DarkGreen;
+                            e.CellStyle.ForeColor = Color.White;
+                        }
+                        //Stock menor a 20
+                        if (Convert.ToInt32(e.Value) <= 20)
+                        {
+                            e.CellStyle.BackColor = Color.LightSalmon;
+                            e.CellStyle.ForeColor = Color.Red;
+                        }
+                        //Stock menor a 10
+                        if (Convert.ToInt32(e.Value) <= 10)
+                        {
+                            e.CellStyle.BackColor = Color.Salmon;
+                            e.CellStyle.ForeColor = Color.Red;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (this.dataGridFarmacos.Columns[e.ColumnIndex].Name == "PrecioDeVenta")
+                {
+                    if (e.Value != null)
+                    {
+                        if (e.Value.GetType() != typeof(System.DBNull))
+                        {
+                            //Toda la columna
+                            if (Convert.ToInt32(e.Value) !=0)
+                            {
+                                e.CellStyle.BackColor = Color.Yellow;
+                                e.CellStyle.ForeColor = Color.Black;
+                            }
+                            //Resaltar casillas en 0
+                            if (Convert.ToInt32(e.Value) ==0)
+                            {
+                                e.CellStyle.BackColor = Color.Salmon;
+                                e.CellStyle.ForeColor = Color.Red;
+                            }
+                        }
+                    }
+                }
+            }
+            if (this.dataGridFarmacos.Columns[e.ColumnIndex].Name == "Ubicacion")
+            {
+                if (e.Value != null)
+                {
+                    if (e.Value.GetType() != typeof(System.DBNull))
+                    {
+                        //Toda la columna
+                        if (Convert.ToString(e.Value) !="A")
+                        {
+                            e.CellStyle.BackColor = Color.Purple;
+                            e.CellStyle.ForeColor = Color.White;
+                        }
+                        
+                    }
+                }
+            }
+        }
+
+        private void dataGridFarmacos_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string referencia;
+            if (dataGridFarmacos.DataSource != null)
+            {
+                if (dataGridFarmacos.Columns[e.ColumnIndex].Name == "Cash")
+                {
+                    referencia = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Referencia"].Value.ToString());
+                    string msg = "Desea vender el producto " + referencia + "?";
+                    var respuesta = MessageBox.Show(msg, "Vender", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (respuesta == DialogResult.OK)
+                    {
+                        btnVenderProducto_Click(sender, e);
+                        ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                    }
+                }
+            }
+            else
+            {
+                if (dataGridFarmacos.DataSource == null)
+                {
+                    string msg = "No hay registros disponibles";
+                    MessageBox.Show(msg, "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
     }

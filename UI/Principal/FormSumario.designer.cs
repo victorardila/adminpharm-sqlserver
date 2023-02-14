@@ -38,7 +38,6 @@
             this.labelTitleEntrenadores = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblhora = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel13 = new System.Windows.Forms.Panel();
             this.labelEstantes = new FontAwesome.Sharp.IconButton();
             this.labelTitleAcerca = new System.Windows.Forms.Label();
@@ -75,6 +74,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
@@ -211,11 +211,6 @@
             this.lblhora.TabIndex = 28;
             this.lblhora.Text = "10:59:58";
             this.lblhora.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // panel13
             // 
@@ -702,6 +697,11 @@
             this.panel15.Size = new System.Drawing.Size(865, 169);
             this.panel15.TabIndex = 37;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // InicioResumen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -709,9 +709,9 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(865, 610);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.labelPapelera);
             this.Controls.Add(this.labelRefresh);
+            this.Controls.Add(this.labelPapelera);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "InicioResumen";
@@ -755,7 +755,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Label lblhora;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label labelTitleAcerca;
         private System.Windows.Forms.Panel panel14;
@@ -795,5 +794,6 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Timer timer1;
     }
 }

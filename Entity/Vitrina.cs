@@ -6,62 +6,62 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class Estante
+    public class Vitrina
     {
-        public Estante(string codigoDeEstante, string numeroDeEstante, int cantidadDeProductos,string estado)
+        public Vitrina(string codigoDeVitrina, string numeroDeVitrina, int cantidadDeProductos, string estado)
         {
-            CodigoDeEstante = codigoDeEstante;
-            NumeroDeEstante = numeroDeEstante;
+            CodigoDeVitrina = codigoDeVitrina;
+            NumeroDeVitrina = numeroDeVitrina;
             CantidadDeProductos = cantidadDeProductos;
             Estado = estado;
         }
-        public Estante()
+        public Vitrina()
         {
 
         }
-        public string CodigoDeEstante { get; set; }
-        public string NumeroDeEstante { get; set; }
+        public string CodigoDeVitrina { get; set; }
+        public string NumeroDeVitrina { get; set; }
         public int CantidadDeProductos { get; set; }
         public string Estado { get; set; }
-        public void GenerarCodigoEstante()
+        public void GenerarCodigoVitrina()
         {
-            string a = "#Est0";
+            string a = "#Vitr0";
             int b;
             string codigo;
             Random aleatorio = new Random();
             b = aleatorio.Next(1, 200);
             codigo = a + b;
-            CodigoDeEstante = codigo;
+            CodigoDeVitrina = codigo;
         }
         public void CalcularEstado()
         {
-            if(CantidadDeProductos>0 && CantidadDeProductos < 20)
+            if (CantidadDeProductos > 0 && CantidadDeProductos < 20)
             {
-                Estado = "Medio Vacio";
+                Estado = "Medio Vacia";
             }
             else
             {
                 if (CantidadDeProductos > 20 && CantidadDeProductos < 50)
                 {
-                    Estado = "Medio Lleno";
+                    Estado = "Medio Llena";
                 }
                 else
                 {
-                    if (CantidadDeProductos>50 && CantidadDeProductos<70)
+                    if (CantidadDeProductos > 50 && CantidadDeProductos < 70)
                     {
-                        Estado = "Casi Lleno";
+                        Estado = "Casi Llena";
                     }
                     else
                     {
                         if (CantidadDeProductos == 0)
                         {
-                            Estado = "Vacio";
+                            Estado = "Vacia";
                         }
                         else
                         {
                             if (CantidadDeProductos == 70)
                             {
-                                Estado = "Lleno";
+                                Estado = "Llena";
                             }
                         }
                     }

@@ -155,7 +155,7 @@ namespace DAL
             if (!dataReader.HasRows) return null;
             Estante estante = new Estante();
             estante.CodigoDeEstante = (string)dataReader["Codigo_De_Estante"];
-            estante.NumeroDeEstante = (int)dataReader["Numero_De_Estante"];
+            estante.NumeroDeEstante = (string)dataReader["Numero_De_Estante"];
             estante.CantidadDeProductos = (int)dataReader["Cantidad_De_Productos"];
             estante.Estado = (string)dataReader["Estado"];
             return estante;

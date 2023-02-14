@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
 using Entity;
+//se importa la libreria para arrastrar formulario
+using System.Runtime.InteropServices;
 
 namespace Presentacion
 {
@@ -190,7 +192,6 @@ namespace Presentacion
             panelSelectionProducto.Visible = true;
             panelSelectionUsuarios.Visible = false;
             panelSelectionFactura.Visible = false;
-
         }
         private void btnProductos_Click(object sender, EventArgs e)
         {
@@ -204,15 +205,28 @@ namespace Presentacion
             CerrarFormulariosCiclo();
             AbrirFormulario<FormGestionDeEstantes>();
         }
+        private void btnNevera_Click(object sender, EventArgs e)
+        {
+            labelHeaderRuta.Text = "Inicio > Gestion Productos > Estantes";
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionarNevera>();
+        }
+
+        private void btnVitrina_Click(object sender, EventArgs e)
+        {
+            labelHeaderRuta.Text = "Inicio > Gestion Productos > Estantes";
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionarVitrina>();
+        }
+
         private void btnBodega_Click(object sender, EventArgs e)
         {
-            labelHeaderRuta.Text = "Inicio > Gestion Productos > Bodega";
+            labelHeaderRuta.Text = "Inicio > Gestion Productos > Estantes";
             CerrarFormulariosCiclo();
             AbrirFormulario<FormGestionBodega>();
         }
+        //**********************************************GESTION DE USUARIOS*****************************************************
 
-//**********************************************GESTION DE USUARIOS*****************************************************
-        
         private void btnGestionUsuarios_Click(object sender, EventArgs e)
         {
             labelHeaderRuta.Text = "Inicio > Gestion Usuarios";
@@ -316,21 +330,27 @@ namespace Presentacion
                     CerrarFormulario<FormGestionCaja>();
                     break;
                 case 2:
-                    CerrarFormulario<FormGestionProducto>();
-                    break;
-                case 3:
                     CerrarFormulario<FormGestionDeEstantes>();
                     break;
+                case 3:
+                    CerrarFormulario<FormGestionarVitrina>();
+                    break;
                 case 4:
-                    CerrarFormulario<FormGestionClientes>();
+                    CerrarFormulario<FormGestionarNevera>();
                     break;
                 case 5:
-                    CerrarFormulario<FormGestionarEmpleados>();
+                    CerrarFormulario<FormGestionBodega>();
                     break;
                 case 6:
-                    CerrarFormulario<FormGestionFacturas>();
+                    CerrarFormulario<FormGestionClientes>();
                     break;
                 case 7:
+                    CerrarFormulario<FormGestionarEmpleados>();
+                    break;
+                case 8:
+                    CerrarFormulario<FormGestionFacturas>();
+                    break;
+                case 9:
                     CerrarFormulario<FormAjustes>();
                     break;
             }
@@ -342,6 +362,29 @@ namespace Presentacion
             {
                 CerrarFormularioSwicth(i);
             }
+        }
+        //Drag Form
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        private void panelHeaderbar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void panelHeader_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void panelLogoContainer_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

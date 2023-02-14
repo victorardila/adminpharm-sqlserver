@@ -246,6 +246,28 @@ namespace BLL
             finally { conexion.Close(); }
 
         }
+        public ConsultaProductoRespuesta BuscarPorUbicacion(string ubicacion)
+        {
+            ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
+            try
+            {
+
+                conexion.Open();
+                respuesta.Productos = repositorio.BuscarPorUbicacion(ubicacion);
+                conexion.Close();
+                respuesta.Error = false;
+                respuesta.Mensaje = (respuesta.Productos.Count > 0) ? "Se consultan los Datos" : "No hay datos para consultar";
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
+
+        }
         public ConsultaProductoRespuesta BuscarPorTipo(string tipo)
         {
             ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
