@@ -22,6 +22,7 @@ namespace Presentacion
         {
             vitrinaService = new VitrinaService(ConfigConnection.ConnectionString);
             InitializeComponent();
+            ConsultarVitrinas();
         }
         private void ConsultarVitrinas()
         {

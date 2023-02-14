@@ -82,7 +82,7 @@ namespace Presentacion
             int i = contador;
             for (i = 1; i <= cantidad; i = i + 1)
             {
-                string estante = "ESTANTE " + i;
+                string estante = "Estante " + i;
                 comboUbicacion.Items.Add(estante);
                 contador = i;
             }
@@ -92,7 +92,7 @@ namespace Presentacion
             int i = contador;
             for (i = 1; i <= cantidad; i = i + 1)
             {
-                string vitrina = "VITRINA " + i;
+                string vitrina = "Vitrina " + i;
                 comboUbicacion.Items.Add(vitrina);
                 contador = i;
             }
@@ -102,7 +102,7 @@ namespace Presentacion
             int i = contador;
             for (i = 1; i <= cantidad; i = i + 1)
             {
-                string nevera = "NEVERA " + i;
+                string nevera = "Nevera " + i;
                 comboUbicacion.Items.Add(nevera);
                 contador = i;
             }

@@ -22,6 +22,7 @@ namespace Presentacion
         {
             neveraService = new NeveraService(ConfigConnection.ConnectionString);
             InitializeComponent();
+            ConsultarNeveras();
         }
 
         private void btnVolver_Click(object sender, EventArgs e)

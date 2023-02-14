@@ -135,11 +135,27 @@ Total_Con_Redondeo int,
 Total_De_Factura int,
 Forma_De_Pago varchar(20)
 );
-
---Insercion de datos
---Datos guia 
-INSERT INTO PRODUCTO VALUES(31,7702026197971,'Papel Familia Mega Rolllo','Acolchamax','11/02/2023','01/01/1900','null','Familia','Vigente','Sin definir','Sin definir',0,0,0,0,0,0,0,'Estante 1')
-INSERT INTO PRODUCTO VALUES(6,7707350520037,'Gasas Aseptica Grande','1/2 X 5 Yardas','11/02/2023','24/11/2023',20211124,'Provigaza Medical','Vigente','Sin definir','Sin definir',4000,0,0,0,0,4000,0,'Estante 1')
+--Insercion de datos tabla ESTANTE
+--Datos
+INSERT INTO ESTANTE VALUES ('#Est0191','Estante 1',0,'Vacio')
+INSERT INTO ESTANTE VALUES ('#Est0034','Estante 2',0,'Vacio')
+INSERT INTO ESTANTE VALUES ('#Est0391','Estante 3',0,'Vacio')
+INSERT INTO ESTANTE VALUES ('#Est0456','Estante 4',0,'Vacio')
+INSERT INTO ESTANTE VALUES ('#Est0212','Estante 5',0,'Vacio')
+INSERT INTO ESTANTE VALUES ('#Est0876','Estante 6',0,'Vacio')
+INSERT INTO ESTANTE VALUES ('#Est0032','Estante 7',0,'Vacio')
+INSERT INTO ESTANTE VALUES ('#Est0002','Estante 8',0,'Vacio')
+--Insercion de datos tabla VITRINA
+--Datos
+INSERT INTO VITRINA VALUES ('#Vitr0431','Vitrina 1',0,'Vacio')
+INSERT INTO VITRINA VALUES ('#Vitr0712','Vitrina 2',0,'Vacio')
+INSERT INTO VITRINA VALUES ('#Vitr0301','Vitrina 3',0,'Vacio')
+INSERT INTO VITRINA VALUES ('#Vitr0400','Vitrina 4',0,'Vacio')
+INSERT INTO VITRINA VALUES ('#Vitr0517','Vitrina 5',0,'Vacio')
+--Insercion de datos tabla NEVERA
+--Datos
+INSERT INTO NEVERA VALUES ('#Nev0131','Nevera 1',0,'Vacio')
+--Insercion de datos tabla PODUCTO
 --Datos
 INSERT INTO PRODUCTO VALUES (31,7702026197971,'Papel Familia Mega Rolllo','Acolchamax','13/02/2023','31/12/1899','Sin definir','Familia','Vigente','Sin definir','Sin definir',0,0,0,0,0,0,0,'Estante 1')
 INSERT INTO PRODUCTO VALUES (6,7707350520037,'Gasas Aseptica Grande','1/2 X 5 Yardas','13/02/2023','24/11/2023',20211124,'Provigaza Medical','Vigente','Sin definir','Sin definir',4000,0,0,0,0,4000,0,'Estante 1')
