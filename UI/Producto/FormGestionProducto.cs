@@ -194,7 +194,6 @@ namespace Presentacion
                                     porcentajeDeVenta, precioDeNegocio, precioProducto, gananciaDeProducto);
                                 productoVencidoTxtService.Guardar(productoTxt);
                                 productoService.Eliminar(referenciaProducto);
-                                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
                             }
                         }
                     }
@@ -260,8 +259,8 @@ namespace Presentacion
         }
         private void ConsultarYLlenarGridDeProductos(int paginaSelecciona)
         {
+            CalculoDeEstadoAutomatico();
             paginaSeleccionada = paginaSelecciona;
-            textSearch.SelectionStart = 0;
             BuscarPorEstado();
             ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
             string via = comboFiltroVia.Text;
@@ -498,9 +497,6 @@ namespace Presentacion
                             }
                             FormFacturaDeProducto frm = new FormFacturaDeProducto();
                             frm.ShowDialog();
-                            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-                            CalcularProvisiones();
-                            CalculoDeEstadoAutomatico();
                         }
                         else
                         {
@@ -589,9 +585,6 @@ namespace Presentacion
             {
                 FormRegistrarProducto frm = new FormRegistrarProducto();
                 frm.ShowDialog();
-                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-                CalculoDeEstadoAutomatico();
-                CalcularProvisiones();
             }
             else
             {
@@ -606,15 +599,11 @@ namespace Presentacion
         {
             FormProductosVendidos frm = new FormProductosVendidos();
             frm.ShowDialog();
-            CalculoDeEstadoAutomatico();
-            CalcularProvisiones();
         }
         private void btnFarmacosVencidos_Click(object sender, EventArgs e)
         {
             FormProductosVencidos frm = new FormProductosVencidos();
             frm.ShowDialog();
-            CalculoDeEstadoAutomatico();
-            CalcularProvisiones();
         }
         private Producto CalculosDefactura()
         {
@@ -637,9 +626,6 @@ namespace Presentacion
         {
             FormRegistrarProducto frm = new FormRegistrarProducto();
             frm.ShowDialog();
-            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-            CalcularProvisiones();
-            CalculoDeEstadoAutomatico();
         }
         private void comboFiltroVia_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -708,6 +694,9 @@ namespace Presentacion
             if(textSearch.Text=="Buscar medicamento")
             {
                 textSearch.Text = "";
+                cantidadDeRegistros = int.Parse(textTotal.Text);
+                totalPaginas = 0;
+                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
             }
         }
         private void textSearch_TextChanged(object sender, EventArgs e)
@@ -735,10 +724,6 @@ namespace Presentacion
                         i = i + 1;
                     }
                 }
-            }
-            else
-            {
-                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
             }
         }
 
@@ -887,6 +872,12 @@ namespace Presentacion
                     MessageBox.Show(msg, "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+            CalcularProvisiones();
+            CalculoDeEstadoAutomatico();
         }
     }
 }

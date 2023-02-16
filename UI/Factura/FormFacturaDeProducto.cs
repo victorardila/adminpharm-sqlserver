@@ -402,8 +402,8 @@ namespace Presentacion
         {
             //Proceso de impresion
             nombreFactura = id_factura + ".pdf";
-            string directorio = @"C:\Users\VICTOR PC\Documents\Facturas\";
-            string existingPathName = @"C:\Users\VICTOR PC\Documents\Facturas";
+            string directorio = @"C:\Users\Victor\Documents\Facturas\";
+            string existingPathName = @"C:\Users\Victor\Documents\Facturas";
             notExistingFileName = directorio + nombreFactura;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
@@ -425,8 +425,8 @@ namespace Presentacion
         {
             //Proceso de impresion
             nombreFactura = id_factura+".pdf";
-            string directorio = @"C:\Users\VICTOR PC\Documents\Facturas\";
-            string existingPathName = @"C:\Users\VICTOR PC\Documents\Facturas";
+            string directorio = @"C:\Users\Victor\Documents\Facturas\";
+            string existingPathName = @"C:\Users\Victor\Documents\Facturas";
             notExistingFileName = directorio + nombreFactura;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))

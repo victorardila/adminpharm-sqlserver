@@ -75,7 +75,7 @@ namespace Presentacion
             producto.PrecioDeNegocio = int.Parse(textPrecioNegocio.Text);
             producto.ValorPorUnidad = int.Parse(textPrecioUnidad.Text);
             producto.ValorPorBlister = int.Parse(textPrecioBlister.Text);
-            producto.ValorPorUnidad = int.Parse(textPrecioCaja.Text);
+            producto.ValorPorPaquete = int.Parse(textPrecioCaja.Text);
             producto.Tipo = comboTipo.Text;
             producto.Ubicacion = comboUbicacion.Text;
             return producto;
@@ -315,6 +315,8 @@ namespace Presentacion
                     {
                         Estante estante = MapearEstante();
                         estanteService.Modificar(estante);
+                        string msg = "¡Se agrego el producto correctamente!";
+                        MessageBox.Show(msg, "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     this.Close();
                 }

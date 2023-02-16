@@ -42,6 +42,8 @@ namespace Presentacion
             this.label6 = new System.Windows.Forms.Label();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
+            this.labelRefresh = new System.Windows.Forms.Label();
+            this.btnRefresh = new FontAwesome.Sharp.IconButton();
             this.comboUbicacion = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnClose = new FontAwesome.Sharp.IconPictureBox();
@@ -248,6 +250,8 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTituloDataGridFarmacos.Controls.Add(this.labelRefresh);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.btnRefresh);
             this.panelTituloDataGridFarmacos.Controls.Add(this.comboUbicacion);
             this.panelTituloDataGridFarmacos.Controls.Add(this.label5);
             this.panelTituloDataGridFarmacos.Controls.Add(this.btnClose);
@@ -263,6 +267,39 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(763, 24);
             this.panelTituloDataGridFarmacos.TabIndex = 49;
             // 
+            // labelRefresh
+            // 
+            this.labelRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelRefresh.AutoSize = true;
+            this.labelRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRefresh.ForeColor = System.Drawing.Color.Black;
+            this.labelRefresh.Location = new System.Drawing.Point(505, 2);
+            this.labelRefresh.Name = "labelRefresh";
+            this.labelRefresh.Size = new System.Drawing.Size(67, 16);
+            this.labelRefresh.TabIndex = 63;
+            this.labelRefresh.Text = "Refrescar";
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefresh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(173)))));
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.btnRefresh.IconChar = FontAwesome.Sharp.IconChar.Rotate;
+            this.btnRefresh.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRefresh.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnRefresh.IconSize = 26;
+            this.btnRefresh.Location = new System.Drawing.Point(574, -2);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(26, 25);
+            this.btnRefresh.TabIndex = 62;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // comboUbicacion
             // 
             this.comboUbicacion.AutoCompleteCustomSource.AddRange(new string[] {
@@ -272,7 +309,7 @@ namespace Presentacion
             this.comboUbicacion.FormattingEnabled = true;
             this.comboUbicacion.Items.AddRange(new object[] {
             "Todos"});
-            this.comboUbicacion.Location = new System.Drawing.Point(471, 0);
+            this.comboUbicacion.Location = new System.Drawing.Point(294, -1);
             this.comboUbicacion.Name = "comboUbicacion";
             this.comboUbicacion.Size = new System.Drawing.Size(128, 21);
             this.comboUbicacion.TabIndex = 58;
@@ -282,7 +319,7 @@ namespace Presentacion
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(413, 5);
+            this.label5.Location = new System.Drawing.Point(236, 4);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 57;
@@ -361,21 +398,23 @@ namespace Presentacion
             "Anti-histamínico",
             "Antipirético",
             "Relajante muscular"});
-            this.comboFiltroTipo.Location = new System.Drawing.Point(330, 1);
+            this.comboFiltroTipo.Location = new System.Drawing.Point(200, 1);
             this.comboFiltroTipo.Name = "comboFiltroTipo";
             this.comboFiltroTipo.Size = new System.Drawing.Size(77, 21);
             this.comboFiltroTipo.TabIndex = 54;
             this.comboFiltroTipo.Text = "Todos";
+            this.comboFiltroTipo.Visible = false;
             this.comboFiltroTipo.SelectedIndexChanged += new System.EventHandler(this.comboFiltroTipo_SelectedIndexChanged);
             // 
             // labelFiltroTipo
             // 
             this.labelFiltroTipo.AutoSize = true;
-            this.labelFiltroTipo.Location = new System.Drawing.Point(299, 5);
+            this.labelFiltroTipo.Location = new System.Drawing.Point(169, 5);
             this.labelFiltroTipo.Name = "labelFiltroTipo";
             this.labelFiltroTipo.Size = new System.Drawing.Size(31, 13);
             this.labelFiltroTipo.TabIndex = 53;
             this.labelFiltroTipo.Text = "Tipo:";
+            this.labelFiltroTipo.Visible = false;
             // 
             // comboFiltroVia
             // 
@@ -405,6 +444,7 @@ namespace Presentacion
             this.comboFiltroVia.Size = new System.Drawing.Size(80, 21);
             this.comboFiltroVia.TabIndex = 52;
             this.comboFiltroVia.Text = "Todos";
+            this.comboFiltroVia.Visible = false;
             this.comboFiltroVia.SelectedIndexChanged += new System.EventHandler(this.comboFiltroVia_SelectedIndexChanged);
             // 
             // labelFiltroVia
@@ -415,6 +455,7 @@ namespace Presentacion
             this.labelFiltroVia.Size = new System.Drawing.Size(65, 13);
             this.labelFiltroVia.TabIndex = 50;
             this.labelFiltroVia.Text = "Via de admi:";
+            this.labelFiltroVia.Visible = false;
             // 
             // label4
             // 
@@ -899,6 +940,8 @@ namespace Presentacion
         private System.Windows.Forms.TextBox textNumeroPagina;
         private System.Windows.Forms.ComboBox comboUbicacion;
         private System.Windows.Forms.Label label5;
+        private FontAwesome.Sharp.IconButton btnRefresh;
+        private System.Windows.Forms.Label labelRefresh;
     }
 }
 
