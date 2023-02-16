@@ -11,6 +11,7 @@ using BLL;
 using Entity;
 //se importa la libreria para arrastrar formulario
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Presentacion
 {
@@ -193,8 +194,15 @@ namespace Presentacion
             panelSelectionUsuarios.Visible = false;
             panelSelectionFactura.Visible = false;
         }
+        private void ProgresCargarDatos()
+        {
+            
+        }
         private void btnProductos_Click(object sender, EventArgs e)
         {
+            Thread cargarDatosProductos = new Thread(ProgresCargarDatos);
+            cargarDatosProductos.Start();
+            cargarDatosProductos.Join();
             labelHeaderRuta.Text = "Inicio > Gestion Productos > Productos";
             CerrarFormulariosCiclo();
             AbrirFormulario<FormGestionProducto>();

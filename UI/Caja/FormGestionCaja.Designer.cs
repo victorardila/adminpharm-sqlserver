@@ -262,7 +262,7 @@ namespace Presentacion
             // 
             this.labelAdvertencia.AutoSize = true;
             this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdvertencia.ForeColor = System.Drawing.SystemColors.Control;
+            this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
             this.labelAdvertencia.Location = new System.Drawing.Point(365, 5);
             this.labelAdvertencia.Name = "labelAdvertencia";
             this.labelAdvertencia.Size = new System.Drawing.Size(201, 16);

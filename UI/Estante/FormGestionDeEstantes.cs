@@ -102,25 +102,37 @@ namespace Presentacion
                 }
             }
         }
-        public void UpdateGrid(String query, String tbl)
+
+        private void comboEstado_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            SqlDataAdapter ada = new SqlDataAdapter(query, new SqlConnection(Properties.Settings.Default.AdminPharmConnectionString));
-            DataSet dad = new DataSet();
-            ada.Fill(dad, tbl);
-            dataGridEstantes.DataSource = dad;
-            dataGridEstantes.DataMember = tbl;
-        }
-        private void comboEstado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            String query = "select * from ESTANTE where Estado='" + comboEstado.Text + "'";
-            UpdateGrid(query, "CAJA");
-            if (comboEstado.Text == "Todos")
+            if (comboEstado.Text != "Todos")
             {
-                ConsultarEstantes();
+                ConsultaEstanteRespuesta respuesta = new ConsultaEstanteRespuesta();
+                string estado = comboEstado.Text;
+                respuesta = estanteService.ConsultaPorEstado(estado);
+                estantes = respuesta.Estantes.ToList();
+                dataGridEstantes.DataSource = null;
+                if (respuesta.Estantes.Count != 0 && respuesta.Estantes != null)
+                {
+                    dataGridEstantes.DataSource = respuesta.Estantes;
+                    textTotalEstantes.Text = estanteService.Totalizar().Cuenta.ToString();
+                    labelAdvertencia.Visible = false;
+                }
+                else
+                {
+                    if (respuesta.Estantes == null || respuesta.Estantes.Count == 0)
+                    {
+                        labelAdvertencia.Visible = true;
+                        dataGridEstantes.DataSource = null;
+                    }
+                }
             }
             else
             {
-                BuscarPorEstados();
+                if (comboEstado.Text == "Todos")
+                {
+                    ConsultarEstantes();
+                }
             }
         }
 

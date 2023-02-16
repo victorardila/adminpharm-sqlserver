@@ -120,26 +120,36 @@ namespace Presentacion
                 }
             }
         }
-        public void UpdateGrid(String query, String tbl)
-        {
-            SqlDataAdapter ada = new SqlDataAdapter(query, new SqlConnection(Properties.Settings.Default.AdminPharmConnectionString));
-            DataSet dad = new DataSet();
-            ada.Fill(dad, tbl);
-            dataGridNeveras.DataSource = dad;
-            dataGridNeveras.DataMember = tbl;
-        }
-
         private void comboEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String query = "select * from NEVERA where Estado='" + comboEstado.Text + "'";
-            UpdateGrid(query, "CAJA");
-            if (comboEstado.Text == "Todos")
+            if (comboEstado.Text != "Todos")
             {
-                ConsultarNeveras();
+                string estado = comboEstado.Text;
+                ConsultaNeveraRespuesta respuesta = new ConsultaNeveraRespuesta();
+                respuesta = neveraService.ConsultaPorEstado(estado);
+                neveras = respuesta.Neveras.ToList();
+                dataGridNeveras.DataSource = null;
+                if (respuesta.Neveras.Count != 0 && respuesta.Neveras != null)
+                {
+                    dataGridNeveras.DataSource = respuesta.Neveras;
+                    textTotalNeveras.Text = neveraService.Totalizar().Cuenta.ToString();
+                    labelAdvertencia.Visible = false;
+                }
+                else
+                {
+                    if (respuesta.Neveras == null || respuesta.Neveras.Count == 0)
+                    {
+                        labelAdvertencia.Visible = true;
+                        dataGridNeveras.DataSource = null;
+                    }
+                }
             }
             else
             {
-                BuscarPorEstados();
+                if (estado == "Todos")
+                {
+                    ConsultarNeveras();
+                }
             }
         }
 

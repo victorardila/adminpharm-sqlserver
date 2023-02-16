@@ -153,24 +153,40 @@ namespace Presentacion
             empleado.Contraseña = textContraseña.Text;
             return empleado;
         }
-        private void UpdateGrid(String query, String tbl)
-        {
-            SqlDataAdapter ada = new SqlDataAdapter(query, new SqlConnection(Properties.Settings.Default.AdminPharmConnectionString));
-            DataSet dad = new DataSet();
-            ada.Fill(dad, tbl);
-            dataGridEmpleados.DataSource = dad;
-            dataGridEmpleados.DataMember = tbl;
-        }
         private void comboSexo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String query = "select * from EMPLEADO where Sexo='" + comboSexo.Text + "'";
-            UpdateGrid(query, "EMPLEADO");
-            if (comboSexo.Text == "Todos")
+            ConsultaEmpleadoRespuesta respuesta = new ConsultaEmpleadoRespuesta();
+            string sexo = comboSexo.Text;
+            if (sexo != "Todos")
             {
-                ConsultarListaDeEmpleados();
-                textTotal.Enabled = true;
-                textTotalHombres.Enabled = true;
-                textTotalMujeres.Enabled = true;
+                respuesta = empleadoService.BuscarPorSexo(sexo);
+                empleados = respuesta.Empleados.ToList();
+                dataGridEmpleados.DataSource = null;
+                if (respuesta.Empleados.Count != 0 && respuesta.Empleados != null)
+                {
+                    dataGridEmpleados.DataSource = respuesta.Empleados;
+                    Eliminar.Visible = true;
+                    textTotal.Text = empleadoService.Totalizar().Cuenta.ToString();
+                    textTotalHombres.Text = empleadoService.TotalizarTipo("H").Cuenta.ToString();
+                    textTotalMujeres.Text = empleadoService.TotalizarTipo("M").Cuenta.ToString();
+                    labelAdvertencia.Visible = false;
+                }
+                else
+                {
+                    if (respuesta.Empleados == null || respuesta.Empleados.Count == 0)
+                    {
+                        MostrarAviso();
+                        Eliminar.Visible = false;
+                        labelAdvertencia.Visible = true;
+                    }
+                }
+            }
+            else
+            {
+                if (sexo=="Todos")
+                {
+                    ConsultarListaDeEmpleados();
+                }
             }
         }
         private void dataGridEmpleados_CellClick(object sender, DataGridViewCellEventArgs e)

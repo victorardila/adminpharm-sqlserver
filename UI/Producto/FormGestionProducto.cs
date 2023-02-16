@@ -641,45 +641,66 @@ namespace Presentacion
             CalcularProvisiones();
             CalculoDeEstadoAutomatico();
         }
-
-        private void UpdateGrid(String query, String tbl)
-        {
-            SqlDataAdapter ada = new SqlDataAdapter(query, new SqlConnection(Properties.Settings.Default.AdminPharmConnectionString));
-            DataSet dad = new DataSet();
-            ada.Fill(dad, tbl);
-            dataGridFarmacos.DataSource = dad;
-            dataGridFarmacos.DataMember = tbl;
-        }
         private void comboFiltroVia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String query = "select * from PRODUCTO where Via='" + comboFiltroVia.Text + "'";
-            UpdateGrid(query, "PRODUCTO");
-            if (comboFiltroVia.Text == "Todos")
+            string via = comboFiltroVia.Text;
+            if (via != "Todos")
             {
-                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-                textTotal.Enabled = true;
-                textVigentes.Enabled = true;
-                textCuarentena.Enabled = true;
+                ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
+                respuesta = productoService.BuscarPorViaAdminitracion(via);
+                productos = respuesta.Productos.ToList();
+                dataGridFarmacos.DataSource = null;
+                if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
+                {
+                    dataGridFarmacos.DataSource = respuesta.Productos;
+                }
+                else
+                {
+                    if (respuesta.Productos == null || respuesta.Productos.Count == 0)
+                    {
+                        MostrarAviso();
+                        Eliminar.Visible = false;
+                        labelAdvertencia.Visible = true;
+                    }
+                }
             }
             else
             {
-                BuscarPorVia();
+                if (via == "Todos")
+                {
+                    ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                }
             }
         }
         private void comboFiltroTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String query = "select * from PRODUCTO where Tipo='" + comboFiltroTipo.Text + "'";
-            UpdateGrid(query, "PRODUCTO");
-            if (comboFiltroTipo.Text == "Todos")
+            string Tipo = comboFiltroTipo.Text;
+            if (Tipo != "Todos")
             {
-                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-                textTotal.Enabled = true;
-                textVigentes.Enabled = true;
-                textCuarentena.Enabled = true;
+                ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
+                respuesta = productoService.BuscarPorTipo(Tipo);
+                productos = respuesta.Productos.ToList();
+                dataGridFarmacos.DataSource = null;
+                if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
+                {
+                    dataGridFarmacos.DataSource = respuesta.Productos;
+                }
+                else
+                {
+                    if (respuesta.Productos == null || respuesta.Productos.Count == 0)
+                    {
+                        MostrarAviso();
+                        Eliminar.Visible = false;
+                        labelAdvertencia.Visible = true;
+                    }
+                }
             }
             else
             {
-                BuscarPorTipo();
+                if (Tipo == "Todos")
+                {
+                    ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                }
             }
         }
         private void textSearch_Enter(object sender, EventArgs e)
@@ -740,18 +761,33 @@ namespace Presentacion
 
         private void comboUbicacion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String query = "select * from PRODUCTO where Ubicacion='" + comboUbicacion.Text + "'";
-            UpdateGrid(query, "PRODUCTO");
-            if (comboUbicacion.Text == "Todos")
+            string ubicacion = comboUbicacion.Text;
+            if (ubicacion != "Todos")
             {
-                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-                textTotal.Enabled = true;
-                textVigentes.Enabled = true;
-                textCuarentena.Enabled = true;
+                ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
+                respuesta = productoService.BuscarPorUbicacion(ubicacion);
+                productos = respuesta.Productos.ToList();
+                dataGridFarmacos.DataSource = null;
+                if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
+                {
+                    dataGridFarmacos.DataSource = respuesta.Productos;
+                }
+                else
+                {
+                    if (respuesta.Productos == null || respuesta.Productos.Count == 0)
+                    {
+                        MostrarAviso();
+                        Eliminar.Visible = false;
+                        labelAdvertencia.Visible = true;
+                    }
+                }
             }
             else
             {
-                BuscarPorUbicacion();
+                if (ubicacion == "Todos")
+                {
+                    ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                }
             }
         }
 

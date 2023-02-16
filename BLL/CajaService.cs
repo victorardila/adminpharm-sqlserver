@@ -59,6 +59,27 @@ namespace BLL
             finally { conexion.Close(); }
 
         }
+        public ConsultaCajaRegistradoraRespuesta ConsultarPorEstadosCajas(string estado)
+        {
+            ConsultaCajaRegistradoraRespuesta respuesta = new ConsultaCajaRegistradoraRespuesta();
+            try
+            {
+
+                conexion.Open();
+                respuesta.CajasRegistradoras = repositorio.ConsultarPorEstadosCajas(estado);
+                conexion.Close();
+                respuesta.Mensaje = (respuesta.CajasRegistradoras != null) ? "Se consulto el estante buscado" : "el estante consultado no existe";
+                respuesta.Error = false;
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
+        }
         public BusquedaCajaRegistradoraRespuesta BuscarPorEstado(string estado)
         {
             BusquedaCajaRegistradoraRespuesta respuesta = new BusquedaCajaRegistradoraRespuesta();

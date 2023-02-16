@@ -87,6 +87,27 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
+        public ConsultaFacturaRespuesta BuscarPorIdFactura(string idCaja)
+        {
+            ConsultaFacturaRespuesta respuesta = new ConsultaFacturaRespuesta();
+            try
+            {
+
+                conexion.Open();
+                respuesta.Facturas = repositorio.BuscarPorIdFactura(idCaja);
+                conexion.Close();
+                respuesta.Mensaje = (respuesta.Facturas != null) ? "Se consulto el estante buscado" : "el estante consultado no existe";
+                respuesta.Error = false;
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
+        }
         public string EliminarHistorial(string FormaDePago)
         {
             ConsultaFacturaRespuesta respuesta = new ConsultaFacturaRespuesta();
@@ -110,27 +131,7 @@ namespace BLL
             finally { conexion.Close(); }
 
         }
-        public BusquedaFacturaRespuesta BuscarPorIdCaja(string id_caja)
-        {
-            BusquedaFacturaRespuesta respuesta = new BusquedaFacturaRespuesta();
-            try
-            {
 
-                conexion.Open();
-                respuesta.Factura = repositorio.BuscarPorIdCaja(id_caja);
-                conexion.Close();
-                respuesta.Mensaje = (respuesta.Factura != null) ? "Se encontró la factura" : "la identificacion de factura buscada no existe";
-                respuesta.Error = false;
-                return respuesta;
-            }
-            catch (Exception e)
-            {
-                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
-                respuesta.Error = true;
-                return respuesta;
-            }
-            finally { conexion.Close(); }
-        }
         public BusquedaFacturaRespuesta BuscarPorId(string id)
         {
             BusquedaFacturaRespuesta respuesta = new BusquedaFacturaRespuesta();
@@ -162,6 +163,27 @@ namespace BLL
                 respuesta.Factura = repositorio.BuscarPorSecuencia(secuencia);
                 conexion.Close();
                 respuesta.Mensaje = (respuesta.Factura != null) ? "Se encontró la factura" : "la identificacion de factura buscada no existe";
+                respuesta.Error = false;
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
+        }
+        public ConsultaFacturaRespuesta ConsultaPorIdCaja(string idCaja)
+        {
+            ConsultaFacturaRespuesta respuesta = new ConsultaFacturaRespuesta();
+            try
+            {
+
+                conexion.Open();
+                respuesta.Facturas = repositorio.ConsultaPorIdCaja(idCaja);
+                conexion.Close();
+                respuesta.Mensaje = (respuesta.Facturas != null) ? "Se consulto el estante buscado" : "el estante consultado no existe";
                 respuesta.Error = false;
                 return respuesta;
             }

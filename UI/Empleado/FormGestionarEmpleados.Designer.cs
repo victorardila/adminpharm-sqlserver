@@ -441,6 +441,7 @@ namespace Presentacion
             // 
             // panelSubDataGridFarmacos
             // 
+            this.panelSubDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelSubDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelSubDataGridFarmacos.Controls.Add(this.labelAdvertencia);
             this.panelSubDataGridFarmacos.Controls.Add(this.textTotalMujeres);
@@ -449,11 +450,10 @@ namespace Presentacion
             this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalHombres);
             this.panelSubDataGridFarmacos.Controls.Add(this.textTotal);
             this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalFarmacos);
-            this.panelSubDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
+            this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(0, 227);
             this.panelSubDataGridFarmacos.Name = "panelSubDataGridFarmacos";
             this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(767, 22);
-            this.panelSubDataGridFarmacos.TabIndex = 51;
+            this.panelSubDataGridFarmacos.TabIndex = 3;
             // 
             // labelAdvertencia
             // 
@@ -529,7 +529,7 @@ namespace Presentacion
             this.dataGridEmpleados.Name = "dataGridEmpleados";
             this.dataGridEmpleados.RowHeadersVisible = false;
             this.dataGridEmpleados.Size = new System.Drawing.Size(767, 204);
-            this.dataGridEmpleados.TabIndex = 50;
+            this.dataGridEmpleados.TabIndex = 2;
             this.dataGridEmpleados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEmpleados_CellClick);
             // 
             // Eliminar
@@ -555,7 +555,7 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
             this.panelTituloDataGridFarmacos.Name = "panelTituloDataGridFarmacos";
             this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(767, 24);
-            this.panelTituloDataGridFarmacos.TabIndex = 49;
+            this.panelTituloDataGridFarmacos.TabIndex = 1;
             // 
             // labelAdvertenciaEmpleado
             // 

@@ -151,24 +151,35 @@ namespace Presentacion
 
         private void comboEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String query = "select * from ESTANTE where Estado='" + comboEstado.Text + "'";
-            UpdateGrid(query, "CAJA");
             if (comboEstado.Text == "Todos")
             {
-                ConsultarVitrinas();
+                string estado = comboEstado.Text;
+                ConsultaVitrinaRespuesta respuesta = new ConsultaVitrinaRespuesta();
+                respuesta = vitrinaService.ConsultaPorEstado(estado);
+                vitrinas = respuesta.Vitrinas.ToList();
+                dataGridVitrinas.DataSource = null;
+                if (respuesta.Vitrinas.Count != 0 && respuesta.Vitrinas != null)
+                {
+                    dataGridVitrinas.DataSource = respuesta.Vitrinas;
+                    textTotalVitrinas.Text = vitrinaService.Totalizar().Cuenta.ToString();
+                    labelAdvertencia.Visible = false;
+                }
+                else
+                {
+                    if (respuesta.Vitrinas == null || respuesta.Vitrinas.Count == 0)
+                    {
+                        labelAdvertencia.Visible = true;
+                        dataGridVitrinas.DataSource = null;
+                    }
+                }
             }
             else
             {
-                BuscarPorEstados();
+                if (estado == "Todos")
+                {
+                    ConsultarVitrinas();
+                }
             }
-        }
-        public void UpdateGrid(String query, String tbl)
-        {
-            SqlDataAdapter ada = new SqlDataAdapter(query, new SqlConnection(Properties.Settings.Default.AdminPharmConnectionString));
-            DataSet dad = new DataSet();
-            ada.Fill(dad, tbl);
-            dataGridVitrinas.DataSource = dad;
-            dataGridVitrinas.DataMember = tbl;
         }
         private void EliminarVitrina(string Id)
         {

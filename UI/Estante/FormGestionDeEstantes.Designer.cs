@@ -38,6 +38,8 @@ namespace Presentacion
             this.labelAdvertencia = new System.Windows.Forms.Label();
             this.textTotalEstantes = new System.Windows.Forms.TextBox();
             this.labelTotalFarmacos = new System.Windows.Forms.Label();
+            this.dataGridEstantes = new System.Windows.Forms.DataGridView();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelTituloDataGridEstantes = new System.Windows.Forms.Panel();
             this.labelAdvertenciaCliente = new System.Windows.Forms.Label();
             this.btnCloseEstante = new FontAwesome.Sharp.IconPictureBox();
@@ -49,15 +51,13 @@ namespace Presentacion
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnEliminarEstantes = new FontAwesome.Sharp.IconButton();
             this.btnRegistrarEstantes = new FontAwesome.Sharp.IconButton();
-            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridEstantes = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panelConsultaDeProductos.SuspendLayout();
             this.panelSubDataGridEstantes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).BeginInit();
             this.panelTituloDataGridEstantes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseEstante)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchEstante)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -165,6 +165,28 @@ namespace Presentacion
             this.labelTotalFarmacos.TabIndex = 49;
             this.labelTotalFarmacos.Text = "Total Registrados:";
             // 
+            // dataGridEstantes
+            // 
+            this.dataGridEstantes.AllowUserToAddRows = false;
+            this.dataGridEstantes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridEstantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridEstantes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Eliminar});
+            this.dataGridEstantes.Location = new System.Drawing.Point(0, 23);
+            this.dataGridEstantes.Name = "dataGridEstantes";
+            this.dataGridEstantes.RowHeadersVisible = false;
+            this.dataGridEstantes.Size = new System.Drawing.Size(750, 304);
+            this.dataGridEstantes.TabIndex = 50;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Width = 50;
+            // 
             // panelTituloDataGridEstantes
             // 
             this.panelTituloDataGridEstantes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -250,6 +272,7 @@ namespace Presentacion
             this.comboEstado.Size = new System.Drawing.Size(86, 21);
             this.comboEstado.TabIndex = 52;
             this.comboEstado.Text = "Todos";
+            this.comboEstado.SelectedIndexChanged += new System.EventHandler(this.comboEstado_SelectedIndexChanged_1);
             // 
             // labelFiltro
             // 
@@ -325,28 +348,6 @@ namespace Presentacion
             this.btnRegistrarEstantes.UseVisualStyleBackColor = false;
             this.btnRegistrarEstantes.Click += new System.EventHandler(this.btnRegistrarEstantes_Click_1);
             // 
-            // Eliminar
-            // 
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Image = global::Presentacion.Properties.Resources.deleRojBlack;
-            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Width = 50;
-            // 
-            // dataGridEstantes
-            // 
-            this.dataGridEstantes.AllowUserToAddRows = false;
-            this.dataGridEstantes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridEstantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridEstantes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Eliminar});
-            this.dataGridEstantes.Location = new System.Drawing.Point(0, 23);
-            this.dataGridEstantes.Name = "dataGridEstantes";
-            this.dataGridEstantes.RowHeadersVisible = false;
-            this.dataGridEstantes.Size = new System.Drawing.Size(750, 304);
-            this.dataGridEstantes.TabIndex = 50;
-            // 
             // FormGestionDeEstantes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -364,11 +365,11 @@ namespace Presentacion
             this.panelConsultaDeProductos.ResumeLayout(false);
             this.panelSubDataGridEstantes.ResumeLayout(false);
             this.panelSubDataGridEstantes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).EndInit();
             this.panelTituloDataGridEstantes.ResumeLayout(false);
             this.panelTituloDataGridEstantes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseEstante)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchEstante)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridEstantes)).EndInit();
             this.ResumeLayout(false);
 
         }

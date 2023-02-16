@@ -136,14 +136,6 @@ namespace Presentacion
                 }
             }
         }
-        private void UpdateGrid(String query, String tbl)
-        {
-            SqlDataAdapter ada = new SqlDataAdapter(query, new SqlConnection(Properties.Settings.Default.AdminPharmConnectionString));
-            DataSet dad = new DataSet();
-            ada.Fill(dad, tbl);
-            dataGridClientes.DataSource = dad;
-            dataGridClientes.DataMember = tbl;
-        }
         private Cliente MapearCliente()
         {
             cliente = new Cliente();
@@ -161,14 +153,39 @@ namespace Presentacion
 
         private void comboSexo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String query = "select * from CLIENTE where Sexo='" + comboSexo.Text + "'";
-            UpdateGrid(query, "CLIENTE");
-            if (comboSexo.Text == "Todos")
+            ConsultaClienteRespuesta respuesta = new ConsultaClienteRespuesta();
+            string sexo = comboSexo.Text;
+            if (sexo != "Todos")
             {
-                ConsultarListaDeClientes();
-                textTotal.Enabled = true;
-                textTotalHombres.Enabled = true;
-                textTotalMujeres.Enabled = true;
+                dataGridClientes.DataSource = null;
+                respuesta = clienteService.BuscarPorSexo(sexo);
+                clientes = respuesta.Clientes.ToList();
+                dataGridClientes.DataSource = null;
+                if (respuesta.Clientes.Count != 0 && respuesta.Clientes != null)
+                {
+                    dataGridClientes.DataSource = respuesta.Clientes;
+                    Eliminar.Visible = true;
+                    textTotal.Text = clienteService.Totalizar().Cuenta.ToString();
+                    textTotalHombres.Text = clienteService.TotalizarTipo("H").Cuenta.ToString();
+                    textTotalMujeres.Text = clienteService.TotalizarTipo("M").Cuenta.ToString();
+                    labelAdvertencia.Visible = false;
+                }
+                else
+                {
+                    if (respuesta.Clientes == null || respuesta.Clientes.Count == 0)
+                    {
+                        MostrarAviso();
+                        Eliminar.Visible = false;
+                        labelAdvertencia.Visible = true;
+                    }
+                }
+            }
+            else
+            {
+                if (sexo == "Todos")
+                {
+                    ConsultarListaDeClientes();
+                }
             }
         }
 

@@ -474,13 +474,20 @@ namespace Presentacion
                 }
                 LlenarComboEstante(cantidadEstantes);
             }
+            else
+            {
+                if (checkedEstante.CheckedItems.Count == 0)
+                {
+                    comboUbicacion.Items.Clear();
+                    checkedNevera.Enabled = true;
+                    checkedVitrina.Enabled = true;
+                }
+            }
         }
 
         private void checkedVitrina_SelectedIndexChanged(object sender, EventArgs e)
         {
-            checkedEstante.Enabled = false;
-            checkedNevera.Enabled = false;
-            if (checkedEstante.CheckedItems.Count != 0)
+            if (checkedVitrina.CheckedItems.Count != 0)
             {
                 string s = "";
                 for (int x = 0; x < checkedEstante.CheckedItems.Count; x++)
@@ -488,18 +495,34 @@ namespace Presentacion
                     s = s + "Checked Item " + (x + 1).ToString() + " = " + checkedEstante.CheckedItems[x].ToString() + "\n";
                 }
             }
+            else
+            {
+                if (checkedVitrina.CheckedItems.Count == 0)
+                {
+                    comboUbicacion.Items.Clear();
+                    checkedNevera.Enabled = true;
+                    checkedEstante.Enabled = true;
+                }
+            }
         }
 
         private void checkedNevera_SelectedIndexChanged(object sender, EventArgs e)
         {
-            checkedEstante.Enabled = false;
-            checkedVitrina.Enabled = false;
-            if (checkedEstante.CheckedItems.Count != 0)
+            if (checkedNevera.CheckedItems.Count != 0)
             { 
                 string s = "";
                 for (int x = 0; x < checkedEstante.CheckedItems.Count; x++)
                 {
                     s = s + "Checked Item " + (x + 1).ToString() + " = " + checkedEstante.CheckedItems[x].ToString() + "\n";
+                }
+            }
+            else
+            {
+                if (checkedNevera.CheckedItems.Count == 0)
+                {
+                    comboUbicacion.Items.Clear();
+                    checkedVitrina.Enabled = true;
+                    checkedEstante.Enabled = true;
                 }
             }
         }

@@ -116,6 +116,7 @@ namespace Presentacion
                 }
             }
         }
+
         private void BuscarPorEstado()
         {
             BusquedaCajaRegistradoraRespuesta respuesta = new BusquedaCajaRegistradoraRespuesta();
@@ -154,27 +155,43 @@ namespace Presentacion
         }
         private void comboFiltroEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String query = "select * from CAJA where Estado='" + comboFiltroEstado.Text + "'";
-            UpdateGrid(query, "CAJA");
-            if (comboFiltroEstado.Text == "Todos")
+            ConsultaCajaRegistradoraRespuesta respuesta = new ConsultaCajaRegistradoraRespuesta();
+            string estado = comboFiltroEstado.Text;
+            if (estado != "Todos")
             {
-                ConsultarYLlenarGridDeCajas();
                 textTotalCajas.Enabled = true;
                 textTotalCajasAbiertas.Enabled = true;
                 textTotalCajasCerradas.Enabled = true;
+                respuesta = cajaRegistradoraService.ConsultarPorEstadosCajas(estado);
+                cajasRegistradoras = respuesta.CajasRegistradoras.ToList();
+                dataGridFarmacos.DataSource = null;
+                if (respuesta.CajasRegistradoras.Count != 0 && respuesta.CajasRegistradoras != null)
+                {
+                    dataGridFarmacos.DataSource = respuesta.CajasRegistradoras;
+                    Eliminar.Visible = true;
+                    textTotalCajas.Text = cajaRegistradoraService.Totalizar().Cuenta.ToString();
+                    textTotalCajasAbiertas.Text = cajaRegistradoraService.TotalizarTipo("Abierta").Cuenta.ToString();
+                    textTotalCajasCerradas.Text = cajaRegistradoraService.TotalizarTipo("Cerrada").Cuenta.ToString();
+                    labelAdvertencia.Visible = false;
+                }
+                else
+                {
+                    if (respuesta.CajasRegistradoras == null || respuesta.CajasRegistradoras.Count == 0)
+                    {
+                        MostrarAviso();
+                        btnHistorial.Enabled = false;
+                        Eliminar.Visible = false;
+                        labelAdvertencia.Visible = true;
+                    }
+                }
             }
             else
             {
-                BuscarPorEstado();
+                if (comboFiltroEstado.Text == "Todos")
+                {
+                    ConsultarYLlenarGridDeCajas();
+                }
             }
-        }
-        public void UpdateGrid(String query, String tbl)
-        {
-            SqlDataAdapter ada = new SqlDataAdapter(query, new SqlConnection(Properties.Settings.Default.AdminPharmConnectionString));
-            DataSet dad = new DataSet();
-            ada.Fill(dad, tbl);
-            dataGridFarmacos.DataSource = dad;
-            dataGridFarmacos.DataMember = tbl;
         }
         private void btnAbrirCaja_Click(object sender, EventArgs e)
         {

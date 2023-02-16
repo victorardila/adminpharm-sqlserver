@@ -36,9 +36,9 @@ namespace Presentacion
         private void ConsultarHistorialDeFacturas()
         {
             ConsultaFacturaRespuesta respuesta = new ConsultaFacturaRespuesta();
-            dataGridFacturas.DataSource = null;
             respuesta = facturaService.ConsultarTodos();
             facturas = respuesta.Facturas.ToList();
+            dataGridFacturas.DataSource = null;
             if (respuesta.Facturas.Count != 0 && respuesta.Facturas != null)
             {
                 dataGridFacturas.DataSource = respuesta.Facturas;
@@ -47,9 +47,6 @@ namespace Presentacion
                 textTotalEfectivo.Text = facturaService.TotalizarTipo("Efectivo").Cuenta.ToString();
                 textTotalTarjeta.Text = facturaService.TotalizarTipo("Tarjeta").Cuenta.ToString();
                 labelAdvertencia.Visible = false;
-                ConsultarIdCajas();
-                int cantidad= facturaService.Totalizar().Cuenta;
-                LlenarComboIdCaja(cantidad);
             }
             else
             {
@@ -145,50 +142,24 @@ namespace Presentacion
         }
         private void ConsultarIdCajas()
         {
-            foreach (DataGridViewRow fila in dataGridFacturas.Rows)
+            ConsultaCajaRegistradoraRespuesta respuesta = new ConsultaCajaRegistradoraRespuesta();
+            string estado = "Cerrada";
+            respuesta = cajaRegistradoraService.ConsultarPorEstadosCajas(estado);
+            int i;
+            int cantidad = respuesta.CajasRegistradoras.Count;
+            if (respuesta.CajasRegistradoras.Count != 0 && respuesta.CajasRegistradoras != null)
             {
-                int i = 0;
-                foreach (DataGridViewCell celda in fila.Cells)
+                for (i = 0; i < cantidad; i++)
                 {
-                    //Determinamos la cantidad del producto
-                    if (i == 6)
-                    {
-                        referencias[i-6]=Convert.ToString(fila.Cells[i].Value); 
-                    }
-                    i = i + 1;
+                    Caja caja = respuesta.CajasRegistradoras[i];
+                    comboIdCaja.Items.Add(caja.IdCaja);
                 }
             }
-        }
-        private void LlenarComboIdCaja(int cantidadIdCaja)
-        {
-            for (int i = 1; i <= cantidadIdCaja; i = i + 1)
+            else
             {
-                for(int j = 0; j < 1000; j++)
+                if (respuesta.CajasRegistradoras == null || respuesta.CajasRegistradoras.Count == 0)
                 {
-                    string idCaja;
-                    idCaja = referencias[j];
-                    if (idCajaLeida != idCaja)
-                    {
-                        if (idCaja != null)
-                        {
-                            if (j == 0)
-                            {
-                                comboIdCaja.Items.Add(idCaja);
-                                idCajaLeida = idCaja;
-                                break;
-                            }
-                            else
-                            {
-                                if (j > 0)
-                                {
-                                    if (idCaja != referencias[j - 1])
-                                    {
-                                        comboIdCaja.Items.Add(idCaja);
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    MostrarAviso();
                 }
             }
         }
@@ -226,24 +197,34 @@ namespace Presentacion
 
         private void comboIdCaja_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String query = "select * from FACTURA where Id_Caja='" + comboIdCaja.Text + "'";
-            UpdateGrid(query, "FACTURA");
-            if (comboIdCaja.Text == "Todos")
+            string idCaja=comboIdCaja.Text;
+            if (idCaja != "Todos")
             {
-                ConsultarHistorialDeFacturasCombo();
+                ConsultaFacturaRespuesta respuesta = new ConsultaFacturaRespuesta();
+                respuesta = facturaService.BuscarPorIdFactura(idCaja);
+                dataGridFacturas.DataSource = null;
+                if (respuesta.Facturas != null && respuesta.Facturas.Count != 0)
+                {
+                    dataGridFacturas.DataSource = respuesta.Facturas;
+                    Eliminar.Visible = true;
+                }
+                else
+                {
+                    if (respuesta.Facturas == null)
+                    {
+                        MostrarAviso();
+                        btnEliminarHistorial.Enabled = false;
+                        Eliminar.Visible = false;
+                    }
+                }
             }
             else
             {
-                BuscarPorIdFacturas();
+                if (idCaja == "Todos")
+                {
+                    ConsultarHistorialDeFacturas();
+                }
             }
-        }
-        public void UpdateGrid(String query, String tbl)
-        {
-            SqlDataAdapter ada = new SqlDataAdapter(query, new SqlConnection(Properties.Settings.Default.AdminPharmConnectionString));
-            DataSet dad = new DataSet();
-            ada.Fill(dad, tbl);
-            dataGridFacturas.DataSource = dad;
-            dataGridFacturas.DataMember = tbl;
         }
     }
 }

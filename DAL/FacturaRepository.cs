@@ -29,13 +29,13 @@ namespace DAL
                 return DataReaderMapToFactura(dataReader);
             }
         }
-        public Factura BuscarPorId(string id_factura)
+        public Factura BuscarPorId(string idCaja)
         {
             SqlDataReader dataReader;
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "select * from FACTURA where Id_Factura=@Id_Factura";
-                command.Parameters.AddWithValue("@Id_Factura", id_factura);
+                command.CommandText = "select * from FACTURA where Id_Caja=@Id_Caja";
+                command.Parameters.AddWithValue("@Id_Caja", idCaja);
                 dataReader = command.ExecuteReader();
                 dataReader.Read();
                 return DataReaderMapToFactura(dataReader);
@@ -52,6 +52,25 @@ namespace DAL
                 dataReader.Read();
                 return DataReaderMapToFactura(dataReader);
             }
+        }
+        public List<Factura> BuscarPorIdFactura(string idCaja)
+        {
+            List<Factura> facturas = new List<Factura>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from FACTURA where Id_Caja=@Id_Caja";
+                command.Parameters.AddWithValue("@Id_Caja", idCaja);
+                var dataReader = command.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        Factura factura = DataReaderMapToFactura(dataReader);
+                        facturas.Add(factura);
+                    }
+                }
+            }
+            return facturas;
         }
         public List<Factura> BuscarHistorial(string id_factura)
         {
@@ -164,6 +183,25 @@ namespace DAL
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "Delete Id_Factura, Secuencia_De_Factura, FechaYHora, Nombre_De_Empleado, Ciudad, Id_Caja, Nombre_De_Cliente, Total_Sin_Redondeo, Total_Con_Redondeo, Total_De_Factura, Forma_De_Pago from FACTURA";
+                var dataReader = command.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        Factura factura = DataReaderMapToFactura(dataReader);
+                        facturas.Add(factura);
+                    }
+                }
+            }
+            return facturas;
+        }
+        public List<Factura> ConsultaPorIdCaja(string idCaja)
+        {
+            List<Factura> facturas = new List<Factura>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from FACTURA where Id_Caja=@Id_Caja";
+                command.Parameters.AddWithValue("@Estado", idCaja);
                 var dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {

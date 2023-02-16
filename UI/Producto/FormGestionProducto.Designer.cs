@@ -42,6 +42,8 @@ namespace Presentacion
             this.label6 = new System.Windows.Forms.Label();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
+            this.comboUbicacion = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnClose = new FontAwesome.Sharp.IconPictureBox();
             this.textSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new FontAwesome.Sharp.IconPictureBox();
@@ -78,8 +80,6 @@ namespace Presentacion
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.label5 = new System.Windows.Forms.Label();
-            this.comboUbicacion = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -262,6 +262,31 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Name = "panelTituloDataGridFarmacos";
             this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(763, 24);
             this.panelTituloDataGridFarmacos.TabIndex = 49;
+            // 
+            // comboUbicacion
+            // 
+            this.comboUbicacion.AutoCompleteCustomSource.AddRange(new string[] {
+            "Todos",
+            "Orales",
+            "Intravenoso"});
+            this.comboUbicacion.FormattingEnabled = true;
+            this.comboUbicacion.Items.AddRange(new object[] {
+            "Todos"});
+            this.comboUbicacion.Location = new System.Drawing.Point(471, 0);
+            this.comboUbicacion.Name = "comboUbicacion";
+            this.comboUbicacion.Size = new System.Drawing.Size(128, 21);
+            this.comboUbicacion.TabIndex = 58;
+            this.comboUbicacion.Text = "Todos";
+            this.comboUbicacion.SelectedIndexChanged += new System.EventHandler(this.comboUbicacion_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(413, 5);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.TabIndex = 57;
+            this.label5.Text = "Ubicacion:";
             // 
             // btnClose
             // 
@@ -785,31 +810,6 @@ namespace Presentacion
             this.dataGridViewImageColumn3.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
             this.dataGridViewImageColumn3.Width = 30;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(413, 5);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
-            this.label5.TabIndex = 57;
-            this.label5.Text = "Ubicacion:";
-            // 
-            // comboUbicacion
-            // 
-            this.comboUbicacion.AutoCompleteCustomSource.AddRange(new string[] {
-            "Todos",
-            "Orales",
-            "Intravenoso"});
-            this.comboUbicacion.FormattingEnabled = true;
-            this.comboUbicacion.Items.AddRange(new object[] {
-            "Todos"});
-            this.comboUbicacion.Location = new System.Drawing.Point(471, 0);
-            this.comboUbicacion.Name = "comboUbicacion";
-            this.comboUbicacion.Size = new System.Drawing.Size(128, 21);
-            this.comboUbicacion.TabIndex = 58;
-            this.comboUbicacion.Text = "Todos";
-            this.comboUbicacion.SelectedIndexChanged += new System.EventHandler(this.comboUbicacion_SelectedIndexChanged);
             // 
             // FormGestionProducto
             // 

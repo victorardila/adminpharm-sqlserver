@@ -94,6 +94,25 @@ namespace DAL
             }
             return cajas;
         }
+        public List<Caja> ConsultarPorEstadosCajas(string estado)
+        {
+            List<Caja> cajas = new List<Caja>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from CAJA where Estado=@Estado";
+                command.Parameters.AddWithValue("@Estado", estado);
+                var dataReader = command.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        Caja caja = DataReaderMapToCajaRegistradora(dataReader);
+                        cajas.Add(caja);
+                    }
+                }
+            }
+            return cajas;
+        }
         public List<Caja> BuscarHistorial(string estado)
         {
             List<Caja> cajas = new List<Caja>();
