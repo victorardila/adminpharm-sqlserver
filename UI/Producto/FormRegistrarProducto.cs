@@ -47,6 +47,7 @@ namespace Presentacion
             vitrinaService = new VitrinaService(ConfigConnection.ConnectionString);
             neveraService = new NeveraService(ConfigConnection.ConnectionString);
             InitializeComponent();
+            ConsultarLaboratorios();
             ConsultarEstantes();
             ConsultarVitrinas();
             ConsultarNeveras();
@@ -133,21 +134,24 @@ namespace Presentacion
         {
             for(int i = 1; i <= cantidad; i = i + 1)
             {
-                comboUbicacion.Items.Add(i);
+                string vitrina = "Estante " + i;
+                comboUbicacion.Items.Add(vitrina);
             }
         }
         private void LlenarComboVitrina(int cantidad)
         {
             for (int i = 1; i <= cantidad; i = i + 1)
             {
-                comboUbicacion.Items.Add(i);
+                string vitrina = "Vitrina " + i;
+                comboUbicacion.Items.Add(vitrina);
             }
         }
         private void LlenarComboNevera(int cantidad)
         {
             for (int i = 1; i <= cantidad; i = i + 1)
             {
-                comboUbicacion.Items.Add(i);
+                string nevera = "Nevera " + i;
+                comboUbicacion.Items.Add(nevera);
             }
         }
         private Estante MapearEstante()
@@ -343,6 +347,31 @@ namespace Presentacion
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+        private void ConsultarLaboratorios()
+        {
+            ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
+            string estado = "Vigente";
+            respuesta = productoService.BuscarPorEstado(estado);
+            int cantidadLaboratorio = respuesta.Productos.Count;
+            if (respuesta.Productos != null && respuesta.Productos.Count != 0)
+            {
+                for(int i=0; i < 100; i++)
+                {
+                    for(int j = 0; j < 100; j++)
+                    {
+                        if(respuesta.Productos[j].Laboratorio!="Sin definir")
+                        {
+                            if (respuesta.Productos[i] != respuesta.Productos[j])
+                            {
+                                Producto producto = respuesta.Productos[j];
+                                comboLaboratorio.AutoCompleteCustomSource.Add(producto.Laboratorio);
+                                comboLaboratorio.Items.Add(producto.Laboratorio);
+                            }
+                        }
+                    }
+                }
+            }
+        }
         private void BuscarReferenciaEscaneada()
         {
             string referencia = textReferencia.Text;
@@ -474,6 +503,7 @@ namespace Presentacion
                 {
                     s = s + "Checked Item " + (x + 1).ToString() + " = " + checkedEstante.CheckedItems[x].ToString() + "\n";
                 }
+                comboUbicacion.Text = "";
                 LlenarComboEstante(cantidadEstantes);
             }
             else
@@ -496,6 +526,8 @@ namespace Presentacion
                 {
                     s = s + "Checked Item " + (x + 1).ToString() + " = " + checkedEstante.CheckedItems[x].ToString() + "\n";
                 }
+                comboUbicacion.Text = "";
+                LlenarComboVitrina(cantidadVitrinas);
             }
             else
             {
@@ -517,6 +549,8 @@ namespace Presentacion
                 {
                     s = s + "Checked Item " + (x + 1).ToString() + " = " + checkedEstante.CheckedItems[x].ToString() + "\n";
                 }
+                comboUbicacion.Text = "";
+                LlenarComboNevera(cantidadNeveras);
             }
             else
             {

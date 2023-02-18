@@ -379,6 +379,8 @@ namespace Presentacion
             // 
             // comboLaboratorio
             // 
+            this.comboLaboratorio.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboLaboratorio.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboLaboratorio.FormattingEnabled = true;
             this.comboLaboratorio.Location = new System.Drawing.Point(389, 213);
             this.comboLaboratorio.Name = "comboLaboratorio";
@@ -397,6 +399,7 @@ namespace Presentacion
             // 
             // comboTipo
             // 
+            this.comboTipo.Enabled = false;
             this.comboTipo.FormattingEnabled = true;
             this.comboTipo.Items.AddRange(new object[] {
             "Sin definir",
@@ -514,6 +517,7 @@ namespace Presentacion
             // 
             // comboVia
             // 
+            this.comboVia.Enabled = false;
             this.comboVia.FormattingEnabled = true;
             this.comboVia.Items.AddRange(new object[] {
             "Sin definir",

@@ -101,6 +101,7 @@ namespace Presentacion
             BuscararDrogueria();
             BuscarInformacionDeEmpleado();
             BuscarSesionDeUsuario();
+            CondicionesIniciales();
         }
         //Drag Form
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -108,6 +109,14 @@ namespace Presentacion
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
         //***********************************************Metodos*******************************************************
+        private void CondicionesIniciales()
+        {
+            if (cantidadARestar == 0)
+            {
+                btnSoloVender.Enabled = false;
+                btnImprimirFactura.Enabled = false;
+            }
+        }
         private void BuscarInformacionDeEmpleado()
         {
             textSearchEmpleado.Text = idEmpleado;
@@ -193,7 +202,7 @@ namespace Presentacion
         }
         private void SumtoriaDeFactura()
         {
-            if (dataGridFacturaProductos.Rows.Count > 0)
+            if (dataGridFacturaProductos !=null)
             {
                 foreach (DataGridViewRow fila in dataGridFacturaProductos.Rows)
                 {
@@ -616,7 +625,6 @@ namespace Presentacion
 //*************************************************Botones*****************************************************
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            EliminarFactura();
             this.Close();
         }
         private void btnSearchEmpleado_Click(object sender, EventArgs e)

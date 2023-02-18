@@ -527,6 +527,9 @@ namespace Presentacion
             {
                 FormRegistrarProducto frm = new FormRegistrarProducto();
                 frm.ShowDialog();
+                cantidadDeRegistros = 20;
+                paginaSeleccionada = 0;
+                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
             }
             else
             {
@@ -659,12 +662,20 @@ namespace Presentacion
                     int i = 0;
                     foreach (DataGridViewCell celda in fila.Cells)
                     {
-                        if (i >= 7)
+                        if (i >= 6)
                         {
                             if ((celda.Value.ToString().ToUpper()).IndexOf(textSearch.Text.ToUpper()) == 0)
                             {
                                 fila.Visible = true;
                                 break;
+                            }
+                            else
+                            {
+                                if ((celda.Value.ToString()==(textSearch.Text.ToUpper())))
+                                {
+                                    fila.Visible = true;
+                                    break;
+                                }
                             }
                         }
                         i = i + 1;
