@@ -168,7 +168,7 @@ namespace Presentacion
                 int i = 0;
                 foreach (DataGridViewCell celda in fila.Cells)
                 {
-                    if (i == 0)
+                    if (i == 1)
                     {
                         cantidadProducto=Convert.ToInt32(fila.Cells[i].Value);
                     }
