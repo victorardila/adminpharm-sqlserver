@@ -174,7 +174,7 @@ namespace Presentacion
                     }
                     else
                     {
-                        if (i == 1)
+                        if (i == 2)
                         {
                             referencias[i] = Convert.ToString(fila.Cells[i].Value);
                             string referencia = referencias[i];
