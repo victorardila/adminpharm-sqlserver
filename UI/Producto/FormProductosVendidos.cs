@@ -131,6 +131,7 @@ namespace Presentacion
         private void dataGridProductosVendidos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             string referencia;
+            string nombre;
             int cantidad;
             if (dataGridProductosVendidos.Rows != null)
             {
@@ -138,7 +139,8 @@ namespace Presentacion
                 {
                     referencia = Convert.ToString(dataGridProductosVendidos.CurrentRow.Cells["Referencia"].Value.ToString());
                     cantidad = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Cantidad"].Value.ToString());
-                    string msg = "Desea deshacer la venta de este producto " + referencia + "?";
+                    nombre= Convert.ToString(dataGridProductosVendidos.CurrentRow.Cells["Nombre"].Value.ToString());
+                    string msg = "Desea deshacer la venta de este producto " + nombre + "?";
                     var respuesta = MessageBox.Show(msg, "Deshacer", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (respuesta == DialogResult.OK)
                     {

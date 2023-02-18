@@ -32,11 +32,6 @@ namespace Presentacion
             this.menuTop = new System.Windows.Forms.Panel();
             this.btnCerrar = new FontAwesome.Sharp.IconButton();
             this.dataGridFacturaProductos = new System.Windows.Forms.DataGridView();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReferenciaP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnImprimirFactura = new FontAwesome.Sharp.IconButton();
             this.labelTitleFactura = new System.Windows.Forms.Label();
             this.labelPago = new System.Windows.Forms.Label();
@@ -97,6 +92,12 @@ namespace Presentacion
             this.textDireccion = new System.Windows.Forms.TextBox();
             this.ImprimirDocumento = new System.Drawing.Printing.PrintDocument();
             this.btnSoloVender = new FontAwesome.Sharp.IconButton();
+            this.Deshacer = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReferenciaP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFacturaProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconCash)).BeginInit();
@@ -147,6 +148,7 @@ namespace Presentacion
             this.dataGridFacturaProductos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridFacturaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridFacturaProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Deshacer,
             this.Cantidad,
             this.ReferenciaP,
             this.Nombre,
@@ -157,36 +159,7 @@ namespace Presentacion
             this.dataGridFacturaProductos.RowHeadersVisible = false;
             this.dataGridFacturaProductos.Size = new System.Drawing.Size(617, 140);
             this.dataGridFacturaProductos.TabIndex = 6;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.Width = 60;
-            // 
-            // ReferenciaP
-            // 
-            this.ReferenciaP.HeaderText = "Referencia";
-            this.ReferenciaP.Name = "ReferenciaP";
-            this.ReferenciaP.Width = 70;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.Width = 140;
-            // 
-            // Detalle
-            // 
-            this.Detalle.HeaderText = "Detalle";
-            this.Detalle.Name = "Detalle";
-            this.Detalle.Width = 190;
-            // 
-            // Precio
-            // 
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.Width = 118;
+            this.dataGridFacturaProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridFacturaProductos_CellClick);
             // 
             // btnImprimirFactura
             // 
@@ -865,6 +838,43 @@ namespace Presentacion
             this.btnSoloVender.UseVisualStyleBackColor = false;
             this.btnSoloVender.Click += new System.EventHandler(this.btnSoloVender_Click);
             // 
+            // Deshacer
+            // 
+            this.Deshacer.HeaderText = "Deshacer";
+            this.Deshacer.Image = global::Presentacion.Properties.Resources.Regresar;
+            this.Deshacer.Name = "Deshacer";
+            this.Deshacer.Width = 48;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 60;
+            // 
+            // ReferenciaP
+            // 
+            this.ReferenciaP.HeaderText = "Referencia";
+            this.ReferenciaP.Name = "ReferenciaP";
+            this.ReferenciaP.Width = 70;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.Width = 140;
+            // 
+            // Detalle
+            // 
+            this.Detalle.HeaderText = "Detalle";
+            this.Detalle.Name = "Detalle";
+            this.Detalle.Width = 180;
+            // 
+            // Precio
+            // 
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.Width = 118;
+            // 
             // FormFacturaDeProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -970,15 +980,16 @@ namespace Presentacion
         private System.Windows.Forms.Label labelAdvertenciaEmpleado;
         private System.Windows.Forms.Label labelDireccion;
         private System.Windows.Forms.TextBox textDireccion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReferenciaP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboFormaDePago;
         private System.Drawing.Printing.PrintDocument ImprimirDocumento;
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconButton btnSoloVender;
+        private System.Windows.Forms.DataGridViewImageColumn Deshacer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReferenciaP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
     }
 }

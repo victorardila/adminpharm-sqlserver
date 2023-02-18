@@ -38,7 +38,7 @@ namespace Presentacion
         public string idEmpleado;
         string nombreFactura;
         string notExistingFileName;
-
+        int cantidadProductoBD;
         //Variables de drogueria
         string idDrogueria = "#Drog";
         string nombreDrogueria;
@@ -193,32 +193,35 @@ namespace Presentacion
         }
         private void SumtoriaDeFactura()
         {
-            foreach (DataGridViewRow fila in dataGridFacturaProductos.Rows)
+            if (dataGridFacturaProductos.Rows.Count > 0)
             {
-                int i = 0;
-                int cantidad = 0;
-                foreach (DataGridViewCell celda in fila.Cells)
+                foreach (DataGridViewRow fila in dataGridFacturaProductos.Rows)
                 {
-                    //Determinamos la cantidad del producto
-                    if (i==0)
+                    int i = 0;
+                    int cantidad = 0;
+                    foreach (DataGridViewCell celda in fila.Cells)
                     {
-                        cantidad = Convert.ToInt32(fila.Cells[i].Value);
-                        cantidadARestar = cantidad;
-                    }
-                    else
-                    {
-                        //Determinamos el valor por unidad y luego multiplicamos por la cantidad
-                        if(i == 4)
+                        //Determinamos la cantidad del producto
+                        if (i == 1)
                         {
-                            int valorUnidad = Convert.ToInt32(fila.Cells[i].Value);
-                            int valorTotal = valorUnidad * cantidad;
-                            totalFactura = totalFactura+valorTotal;
+                            cantidad = Convert.ToInt32(fila.Cells[i].Value);
+                            cantidadARestar = cantidad;
                         }
+                        else
+                        {
+                            //Determinamos el valor por unidad y luego multiplicamos por la cantidad
+                            if (i == 5)
+                            {
+                                int valorUnidad = Convert.ToInt32(fila.Cells[i].Value);
+                                int valorTotal = valorUnidad * cantidad;
+                                totalFactura = totalFactura + valorTotal;
+                            }
+                        }
+                        i = i + 1;
                     }
-                    i = i + 1;
                 }
+                labelTotalFacturaGenerada.Text = totalFactura.ToString();
             }
-            labelTotalFacturaGenerada.Text = totalFactura.ToString();
         }
         public void ConsultarCajaAbierta() 
         {
@@ -276,12 +279,13 @@ namespace Presentacion
             {
                 foreach (var item in productoTxtConsultaResponse.ProductoTxts)
                 {
+                    Deshacer.Image = Properties.Resources.Regresar;
                     cantidadProducto = item.Cantidad;
                     referenciaProducto = item.Referencia;
                     nombreProducto = item.Nombre;
                     detalleProducto = item.Detalle;
                     precioProducto = item.Precio;
-                    dataGridFacturaProductos.Rows.Add(cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
+                    dataGridFacturaProductos.Rows.Add(Deshacer.Image, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
                 }
             }
             else
@@ -299,12 +303,13 @@ namespace Presentacion
             {
                 foreach (var item in productoTxtConsultaResponse.ProductoTxts)
                 {
+                    Deshacer.Image = Properties.Resources.Regresar;
                     string referencia = item.Referencia;
                     int cantidad = item.Cantidad;
                     string nombre = item.Nombre;
                     string detalle = item.Detalle;
                     double precio = item.Precio;
-                    dataGridFacturaProductos.Rows.Add(referencia, cantidad, nombre, detalle, precio);
+                    dataGridFacturaProductos.Rows.Add(Deshacer.Image, referencia, cantidad, nombre, detalle, precio);
                 }
             }
             else
@@ -317,7 +322,6 @@ namespace Presentacion
         {
             ProductoFacturaTxt productoTxt = new ProductoFacturaTxt();
             string mensaje = productoTxtService.EliminarHistorial();
-            dataGridFacturaProductos.DataSource = null;
             ConsultarHistorial();
         }
         private Caja MapearCashCaja()
@@ -688,6 +692,40 @@ namespace Presentacion
             if (textPago.Text == "")
             {
                 textPago.Text = "0.00";
+            }
+        }
+        private void DevolverAlInventario(string referencia, int cantidad)
+        {
+            BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
+            respuesta = productoService.BuscarPorReferencia(referencia);
+            if (respuesta.Producto != null)
+            {
+                cantidadProductoBD = respuesta.Producto.Cantidad;
+                respuesta.Producto.Cantidad = cantidadProductoBD + cantidad;
+                var producto = respuesta.Producto;
+                productoService.ModificarCantidad(producto);
+                productoTxtService.Eliminar(referencia);
+                productoVendidoTxtService.Eliminar(referencia);
+                dataGridFacturaProductos.Rows.Clear();
+            }
+        }
+        private void dataGridFacturaProductos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string referencia;
+            string nombre;
+            int cantidad;
+            if (dataGridFacturaProductos.Columns[e.ColumnIndex].Name == "Deshacer")
+            {
+                referencia = Convert.ToString(dataGridFacturaProductos.CurrentRow.Cells["ReferenciaP"].Value.ToString());
+                nombre = Convert.ToString(dataGridFacturaProductos.CurrentRow.Cells["Nombre"].Value.ToString());
+                cantidad = Convert.ToInt32(dataGridFacturaProductos.CurrentRow.Cells["Cantidad"].Value);
+                string msg = "Desea regresar el producto " + nombre +" al inventario?";
+                var respuesta = MessageBox.Show(msg, "Deshacer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (respuesta == DialogResult.OK)
+                {
+                    DevolverAlInventario(referencia, cantidad);
+                    ConsultarHistorial();
+                }
             }
         }
     }
