@@ -58,6 +58,9 @@ namespace Presentacion
                     dataGridProductosVencidos.Rows.Add(Cantidad, Referencia, Nombre, Detalle, FechaDeRegistro, 
                         FechaDeVencimiento, Lote, Laboratorio, Estado, Tipo, Via, PrecioDeNegocio, PrecioDeVenta, GananciaPorProducto);
                 }
+                textTotal.Text = productoVencidoTxtService.Totalizar();
+                textVigentes.Text= productoVencidoTxtService.TotalizarTipo("Vigente");
+                textCuarentena.Text = productoVencidoTxtService.TotalizarTipo("Cuaretena");
             }
             else
             {

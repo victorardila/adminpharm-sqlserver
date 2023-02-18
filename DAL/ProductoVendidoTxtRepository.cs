@@ -102,5 +102,9 @@ namespace DAL
                 }
             }
         }
+        public int Totalizar()
+        {
+            return Consultar().Count();
+        }
     }
 }

@@ -67,26 +67,27 @@ namespace Entity
                 //Variables fecha actual
                 int mesActual = DateTime.Now.Month;
                 //Variables fecha de cuarentena
-                DateTime Cuarentena = FechaDeVencimiento.AddDays(-40);
+                DateTime Cuarentena = FechaDeVencimiento.AddDays(-90);
                 int mesCuarentena = Cuarentena.Month;
+                int añoCuarentena = Cuarentena.Year;
                 //Variables fecha de vencimiento
                 int mesDeVencimiento = FechaDeVencimiento.Month;
                 if (Cuarentena.Year==añoActual)
                 {
-                    if(mesActual < mesCuarentena)
+                    if(mesActual < mesCuarentena && añoActual == añoCuarentena)
                     {
                         Estado = "Vigente";
                     }
                 }
                 else
                 {
-                    if(mesActual== mesCuarentena)
+                    if(mesActual <= mesCuarentena && añoActual<=añoCuarentena)
                     {
                         Estado = "Cuarentena";
                     }
                     else
                     {
-                        if (mesActual== mesDeVencimiento)
+                        if (añoActual>=añoDeVencimiento && mesActual>= mesDeVencimiento)
                         {
                             Estado = "Vencido";
                         }
@@ -121,6 +122,13 @@ namespace Entity
                                 }
                             }
                         }
+                    }
+                }
+                else
+                {
+                    if (añoActual > añoDeVencimiento)
+                    {
+                        Estado = "Vencido";
                     }
                 }
             }

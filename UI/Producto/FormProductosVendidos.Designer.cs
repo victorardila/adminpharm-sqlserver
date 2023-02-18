@@ -33,6 +33,7 @@ namespace Presentacion
             this.btnCerrar = new FontAwesome.Sharp.IconButton();
             this.panelConsultaDeProductos = new System.Windows.Forms.Panel();
             this.dataGridProductosVendidos = new System.Windows.Forms.DataGridView();
+            this.Deshacer = new System.Windows.Forms.DataGridViewImageColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Referencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,15 +41,11 @@ namespace Presentacion
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
             this.labelAdvertencia = new System.Windows.Forms.Label();
-            this.textCuarentena = new System.Windows.Forms.TextBox();
-            this.labelCuarentena = new System.Windows.Forms.Label();
-            this.textVigentes = new System.Windows.Forms.TextBox();
-            this.labelVigentes = new System.Windows.Forms.Label();
             this.textTotal = new System.Windows.Forms.TextBox();
             this.labelTotalFarmacos = new System.Windows.Forms.Label();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnLimpiarHistorial = new FontAwesome.Sharp.IconButton();
             this.menuTop.SuspendLayout();
             this.panelConsultaDeProductos.SuspendLayout();
@@ -99,6 +96,7 @@ namespace Presentacion
             this.dataGridProductosVendidos.AllowUserToAddRows = false;
             this.dataGridProductosVendidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProductosVendidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Deshacer,
             this.Cantidad,
             this.Referencia,
             this.Nombre,
@@ -109,6 +107,17 @@ namespace Presentacion
             this.dataGridProductosVendidos.RowHeadersVisible = false;
             this.dataGridProductosVendidos.Size = new System.Drawing.Size(772, 419);
             this.dataGridProductosVendidos.TabIndex = 51;
+            this.dataGridProductosVendidos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProductosVendidos_CellClick);
+            // 
+            // Deshacer
+            // 
+            this.Deshacer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Deshacer.HeaderText = "Deshacer";
+            this.Deshacer.Image = global::Presentacion.Properties.Resources.Regresar;
+            this.Deshacer.Name = "Deshacer";
+            this.Deshacer.ReadOnly = true;
+            this.Deshacer.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Deshacer.Width = 59;
             // 
             // Cantidad
             // 
@@ -120,7 +129,7 @@ namespace Presentacion
             // 
             this.Referencia.HeaderText = "Referencia";
             this.Referencia.Name = "Referencia";
-            this.Referencia.Width = 200;
+            this.Referencia.Width = 150;
             // 
             // Nombre
             // 
@@ -161,22 +170,10 @@ namespace Presentacion
             this.label4.TabIndex = 51;
             this.label4.Text = "Produtos Vendidos $";
             // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "Eliminar";
-            this.dataGridViewImageColumn1.Image = global::Presentacion.Properties.Resources.deleRojBlack;
-            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Width = 50;
-            // 
             // panelSubDataGridFarmacos
             // 
             this.panelSubDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelSubDataGridFarmacos.Controls.Add(this.labelAdvertencia);
-            this.panelSubDataGridFarmacos.Controls.Add(this.textCuarentena);
-            this.panelSubDataGridFarmacos.Controls.Add(this.labelCuarentena);
-            this.panelSubDataGridFarmacos.Controls.Add(this.textVigentes);
-            this.panelSubDataGridFarmacos.Controls.Add(this.labelVigentes);
             this.panelSubDataGridFarmacos.Controls.Add(this.textTotal);
             this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalFarmacos);
             this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(15, 480);
@@ -196,40 +193,6 @@ namespace Presentacion
             this.labelAdvertencia.Text = "No hay productos vendidos!!!";
             this.labelAdvertencia.Visible = false;
             // 
-            // textCuarentena
-            // 
-            this.textCuarentena.Location = new System.Drawing.Point(402, 2);
-            this.textCuarentena.Name = "textCuarentena";
-            this.textCuarentena.Size = new System.Drawing.Size(47, 20);
-            this.textCuarentena.TabIndex = 53;
-            this.textCuarentena.Text = "0";
-            // 
-            // labelCuarentena
-            // 
-            this.labelCuarentena.AutoSize = true;
-            this.labelCuarentena.Location = new System.Drawing.Point(312, 5);
-            this.labelCuarentena.Name = "labelCuarentena";
-            this.labelCuarentena.Size = new System.Drawing.Size(92, 13);
-            this.labelCuarentena.TabIndex = 52;
-            this.labelCuarentena.Text = "Total Cuarentena:";
-            // 
-            // textVigentes
-            // 
-            this.textVigentes.Location = new System.Drawing.Point(237, 2);
-            this.textVigentes.Name = "textVigentes";
-            this.textVigentes.Size = new System.Drawing.Size(47, 20);
-            this.textVigentes.TabIndex = 50;
-            this.textVigentes.Text = "0";
-            // 
-            // labelVigentes
-            // 
-            this.labelVigentes.AutoSize = true;
-            this.labelVigentes.Location = new System.Drawing.Point(162, 5);
-            this.labelVigentes.Name = "labelVigentes";
-            this.labelVigentes.Size = new System.Drawing.Size(78, 13);
-            this.labelVigentes.TabIndex = 51;
-            this.labelVigentes.Text = "Total Vigentes:";
-            // 
             // textTotal
             // 
             this.textTotal.Location = new System.Drawing.Point(95, 2);
@@ -246,6 +209,13 @@ namespace Presentacion
             this.labelTotalFarmacos.Size = new System.Drawing.Size(93, 13);
             this.labelTotalFarmacos.TabIndex = 49;
             this.labelTotalFarmacos.Text = "Total Registrados:";
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Eliminar";
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 50;
             // 
             // btnLimpiarHistorial
             // 
@@ -304,14 +274,11 @@ namespace Presentacion
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.Panel panelSubDataGridFarmacos;
         private System.Windows.Forms.Label labelAdvertencia;
-        private System.Windows.Forms.TextBox textCuarentena;
-        private System.Windows.Forms.Label labelCuarentena;
-        private System.Windows.Forms.TextBox textVigentes;
-        private System.Windows.Forms.Label labelVigentes;
         private System.Windows.Forms.TextBox textTotal;
         private System.Windows.Forms.Label labelTotalFarmacos;
         private System.Windows.Forms.DataGridView dataGridProductosVendidos;
         private FontAwesome.Sharp.IconButton btnLimpiarHistorial;
+        private System.Windows.Forms.DataGridViewImageColumn Deshacer;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Referencia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;

@@ -89,5 +89,18 @@ namespace BLL
                 return ("Error al Eliminar");
             }
         }
+        public string Totalizar()
+        {
+            try
+            {
+                var Cuenta = productoTxtRepository.Totalizar().ToString();
+                return Cuenta;
+            }
+            catch (Exception e)
+            {
+                var respuesta = "No se encontraron registros";
+                return respuesta;
+            }
+        }
     }
 }

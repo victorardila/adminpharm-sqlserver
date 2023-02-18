@@ -112,5 +112,14 @@ namespace DAL
                 }
             }
         }
+        public int Totalizar()
+        {
+            return Consultar().Count();
+        }
+        public int TotalizarTipo(string tipo)
+        {
+
+            return Consultar().Where(p => p.Estado.Equals(tipo)).Count();
+        }
     }
 }

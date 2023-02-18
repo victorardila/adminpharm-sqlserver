@@ -69,13 +69,17 @@ namespace Presentacion
             vitrinaService = new VitrinaService(ConfigConnection.ConnectionString);
             neveraService = new NeveraService(ConfigConnection.ConnectionString);
             InitializeComponent();
-            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+            IniciarOperaciones();
             ConsultarDroguerias();
             ConsultarEstantes();
             ConsultarVitrinas();
             ConsultarNeveras();
-            CalcularProvisiones();
-            CalculoDeEstadoAutomatico();
+        }
+        private void IniciarOperaciones()
+        {
+            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+            Thread calcularEstadoAutomatico = new Thread(CalculoDeEstadoAutomatico);
+            calcularEstadoAutomatico.Start();
         }
         private void LlenarComboUbicacionDeEstantes(int cantidad)
         {
@@ -107,93 +111,28 @@ namespace Presentacion
                 contador = i;
             }
         }
-        private void CalcularProvisiones()
+        public void CalculoDeEstadoAutomatico()
         {
+            string referencia="";
             BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
             foreach (DataGridViewRow fila in dataGridFarmacos.Rows)
             {
                 int i = 0;
                 foreach (DataGridViewCell celda in fila.Cells)
                 {
-                    if (i == 5)
+                    if (i == 7)
                     {
-                        string referencia = Convert.ToString(fila.Cells[5].Value);
-                        respuesta = productoService.BuscarPorReferencia(referencia);
-                        int cantidad= respuesta.Producto.Cantidad;
-                        if (cantidad >= 0 && cantidad < 5)
+                        referencia = Convert.ToString(fila.Cells[5].Value);
+                    }
+                    else
+                    {
+                        if (i == 11)
                         {
                             respuesta = productoService.BuscarPorReferencia(referencia);
                             if (respuesta.Producto != null)
                             {
-                                labelMedicamentosAgotados.Visible = true;
-                                string nombre = respuesta.Producto.Nombre;
-                                labelMedicamentosAgotados.Visible = true;
-                                labelMedicamentosAgotados.Text = "el medicamento " + nombre + " se esta agotando";
-                                Thread.Sleep(2000);
-                                labelMedicamentosAgotados.Visible = false;
-                            }
-                        }
-                        else
-                        {
-                            if (cantidad == 0)
-                            {
-                                respuesta = productoService.BuscarPorReferencia(referencia);
-                                if (respuesta.Producto != null)
-                                {
-                                    labelMedicamentosAgotados.Visible = true;
-                                    string nombre = respuesta.Producto.Nombre;
-                                    labelMedicamentosAgotados.Visible = true;
-                                    labelMedicamentosAgotados.Text = "el medicamento " + nombre + " se agoto";
-                                    Thread.Sleep(2000);
-                                    labelMedicamentosAgotados.Visible = false;
-                                }
-                            }
-                        }
-                    }
-                    i = i + 1;
-                }
-            }
-        } 
-        public void CalculoDeEstadoAutomatico()
-        {
-            BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
-            foreach (DataGridViewRow fila in dataGridFarmacos.Rows)
-            {
-                int i = 0;
-                foreach (DataGridViewCell celda in fila.Cells)
-                {
-                    if (i == 5)
-                    {
-                        string referencia = Convert.ToString(fila.Cells[5].Value);
-                        respuesta = productoService.BuscarPorReferencia(referencia);
-                        if (respuesta.Producto != null)
-                        {
-                            var productos = new List<Producto> { respuesta.Producto };
-                            producto = respuesta.Producto;
-                            string mensaje = productoService.ModificarEstado(producto);
-                            if (producto.Estado == "Vencido")
-                            {
-                                referenciaProducto = producto.Referencia;
-                                cantidadProducto = producto.Cantidad;
-                                nombreProducto = producto.Nombre;
-                                detalleProducto = producto.Detalle;
-                                fechaDeRegistro = producto.FechaDeRegistro;
-                                fechaDeVencimiento = producto.FechaDeVencimiento;
-                                loteProducto = producto.Lote;
-                                laboratorioProducto = producto.Laboratorio;
-                                estadoProducto = producto.Estado;
-                                tipoProducto = producto.Tipo;
-                                viaProducto = producto.Via;
-                                porcentajeDeVenta = producto.PorcentajeDeVenta;
-                                precioDeNegocio = producto.PrecioDeNegocio;
-                                precioProducto = producto.PrecioDeVenta;
-                                gananciaDeProducto = producto.GananciaPorProducto;
-                                ProductoVencidoTxt productoTxt = new ProductoVencidoTxt(
-                                    cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, fechaDeRegistro, 
-                                    fechaDeVencimiento, loteProducto, laboratorioProducto, estadoProducto, tipoProducto, viaProducto,
-                                    porcentajeDeVenta, precioDeNegocio, precioProducto, gananciaDeProducto);
-                                productoVencidoTxtService.Guardar(productoTxt);
-                                productoService.Eliminar(referenciaProducto);
+                                var producto = respuesta.Producto;
+                                string mensaje = productoService.ModificarEstado(producto);
                             }
                         }
                     }
@@ -259,7 +198,6 @@ namespace Presentacion
         }
         private void ConsultarYLlenarGridDeProductos(int paginaSelecciona)
         {
-            CalculoDeEstadoAutomatico();
             paginaSeleccionada = paginaSelecciona;
             BuscarPorEstado();
             ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
@@ -284,6 +222,7 @@ namespace Presentacion
                     textTotal.Text = productoService.Totalizar().Cuenta.ToString();
                     textVigentes.Text = productoService.TotalizarTipo("Vigente").Cuenta.ToString();
                     textCuarentena.Text = productoService.TotalizarTipo("Cuarentena").Cuenta.ToString();
+                    textVencido.Text= productoService.TotalizarTipo("Vencido").Cuenta.ToString();
                     labelAdvertencia.Visible = false;
                 }
                 else
@@ -697,6 +636,8 @@ namespace Presentacion
                 cantidadDeRegistros = int.Parse(textTotal.Text);
                 totalPaginas = 0;
                 ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                Thread calcularEstadoAutomatico = new Thread(CalculoDeEstadoAutomatico);
+                calcularEstadoAutomatico.Start();
             }
         }
         private void textSearch_TextChanged(object sender, EventArgs e)
@@ -713,7 +654,7 @@ namespace Presentacion
                     int i = 0;
                     foreach (DataGridViewCell celda in fila.Cells)
                     {
-                        if (i >= 4)
+                        if (i >= 7)
                         {
                             if ((celda.Value.ToString().ToUpper()).IndexOf(textSearch.Text.ToUpper()) == 0)
                             {
@@ -845,11 +786,44 @@ namespace Presentacion
                     }
                 }
             }
+            if (this.dataGridFarmacos.Columns[e.ColumnIndex].Name == "Estado")
+            {
+                if (e.Value!=null)
+                {
+                    if (e.Value.GetType() != typeof(System.DBNull))
+                    {
+                        //Stock vencidos
+                        if (Convert.ToString(e.Value) =="Vencido")
+                        {
+                            e.CellStyle.BackColor = Color.DarkRed;
+                            e.CellStyle.ForeColor = Color.White;
+                        }
+
+                    }
+                }
+            }
+            if (this.dataGridFarmacos.Columns[e.ColumnIndex].Name == "Estado")
+            {
+                if (e.Value != null)
+                {
+                    if (e.Value.GetType() != typeof(System.DBNull))
+                    {
+                        //Stock vencidos
+                        if (Convert.ToString(e.Value) == "Cuarentena")
+                        {
+                            e.CellStyle.BackColor = Color.BlueViolet;
+                            e.CellStyle.ForeColor = Color.White;
+                        }
+
+                    }
+                }
+            }
         }
 
         private void dataGridFarmacos_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             string referencia;
+            string nombre;
             if (dataGridFarmacos.DataSource != null)
             {
                 if (dataGridFarmacos.Columns[e.ColumnIndex].Name == "Cash")
@@ -861,6 +835,46 @@ namespace Presentacion
                     {
                         btnVenderProducto_Click(sender, e);
                         ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                    }
+                }
+                else
+                {
+                    if (dataGridFarmacos.Columns[e.ColumnIndex].Name == "Vencido")
+                    {
+                        BusquedaProductoRespuesta busqueda = new BusquedaProductoRespuesta();
+                        referencia = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Referencia"].Value.ToString());
+                        nombre = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Nombre"].Value.ToString());
+                        string msg = "Desea Sacar este producto de inventario " + nombre + "?";
+                        var respuesta = MessageBox.Show(msg, "Vencido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (respuesta == DialogResult.OK)
+                        {
+                            busqueda = productoService.BuscarPorReferencia(referencia);
+                            if (busqueda.Producto != null)
+                            {
+                                referenciaProducto = busqueda.Producto.Referencia;
+                                cantidadProducto = busqueda.Producto.Cantidad;
+                                nombreProducto = busqueda.Producto.Nombre;
+                                detalleProducto = busqueda.Producto.Detalle;
+                                fechaDeRegistro = busqueda.Producto.FechaDeRegistro;
+                                fechaDeVencimiento = busqueda.Producto.FechaDeVencimiento;
+                                loteProducto = busqueda.Producto.Lote;
+                                laboratorioProducto = busqueda.Producto.Laboratorio;
+                                estadoProducto = busqueda.Producto.Estado;
+                                tipoProducto = busqueda.Producto.Tipo;
+                                viaProducto = busqueda.Producto.Via;
+                                porcentajeDeVenta = busqueda.Producto.PorcentajeDeVenta;
+                                precioDeNegocio = busqueda.Producto.PrecioDeNegocio;
+                                precioProducto = busqueda.Producto.PrecioDeVenta;
+                                gananciaDeProducto = busqueda.Producto.GananciaPorProducto;
+                                ProductoVencidoTxt productoTxt = new ProductoVencidoTxt(
+                                    cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, fechaDeRegistro,
+                                    fechaDeVencimiento, loteProducto, laboratorioProducto, estadoProducto, tipoProducto, viaProducto,
+                                    porcentajeDeVenta, precioDeNegocio, precioProducto, gananciaDeProducto);
+                                productoVencidoTxtService.Guardar(productoTxt);
+                                productoService.Eliminar(referenciaProducto);
+                            }
+                            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                        }
                     }
                 }
             }
@@ -875,8 +889,9 @@ namespace Presentacion
         }
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            paginaSeleccionada = 0;
+            cantidadDeRegistros = 20;
             ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-            CalcularProvisiones();
             CalculoDeEstadoAutomatico();
         }
     }

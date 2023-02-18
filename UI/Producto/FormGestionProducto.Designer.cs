@@ -58,6 +58,7 @@ namespace Presentacion
             this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.Cash = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Vencido = new System.Windows.Forms.DataGridViewImageColumn();
             this.CantidadVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
             this.textNumeroPagina = new System.Windows.Forms.TextBox();
@@ -82,6 +83,8 @@ namespace Presentacion
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.textVencido = new System.Windows.Forms.TextBox();
+            this.labelTotalVencido = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -254,6 +257,7 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Controls.Add(this.btnRefresh);
             this.panelTituloDataGridFarmacos.Controls.Add(this.comboUbicacion);
             this.panelTituloDataGridFarmacos.Controls.Add(this.label5);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.labelAdvertencia);
             this.panelTituloDataGridFarmacos.Controls.Add(this.btnClose);
             this.panelTituloDataGridFarmacos.Controls.Add(this.textSearch);
             this.panelTituloDataGridFarmacos.Controls.Add(this.btnSearch);
@@ -309,9 +313,9 @@ namespace Presentacion
             this.comboUbicacion.FormattingEnabled = true;
             this.comboUbicacion.Items.AddRange(new object[] {
             "Todos"});
-            this.comboUbicacion.Location = new System.Drawing.Point(294, -1);
+            this.comboUbicacion.Location = new System.Drawing.Point(207, 0);
             this.comboUbicacion.Name = "comboUbicacion";
-            this.comboUbicacion.Size = new System.Drawing.Size(128, 21);
+            this.comboUbicacion.Size = new System.Drawing.Size(105, 21);
             this.comboUbicacion.TabIndex = 58;
             this.comboUbicacion.Text = "Todos";
             this.comboUbicacion.SelectedIndexChanged += new System.EventHandler(this.comboUbicacion_SelectedIndexChanged);
@@ -319,7 +323,7 @@ namespace Presentacion
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(236, 4);
+            this.label5.Location = new System.Drawing.Point(149, 4);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 57;
@@ -481,6 +485,7 @@ namespace Presentacion
             this.Column1,
             this.Eliminar,
             this.Cash,
+            this.Vencido,
             this.CantidadVenta});
             this.dataGridFarmacos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridFarmacos.GridColor = System.Drawing.SystemColors.ButtonFace;
@@ -519,6 +524,13 @@ namespace Presentacion
             this.Cash.Name = "Cash";
             this.Cash.Width = 30;
             // 
+            // Vencido
+            // 
+            this.Vencido.HeaderText = "Vencido";
+            this.Vencido.Image = global::Presentacion.Properties.Resources.SacarDeInventario;
+            this.Vencido.Name = "Vencido";
+            this.Vencido.Width = 30;
+            // 
             // CantidadVenta
             // 
             this.CantidadVenta.HeaderText = "CantidadVenta";
@@ -530,11 +542,12 @@ namespace Presentacion
             this.panelSubDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelSubDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSubDataGridFarmacos.Controls.Add(this.textVencido);
+            this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalVencido);
             this.panelSubDataGridFarmacos.Controls.Add(this.textNumeroPagina);
             this.panelSubDataGridFarmacos.Controls.Add(this.labelTitlePagina);
             this.panelSubDataGridFarmacos.Controls.Add(this.btnPaginaAnterior);
             this.panelSubDataGridFarmacos.Controls.Add(this.btnSiguientePagina);
-            this.panelSubDataGridFarmacos.Controls.Add(this.labelAdvertencia);
             this.panelSubDataGridFarmacos.Controls.Add(this.textCuarentena);
             this.panelSubDataGridFarmacos.Controls.Add(this.labelCuarentena);
             this.panelSubDataGridFarmacos.Controls.Add(this.textVigentes);
@@ -608,11 +621,11 @@ namespace Presentacion
             // labelAdvertencia
             // 
             this.labelAdvertencia.AutoSize = true;
-            this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
-            this.labelAdvertencia.Location = new System.Drawing.Point(444, 3);
+            this.labelAdvertencia.Location = new System.Drawing.Point(317, 4);
             this.labelAdvertencia.Name = "labelAdvertencia";
-            this.labelAdvertencia.Size = new System.Drawing.Size(206, 15);
+            this.labelAdvertencia.Size = new System.Drawing.Size(185, 13);
             this.labelAdvertencia.TabIndex = 54;
             this.labelAdvertencia.Text = "No hay productos registrados!!!";
             // 
@@ -852,6 +865,25 @@ namespace Presentacion
             this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
             this.dataGridViewImageColumn3.Width = 30;
             // 
+            // textVencido
+            // 
+            this.textVencido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textVencido.Location = new System.Drawing.Point(538, 1);
+            this.textVencido.Name = "textVencido";
+            this.textVencido.Size = new System.Drawing.Size(47, 20);
+            this.textVencido.TabIndex = 62;
+            this.textVencido.Text = "0";
+            // 
+            // labelTotalVencido
+            // 
+            this.labelTotalVencido.AutoSize = true;
+            this.labelTotalVencido.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalVencido.Location = new System.Drawing.Point(449, 5);
+            this.labelTotalVencido.Name = "labelTotalVencido";
+            this.labelTotalVencido.Size = new System.Drawing.Size(90, 13);
+            this.labelTotalVencido.TabIndex = 61;
+            this.labelTotalVencido.Text = "Total Vencido:";
+            // 
             // FormGestionProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -910,10 +942,6 @@ namespace Presentacion
         private System.Windows.Forms.Label label6;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private System.Windows.Forms.DataGridView dataGridFarmacos;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewImageColumn Eliminar;
-        private System.Windows.Forms.DataGridViewImageColumn Cash;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadVenta;
         private System.Windows.Forms.Panel panelTituloDataGridFarmacos;
         private FontAwesome.Sharp.IconPictureBox btnClose;
         private System.Windows.Forms.TextBox textSearch;
@@ -942,6 +970,13 @@ namespace Presentacion
         private System.Windows.Forms.Label label5;
         private FontAwesome.Sharp.IconButton btnRefresh;
         private System.Windows.Forms.Label labelRefresh;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewImageColumn Eliminar;
+        private System.Windows.Forms.DataGridViewImageColumn Cash;
+        private System.Windows.Forms.DataGridViewImageColumn Vencido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadVenta;
+        private System.Windows.Forms.TextBox textVencido;
+        private System.Windows.Forms.Label labelTotalVencido;
     }
 }
 
