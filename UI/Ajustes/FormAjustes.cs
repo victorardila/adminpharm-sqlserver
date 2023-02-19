@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 using System.Windows.Forms;
 using BLL;
 using Entity;
@@ -18,11 +19,13 @@ namespace Presentacion
         Drogueria drogueria;
         List<Drogueria> droguerias;
         string idDrogueria = "#Drog";
+        string NewConnectionString;
         public FormAjustes()
         {
             drogueriaService = new DrogueriaService(ConfigConnection.ConnectionString);
             InitializeComponent();
             BuscarPorId();
+            EncontrarCadenaDeConexion();
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -89,6 +92,7 @@ namespace Presentacion
             string mensaje = drogueriaService.Guardar(drogueria);
             MessageBox.Show(mensaje, "Mensaje de Guardado", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             BuscarPorId();
+            ModificarCadenaConexion();
         }
         private void btnEliminarInfo_Click(object sender, EventArgs e)
         {
@@ -105,7 +109,55 @@ namespace Presentacion
                 string mensaje = drogueriaService.Modificar(drogueria);
                 MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 BuscarPorId();
+                ModificarCadenaConexion();
             }
+        }
+
+        private void btnBuscarRutaFacturaVenta_Click(object sender, EventArgs e)
+        {
+            var dialog = new FolderBrowserDialog();
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string ruta = dialog.SelectedPath;
+                textRutaFacturaVentas.Text = ruta;
+            }
+        }
+
+        private void btnBuscarRutaCierreCaja_Click(object sender, EventArgs e)
+        {
+            var dialog = new FolderBrowserDialog();
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string ruta = dialog.SelectedPath;
+                textRutaCierreDeCaja.Text = ruta;
+            }
+        }
+
+        private void btnBuscarCadenaConexion_Click(object sender, EventArgs e)
+        {
+            var dialog = new FolderBrowserDialog();
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string ruta = dialog.SelectedPath;
+                textCadenaConexion.Text = ruta;
+            }
+        }
+        private void ModificarCadenaConexion()
+        {
+            
+        }
+        private void EncontrarCadenaDeConexion()
+        {
+            string ConnectionString = ConfigurationManager.ConnectionStrings ["conexion"].ConnectionString;
+            textCadenaConexion.Text = ConnectionString;
+        }
+
+        private void textCadenaConexion_TextChanged(object sender, EventArgs e)
+        {
+            NewConnectionString = textCadenaConexion.Text;
         }
     }
 }
