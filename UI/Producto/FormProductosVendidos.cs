@@ -17,6 +17,7 @@ namespace Presentacion
     public partial class FormProductosVendidos : Form
     {
         ProductoService productoService;
+        CajaRegistradoraService cajaRegistradoraService;
         ProductoVendidoTxtService productoVendidoTxtService = new ProductoVendidoTxtService();
         ProductoVendidoTxt productoTxt = new ProductoVendidoTxt();
         int cantidadProductoBD;
@@ -25,10 +26,13 @@ namespace Presentacion
         int cantidadProducto;
         string nombreProducto;
         string detalleProducto;
+        double precio;
         double precioProducto;
+        double MontoActualizado;
         public FormProductosVendidos()
         {
             productoService = new ProductoService(ConfigConnection.ConnectionString);
+            cajaRegistradoraService = new CajaRegistradoraService(ConfigConnection.ConnectionString);
             InitializeComponent();
             cargarArchivo(productoVendidoTxtService);
         }
@@ -40,6 +44,31 @@ namespace Presentacion
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void ModificarCaja(string referencia, int cantidad)
+        {
+            BusquedaCajaRegistradoraRespuesta respuesta = new BusquedaCajaRegistradoraRespuesta();
+            string estado = "Abierta";
+            double MontoDeCaja;
+            respuesta = cajaRegistradoraService.BuscarPorEstado(estado);
+            if (respuesta.CajaRegistradora != null)
+            {
+                MontoDeCaja=respuesta.CajaRegistradora.Monto;
+                MontoDeCaja= MontoDeCaja - precio;
+                MontoActualizado = MontoDeCaja;
+                Caja caja = respuesta.CajaRegistradora;
+                caja.Monto = MontoActualizado;
+                cajaRegistradoraService.ModificarCash(caja);
+                DevolverAlInventario(referencia, cantidad);
+            }
+            else
+            {
+                if (respuesta.CajaRegistradora == null)
+                {
+                    labelAdvertencia.Text = "No hay cajas abiertas, no se puede deshacer venta";
+                    labelAdvertencia.Visible = true;
+                }
+            }
         }
         public void cargarArchivo(ProductoVendidoTxtService productoVendidoTxtService)
         {
@@ -139,12 +168,13 @@ namespace Presentacion
                 {
                     referencia = Convert.ToString(dataGridProductosVendidos.CurrentRow.Cells["Referencia"].Value.ToString());
                     cantidad = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Cantidad"].Value.ToString());
-                    nombre= Convert.ToString(dataGridProductosVendidos.CurrentRow.Cells["Nombre"].Value.ToString());
+                    nombre = Convert.ToString(dataGridProductosVendidos.CurrentRow.Cells["Nombre"].Value.ToString());
+                    precio = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Precio"].Value.ToString());
                     string msg = "Desea deshacer la venta de este producto " + nombre + "?";
                     var respuesta = MessageBox.Show(msg, "Deshacer", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (respuesta == DialogResult.OK)
                     {
-                        DevolverAlInventario(referencia, cantidad);
+                        ModificarCaja(referencia, cantidad);
                         ConsultarHistorial();
                     }
                 }

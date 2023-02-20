@@ -475,26 +475,37 @@ namespace Presentacion
                 respuesta = productoService.BuscarPorReferencia(referencia);
                 if (respuesta.Producto != null)
                 {
-                    var productos = new List<Producto> { respuesta.Producto };
-                    referenciaProducto = respuesta.Producto.Referencia;
-                    cantidadProducto = respuesta.Producto.Cantidad;
-                    cantidadARestar = cantidad;
-                    nombreProducto = respuesta.Producto.Nombre;
-                    detalleProducto = respuesta.Producto.Detalle;
-                    precioProducto = respuesta.Producto.PrecioDeVenta;
-                    laboratorioProducto = respuesta.Producto.Laboratorio;
-                    fechaDeRegistro = respuesta.Producto.FechaDeRegistro;
-                    fechaDeVencimiento = respuesta.Producto.FechaDeVencimiento;
-                    loteProducto = respuesta.Producto.Lote;
-                    viaProducto = respuesta.Producto.Via;
-                    tipoProducto = respuesta.Producto.Tipo;
-                    precioDeNegocio = respuesta.Producto.PrecioDeNegocio;
-                    porcentajeDeVenta = respuesta.Producto.PorcentajeDeVenta;
-                    ProductoFacturaTxt productoTxt = new ProductoFacturaTxt(cantidadARestar, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
-                    string mensaje = productoTxtService.Guardar(productoTxt);
+                    if (cantidad <= respuesta.Producto.Cantidad)
+                    {
+                        var productos = new List<Producto> { respuesta.Producto };
+                        referenciaProducto = respuesta.Producto.Referencia;
+                        cantidadProducto = respuesta.Producto.Cantidad;
+                        cantidadARestar = cantidad;
+                        nombreProducto = respuesta.Producto.Nombre;
+                        detalleProducto = respuesta.Producto.Detalle;
+                        precioProducto = respuesta.Producto.PrecioDeVenta;
+                        laboratorioProducto = respuesta.Producto.Laboratorio;
+                        fechaDeRegistro = respuesta.Producto.FechaDeRegistro;
+                        fechaDeVencimiento = respuesta.Producto.FechaDeVencimiento;
+                        loteProducto = respuesta.Producto.Lote;
+                        viaProducto = respuesta.Producto.Via;
+                        tipoProducto = respuesta.Producto.Tipo;
+                        precioDeNegocio = respuesta.Producto.PrecioDeNegocio;
+                        porcentajeDeVenta = respuesta.Producto.PorcentajeDeVenta;
+                        ProductoFacturaTxt productoTxt = new ProductoFacturaTxt(cantidadARestar, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
+                        string mensaje = productoTxtService.Guardar(productoTxt);
 
-                    Producto producto = CalculosDefactura();
-                    mensaje = productoService.ModificarCantidad(producto);
+                        Producto producto = CalculosDefactura();
+                        mensaje = productoService.ModificarCantidad(producto);
+                    }
+                    else
+                    {
+                        if (cantidad > respuesta.Producto.Cantidad)
+                        {
+                            string mensaje = "La cantidad del inventario no es suficiente para realizar la venta";
+                            MessageBox.Show(mensaje, "Cantidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
                 }
                 else
                 {
@@ -870,27 +881,39 @@ namespace Presentacion
                             busqueda = productoService.BuscarPorReferencia(referenciaBotonDatagrid);
                             if (busqueda.Producto != null)
                             {
-                                referenciaProducto = busqueda.Producto.Referencia;
-                                cantidadProducto = busqueda.Producto.Cantidad;
-                                nombreProducto = busqueda.Producto.Nombre;
-                                detalleProducto = busqueda.Producto.Detalle;
-                                fechaDeRegistro = busqueda.Producto.FechaDeRegistro;
-                                fechaDeVencimiento = busqueda.Producto.FechaDeVencimiento;
-                                loteProducto = busqueda.Producto.Lote;
-                                laboratorioProducto = busqueda.Producto.Laboratorio;
-                                estadoProducto = busqueda.Producto.Estado;
-                                tipoProducto = busqueda.Producto.Tipo;
-                                viaProducto = busqueda.Producto.Via;
-                                porcentajeDeVenta = busqueda.Producto.PorcentajeDeVenta;
-                                precioDeNegocio = busqueda.Producto.PrecioDeNegocio;
-                                precioProducto = busqueda.Producto.PrecioDeVenta;
-                                gananciaDeProducto = busqueda.Producto.GananciaPorProducto;
-                                ProductoVencidoTxt productoTxt = new ProductoVencidoTxt(
-                                    cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, fechaDeRegistro,
-                                    fechaDeVencimiento, loteProducto, laboratorioProducto, estadoProducto, tipoProducto, viaProducto,
-                                    porcentajeDeVenta, precioDeNegocio, precioProducto, gananciaDeProducto);
-                                productoVencidoTxtService.Guardar(productoTxt);
-                                productoService.Eliminar(referenciaProducto);
+                                string estado = busqueda.Producto.Estado;
+                                if (estado == "Vencido")
+                                {
+                                    referenciaProducto = busqueda.Producto.Referencia;
+                                    cantidadProducto = busqueda.Producto.Cantidad;
+                                    nombreProducto = busqueda.Producto.Nombre;
+                                    detalleProducto = busqueda.Producto.Detalle;
+                                    fechaDeRegistro = busqueda.Producto.FechaDeRegistro;
+                                    fechaDeVencimiento = busqueda.Producto.FechaDeVencimiento;
+                                    loteProducto = busqueda.Producto.Lote;
+                                    laboratorioProducto = busqueda.Producto.Laboratorio;
+                                    estadoProducto = busqueda.Producto.Estado;
+                                    tipoProducto = busqueda.Producto.Tipo;
+                                    viaProducto = busqueda.Producto.Via;
+                                    porcentajeDeVenta = busqueda.Producto.PorcentajeDeVenta;
+                                    precioDeNegocio = busqueda.Producto.PrecioDeNegocio;
+                                    precioProducto = busqueda.Producto.PrecioDeVenta;
+                                    gananciaDeProducto = busqueda.Producto.GananciaPorProducto;
+                                    ProductoVencidoTxt productoTxt = new ProductoVencidoTxt(
+                                        cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, fechaDeRegistro,
+                                        fechaDeVencimiento, loteProducto, laboratorioProducto, estadoProducto, tipoProducto, viaProducto,
+                                        porcentajeDeVenta, precioDeNegocio, precioProducto, gananciaDeProducto);
+                                    productoVencidoTxtService.Guardar(productoTxt);
+                                    productoService.Eliminar(referenciaProducto);
+                                }
+                                else
+                                {
+                                    if (estado != "Vencido")
+                                    {
+                                        msg = "Solo se pueden sacar del inventario productos vencidos";
+                                        MessageBox.Show(msg, "Vencidos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                }
                             }
                             ConsultarYLlenarGridDeProductos(paginaSeleccionada);
                         }

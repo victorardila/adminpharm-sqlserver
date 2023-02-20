@@ -494,6 +494,7 @@ namespace Presentacion
 
         private void checkedEstante_SelectedIndexChanged(object sender, EventArgs e)
         {
+            checkedVitrina.Focus();
             if (checkedEstante.CheckedItems.Count != 0)
             {
                 checkedVitrina.Enabled = false;
@@ -519,8 +520,11 @@ namespace Presentacion
 
         private void checkedVitrina_SelectedIndexChanged(object sender, EventArgs e)
         {
+            checkedVitrina.Focus();
             if (checkedVitrina.CheckedItems.Count != 0)
             {
+                checkedEstante.Enabled = false;
+                checkedNevera.Enabled = false;
                 string s = "";
                 for (int x = 0; x < checkedEstante.CheckedItems.Count; x++)
                 {
@@ -542,8 +546,11 @@ namespace Presentacion
 
         private void checkedNevera_SelectedIndexChanged(object sender, EventArgs e)
         {
+            checkedVitrina.Focus();
             if (checkedNevera.CheckedItems.Count != 0)
-            { 
+            {
+                checkedEstante.Enabled = false;
+                checkedVitrina.Enabled = false;
                 string s = "";
                 for (int x = 0; x < checkedEstante.CheckedItems.Count; x++)
                 {

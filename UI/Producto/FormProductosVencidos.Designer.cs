@@ -33,6 +33,18 @@ namespace Presentacion
             this.btnCerrar = new FontAwesome.Sharp.IconButton();
             this.panelConsultaDeProductos = new System.Windows.Forms.Panel();
             this.dataGridProductosVencidos = new System.Windows.Forms.DataGridView();
+            this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
+            this.labelAdvertencia = new System.Windows.Forms.Label();
+            this.textCuarentena = new System.Windows.Forms.TextBox();
+            this.labelCuarentena = new System.Windows.Forms.Label();
+            this.textVigentes = new System.Windows.Forms.TextBox();
+            this.labelVigentes = new System.Windows.Forms.Label();
+            this.textTotal = new System.Windows.Forms.TextBox();
+            this.labelTotalFarmacos = new System.Windows.Forms.Label();
+            this.btnLimpiarHistorial = new FontAwesome.Sharp.IconButton();
+            this.Deshacer = new System.Windows.Forms.DataGridViewImageColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Referencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,17 +59,6 @@ namespace Presentacion
             this.PrecioDeNegocio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioDeVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GananciaPorProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
-            this.labelAdvertencia = new System.Windows.Forms.Label();
-            this.textCuarentena = new System.Windows.Forms.TextBox();
-            this.labelCuarentena = new System.Windows.Forms.Label();
-            this.textVigentes = new System.Windows.Forms.TextBox();
-            this.labelVigentes = new System.Windows.Forms.Label();
-            this.textTotal = new System.Windows.Forms.TextBox();
-            this.labelTotalFarmacos = new System.Windows.Forms.Label();
-            this.btnLimpiarHistorial = new FontAwesome.Sharp.IconButton();
             this.menuTop.SuspendLayout();
             this.panelConsultaDeProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosVencidos)).BeginInit();
@@ -107,6 +108,7 @@ namespace Presentacion
             this.dataGridProductosVencidos.AllowUserToAddRows = false;
             this.dataGridProductosVencidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProductosVencidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Deshacer,
             this.Cantidad,
             this.Referencia,
             this.Nombre,
@@ -126,76 +128,7 @@ namespace Presentacion
             this.dataGridProductosVencidos.RowHeadersVisible = false;
             this.dataGridProductosVencidos.Size = new System.Drawing.Size(772, 419);
             this.dataGridProductosVencidos.TabIndex = 50;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            // 
-            // Referencia
-            // 
-            this.Referencia.HeaderText = "Referencia";
-            this.Referencia.Name = "Referencia";
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            // 
-            // Detalle
-            // 
-            this.Detalle.HeaderText = "Detalle";
-            this.Detalle.Name = "Detalle";
-            // 
-            // FechaDeRegistro
-            // 
-            this.FechaDeRegistro.HeaderText = "FechaDeRegistro";
-            this.FechaDeRegistro.Name = "FechaDeRegistro";
-            // 
-            // FechaDeVencimiento
-            // 
-            this.FechaDeVencimiento.HeaderText = "FechaDeVencimiento";
-            this.FechaDeVencimiento.Name = "FechaDeVencimiento";
-            // 
-            // Lote
-            // 
-            this.Lote.HeaderText = "Lote";
-            this.Lote.Name = "Lote";
-            // 
-            // Laboratorio
-            // 
-            this.Laboratorio.HeaderText = "Laboratorio";
-            this.Laboratorio.Name = "Laboratorio";
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            // 
-            // Tipo
-            // 
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
-            // 
-            // Via
-            // 
-            this.Via.HeaderText = "Via";
-            this.Via.Name = "Via";
-            // 
-            // PrecioDeNegocio
-            // 
-            this.PrecioDeNegocio.HeaderText = "PrecioDeNegocio";
-            this.PrecioDeNegocio.Name = "PrecioDeNegocio";
-            // 
-            // PrecioDeVenta
-            // 
-            this.PrecioDeVenta.HeaderText = "PrecioDeVenta";
-            this.PrecioDeVenta.Name = "PrecioDeVenta";
-            // 
-            // GananciaPorProducto
-            // 
-            this.GananciaPorProducto.HeaderText = "GananciaPorProducto";
-            this.GananciaPorProducto.Name = "GananciaPorProducto";
+            this.dataGridProductosVencidos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProductosVencidos_CellClick);
             // 
             // panelTituloDataGridFarmacos
             // 
@@ -318,6 +251,82 @@ namespace Presentacion
             this.btnLimpiarHistorial.UseVisualStyleBackColor = false;
             this.btnLimpiarHistorial.Click += new System.EventHandler(this.btnLimpiarHistorial_Click);
             // 
+            // Deshacer
+            // 
+            this.Deshacer.HeaderText = "Deshacer";
+            this.Deshacer.Image = global::Presentacion.Properties.Resources.Regresar;
+            this.Deshacer.Name = "Deshacer";
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            // 
+            // Referencia
+            // 
+            this.Referencia.HeaderText = "Referencia";
+            this.Referencia.Name = "Referencia";
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // Detalle
+            // 
+            this.Detalle.HeaderText = "Detalle";
+            this.Detalle.Name = "Detalle";
+            // 
+            // FechaDeRegistro
+            // 
+            this.FechaDeRegistro.HeaderText = "FechaDeRegistro";
+            this.FechaDeRegistro.Name = "FechaDeRegistro";
+            // 
+            // FechaDeVencimiento
+            // 
+            this.FechaDeVencimiento.HeaderText = "FechaDeVencimiento";
+            this.FechaDeVencimiento.Name = "FechaDeVencimiento";
+            // 
+            // Lote
+            // 
+            this.Lote.HeaderText = "Lote";
+            this.Lote.Name = "Lote";
+            // 
+            // Laboratorio
+            // 
+            this.Laboratorio.HeaderText = "Laboratorio";
+            this.Laboratorio.Name = "Laboratorio";
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            // 
+            // Tipo
+            // 
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            // 
+            // Via
+            // 
+            this.Via.HeaderText = "Via";
+            this.Via.Name = "Via";
+            // 
+            // PrecioDeNegocio
+            // 
+            this.PrecioDeNegocio.HeaderText = "PrecioDeNegocio";
+            this.PrecioDeNegocio.Name = "PrecioDeNegocio";
+            // 
+            // PrecioDeVenta
+            // 
+            this.PrecioDeVenta.HeaderText = "PrecioDeVenta";
+            this.PrecioDeVenta.Name = "PrecioDeVenta";
+            // 
+            // GananciaPorProducto
+            // 
+            this.GananciaPorProducto.HeaderText = "GananciaPorProducto";
+            this.GananciaPorProducto.Name = "GananciaPorProducto";
+            // 
             // FormProductosVencidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,6 +368,8 @@ namespace Presentacion
         private System.Windows.Forms.Label labelVigentes;
         private System.Windows.Forms.TextBox textTotal;
         private System.Windows.Forms.Label labelTotalFarmacos;
+        private FontAwesome.Sharp.IconButton btnLimpiarHistorial;
+        private System.Windows.Forms.DataGridViewImageColumn Deshacer;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Referencia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
@@ -373,6 +384,5 @@ namespace Presentacion
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioDeNegocio;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioDeVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn GananciaPorProducto;
-        private FontAwesome.Sharp.IconButton btnLimpiarHistorial;
     }
 }

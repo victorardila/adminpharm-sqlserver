@@ -20,8 +20,10 @@ namespace Presentacion
         ProductoService productoService;
         ProductoVencidoTxtService productoVencidoTxtService = new ProductoVencidoTxtService();
         ProductoVencidoTxt productoTxt = new ProductoVencidoTxt();
+        int cantidadProductoBD;
         public FormProductosVencidos()
         {
+            productoService = new ProductoService(ConfigConnection.ConnectionString);
             InitializeComponent();
             cargarArchivo(productoVencidoTxtService);
         }
@@ -41,6 +43,7 @@ namespace Presentacion
             {
                 foreach (var item in productoVencidoTxtConsultaResponse.ProductoTxts)
                 {
+                    Deshacer.Image = Properties.Resources.Regresar;
                     int Cantidad = item.Cantidad;
                     string Referencia = item.Referencia;
                     string Nombre = item.Nombre;
@@ -55,7 +58,7 @@ namespace Presentacion
                     double PrecioDeNegocio = item.PrecioDeNegocio;
                     double PrecioDeVenta = item.PrecioDeVenta;
                     double GananciaPorProducto = item.GananciaPorProducto;
-                    dataGridProductosVencidos.Rows.Add(Cantidad, Referencia, Nombre, Detalle, FechaDeRegistro, 
+                    dataGridProductosVencidos.Rows.Add(Deshacer.Image, Cantidad, Referencia, Nombre, Detalle, FechaDeRegistro, 
                         FechaDeVencimiento, Lote, Laboratorio, Estado, Tipo, Via, PrecioDeNegocio, PrecioDeVenta, GananciaPorProducto);
                 }
                 textTotal.Text = productoVencidoTxtService.Totalizar();
@@ -78,6 +81,7 @@ namespace Presentacion
             {
                 foreach (var item in productoTxtConsultaResponse.ProductoTxts)
                 {
+                    Deshacer.Image = Properties.Resources.Regresar;
                     int Cantidad = item.Cantidad;
                     string Referencia = item.Referencia;
                     string Nombre = item.Nombre;
@@ -92,7 +96,7 @@ namespace Presentacion
                     double PrecioDeNegocio = item.PrecioDeNegocio;
                     double PrecioDeVenta = item.PrecioDeVenta;
                     double GananciaPorProducto = item.GananciaPorProducto;
-                    dataGridProductosVencidos.Rows.Add(Cantidad, Referencia, Nombre, Detalle, FechaDeRegistro,
+                    dataGridProductosVencidos.Rows.Add(Deshacer.Image, Cantidad, Referencia, Nombre, Detalle, FechaDeRegistro,
                         FechaDeVencimiento, Lote, Laboratorio, Estado, Tipo, Via, PrecioDeNegocio, PrecioDeVenta, GananciaPorProducto);
                 }
             }
@@ -124,6 +128,50 @@ namespace Presentacion
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+        private void DevolverAlInventario(string referencia, int cantidad)
+        {
+            BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
+            respuesta = productoService.BuscarPorReferencia(referencia);
+            if (respuesta.Producto != null)
+            {
+                cantidadProductoBD = respuesta.Producto.Cantidad;
+                respuesta.Producto.Cantidad = cantidadProductoBD + cantidad;
+                var producto = respuesta.Producto;
+                productoService.ModificarCantidad(producto);
+                productoVencidoTxtService.Eliminar(referencia);
+                dataGridProductosVencidos.Rows.Clear();
+            }
+        }
+        private void dataGridProductosVencidos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string referencia;
+            string nombre;
+            int cantidad;
+            if (dataGridProductosVencidos.Rows != null)
+            {
+                if (dataGridProductosVencidos.Columns[e.ColumnIndex].Name == "Deshacer")
+                {
+                    referencia = Convert.ToString(dataGridProductosVencidos.CurrentRow.Cells["Referencia"].Value.ToString());
+                    cantidad = Convert.ToInt32(dataGridProductosVencidos.CurrentRow.Cells["Cantidad"].Value.ToString());
+                    nombre = Convert.ToString(dataGridProductosVencidos.CurrentRow.Cells["Nombre"].Value.ToString());
+                    string msg = "Desea deshacer la venta de este producto " + nombre + "?";
+                    var respuesta = MessageBox.Show(msg, "Deshacer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (respuesta == DialogResult.OK)
+                    {
+                        DevolverAlInventario(referencia, cantidad);
+                        ConsultarHistorial();
+                    }
+                }
+            }
+            else
+            {
+                if (dataGridProductosVencidos.Rows == null)
+                {
+                    string msg = "No hay registros disponibles";
+                    MessageBox.Show(msg, "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }
