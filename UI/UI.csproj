@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>E:\Proyectos\Instalador AdminPharm\</PublishUrl>
+    <PublishUrl>G:\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -27,7 +27,7 @@
     <ErrorReportUrl>https://www.facebook.com/profile.php%3fid=100070327928352</ErrorReportUrl>
     <ProductName>AdminPharm</ProductName>
     <PublisherName>Victor Ardila</PublisherName>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -166,6 +166,12 @@
     <Compile Include="Factura\FormVisorDeFactura.Designer.cs">
       <DependentUpon>FormVisorDeFactura.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\FormAjustarServidor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FormAjustarServidor.Designer.cs">
+      <DependentUpon>FormAjustarServidor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vitrina\FormGestionarVitrina.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -287,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Factura\FormVisorDeFactura.resx">
       <DependentUpon>FormVisorDeFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FormAjustarServidor.resx">
+      <DependentUpon>FormAjustarServidor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vitrina\FormGestionarVitrina.resx">
       <DependentUpon>FormGestionarVitrina.cs</DependentUpon>

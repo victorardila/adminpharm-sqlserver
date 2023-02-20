@@ -10,16 +10,25 @@ using System.Configuration;
 using System.Windows.Forms;
 using BLL;
 using Entity;
+using System.Xml;
 
 namespace Presentacion
 {
     public partial class FormAjustes : Form
     {
+        CadenaConexionService cadenaConexionService = new CadenaConexionService();
+        CadenaConexion cadenaConexion = new CadenaConexion();
         DrogueriaService drogueriaService;
         Drogueria drogueria;
         List<Drogueria> droguerias;
         string idDrogueria = "#Drog";
-        string NewConnectionString;
+        string Server;
+        string newServer;
+        string connectionString;
+        string originalConnection;
+        string primeraCadena;
+        string segundaCadenaModificada;
+        string segundaCadenaOriginal;
         public FormAjustes()
         {
             drogueriaService = new DrogueriaService(ConfigConnection.ConnectionString);
@@ -147,17 +156,38 @@ namespace Presentacion
         }
         private void ModificarCadenaConexion()
         {
-            
+            primeraCadena = "        <add name="+'"'+ "conexion"+'"'+ " connectionString="+'"';
+            segundaCadenaModificada = "Server="+newServer+";Database=AdminPharm;Trusted_Connection = True; MultipleActiveResultSets = true" + '"'+" />";
+            segundaCadenaOriginal = Server+'"' + " />";
+
+            cadenaConexion.Cadena = primeraCadena+ segundaCadenaModificada;
+            originalConnection= primeraCadena+ segundaCadenaOriginal;
+            cadenaConexionService.Modificar(cadenaConexion, originalConnection);
         }
         private void EncontrarCadenaDeConexion()
         {
-            string ConnectionString = ConfigurationManager.ConnectionStrings ["conexion"].ConnectionString;
-            textCadenaConexion.Text = ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings ["conexion"].ConnectionString;
+            labelConnectionString.Text = connectionString;
+            XmlDocument xmlDocument = new XmlDocument();
+            xmlDocument.Load(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+            foreach(XmlElement xmlElement in xmlDocument.DocumentElement)
+            {
+                if (xmlElement.Name.Equals("connectionStrings"))
+                {
+                    foreach(XmlNode node in xmlElement.ChildNodes)
+                    {
+                        if (node.Attributes[0].Value == "conexion")
+                        {
+                            Server = node.Attributes[1].Value;
+                        }
+                    }
+                }
+            }
         }
 
         private void textCadenaConexion_TextChanged(object sender, EventArgs e)
         {
-            NewConnectionString = textCadenaConexion.Text;
+            newServer = textCadenaConexion.Text;
         }
     }
 }

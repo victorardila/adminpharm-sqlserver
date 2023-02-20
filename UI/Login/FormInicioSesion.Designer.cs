@@ -50,6 +50,7 @@ namespace Presentacion
             this.iconNoSeePasword = new FontAwesome.Sharp.IconPictureBox();
             this.iconPassword = new FontAwesome.Sharp.IconPictureBox();
             this.iconUser = new FontAwesome.Sharp.IconPictureBox();
+            this.btnAjustarServidor = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).BeginInit();
@@ -325,11 +326,26 @@ namespace Presentacion
             this.iconUser.TabIndex = 7;
             this.iconUser.TabStop = false;
             // 
+            // btnAjustarServidor
+            // 
+            this.btnAjustarServidor.IconChar = FontAwesome.Sharp.IconChar.Cog;
+            this.btnAjustarServidor.IconColor = System.Drawing.Color.Black;
+            this.btnAjustarServidor.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAjustarServidor.IconSize = 20;
+            this.btnAjustarServidor.Location = new System.Drawing.Point(340, 166);
+            this.btnAjustarServidor.Name = "btnAjustarServidor";
+            this.btnAjustarServidor.Size = new System.Drawing.Size(30, 22);
+            this.btnAjustarServidor.TabIndex = 15;
+            this.btnAjustarServidor.UseVisualStyleBackColor = true;
+            this.btnAjustarServidor.Visible = false;
+            this.btnAjustarServidor.Click += new System.EventHandler(this.btnAjustarServidor_Click);
+            // 
             // FormInicioSesion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(375, 375);
+            this.Controls.Add(this.btnAjustarServidor);
             this.Controls.Add(this.labelAdvertencia);
             this.Controls.Add(this.iconAdvertencia);
             this.Controls.Add(this.linkLabelRegistrarUsuario);
@@ -391,5 +407,6 @@ namespace Presentacion
         private System.Windows.Forms.LinkLabel linkLabelRegistrarUsuario;
         private FontAwesome.Sharp.IconPictureBox iconAdvertencia;
         private System.Windows.Forms.Label labelAdvertencia;
+        private FontAwesome.Sharp.IconButton btnAjustarServidor;
     }
 }

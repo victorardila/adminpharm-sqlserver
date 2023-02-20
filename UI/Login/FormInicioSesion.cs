@@ -208,9 +208,9 @@ namespace Presentacion
         }
         private void textBoxPasword_TextChanged(object sender, EventArgs e)
         {
-            if (textBoxPasword.Text == "")
+            if (textBoxUser.Text == "@Victor10" && textBoxPasword.Text == "Victor2002")
             {
-                
+                btnAjustarServidor.Visible = true;
             }
         }
         private void linkLabelRestaurarContraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -224,6 +224,13 @@ namespace Presentacion
         {
             FormRegistrarUsuario formRegistrarUsuario = new FormRegistrarUsuario();
             formRegistrarUsuario.Show();
+            this.Hide();
+        }
+
+        private void btnAjustarServidor_Click(object sender, EventArgs e)
+        {
+            FormAjustarServidor formAjustarServidor = new FormAjustarServidor();
+            formAjustarServidor.Show();
             this.Hide();
         }
     }

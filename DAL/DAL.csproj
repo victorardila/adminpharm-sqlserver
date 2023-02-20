@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CadenaConexionRepository.cs" />
     <Compile Include="BodegaRepository.cs" />
     <Compile Include="CajaRepository.cs" />
     <Compile Include="ClienteRepository.cs" />

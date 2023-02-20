@@ -40,6 +40,7 @@ namespace Presentacion
             this.labelCamaraComercio = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnVolver = new FontAwesome.Sharp.IconButton();
             this.panelRegistrarDatos = new System.Windows.Forms.Panel();
             this.comboRegimen = new System.Windows.Forms.ComboBox();
             this.textTelefono = new System.Windows.Forms.TextBox();
@@ -54,6 +55,8 @@ namespace Presentacion
             this.panelTituloRegistrarDatos = new System.Windows.Forms.Panel();
             this.labelTituloRegistrarDatos = new System.Windows.Forms.Label();
             this.panelConfigDeGuardado = new System.Windows.Forms.Panel();
+            this.pictureFolderCierreCaja = new System.Windows.Forms.PictureBox();
+            this.pictureFolderFacturaVenta = new System.Windows.Forms.PictureBox();
             this.btnBuscarRutaCierreCaja = new System.Windows.Forms.Button();
             this.btnBuscarRutaFacturaVenta = new System.Windows.Forms.Button();
             this.panelTituloConfigDeGuardado = new System.Windows.Forms.Panel();
@@ -63,32 +66,30 @@ namespace Presentacion
             this.textRutaCierreDeCaja = new System.Windows.Forms.TextBox();
             this.labelRutaCierreCaja = new System.Windows.Forms.Label();
             this.panelAvanzado = new System.Windows.Forms.Panel();
+            this.pictureCadenaConexion = new System.Windows.Forms.PictureBox();
             this.btnBuscarCadenaConexion = new System.Windows.Forms.Button();
             this.panelTituloAvanzado = new System.Windows.Forms.Panel();
+            this.labelInstruccionAvanzado = new System.Windows.Forms.Label();
             this.labelTituloAvanzado = new System.Windows.Forms.Label();
             this.textCadenaConexion = new System.Windows.Forms.TextBox();
             this.labelCadenaConexion = new System.Windows.Forms.Label();
-            this.pictureCadenaConexion = new System.Windows.Forms.PictureBox();
-            this.pictureFolderCierreCaja = new System.Windows.Forms.PictureBox();
-            this.pictureFolderFacturaVenta = new System.Windows.Forms.PictureBox();
-            this.btnVolver = new FontAwesome.Sharp.IconButton();
             this.btnEliminarInfo = new FontAwesome.Sharp.IconButton();
             this.btnModificarInfo = new FontAwesome.Sharp.IconButton();
             this.btnRegistrarInfo = new FontAwesome.Sharp.IconButton();
-            this.labelInstruccionAvanzado = new System.Windows.Forms.Label();
             this.panelTituloDatos = new System.Windows.Forms.Panel();
             this.labelTituloDatos = new System.Windows.Forms.Label();
+            this.labelConnectionString = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfoDrogueria)).BeginInit();
             this.panel1.SuspendLayout();
             this.panelRegistrarDatos.SuspendLayout();
             this.panelTituloRegistrarDatos.SuspendLayout();
             this.panelConfigDeGuardado.SuspendLayout();
-            this.panelTituloConfigDeGuardado.SuspendLayout();
-            this.panelAvanzado.SuspendLayout();
-            this.panelTituloAvanzado.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureCadenaConexion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureFolderCierreCaja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureFolderFacturaVenta)).BeginInit();
+            this.panelTituloConfigDeGuardado.SuspendLayout();
+            this.panelAvanzado.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCadenaConexion)).BeginInit();
+            this.panelTituloAvanzado.SuspendLayout();
             this.panelTituloDatos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -192,6 +193,25 @@ namespace Presentacion
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(7, 35);
             this.panel3.TabIndex = 54;
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
+            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVolver.IconChar = FontAwesome.Sharp.IconChar.CaretLeft;
+            this.btnVolver.IconColor = System.Drawing.Color.White;
+            this.btnVolver.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVolver.IconSize = 30;
+            this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVolver.Location = new System.Drawing.Point(22, 1);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(31, 34);
+            this.btnVolver.TabIndex = 58;
+            this.btnVolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // panelRegistrarDatos
             // 
@@ -341,6 +361,26 @@ namespace Presentacion
             this.panelConfigDeGuardado.Size = new System.Drawing.Size(629, 119);
             this.panelConfigDeGuardado.TabIndex = 92;
             // 
+            // pictureFolderCierreCaja
+            // 
+            this.pictureFolderCierreCaja.Image = global::Presentacion.Properties.Resources.folder;
+            this.pictureFolderCierreCaja.Location = new System.Drawing.Point(13, 71);
+            this.pictureFolderCierreCaja.Name = "pictureFolderCierreCaja";
+            this.pictureFolderCierreCaja.Size = new System.Drawing.Size(23, 26);
+            this.pictureFolderCierreCaja.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureFolderCierreCaja.TabIndex = 85;
+            this.pictureFolderCierreCaja.TabStop = false;
+            // 
+            // pictureFolderFacturaVenta
+            // 
+            this.pictureFolderFacturaVenta.Image = global::Presentacion.Properties.Resources.folder;
+            this.pictureFolderFacturaVenta.Location = new System.Drawing.Point(14, 26);
+            this.pictureFolderFacturaVenta.Name = "pictureFolderFacturaVenta";
+            this.pictureFolderFacturaVenta.Size = new System.Drawing.Size(23, 26);
+            this.pictureFolderFacturaVenta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureFolderFacturaVenta.TabIndex = 84;
+            this.pictureFolderFacturaVenta.TabStop = false;
+            // 
             // btnBuscarRutaCierreCaja
             // 
             this.btnBuscarRutaCierreCaja.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.HotTrack;
@@ -422,6 +462,7 @@ namespace Presentacion
             // 
             this.panelAvanzado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelAvanzado.Controls.Add(this.labelConnectionString);
             this.panelAvanzado.Controls.Add(this.pictureCadenaConexion);
             this.panelAvanzado.Controls.Add(this.btnBuscarCadenaConexion);
             this.panelAvanzado.Controls.Add(this.panelTituloAvanzado);
@@ -431,6 +472,16 @@ namespace Presentacion
             this.panelAvanzado.Name = "panelAvanzado";
             this.panelAvanzado.Size = new System.Drawing.Size(630, 82);
             this.panelAvanzado.TabIndex = 93;
+            // 
+            // pictureCadenaConexion
+            // 
+            this.pictureCadenaConexion.Image = global::Presentacion.Properties.Resources.conexion;
+            this.pictureCadenaConexion.Location = new System.Drawing.Point(17, 26);
+            this.pictureCadenaConexion.Name = "pictureCadenaConexion";
+            this.pictureCadenaConexion.Size = new System.Drawing.Size(23, 26);
+            this.pictureCadenaConexion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureCadenaConexion.TabIndex = 86;
+            this.pictureCadenaConexion.TabStop = false;
             // 
             // btnBuscarCadenaConexion
             // 
@@ -454,6 +505,15 @@ namespace Presentacion
             this.panelTituloAvanzado.Name = "panelTituloAvanzado";
             this.panelTituloAvanzado.Size = new System.Drawing.Size(630, 25);
             this.panelTituloAvanzado.TabIndex = 0;
+            // 
+            // labelInstruccionAvanzado
+            // 
+            this.labelInstruccionAvanzado.AutoSize = true;
+            this.labelInstruccionAvanzado.Location = new System.Drawing.Point(82, 6);
+            this.labelInstruccionAvanzado.Name = "labelInstruccionAvanzado";
+            this.labelInstruccionAvanzado.Size = new System.Drawing.Size(131, 13);
+            this.labelInstruccionAvanzado.TabIndex = 87;
+            this.labelInstruccionAvanzado.Text = "(Solo para programadores)";
             // 
             // labelTituloAvanzado
             // 
@@ -481,55 +541,6 @@ namespace Presentacion
             this.labelCadenaConexion.Size = new System.Drawing.Size(118, 13);
             this.labelCadenaConexion.TabIndex = 60;
             this.labelCadenaConexion.Text = "Modificar Conexion BD:";
-            // 
-            // pictureCadenaConexion
-            // 
-            this.pictureCadenaConexion.Image = global::Presentacion.Properties.Resources.conexion;
-            this.pictureCadenaConexion.Location = new System.Drawing.Point(17, 26);
-            this.pictureCadenaConexion.Name = "pictureCadenaConexion";
-            this.pictureCadenaConexion.Size = new System.Drawing.Size(23, 26);
-            this.pictureCadenaConexion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureCadenaConexion.TabIndex = 86;
-            this.pictureCadenaConexion.TabStop = false;
-            // 
-            // pictureFolderCierreCaja
-            // 
-            this.pictureFolderCierreCaja.Image = global::Presentacion.Properties.Resources.folder;
-            this.pictureFolderCierreCaja.Location = new System.Drawing.Point(13, 71);
-            this.pictureFolderCierreCaja.Name = "pictureFolderCierreCaja";
-            this.pictureFolderCierreCaja.Size = new System.Drawing.Size(23, 26);
-            this.pictureFolderCierreCaja.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureFolderCierreCaja.TabIndex = 85;
-            this.pictureFolderCierreCaja.TabStop = false;
-            // 
-            // pictureFolderFacturaVenta
-            // 
-            this.pictureFolderFacturaVenta.Image = global::Presentacion.Properties.Resources.folder;
-            this.pictureFolderFacturaVenta.Location = new System.Drawing.Point(14, 26);
-            this.pictureFolderFacturaVenta.Name = "pictureFolderFacturaVenta";
-            this.pictureFolderFacturaVenta.Size = new System.Drawing.Size(23, 26);
-            this.pictureFolderFacturaVenta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureFolderFacturaVenta.TabIndex = 84;
-            this.pictureFolderFacturaVenta.TabStop = false;
-            // 
-            // btnVolver
-            // 
-            this.btnVolver.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVolver.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnVolver.IconChar = FontAwesome.Sharp.IconChar.CaretLeft;
-            this.btnVolver.IconColor = System.Drawing.Color.White;
-            this.btnVolver.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnVolver.IconSize = 30;
-            this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(22, 1);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(31, 34);
-            this.btnVolver.TabIndex = 58;
-            this.btnVolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnVolver.UseVisualStyleBackColor = true;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // btnEliminarInfo
             // 
@@ -600,15 +611,6 @@ namespace Presentacion
             this.btnRegistrarInfo.UseVisualStyleBackColor = false;
             this.btnRegistrarInfo.Click += new System.EventHandler(this.btnRegistrarInfo_Click);
             // 
-            // labelInstruccionAvanzado
-            // 
-            this.labelInstruccionAvanzado.AutoSize = true;
-            this.labelInstruccionAvanzado.Location = new System.Drawing.Point(82, 6);
-            this.labelInstruccionAvanzado.Name = "labelInstruccionAvanzado";
-            this.labelInstruccionAvanzado.Size = new System.Drawing.Size(131, 13);
-            this.labelInstruccionAvanzado.TabIndex = 87;
-            this.labelInstruccionAvanzado.Text = "(Solo para programadores)";
-            // 
             // panelTituloDatos
             // 
             this.panelTituloDatos.Controls.Add(this.labelTituloDatos);
@@ -627,6 +629,15 @@ namespace Presentacion
             this.labelTituloDatos.Size = new System.Drawing.Size(49, 16);
             this.labelTituloDatos.TabIndex = 84;
             this.labelTituloDatos.Text = "Datos";
+            // 
+            // labelConnectionString
+            // 
+            this.labelConnectionString.AutoSize = true;
+            this.labelConnectionString.Location = new System.Drawing.Point(167, 33);
+            this.labelConnectionString.Name = "labelConnectionString";
+            this.labelConnectionString.Size = new System.Drawing.Size(11, 13);
+            this.labelConnectionString.TabIndex = 87;
+            this.labelConnectionString.Text = "*";
             // 
             // FormAjustes
             // 
@@ -654,15 +665,15 @@ namespace Presentacion
             this.panelTituloRegistrarDatos.PerformLayout();
             this.panelConfigDeGuardado.ResumeLayout(false);
             this.panelConfigDeGuardado.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureFolderCierreCaja)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureFolderFacturaVenta)).EndInit();
             this.panelTituloConfigDeGuardado.ResumeLayout(false);
             this.panelTituloConfigDeGuardado.PerformLayout();
             this.panelAvanzado.ResumeLayout(false);
             this.panelAvanzado.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureCadenaConexion)).EndInit();
             this.panelTituloAvanzado.ResumeLayout(false);
             this.panelTituloAvanzado.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureCadenaConexion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureFolderCierreCaja)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureFolderFacturaVenta)).EndInit();
             this.panelTituloDatos.ResumeLayout(false);
             this.panelTituloDatos.PerformLayout();
             this.ResumeLayout(false);
@@ -720,5 +731,6 @@ namespace Presentacion
         private System.Windows.Forms.Label labelInstruccionAvanzado;
         private System.Windows.Forms.Panel panelTituloDatos;
         private System.Windows.Forms.Label labelTituloDatos;
+        private System.Windows.Forms.Label labelConnectionString;
     }
 }
