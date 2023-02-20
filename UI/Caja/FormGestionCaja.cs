@@ -384,9 +384,9 @@ namespace Presentacion
         private void ImprimirDatoDeVenta()
         {
             //Proceso de impresion
-            nombreFactura = idCajaAbierta+"ProductosVendidos" + ".pdf";
-            string existingPathName = rutaTxtCierreDeCaja;
-            notExistingFileName = rutaTxtCierreDeCaja + nombreFactura;
+            string nombreFactura = idCajaAbierta + "ProductosVendidos" + ".pdf";
+            string existingPathName = @"" + rutaTxtCierreDeCaja;
+            string notExistingFileName = rutaTxtCierreDeCaja+"\\" + nombreFactura;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {
@@ -407,8 +407,8 @@ namespace Presentacion
         {
             //Proceso de impresion
             string nombreFactura = idCajaAbierta + "ProductosVendidos" + ".pdf";
-            string existingPathName = rutaTxtCierreDeCaja;
-            string notExistingFileName = rutaTxtCierreDeCaja + nombreFactura;
+            string existingPathName = @""+rutaTxtCierreDeCaja;
+            string notExistingFileName = rutaTxtCierreDeCaja+"\\"+ nombreFactura;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {

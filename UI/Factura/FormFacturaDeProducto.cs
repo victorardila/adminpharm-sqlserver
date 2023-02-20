@@ -416,9 +416,9 @@ namespace Presentacion
         private void ImprimirFactura()
         {
             //Proceso de impresion
-            nombreFactura = id_factura + ".pdf";
+            string nombreFactura = id_factura + ".pdf";
             string existingPathName = rutaTxtFacturaVenta;
-            notExistingFileName = rutaTxtFacturaVenta + nombreFactura;
+            string notExistingFileName = rutaTxtFacturaVenta + nombreFactura;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {
@@ -438,9 +438,9 @@ namespace Presentacion
         private void GuardarFactura()
         {
             //Proceso de impresion
-            nombreFactura = id_factura+".pdf";
+            string nombreFactura = id_factura+".pdf";
             string existingPathName = rutaTxtFacturaVenta;
-            notExistingFileName = rutaTxtFacturaVenta + nombreFactura;
+            string notExistingFileName = rutaTxtFacturaVenta +"\\"+ nombreFactura;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {
