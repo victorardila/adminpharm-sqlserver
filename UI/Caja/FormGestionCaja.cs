@@ -17,6 +17,7 @@ namespace Presentacion
 {
     public partial class FormGestionCaja : Form
     {
+        RutasTxtService rutasTxtService=new RutasTxtService();
         CajaRegistradoraService cajaRegistradoraService;
         ProductoVendidoTxtService productoVendidoTxtService;
         ProductoVendidoTxt productoVendidoTxt;
@@ -25,6 +26,7 @@ namespace Presentacion
         Caja cajaRegistradora;
         FacturaService facturaService;
         DrogueriaService drogueriaService;
+        string rutaTxtCierreDeCaja;
         string nombreFactura;
         string notExistingFileName;
         //Variables de caja
@@ -223,6 +225,17 @@ namespace Presentacion
                 }
             }
         }
+        private void ObtenerRutaDeGuardado()
+        {
+            RutasTxtConsultaResponse rutasTxtConsultaResponse = rutasTxtService.Consultar();
+            if (rutasTxtConsultaResponse.RutasTxts.Count > 0)
+            {
+                foreach (var item in rutasTxtConsultaResponse.RutasTxts)
+                {
+                    rutaTxtCierreDeCaja = item.RutaCierreDeCaja;
+                }
+            }
+        }
         private void ProductosRegistradosEnCaja()
         {
             productoVendidoTxts = new List<ProductoVendidoTxt>();
@@ -285,7 +298,7 @@ namespace Presentacion
                         GuardarFactura();
                         FormVisorDeFactura frm = new FormVisorDeFactura();
                         frm.nombreDeArchivo = nombreFactura;
-                        frm.rutaDeGuardado = notExistingFileName;
+                        frm.rutaDeGuardado = rutaTxtCierreDeCaja;
                         frm.ShowDialog();
                     }
                 }
@@ -301,6 +314,7 @@ namespace Presentacion
         }
         private void btnCerrarCaja_Click(object sender, EventArgs e)
         {
+            ObtenerRutaDeGuardado();
             ValidarDatosDeCaja(productoVendidoTxtService);
         }
         private void btnHistorial_Click(object sender, EventArgs e)
@@ -371,9 +385,8 @@ namespace Presentacion
         {
             //Proceso de impresion
             nombreFactura = idCajaAbierta+"ProductosVendidos" + ".pdf";
-            string directorio = @"C:\Users\VICTOR PC\Documents\CierreDeCajas\";
-            string existingPathName = @"C:\Users\VICTOR PC\Documents\CierreDeCajas";
-            notExistingFileName = directorio + nombreFactura;
+            string existingPathName = rutaTxtCierreDeCaja;
+            notExistingFileName = rutaTxtCierreDeCaja + nombreFactura;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {
@@ -394,9 +407,8 @@ namespace Presentacion
         {
             //Proceso de impresion
             string nombreFactura = idCajaAbierta + "ProductosVendidos" + ".pdf";
-            string directorio = @"C:\Users\VICTOR PC\Documents\CierreDeCajas\";
-            string existingPathName = @"C:\Users\VICTOR PC\Documents\CierreDeCajas";
-            string notExistingFileName = directorio + nombreFactura;
+            string existingPathName = rutaTxtCierreDeCaja;
+            string notExistingFileName = rutaTxtCierreDeCaja + nombreFactura;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {

@@ -8,14 +8,14 @@ using Entity;
 
 namespace BLL
 {
-    public class CadenaConexionService
+    public class CadenaConexionXMLService
     {
-        private readonly CadenaConexionRepository cadenaConexionRepository;
-        public CadenaConexionService()
+        private readonly CadenaConexionXMLRepository cadenaConexionRepository;
+        public CadenaConexionXMLService()
         {
-            cadenaConexionRepository = new CadenaConexionRepository();
+            cadenaConexionRepository = new CadenaConexionXMLRepository();
         }
-        public string Modificar(CadenaConexion cadenaConexion, string newServer)
+        public string Modificar(CadenaConexionXML cadenaConexion, string newServer)
         {
             try
             {

@@ -166,10 +166,10 @@
     <Compile Include="Factura\FormVisorDeFactura.Designer.cs">
       <DependentUpon>FormVisorDeFactura.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\FormAjustarServidor.cs">
+    <Compile Include="Ajustes\FormAjustarServidor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\FormAjustarServidor.Designer.cs">
+    <Compile Include="Ajustes\FormAjustarServidor.Designer.cs">
       <DependentUpon>FormAjustarServidor.cs</DependentUpon>
     </Compile>
     <Compile Include="Vitrina\FormGestionarVitrina.cs">
@@ -294,7 +294,7 @@
     <EmbeddedResource Include="Factura\FormVisorDeFactura.resx">
       <DependentUpon>FormVisorDeFactura.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\FormAjustarServidor.resx">
+    <EmbeddedResource Include="Ajustes\FormAjustarServidor.resx">
       <DependentUpon>FormAjustarServidor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vitrina\FormGestionarVitrina.resx">

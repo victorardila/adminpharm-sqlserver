@@ -17,8 +17,8 @@ namespace Presentacion
 {
     public partial class FormAjustarServidor : Form
     {
-        CadenaConexionService cadenaConexionService = new CadenaConexionService();
-        CadenaConexion cadenaConexion = new CadenaConexion();
+        CadenaConexionXMLService cadenaConexionService = new CadenaConexionXMLService();
+        CadenaConexionXML cadenaConexion = new CadenaConexionXML();
         string Server;
         string newServer;
         string connectionString;
@@ -57,7 +57,6 @@ namespace Presentacion
             if (respuesta == DialogResult.Yes)
             {
                 ModificarCadenaConexion();
-                FormAjustarServidor formAjustarServidor = new FormAjustarServidor();
                 EncontrarCadenaDeConexion();
             }
         }
@@ -68,13 +67,16 @@ namespace Presentacion
         }
         private void ModificarCadenaConexion()
         {
-            primeraCadena = "        <add name=" + '"' + "conexion" + '"' + " connectionString=" + '"';
-            segundaCadenaModificada = "Server=" + newServer + ";Database=AdminPharm;Trusted_Connection = True; MultipleActiveResultSets = true" + '"' + " />";
-            segundaCadenaOriginal = Server + '"' + " />";
+            if (textCadenaConexion.Text != "")
+            {
+                primeraCadena = "        <add name=" + '"' + "conexion" + '"' + " connectionString=" + '"';
+                segundaCadenaModificada = "Server=" + newServer + ";Database=AdminPharm;Trusted_Connection = True; MultipleActiveResultSets = true" + '"' + " />";
+                segundaCadenaOriginal = Server + '"' + " />";
 
-            cadenaConexion.Cadena = primeraCadena + segundaCadenaModificada;
-            originalConnection = primeraCadena + segundaCadenaOriginal;
-            cadenaConexionService.Modificar(cadenaConexion, originalConnection);
+                cadenaConexion.Cadena = primeraCadena + segundaCadenaModificada;
+                originalConnection = primeraCadena + segundaCadenaOriginal;
+                cadenaConexionService.Modificar(cadenaConexion, originalConnection);
+            }
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

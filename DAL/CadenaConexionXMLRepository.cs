@@ -10,11 +10,11 @@ using System.Xml;
 
 namespace DAL
 {
-    public class CadenaConexionRepository
+    public class CadenaConexionXMLRepository
     {
         private string ruta = @"AdminPharm.exe.config";
         
-        public void Guardar(CadenaConexion cadenaConexion)
+        public void Guardar(CadenaConexionXML cadenaConexion)
         {
             FileStream file = new FileStream(ruta, FileMode.Append);
             StreamWriter escritor = new StreamWriter(file);
@@ -22,9 +22,9 @@ namespace DAL
             escritor.Close();
             file.Close();
         }
-        public void Modificar(CadenaConexion cadenaConexion, string newServer)
+        public void Modificar(CadenaConexionXML cadenaConexion, string newServer)
         {
-            List<CadenaConexion> cadenaConexions = new List<CadenaConexion>();
+            List<CadenaConexionXML> cadenaConexions = new List<CadenaConexionXML>();
             cadenaConexions = Consultar();
             FileStream file = new FileStream(ruta, FileMode.Create);
             file.Close();
@@ -40,16 +40,16 @@ namespace DAL
                 }
             }
         }
-        public List<CadenaConexion> Consultar()
+        public List<CadenaConexionXML> Consultar()
         {
-            List<CadenaConexion> cadenaConexions = new List<CadenaConexion>();
+            List<CadenaConexionXML> cadenaConexions = new List<CadenaConexionXML>();
             FileStream file = new FileStream(ruta, FileMode.OpenOrCreate, FileAccess.Read);
             StreamReader lector = new StreamReader(ruta);
             var linea = "";
             while ((linea = lector.ReadLine()) != null)
             {
                 string[] dato = linea.Split('>');
-                CadenaConexion cadenaConexion = new CadenaConexion()
+                CadenaConexionXML cadenaConexion = new CadenaConexionXML()
                 {
                     Cadena = dato[0]+">",
                 };

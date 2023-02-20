@@ -33,7 +33,6 @@ namespace Entity
         public string PBX { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
-
         public void GenerarIdDrogueria()
         {
             IdDrogueria = "#Drog";

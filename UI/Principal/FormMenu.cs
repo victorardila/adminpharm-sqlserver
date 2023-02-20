@@ -20,7 +20,8 @@ namespace Presentacion
         EmpleadoService empleadoService;
         IdEmpleadoTxtService idEmpleadoTxtService = new IdEmpleadoTxtService();
         int cantidadFormularios = 2;
-
+        string rutaFacturasVenta;
+        string rutaCierreDeCaja;
         public string idEmpleado;
         
         string rol;

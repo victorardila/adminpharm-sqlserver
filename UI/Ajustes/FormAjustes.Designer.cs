@@ -66,6 +66,7 @@ namespace Presentacion
             this.textRutaCierreDeCaja = new System.Windows.Forms.TextBox();
             this.labelRutaCierreCaja = new System.Windows.Forms.Label();
             this.panelAvanzado = new System.Windows.Forms.Panel();
+            this.labelConnectionString = new System.Windows.Forms.Label();
             this.pictureCadenaConexion = new System.Windows.Forms.PictureBox();
             this.btnBuscarCadenaConexion = new System.Windows.Forms.Button();
             this.panelTituloAvanzado = new System.Windows.Forms.Panel();
@@ -78,7 +79,6 @@ namespace Presentacion
             this.btnRegistrarInfo = new FontAwesome.Sharp.IconButton();
             this.panelTituloDatos = new System.Windows.Forms.Panel();
             this.labelTituloDatos = new System.Windows.Forms.Label();
-            this.labelConnectionString = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfoDrogueria)).BeginInit();
             this.panel1.SuspendLayout();
             this.panelRegistrarDatos.SuspendLayout();
@@ -151,7 +151,7 @@ namespace Presentacion
             this.labelAdvertencia.AutoSize = true;
             this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
-            this.labelAdvertencia.Location = new System.Drawing.Point(240, 4);
+            this.labelAdvertencia.Location = new System.Drawing.Point(193, 4);
             this.labelAdvertencia.Name = "labelAdvertencia";
             this.labelAdvertencia.Size = new System.Drawing.Size(225, 16);
             this.labelAdvertencia.TabIndex = 79;
@@ -473,6 +473,15 @@ namespace Presentacion
             this.panelAvanzado.Size = new System.Drawing.Size(630, 82);
             this.panelAvanzado.TabIndex = 93;
             // 
+            // labelConnectionString
+            // 
+            this.labelConnectionString.AutoSize = true;
+            this.labelConnectionString.Location = new System.Drawing.Point(167, 33);
+            this.labelConnectionString.Name = "labelConnectionString";
+            this.labelConnectionString.Size = new System.Drawing.Size(11, 13);
+            this.labelConnectionString.TabIndex = 87;
+            this.labelConnectionString.Text = "*";
+            // 
             // pictureCadenaConexion
             // 
             this.pictureCadenaConexion.Image = global::Presentacion.Properties.Resources.conexion;
@@ -630,19 +639,11 @@ namespace Presentacion
             this.labelTituloDatos.TabIndex = 84;
             this.labelTituloDatos.Text = "Datos";
             // 
-            // labelConnectionString
-            // 
-            this.labelConnectionString.AutoSize = true;
-            this.labelConnectionString.Location = new System.Drawing.Point(167, 33);
-            this.labelConnectionString.Name = "labelConnectionString";
-            this.labelConnectionString.Size = new System.Drawing.Size(11, 13);
-            this.labelConnectionString.TabIndex = 87;
-            this.labelConnectionString.Text = "*";
-            // 
             // FormAjustes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(798, 576);
             this.Controls.Add(this.panelTituloDatos);
             this.Controls.Add(this.panelAvanzado);

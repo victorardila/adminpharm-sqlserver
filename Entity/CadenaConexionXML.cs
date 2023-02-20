@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class CadenaConexion
+    public class CadenaConexionXML
     {
-        public CadenaConexion(string cadenaConexion)
+        public CadenaConexionXML(string cadenaConexion)
         {
             Cadena = cadenaConexion;
         }
-        public CadenaConexion()
+        public CadenaConexionXML()
         {
 
         }

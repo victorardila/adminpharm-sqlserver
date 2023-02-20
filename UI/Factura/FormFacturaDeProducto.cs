@@ -22,6 +22,7 @@ namespace Presentacion
         Caja cajaRegistradora;
         Cliente cliente;
         CajaRegistradoraService cajaRegistradoraService;
+        RutasTxtService rutasTxtService;
         ClienteService clienteService;
         EmpleadoService empleadoService;
         DrogueriaService drogueriaService;
@@ -35,6 +36,7 @@ namespace Presentacion
         List<Drogueria> droguerias;
         List<ProductoFacturaTxt> productosFactura = new List<ProductoFacturaTxt>();
         IdEmpleadoTxtService idEmpleadoTxtService = new IdEmpleadoTxtService();
+        string rutaTxtFacturaVenta;
         public string idEmpleado;
         string nombreFactura;
         string notExistingFileName;
@@ -415,9 +417,8 @@ namespace Presentacion
         {
             //Proceso de impresion
             nombreFactura = id_factura + ".pdf";
-            string directorio = @"C:\Users\Victor\Documents\Facturas\";
-            string existingPathName = @"C:\Users\Victor\Documents\Facturas";
-            notExistingFileName = directorio + nombreFactura;
+            string existingPathName = rutaTxtFacturaVenta;
+            notExistingFileName = rutaTxtFacturaVenta + nombreFactura;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {
@@ -438,9 +439,8 @@ namespace Presentacion
         {
             //Proceso de impresion
             nombreFactura = id_factura+".pdf";
-            string directorio = @"C:\Users\Victor\Documents\Facturas\";
-            string existingPathName = @"C:\Users\Victor\Documents\Facturas";
-            notExistingFileName = directorio + nombreFactura;
+            string existingPathName = rutaTxtFacturaVenta;
+            notExistingFileName = rutaTxtFacturaVenta + nombreFactura;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {
@@ -648,8 +648,20 @@ namespace Presentacion
             textSearchCliente.Visible = false;
             btnCloseCliente.Visible = false;
         }
+        private void ObtenerRutaDeGuardado()
+        {
+            RutasTxtConsultaResponse rutasTxtConsultaResponse = rutasTxtService.Consultar();
+            if (rutasTxtConsultaResponse.RutasTxts.Count > 0)
+            {
+                foreach (var item in rutasTxtConsultaResponse.RutasTxts)
+                {
+                    rutaTxtFacturaVenta = item.RutaFacturasVenta;
+                }
+            }
+        }
         private void btnImprimirFactura_Click(object sender, EventArgs e)
         {
+            ObtenerRutaDeGuardado();
             Factura factura = MapearFactura();
             MapearDatosActualesDeFactura(factura);
             facturaService.Guardar(factura);

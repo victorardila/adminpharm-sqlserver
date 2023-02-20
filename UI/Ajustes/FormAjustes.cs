@@ -16,8 +16,10 @@ namespace Presentacion
 {
     public partial class FormAjustes : Form
     {
-        CadenaConexionService cadenaConexionService = new CadenaConexionService();
-        CadenaConexion cadenaConexion = new CadenaConexion();
+        CadenaConexionXMLService cadenaConexionService = new CadenaConexionXMLService();
+        RutasTxtService rutasTxtService = new RutasTxtService();
+        RutasTxt rutasTxt = new RutasTxt();
+        CadenaConexionXML cadenaConexion = new CadenaConexionXML();
         DrogueriaService drogueriaService;
         Drogueria drogueria;
         List<Drogueria> droguerias;
@@ -29,14 +31,16 @@ namespace Presentacion
         string primeraCadena;
         string segundaCadenaModificada;
         string segundaCadenaOriginal;
+        string RutaFacturasVenta;
+        string RutaCierreDeCaja;
         public FormAjustes()
         {
             drogueriaService = new DrogueriaService(ConfigConnection.ConnectionString);
             InitializeComponent();
             BuscarPorId();
             EncontrarCadenaDeConexion();
+            EstablecerCarpetasRaiz(rutasTxtService);
         }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -79,7 +83,36 @@ namespace Presentacion
             textPBX.Text = "";
             textDireccion.Text = "";
             textTelefono.Text = "";
-        } 
+        }
+        private void EstablecerCarpetasRaiz(RutasTxtService rutasTxtService)
+        {
+            RutasTxtConsultaResponse rutasTxtConsultaResponse = rutasTxtService.Consultar();
+            if (rutasTxtConsultaResponse.RutasTxts.Count > 0)
+            {
+                foreach (var item in rutasTxtConsultaResponse.RutasTxts)
+                {
+                    textRutaCierreDeCaja.Text = item.RutaCierreDeCaja;
+                    textRutaFacturaVentas.Text = item.RutaFacturasVenta;
+                    RutaCierreDeCaja = textRutaCierreDeCaja.Text;
+                    RutaFacturasVenta = textRutaFacturaVentas.Text;
+                }
+            }
+            else
+            {
+                if (rutasTxtConsultaResponse.RutasTxts.Count == 0)
+                {
+                    if (textRutaCierreDeCaja.Text != "" && textRutaFacturaVentas.Text != "")
+                    {
+                        RutaCierreDeCaja = textRutaCierreDeCaja.Text;
+                        RutaFacturasVenta = textRutaFacturaVentas.Text;
+                        rutasTxt.Referencia = 1;
+                        rutasTxt.RutaCierreDeCaja = RutaCierreDeCaja;
+                        rutasTxt.RutaFacturasVenta = RutaFacturasVenta;
+                        rutasTxtService.Guardar(rutasTxt);
+                    }
+                }
+            }
+        }
         private Drogueria MapearDrogueria()
         {
             drogueria = new Drogueria();
@@ -102,6 +135,7 @@ namespace Presentacion
             MessageBox.Show(mensaje, "Mensaje de Guardado", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             BuscarPorId();
             ModificarCadenaConexion();
+            EstablecerCarpetasRaiz(rutasTxtService);
         }
         private void btnEliminarInfo_Click(object sender, EventArgs e)
         {
@@ -119,6 +153,7 @@ namespace Presentacion
                 MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 BuscarPorId();
                 ModificarCadenaConexion();
+                EstablecerCarpetasRaiz(rutasTxtService);
             }
         }
 
@@ -156,13 +191,16 @@ namespace Presentacion
         }
         private void ModificarCadenaConexion()
         {
-            primeraCadena = "        <add name="+'"'+ "conexion"+'"'+ " connectionString="+'"';
-            segundaCadenaModificada = "Server="+newServer+";Database=AdminPharm;Trusted_Connection = True; MultipleActiveResultSets = true" + '"'+" />";
-            segundaCadenaOriginal = Server+'"' + " />";
+            if (textCadenaConexion.Text != "")
+            {
+                primeraCadena = "        <add name=" + '"' + "conexion" + '"' + " connectionString=" + '"';
+                segundaCadenaModificada = "Server=" + newServer + ";Database=AdminPharm;Trusted_Connection = True; MultipleActiveResultSets = true" + '"' + " />";
+                segundaCadenaOriginal = Server + '"' + " />";
 
-            cadenaConexion.Cadena = primeraCadena+ segundaCadenaModificada;
-            originalConnection= primeraCadena+ segundaCadenaOriginal;
-            cadenaConexionService.Modificar(cadenaConexion, originalConnection);
+                cadenaConexion.Cadena = primeraCadena + segundaCadenaModificada;
+                originalConnection = primeraCadena + segundaCadenaOriginal;
+                cadenaConexionService.Modificar(cadenaConexion, originalConnection);
+            }
         }
         private void EncontrarCadenaDeConexion()
         {
