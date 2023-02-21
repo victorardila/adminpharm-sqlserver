@@ -21,6 +21,7 @@ namespace Presentacion
         ProductoVendidoTxtService productoVendidoTxtService = new ProductoVendidoTxtService();
         ProductoVendidoTxt productoTxt = new ProductoVendidoTxt();
         int cantidadProductoBD;
+        string fechaVenta;
         string referenciaProducto;
         int cantidadARestar;
         int cantidadProducto;
@@ -53,11 +54,11 @@ namespace Presentacion
             respuesta = cajaRegistradoraService.BuscarPorEstado(estado);
             if (respuesta.CajaRegistradora != null)
             {
-                MontoDeCaja=respuesta.CajaRegistradora.Monto;
+                MontoDeCaja=respuesta.CajaRegistradora.MontoFinal;
                 MontoDeCaja= MontoDeCaja - precio;
                 MontoActualizado = MontoDeCaja;
                 Caja caja = respuesta.CajaRegistradora;
-                caja.Monto = MontoActualizado;
+                caja.MontoFinal = MontoActualizado;
                 cajaRegistradoraService.ModificarCash(caja);
                 DevolverAlInventario(referencia, cantidad);
             }
@@ -78,12 +79,13 @@ namespace Presentacion
                 foreach (var item in productoVendidoTxtConsultaResponse.ProductoTxts)
                 {
                     Deshacer.Image=Properties.Resources.Regresar;
+                    fechaVenta = item.FechaDeVenta;
                     cantidadProducto = item.Cantidad;
                     referenciaProducto = item.Referencia;
                     nombreProducto = item.Nombre;
                     detalleProducto = item.Detalle;
                     precioProducto = item.Precio;
-                    dataGridProductosVendidos.Rows.Add(Deshacer.Image, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
+                    dataGridProductosVendidos.Rows.Add(Deshacer.Image, fechaVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
                 }
                 textTotal.Text = productoVendidoTxtService.Totalizar();
             }
@@ -104,12 +106,13 @@ namespace Presentacion
                 foreach (var item in productoTxtConsultaResponse.ProductoTxts)
                 {
                     Deshacer.Image = Properties.Resources.Regresar;
+                    string fecha = item.FechaDeVenta;
                     string referencia = item.Referencia;
                     int cantidad = item.Cantidad;
                     string nombre = item.Nombre;
                     string detalle = item.Detalle;
                     double precio = item.Precio;
-                    dataGridProductosVendidos.Rows.Add(Deshacer.Image, cantidad, referencia, nombre, detalle, precio);
+                    dataGridProductosVendidos.Rows.Add(Deshacer.Image, fecha, cantidad, referencia, nombre, detalle, precio);
                 }
             }
             else

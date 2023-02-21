@@ -81,6 +81,27 @@ namespace Presentacion
             producto.Ubicacion = comboUbicacion.Text;
             return producto;
         }
+        private void BuscarReferencia(string referencia)
+        {
+            BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
+            respuesta = productoService.BuscarPorReferencia(referencia);
+            if (respuesta.Producto != null)
+            {
+                for(int i = 2; i < 1000; i++)
+                {
+                    string newReferencia = respuesta.Producto.Referencia + "-"+i;
+                    respuesta = productoService.BuscarPorReferencia(newReferencia);
+                    if (respuesta.Producto == null)
+                    {
+                        textReferencia.Text = newReferencia;
+                        Producto producto = MapearProducto();
+                        producto.Referencia = newReferencia;
+                        productoService.Guardar(producto);
+                        break;
+                    }
+                }
+            }
+        }
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -281,6 +302,7 @@ namespace Presentacion
         {
             textSearch.Visible = false;
             textSearch.Text = "Buscar referencia";
+            btnRegistrar.Enabled = true;
             btnClose.Visible = false;
             labelTitle.Text = "Registrar Producto";
             labelAdvertencia.Visible = false;
@@ -308,12 +330,13 @@ namespace Presentacion
         }
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            string referencia = textReferencia.Text;
             if (cantidadEstantes > 0)
             {
                 if (comboUbicacion.Text != "0")
                 {
-                    Producto producto = MapearProducto();
-                    string mensaje = productoService.Guardar(producto);
+                    BuscarReferencia(referencia);
+                    string mensaje = "Producto registrado correctamente";
                     MessageBox.Show(mensaje, "Mensaje de Guardado", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (mensaje == "Producto registrado correctamente")
                     {

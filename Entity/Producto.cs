@@ -58,75 +58,54 @@ namespace Entity
         /*Metodos de la clase*/
         public void calcularEstado()
         {
-            
             int añoActual = DateTime.Now.Year;
-            int añoDeVencimiento = FechaDeVencimiento.Year;
-            
-            if(añoActual == añoDeVencimiento)
+            int mesActual = DateTime.Now.Month;
+            int mesCuarentena = FechaDeVencimiento.AddDays(-90).Month;
+            int añoVencimiento = FechaDeVencimiento.Year;
+            int mesVencimiento = FechaDeVencimiento.Month;
+            int DiferenciaDeMeses = (12 - mesActual) + mesCuarentena;
+
+            if (añoVencimiento == añoActual)
             {
-                //Variables fecha actual
-                int mesActual = DateTime.Now.Month;
-                //Variables fecha de cuarentena
-                DateTime Cuarentena = FechaDeVencimiento.AddDays(-90);
-                int mesCuarentena = Cuarentena.Month;
-                int añoCuarentena = Cuarentena.Year;
-                //Variables fecha de vencimiento
-                int mesDeVencimiento = FechaDeVencimiento.Month;
-                if (Cuarentena.Year==añoActual)
+                if (mesActual == mesVencimiento)
                 {
-                    if(mesActual < mesCuarentena && añoActual == añoCuarentena)
+                    Estado = "Vencido";
+                }
+                else
+                {
+                    if (mesActual >= mesCuarentena && mesActual < mesVencimiento)
+                    {
+                        Estado = "Cuarentena";
+                    }
+                    else
+                    {
+                        if (mesActual >= mesVencimiento)
+                        {
+                            Estado = "Vencido";
+                        }
+                        else
+                        {
+                            if (mesActual < mesCuarentena)
+                            {
+                                Estado = "Vigente";
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (añoVencimiento > añoActual)
+                {
+                    
+                    if (DiferenciaDeMeses>0)
                     {
                         Estado = "Vigente";
                     }
                 }
                 else
                 {
-                    if(mesActual <= mesCuarentena && añoActual<=añoCuarentena)
-                    {
-                        Estado = "Cuarentena";
-                    }
-                    else
-                    {
-                        if (añoActual>=añoDeVencimiento && mesActual>= mesDeVencimiento)
-                        {
-                            Estado = "Vencido";
-                        }
-                    }
-                }
-            }
-            else{
-                if(añoActual < añoDeVencimiento)
-                {
-                    int añosAcumulados = añoDeVencimiento - añoActual;
-                    int mesActual = DateTime.Now.Month;
-                    if (añosAcumulados > 0)
-                    {
-                        int mesesRestantes = (12 - mesActual);
-                        int diferenciaMeses = (12 - FechaDeVencimiento.Month);
-                        int mesesAcumuladosAño = (12 - diferenciaMeses) + mesesRestantes;
-                        if (mesesAcumuladosAño >= 3)
-                        {
-                            Estado = "Vigente";
-                        }
-                        else
-                        {
-                            if (mesesAcumuladosAño > 0 && mesesAcumuladosAño <= 2)
-                            {
-                                Estado = "Cuarentena";
-                            }
-                            else
-                            {
-                                if (diferenciaMeses == 0)
-                                {
-                                    Estado = "Vencido";
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (añoActual > añoDeVencimiento)
+                    if (añoVencimiento < añoActual)
                     {
                         Estado = "Vencido";
                     }

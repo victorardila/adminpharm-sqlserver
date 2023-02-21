@@ -56,12 +56,18 @@ namespace Presentacion
             this.btnVolver = new FontAwesome.Sharp.IconButton();
             this.ImprimirProductosVendidos = new System.Drawing.Printing.PrintDocument();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.labelBase = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.iconBase = new FontAwesome.Sharp.IconPictureBox();
             this.panelSubMenu.SuspendLayout();
             this.panelSubDataGridFarmacos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFarmacos)).BeginInit();
             this.panelTituloDataGridFarmacos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconCash)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconBase)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSubMenu
@@ -331,7 +337,7 @@ namespace Presentacion
             this.labelTextFondo.AutoSize = true;
             this.labelTextFondo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTextFondo.ForeColor = System.Drawing.Color.White;
-            this.labelTextFondo.Location = new System.Drawing.Point(745, 3);
+            this.labelTextFondo.Location = new System.Drawing.Point(705, 3);
             this.labelTextFondo.Name = "labelTextFondo";
             this.labelTextFondo.Size = new System.Drawing.Size(45, 12);
             this.labelTextFondo.TabIndex = 59;
@@ -341,11 +347,11 @@ namespace Presentacion
             // 
             this.labelCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelCash.AutoSize = true;
-            this.labelCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCash.ForeColor = System.Drawing.Color.White;
-            this.labelCash.Location = new System.Drawing.Point(742, 17);
+            this.labelCash.Location = new System.Drawing.Point(722, 19);
             this.labelCash.Name = "labelCash";
-            this.labelCash.Size = new System.Drawing.Size(14, 16);
+            this.labelCash.Size = new System.Drawing.Size(13, 15);
             this.labelCash.TabIndex = 58;
             this.labelCash.Text = "*";
             // 
@@ -363,9 +369,9 @@ namespace Presentacion
             this.iconCash.IconChar = FontAwesome.Sharp.IconChar.Coins;
             this.iconCash.IconColor = System.Drawing.Color.Gold;
             this.iconCash.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconCash.Location = new System.Drawing.Point(711, 4);
+            this.iconCash.Location = new System.Drawing.Point(671, 0);
             this.iconCash.Name = "iconCash";
-            this.iconCash.Size = new System.Drawing.Size(32, 32);
+            this.iconCash.Size = new System.Drawing.Size(32, 36);
             this.iconCash.TabIndex = 57;
             this.iconCash.TabStop = false;
             // 
@@ -397,6 +403,11 @@ namespace Presentacion
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.MenuText;
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.labelBase);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.iconBase);
             this.panel1.Controls.Add(this.labelCash);
             this.panel1.Controls.Add(this.labelTextFondo);
             this.panel1.Controls.Add(this.btnVolver);
@@ -407,6 +418,68 @@ namespace Presentacion
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(795, 36);
             this.panel1.TabIndex = 60;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(706, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(16, 16);
+            this.label5.TabIndex = 64;
+            this.label5.Text = "$";
+            // 
+            // labelBase
+            // 
+            this.labelBase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelBase.AutoSize = true;
+            this.labelBase.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBase.ForeColor = System.Drawing.Color.White;
+            this.labelBase.Location = new System.Drawing.Point(588, 19);
+            this.labelBase.Name = "labelBase";
+            this.labelBase.Size = new System.Drawing.Size(13, 15);
+            this.labelBase.TabIndex = 63;
+            this.labelBase.Text = "*";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(570, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(16, 16);
+            this.label3.TabIndex = 62;
+            this.label3.Text = "$";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(571, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 12);
+            this.label2.TabIndex = 61;
+            this.label2.Text = "-BASE";
+            // 
+            // iconBase
+            // 
+            this.iconBase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconBase.BackColor = System.Drawing.SystemColors.MenuText;
+            this.iconBase.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.iconBase.IconChar = FontAwesome.Sharp.IconChar.Coins;
+            this.iconBase.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.iconBase.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBase.Location = new System.Drawing.Point(535, 4);
+            this.iconBase.Name = "iconBase";
+            this.iconBase.Size = new System.Drawing.Size(32, 32);
+            this.iconBase.TabIndex = 60;
+            this.iconBase.TabStop = false;
             // 
             // FormGestionCaja
             // 
@@ -431,6 +504,7 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.iconCash)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconBase)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -463,5 +537,10 @@ namespace Presentacion
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Drawing.Printing.PrintDocument ImprimirProductosVendidos;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
+        private FontAwesome.Sharp.IconPictureBox iconBase;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelBase;
+        private System.Windows.Forms.Label label5;
     }
 }

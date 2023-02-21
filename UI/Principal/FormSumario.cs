@@ -78,7 +78,7 @@ namespace Presentacion
             if (respuesta.CajaRegistradora != null)
             {
                 var cajasRegistradoras = new List<Caja> { respuesta.CajaRegistradora };
-                labelCaja.Text = "$" + respuesta.CajaRegistradora.Monto.ToString();
+                labelCaja.Text = "$" + respuesta.CajaRegistradora.MontoFinal.ToString();
             }
             else
             {

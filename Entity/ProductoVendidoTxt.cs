@@ -8,8 +8,9 @@ namespace Entity
 {
     public class ProductoVendidoTxt
     {
-        public ProductoVendidoTxt(int cantidad, string referencia, string nombre, string detalle, double precio)
+        public ProductoVendidoTxt(string fechaDeVenta, int cantidad, string referencia, string nombre, string detalle, double precio)
         {
+            FechaDeVenta = fechaDeVenta;
             Cantidad = cantidad;
             Referencia = referencia;
             Nombre = nombre;
@@ -22,6 +23,7 @@ namespace Entity
 
         }
         /*Atributos de la clase*/
+        public string FechaDeVenta { get; set; }
         public string Referencia { get; set; }
         public int Cantidad { get; set; }
         public string Nombre { get; set; }

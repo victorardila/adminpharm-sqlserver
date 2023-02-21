@@ -63,7 +63,8 @@ namespace Presentacion
         private Caja MapearCajaRegistradora()
         {
             cajaRegistradora = new Caja();
-            cajaRegistradora.Monto = int.Parse(textMonto.Text);
+            cajaRegistradora.MontoFinal = int.Parse(textMonto.Text);
+            cajaRegistradora.MontoInicial = int.Parse(textMonto.Text);
             return cajaRegistradora;
         }
         private void btnAbrirCaja_Click(object sender, EventArgs e)

@@ -44,12 +44,9 @@ namespace Presentacion
             this.labelVueltos = new System.Windows.Forms.Label();
             this.labelVueltosGenerado = new System.Windows.Forms.Label();
             this.labelTotalFactura = new System.Windows.Forms.Label();
-            this.labelTotalFacturaGenerada = new System.Windows.Forms.Label();
-            this.labelTextFondo = new System.Windows.Forms.Label();
-            this.labelCash = new System.Windows.Forms.Label();
-            this.iconCash = new FontAwesome.Sharp.IconPictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panelTotalesFactura = new System.Windows.Forms.Panel();
+            this.textTotalFacturaGenerada = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboFormaDePago = new System.Windows.Forms.ComboBox();
             this.textPago = new System.Windows.Forms.TextBox();
@@ -98,9 +95,16 @@ namespace Presentacion
             this.textDireccion = new System.Windows.Forms.TextBox();
             this.ImprimirDocumento = new System.Drawing.Printing.PrintDocument();
             this.btnSoloVender = new FontAwesome.Sharp.IconButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.labelBase = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.iconBase = new FontAwesome.Sharp.IconPictureBox();
+            this.labelCash = new System.Windows.Forms.Label();
+            this.labelTextFondo = new System.Windows.Forms.Label();
+            this.iconCash = new FontAwesome.Sharp.IconPictureBox();
             this.menuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFacturaProductos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconCash)).BeginInit();
             this.panelTotalesFactura.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseCliente)).BeginInit();
@@ -112,6 +116,8 @@ namespace Presentacion
             this.panelFactura.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconBase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconCash)).BeginInit();
             this.SuspendLayout();
             // 
             // menuTop
@@ -234,11 +240,11 @@ namespace Presentacion
             // labelPago
             // 
             this.labelPago.AutoSize = true;
-            this.labelPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPago.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.labelPago.Location = new System.Drawing.Point(164, 2);
+            this.labelPago.Location = new System.Drawing.Point(172, 4);
             this.labelPago.Name = "labelPago";
-            this.labelPago.Size = new System.Drawing.Size(65, 20);
+            this.labelPago.Size = new System.Drawing.Size(57, 16);
             this.labelPago.TabIndex = 62;
             this.labelPago.Text = "Pago $";
             // 
@@ -275,55 +281,6 @@ namespace Presentacion
             this.labelTotalFactura.TabIndex = 66;
             this.labelTotalFactura.Text = "Total factura$";
             // 
-            // labelTotalFacturaGenerada
-            // 
-            this.labelTotalFacturaGenerada.AutoSize = true;
-            this.labelTotalFacturaGenerada.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalFacturaGenerada.ForeColor = System.Drawing.Color.White;
-            this.labelTotalFacturaGenerada.Location = new System.Drawing.Point(114, 3);
-            this.labelTotalFacturaGenerada.Name = "labelTotalFacturaGenerada";
-            this.labelTotalFacturaGenerada.Size = new System.Drawing.Size(40, 18);
-            this.labelTotalFacturaGenerada.TabIndex = 67;
-            this.labelTotalFacturaGenerada.Text = "0.00";
-            // 
-            // labelTextFondo
-            // 
-            this.labelTextFondo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelTextFondo.AutoSize = true;
-            this.labelTextFondo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTextFondo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelTextFondo.Location = new System.Drawing.Point(559, 30);
-            this.labelTextFondo.Name = "labelTextFondo";
-            this.labelTextFondo.Size = new System.Drawing.Size(45, 12);
-            this.labelTextFondo.TabIndex = 70;
-            this.labelTextFondo.Text = "MONTO";
-            // 
-            // labelCash
-            // 
-            this.labelCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelCash.AutoSize = true;
-            this.labelCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCash.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelCash.Location = new System.Drawing.Point(559, 46);
-            this.labelCash.Name = "labelCash";
-            this.labelCash.Size = new System.Drawing.Size(36, 16);
-            this.labelCash.TabIndex = 69;
-            this.labelCash.Text = "0.00";
-            // 
-            // iconCash
-            // 
-            this.iconCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconCash.BackColor = System.Drawing.SystemColors.Control;
-            this.iconCash.ForeColor = System.Drawing.Color.Olive;
-            this.iconCash.IconChar = FontAwesome.Sharp.IconChar.Coins;
-            this.iconCash.IconColor = System.Drawing.Color.Olive;
-            this.iconCash.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconCash.Location = new System.Drawing.Point(525, 33);
-            this.iconCash.Name = "iconCash";
-            this.iconCash.Size = new System.Drawing.Size(32, 32);
-            this.iconCash.TabIndex = 68;
-            this.iconCash.TabStop = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -339,11 +296,11 @@ namespace Presentacion
             // 
             this.panelTotalesFactura.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panelTotalesFactura.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTotalesFactura.Controls.Add(this.textTotalFacturaGenerada);
             this.panelTotalesFactura.Controls.Add(this.label1);
             this.panelTotalesFactura.Controls.Add(this.comboFormaDePago);
             this.panelTotalesFactura.Controls.Add(this.textPago);
             this.panelTotalesFactura.Controls.Add(this.labelTotalFactura);
-            this.panelTotalesFactura.Controls.Add(this.labelTotalFacturaGenerada);
             this.panelTotalesFactura.Controls.Add(this.labelPago);
             this.panelTotalesFactura.Controls.Add(this.labelVueltos);
             this.panelTotalesFactura.Controls.Add(this.labelVueltosGenerado);
@@ -351,6 +308,18 @@ namespace Presentacion
             this.panelTotalesFactura.Name = "panelTotalesFactura";
             this.panelTotalesFactura.Size = new System.Drawing.Size(617, 25);
             this.panelTotalesFactura.TabIndex = 73;
+            // 
+            // textTotalFacturaGenerada
+            // 
+            this.textTotalFacturaGenerada.BackColor = System.Drawing.SystemColors.InfoText;
+            this.textTotalFacturaGenerada.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textTotalFacturaGenerada.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textTotalFacturaGenerada.ForeColor = System.Drawing.Color.White;
+            this.textTotalFacturaGenerada.Location = new System.Drawing.Point(113, 4);
+            this.textTotalFacturaGenerada.Name = "textTotalFacturaGenerada";
+            this.textTotalFacturaGenerada.Size = new System.Drawing.Size(59, 15);
+            this.textTotalFacturaGenerada.TabIndex = 97;
+            this.textTotalFacturaGenerada.Text = "0.00";
             // 
             // label1
             // 
@@ -875,15 +844,120 @@ namespace Presentacion
             this.btnSoloVender.UseVisualStyleBackColor = false;
             this.btnSoloVender.Click += new System.EventHandler(this.btnSoloVender_Click);
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(558, 48);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(16, 16);
+            this.label5.TabIndex = 88;
+            this.label5.Text = "$";
+            // 
+            // labelBase
+            // 
+            this.labelBase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelBase.AutoSize = true;
+            this.labelBase.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBase.ForeColor = System.Drawing.Color.Black;
+            this.labelBase.Location = new System.Drawing.Point(453, 49);
+            this.labelBase.Name = "labelBase";
+            this.labelBase.Size = new System.Drawing.Size(13, 15);
+            this.labelBase.TabIndex = 87;
+            this.labelBase.Text = "*";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(438, 47);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(16, 16);
+            this.label4.TabIndex = 86;
+            this.label4.Text = "$";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(439, 33);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 12);
+            this.label6.TabIndex = 85;
+            this.label6.Text = "-BASE";
+            // 
+            // iconBase
+            // 
+            this.iconBase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconBase.BackColor = System.Drawing.SystemColors.Control;
+            this.iconBase.ForeColor = System.Drawing.Color.Maroon;
+            this.iconBase.IconChar = FontAwesome.Sharp.IconChar.Coins;
+            this.iconBase.IconColor = System.Drawing.Color.Maroon;
+            this.iconBase.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBase.Location = new System.Drawing.Point(403, 34);
+            this.iconBase.Name = "iconBase";
+            this.iconBase.Size = new System.Drawing.Size(32, 32);
+            this.iconBase.TabIndex = 84;
+            this.iconBase.TabStop = false;
+            // 
+            // labelCash
+            // 
+            this.labelCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCash.AutoSize = true;
+            this.labelCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCash.ForeColor = System.Drawing.Color.Black;
+            this.labelCash.Location = new System.Drawing.Point(574, 50);
+            this.labelCash.Name = "labelCash";
+            this.labelCash.Size = new System.Drawing.Size(13, 15);
+            this.labelCash.TabIndex = 82;
+            this.labelCash.Text = "*";
+            // 
+            // labelTextFondo
+            // 
+            this.labelTextFondo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTextFondo.AutoSize = true;
+            this.labelTextFondo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTextFondo.ForeColor = System.Drawing.Color.Black;
+            this.labelTextFondo.Location = new System.Drawing.Point(559, 33);
+            this.labelTextFondo.Name = "labelTextFondo";
+            this.labelTextFondo.Size = new System.Drawing.Size(45, 12);
+            this.labelTextFondo.TabIndex = 83;
+            this.labelTextFondo.Text = "MONTO";
+            // 
+            // iconCash
+            // 
+            this.iconCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconCash.BackColor = System.Drawing.SystemColors.Control;
+            this.iconCash.ForeColor = System.Drawing.Color.Gold;
+            this.iconCash.IconChar = FontAwesome.Sharp.IconChar.Coins;
+            this.iconCash.IconColor = System.Drawing.Color.Gold;
+            this.iconCash.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconCash.Location = new System.Drawing.Point(525, 34);
+            this.iconCash.Name = "iconCash";
+            this.iconCash.Size = new System.Drawing.Size(32, 32);
+            this.iconCash.TabIndex = 81;
+            this.iconCash.TabStop = false;
+            // 
             // FormFacturaDeProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(643, 525);
-            this.Controls.Add(this.btnSoloVender);
-            this.Controls.Add(this.labelTextFondo);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.labelBase);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.iconBase);
             this.Controls.Add(this.labelCash);
+            this.Controls.Add(this.labelTextFondo);
             this.Controls.Add(this.iconCash);
+            this.Controls.Add(this.btnSoloVender);
             this.Controls.Add(this.labelTitleFactura);
             this.Controls.Add(this.btnImprimirFactura);
             this.Controls.Add(this.menuTop);
@@ -896,7 +970,6 @@ namespace Presentacion
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormFacturaDeProducto_MouseDown);
             this.menuTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFacturaProductos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconCash)).EndInit();
             this.panelTotalesFactura.ResumeLayout(false);
             this.panelTotalesFactura.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -915,6 +988,8 @@ namespace Presentacion
             this.panel3.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconBase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconCash)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -931,10 +1006,6 @@ namespace Presentacion
         private System.Windows.Forms.Label labelVueltos;
         private System.Windows.Forms.Label labelVueltosGenerado;
         private System.Windows.Forms.Label labelTotalFactura;
-        private System.Windows.Forms.Label labelTotalFacturaGenerada;
-        private System.Windows.Forms.Label labelTextFondo;
-        private System.Windows.Forms.Label labelCash;
-        private FontAwesome.Sharp.IconPictureBox iconCash;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panelTotalesFactura;
         private System.Windows.Forms.TextBox textPago;
@@ -991,5 +1062,14 @@ namespace Presentacion
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.TextBox textTotalFacturaGenerada;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelBase;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private FontAwesome.Sharp.IconPictureBox iconBase;
+        private System.Windows.Forms.Label labelCash;
+        private System.Windows.Forms.Label labelTextFondo;
+        private FontAwesome.Sharp.IconPictureBox iconCash;
     }
 }

@@ -122,20 +122,14 @@ namespace Presentacion
                 int i = 0;
                 foreach (DataGridViewCell celda in fila.Cells)
                 {
-                    if (i == 7)
+                    if (i == 6)
                     {
-                        referencia = Convert.ToString(fila.Cells[5].Value);
-                    }
-                    else
-                    {
-                        if (i == 11)
+                        referencia = Convert.ToString(fila.Cells[6].Value);
+                        respuesta = productoService.BuscarPorReferencia(referencia);
+                        if (respuesta.Producto != null)
                         {
-                            respuesta = productoService.BuscarPorReferencia(referencia);
-                            if (respuesta.Producto != null)
-                            {
-                                var producto = respuesta.Producto;
-                                string mensaje = productoService.ModificarEstado(producto);
-                            }
+                            var producto = respuesta.Producto;
+                            string mensaje = productoService.ModificarEstado(producto);
                         }
                     }
                     i = i + 1;
@@ -150,7 +144,8 @@ namespace Presentacion
             if (respuesta.CajaRegistradora != null)
             {
                 var cajasRegistradoras = new List<Caja> { respuesta.CajaRegistradora };
-                labelCash.Text = respuesta.CajaRegistradora.Monto.ToString();
+                labelCash.Text = respuesta.CajaRegistradora.MontoFinal.ToString();
+                labelBase.Text = respuesta.CajaRegistradora.MontoInicial.ToString();
                 cajaAbierta = true;
             }
             else
@@ -158,6 +153,7 @@ namespace Presentacion
                 if (respuesta.CajaRegistradora == null)
                 {
                     labelCash.Text = "Sin definir";
+                    labelBase.Text = "Sin definir";
                 }
             }
         }
@@ -258,8 +254,8 @@ namespace Presentacion
             if (paginaSeleccionada <= totalPaginas && paginaSeleccionada >=0)
             {
                 textNumeroPagina.Text = paginaSeleccionada.ToString();
-                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-                if(paginaSeleccionada < 1)
+                IniciarOperaciones();
+                if (paginaSeleccionada < 1)
                 {
                     btnPaginaAnterior.Enabled = false;
                     string mensaje = "Llego al inicio de las paginas";
@@ -275,7 +271,7 @@ namespace Presentacion
             paginaSeleccionada = paginaSeleccionada + 1;
             if (paginaSeleccionada <= totalPaginas)
             {
-                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                IniciarOperaciones();
                 btnPaginaAnterior.Enabled = true;
                 if (paginaSeleccion == totalPaginas)
                 {
@@ -309,7 +305,7 @@ namespace Presentacion
                     textSearch.Text = "";
                     string msg = "¡No se encontró medicamentos asociados!";
                     MessageBox.Show(msg, "Filtro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                    IniciarOperaciones();
                 }
             }
         }
@@ -655,8 +651,7 @@ namespace Presentacion
                 cantidadDeRegistros = int.Parse(textTotal.Text);
                 totalPaginas = 0;
                 ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-                Thread calcularEstadoAutomatico = new Thread(CalculoDeEstadoAutomatico);
-                calcularEstadoAutomatico.Start();
+                CalculoDeEstadoAutomatico();
             }
         }
         private void textSearch_TextChanged(object sender, EventArgs e)
@@ -856,8 +851,7 @@ namespace Presentacion
                 {
                     referenciaBotonDatagrid = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Referencia"].Value.ToString());
                     nombre = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Nombre"].Value.ToString());
-                    string msg = "Desea vender el producto " + nombre + "?";
-                    var respuesta = MessageBox.Show(msg, "Vender", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var respuesta = MessageBox.Show("Desea vender el producto "+nombre+"?", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (respuesta == DialogResult.OK)
                     {
                         TotalSeleccion = 1;
@@ -874,8 +868,7 @@ namespace Presentacion
                         BusquedaProductoRespuesta busqueda = new BusquedaProductoRespuesta();
                         referenciaBotonDatagrid = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Referencia"].Value.ToString());
                         nombre = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Nombre"].Value.ToString());
-                        string msg = "Desea Sacar este producto de inventario " + nombre + "?";
-                        var respuesta = MessageBox.Show(msg, "Vencido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        var respuesta = MessageBox.Show("Desea Sacar este producto de inventario " + nombre + "?", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         if (respuesta == DialogResult.OK)
                         {
                             busqueda = productoService.BuscarPorReferencia(referenciaBotonDatagrid);
@@ -910,7 +903,7 @@ namespace Presentacion
                                 {
                                     if (estado != "Vencido")
                                     {
-                                        msg = "Solo se pueden sacar del inventario productos vencidos";
+                                        string msg = "Solo se pueden sacar del inventario productos vencidos";
                                         MessageBox.Show(msg, "Vencidos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
                                 }
@@ -933,8 +926,8 @@ namespace Presentacion
         {
             paginaSeleccionada = 0;
             cantidadDeRegistros = 20;
-            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
             CalculoDeEstadoAutomatico();
+            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
         }
     }
 }

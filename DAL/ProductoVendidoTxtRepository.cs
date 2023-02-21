@@ -15,7 +15,7 @@ namespace DAL
         {
             FileStream file = new FileStream(ruta, FileMode.Append);
             StreamWriter escritor = new StreamWriter(file);
-            escritor.WriteLine($"{productoTxt.Cantidad};{productoTxt.Referencia};{productoTxt.Nombre};{productoTxt.Detalle};{productoTxt.Precio}");
+            escritor.WriteLine($"{productoTxt.FechaDeVenta};{productoTxt.Cantidad};{productoTxt.Referencia};{productoTxt.Nombre};{productoTxt.Detalle};{productoTxt.Precio}");
             escritor.Close();
             file.Close();
         }
@@ -30,11 +30,12 @@ namespace DAL
                 string[] dato = linea.Split(';');
                 ProductoVendidoTxt productoTxt = new ProductoVendidoTxt()
                 {
-                    Cantidad = int.Parse(dato[0]),
-                    Referencia = dato[1],
-                    Nombre = dato[2],
-                    Detalle = dato[3],
-                    Precio = int.Parse(dato[4]),
+                    FechaDeVenta=dato[0],
+                    Cantidad = int.Parse(dato[1]),
+                    Referencia = dato[2],
+                    Nombre = dato[3],
+                    Detalle = dato[4],
+                    Precio = int.Parse(dato[5]),
                 };
                 productoTxts.Add(productoTxt);
             }

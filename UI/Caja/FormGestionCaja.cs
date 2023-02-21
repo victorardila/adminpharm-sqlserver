@@ -89,7 +89,7 @@ namespace Presentacion
                 textTotalCajasCerradas.Enabled = true;
                 dataGridFarmacos.DataSource = null;
                 respuesta = cajaRegistradoraService.ConsultarTodos();
-                cajasRegistradoras = respuesta.CajasRegistradoras.ToList();
+                @cajasRegistradoras = respuesta.CajasRegistradoras.ToList();
                 if (respuesta.CajasRegistradoras.Count != 0 && respuesta.CajasRegistradoras!=null)
                 {
                     dataGridFarmacos.DataSource = respuesta.CajasRegistradoras;
@@ -120,13 +120,14 @@ namespace Presentacion
             if (respuesta.CajaRegistradora != null)
             {
                 var cajasRegistradoras = new List<Caja> { respuesta.CajaRegistradora };
-                labelCash.Text = respuesta.CajaRegistradora.Monto.ToString();
+                labelCash.Text = respuesta.CajaRegistradora.MontoFinal.ToString();
+                labelBase.Text = respuesta.CajaRegistradora.MontoInicial.ToString();
                 btnAbrirCaja.Enabled = false;
                 btnCerrarCaja.Enabled = true;
                 idCajaAbierta = respuesta.CajaRegistradora.IdCaja;
                 fechaDeApertura = respuesta.CajaRegistradora.FechaDeApertura;
                 horaDeApertura = respuesta.CajaRegistradora.HoraDeApertura;
-                montoCaja = respuesta.CajaRegistradora.Monto;
+                montoCaja = respuesta.CajaRegistradora.MontoInicial;
                 ConsultarYLlenarGridDeCajas();
             }
             else
@@ -135,6 +136,7 @@ namespace Presentacion
                 {
                     btnCerrarCaja.Enabled = false;
                     labelCash.Text = "Sin definir";
+                    labelBase.Text = "Sin definir";
                 }
             }
         }
@@ -200,7 +202,7 @@ namespace Presentacion
             cajaRegistradora.IdCaja = idCajaAbierta;
             cajaRegistradora.FechaDeApertura = fechaDeApertura;
             cajaRegistradora.HoraDeApertura = horaDeApertura;
-            cajaRegistradora.Monto = montoCaja;
+            cajaRegistradora.MontoFinal = montoCaja;
             return cajaRegistradora;
         }
         private void BuscararDrogueria()
@@ -374,7 +376,7 @@ namespace Presentacion
             }
             else
             {
-                if (dataGridFarmacos .DataSource == null)
+                if (dataGridFarmacos.DataSource == null)
                 {
                     string msg = "No hay registros disponibles";
                     MessageBox.Show(msg, "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);

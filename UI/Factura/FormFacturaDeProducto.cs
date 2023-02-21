@@ -22,7 +22,7 @@ namespace Presentacion
         Caja cajaRegistradora;
         Cliente cliente;
         CajaRegistradoraService cajaRegistradoraService;
-        RutasTxtService rutasTxtService;
+        RutasTxtService rutasTxtService=new RutasTxtService();
         ClienteService clienteService;
         EmpleadoService empleadoService;
         DrogueriaService drogueriaService;
@@ -36,6 +36,7 @@ namespace Presentacion
         List<Drogueria> droguerias;
         List<ProductoFacturaTxt> productosFactura = new List<ProductoFacturaTxt>();
         IdEmpleadoTxtService idEmpleadoTxtService = new IdEmpleadoTxtService();
+        string fechaDeVenta;
         string rutaTxtFacturaVenta;
         public string idEmpleado;
         string nombreFactura;
@@ -155,11 +156,13 @@ namespace Presentacion
             if (respuesta.Producto != null)
             {
                 var productos = new List<Producto> { respuesta.Producto };
+                DateTime fechaActual = DateTime.Now;
+                fechaDeVenta = fechaActual.ToString("dd/mm/yyyy");
                 referenciaProducto = respuesta.Producto.Referencia;
                 nombreProducto= respuesta.Producto.Nombre;
                 detalleProducto= respuesta.Producto.Detalle;
                 precioProducto= respuesta.Producto.PrecioDeVenta;
-                ProductoVendidoTxt productoVendidoTxt = new ProductoVendidoTxt(cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
+                ProductoVendidoTxt productoVendidoTxt = new ProductoVendidoTxt(fechaDeVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
                 string mensaje = productoVendidoTxtService.Guardar(productoVendidoTxt);
             }
         }
@@ -198,6 +201,7 @@ namespace Presentacion
             totalSinRedondeo = factura.TotalSinRedondeo;
             factura.TotalizarFactura();
             totalConRedondeo = factura.TotalConRedondeo;
+            factura.TotalFactura = int.Parse(textTotalFacturaGenerada.Text);
             totalFactura = factura.TotalFactura;
             valorDeRedondeo = factura.ValorDeRedondeo;
             formaDePago = factura.FormaDePago;
@@ -231,7 +235,7 @@ namespace Presentacion
                         i = i + 1;
                     }
                 }
-                labelTotalFacturaGenerada.Text = totalFactura.ToString();
+                textTotalFacturaGenerada.Text = totalFactura.ToString();
             }
         }
         public void ConsultarCajaAbierta() 
@@ -242,15 +246,17 @@ namespace Presentacion
             if (respuesta.CajaRegistradora != null)
             {
                 var cajasRegistradoras = new List<Caja> { respuesta.CajaRegistradora };
-                labelCash.Text = respuesta.CajaRegistradora.Monto.ToString();
+                labelCash.Text = respuesta.CajaRegistradora.MontoFinal.ToString();
+                labelBase.Text = respuesta.CajaRegistradora.MontoInicial.ToString();
                 idCajaAbierta = respuesta.CajaRegistradora.IdCaja;
-                montoActualCaja = respuesta.CajaRegistradora.Monto;
+                montoActualCaja = respuesta.CajaRegistradora.MontoFinal;
             }
             else
             {
                 if (respuesta.CajaRegistradora == null)
                 {
                     labelCash.Text = "Sin definir";
+                    labelBase.Text = "Sin definir";
                 }
             }
         }
@@ -340,7 +346,7 @@ namespace Presentacion
             cajaRegistradora = new Caja();
             cajaRegistradora.IdCaja = idCajaAbierta;
             double totalMonto = montoActualCaja+totalFactura;
-            cajaRegistradora.Monto = totalMonto;
+            cajaRegistradora.MontoFinal = totalMonto;
             return cajaRegistradora;
         }
         private void ModificarCashCaja()
@@ -352,6 +358,7 @@ namespace Presentacion
                 string mensaje = cajaRegistradoraService.ModificarCash(cajaRegistradora);
                 MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 labelCash.Text = "Sin definir";
+                labelBase.Text = "Sin definir";
             }
         }
         private void ConsultarDatosDrogueria()
@@ -408,7 +415,7 @@ namespace Presentacion
             factura.Ciudad = "Valledupar, Cesar";
             factura.IdCaja = idCajaAbierta;
             factura.NombreDeCliente = nombreCliente;
-            factura.TotalSinRedondeo = totalFactura;
+            factura.TotalSinRedondeo = 0;
             //Mapeamos Forma de pago
             factura.FormaDePago = comboFormaDePago.Text;
             return factura;
@@ -465,7 +472,7 @@ namespace Presentacion
             {
                 labelVueltosGenerado.Text = "";
                 int pago = int.Parse(textPago.Text);
-                int TotalFactura = int.Parse(labelTotalFacturaGenerada.Text);
+                int TotalFactura = int.Parse(textTotalFacturaGenerada.Text);
                 int diferencia = pago - TotalFactura;
                 labelVueltosGenerado.Text = diferencia.ToString();
             }
@@ -559,7 +566,7 @@ namespace Presentacion
         {
             if (textPago.Text != "")
             {
-                double totalFactura = double.Parse(labelTotalFacturaGenerada.Text);
+                double totalFactura = double.Parse(textTotalFacturaGenerada.Text);
                 double pago = double.Parse(textPago.Text);
                 labelVueltosGenerado.Text = (pago - totalFactura).ToString();
             }

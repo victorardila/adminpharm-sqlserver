@@ -20,14 +20,15 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Insert Into CAJA(Id_Caja, Fecha_De_Apertura, Fecha_De_Cierre, Estado, Monto) " +
-                    "Values (@Id_Caja, @Fecha_De_Apertura, @Fecha_De_Cierre, @Estado, @Monto)";
+                command.CommandText = "Insert Into CAJA(Id_Caja, Fecha_De_Apertura, Fecha_De_Cierre, Estado, Monto_Inicial, Monto_Final) " +
+                    "Values (@Id_Caja, @Fecha_De_Apertura, @Fecha_De_Cierre, @Estado, @Monto_Inicial, @Monto_Final)";
                 //command.Parameters.Add("@Id", SqlDbType.VarChar).Value = persona.Identificacion;
                 command.Parameters.AddWithValue("@Id_Caja", caja.IdCaja);
                 command.Parameters.AddWithValue("@Fecha_De_Apertura", caja.FechaDeApertura);
                 command.Parameters.AddWithValue("@Fecha_De_Cierre", caja.FechaDeCierre);
                 command.Parameters.AddWithValue("@Estado", caja.Estado);
-                command.Parameters.AddWithValue("@Monto", caja.Monto);
+                command.Parameters.AddWithValue("@Monto_Inicial", caja.MontoInicial);
+                command.Parameters.AddWithValue("@Monto_Final", caja.MontoFinal);
                 command.ExecuteNonQuery();
 
             }
@@ -36,15 +37,16 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"Insert Into CAJA (Id_Caja, Fecha_De_Apertura, Hora_De_Apertura, Fecha_De_Cierre, Hora_De_Cierre, Estado, Monto) 
-                                        values (@Id_Caja, @Fecha_De_Apertura, @Hora_De_Apertura, @Fecha_De_Cierre, @Hora_De_Cierre, @Estado, @Monto)";
+                command.CommandText = @"Insert Into CAJA (Id_Caja, Fecha_De_Apertura, Hora_De_Apertura, Fecha_De_Cierre, Hora_De_Cierre, Estado, Monto_Inicial, Monto_Final) 
+                                        values (@Id_Caja, @Fecha_De_Apertura, @Hora_De_Apertura, @Fecha_De_Cierre, @Hora_De_Cierre, @Estado, @Monto_Inicial, @Monto_Final)";
                 command.Parameters.AddWithValue("@Id_Caja", caja.IdCaja);
                 command.Parameters.AddWithValue("@Fecha_De_Apertura", caja.FechaDeApertura);
                 command.Parameters.AddWithValue("@Hora_De_Apertura", caja.HoraDeApertura);
                 command.Parameters.AddWithValue("@Fecha_De_Cierre", caja.FechaDeCierre);
                 command.Parameters.AddWithValue("@Hora_De_Cierre", caja.HoraDeCierre);
                 command.Parameters.AddWithValue("@Estado", caja.Estado);
-                command.Parameters.AddWithValue("@Monto", caja.Monto);
+                command.Parameters.AddWithValue("@Monto_Inicial", caja.MontoInicial);
+                command.Parameters.AddWithValue("@Monto_Final", caja.MontoFinal);
                 var filas = command.ExecuteNonQuery();
             }
         }
@@ -81,7 +83,7 @@ namespace DAL
             List<Caja> cajas = new List<Caja>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select Id_Caja, Fecha_De_Apertura, Hora_De_Apertura, Fecha_De_Cierre, Hora_De_Cierre, Estado, Monto from CAJA";
+                command.CommandText = "Select Id_Caja, Fecha_De_Apertura, Hora_De_Apertura, Fecha_De_Cierre, Hora_De_Cierre, Estado, Monto_Inicial, Monto_Final  from CAJA";
                 var dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -160,10 +162,10 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"update CAJA set Monto=@Monto
+                command.CommandText = @"update CAJA set Monto_Final=@Monto_Final
                                         where Id_Caja=@Id_Caja";
                 command.Parameters.AddWithValue("@Id_Caja", caja.IdCaja);
-                command.Parameters.AddWithValue("@Monto", caja.Monto);
+                command.Parameters.AddWithValue("@Monto_Final", caja.MontoFinal);
                 var filas = command.ExecuteNonQuery();
             }
         }
@@ -171,7 +173,7 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"update CAJA set Fecha_De_Apertura=@Fecha_De_Apertura, Hora_De_Apertura=@Hora_De_Apertura, Fecha_De_Cierre=@Fecha_De_Cierre, Hora_De_Cierre=@Hora_De_Cierre, Estado=@Estado, Monto=@Monto
+                command.CommandText = @"update CAJA set Fecha_De_Apertura=@Fecha_De_Apertura, Hora_De_Apertura=@Hora_De_Apertura, Fecha_De_Cierre=@Fecha_De_Cierre, Hora_De_Cierre=@Hora_De_Cierre, Estado=@Estado, Monto_Inicial=@Monto_Inicial, Monto_Final=@Monto_Final
                                         where Id_Caja=@Id_Caja";
                 command.Parameters.AddWithValue("@Id_Caja", caja.IdCaja);
                 command.Parameters.AddWithValue("@Fecha_De_Apertura", caja.FechaDeApertura);
@@ -179,7 +181,8 @@ namespace DAL
                 command.Parameters.AddWithValue("@Fecha_De_Cierre", caja.FechaDeCierre);
                 command.Parameters.AddWithValue("@Hora_De_Cierre", caja.HoraDeCierre);
                 command.Parameters.AddWithValue("@Estado", caja.Estado);
-                command.Parameters.AddWithValue("@Monto", caja.Monto);
+                command.Parameters.AddWithValue("@Monto_Inicial", caja.MontoInicial);
+                command.Parameters.AddWithValue("@Monto_Final", caja.MontoFinal);
                 var filas = command.ExecuteNonQuery();
             }
         }
@@ -193,7 +196,8 @@ namespace DAL
             caja.FechaDeCierre = (string)dataReader["Fecha_De_Cierre"];
             caja.HoraDeCierre = (string)dataReader["Hora_De_Cierre"];
             caja.Estado = (string)dataReader["Estado"];
-            caja.Monto = (int)dataReader["Monto"];
+            caja.MontoInicial = (int)dataReader["Monto_Inicial"];
+            caja.MontoFinal = (int)dataReader["Monto_Final"];
             return caja;
         }
         public int Totalizar()

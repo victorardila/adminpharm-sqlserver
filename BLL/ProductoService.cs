@@ -30,7 +30,11 @@ namespace BLL
                     repositorio.Guardar(producto);
                     return $"Producto registrado correctamente";
                 }
-                return $"Esta referencia de producto ya existe";
+                else
+                {
+                    repositorio.Guardar(producto);
+                    return $"Producto registrado correctamente";
+                }
             }
             catch (Exception e)
             {
