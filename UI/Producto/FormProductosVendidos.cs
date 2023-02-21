@@ -19,6 +19,7 @@ namespace Presentacion
         ProductoService productoService;
         CajaRegistradoraService cajaRegistradoraService;
         ProductoVendidoTxtService productoVendidoTxtService = new ProductoVendidoTxtService();
+        RutasTxtService rutasTxtService = new RutasTxtService();
         ProductoVendidoTxt productoTxt = new ProductoVendidoTxt();
         int cantidadProductoBD;
         string fechaVenta;
@@ -32,14 +33,17 @@ namespace Presentacion
         double MontoActualizado;
         double montoBase;
         double montoActual;
+        string rutasVendidos;
         public FormProductosVendidos()
         {
             productoService = new ProductoService(ConfigConnection.ConnectionString);
             cajaRegistradoraService = new CajaRegistradoraService(ConfigConnection.ConnectionString);
             InitializeComponent();
-            cargarArchivo(productoVendidoTxtService);
+            ObtenerRutaDeVendido();
+            cargarArchivo(productoVendidoTxtService, rutasVendidos);
             CuadreDeventas();
             LlenarComboFecha(productoVendidoTxtService);
+            Inicializar();
         }
         //Drag Form
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -50,9 +54,24 @@ namespace Presentacion
         {
             this.Close();
         }
+        private void Inicializar()
+        {
+            labelFechaActual.Text = "Hoy " + fechaVenta;
+        }
+        private void ObtenerRutaDeVendido()
+        {
+            RutasTxtConsultaResponse rutasTxtConsultaResponse = rutasTxtService.Consultar();
+            if (rutasTxtConsultaResponse.RutasTxts.Count > 0)
+            {
+                foreach (var item in rutasTxtConsultaResponse.RutasTxts)
+                {
+                    rutasVendidos = item.RutaFacturasVenta;
+                }
+            }
+        }
         private void LlenarComboFecha(ProductoVendidoTxtService productoVendidoTxtService)
         {
-            ProductoVendidoTxtConsultaResponse productoVendidoTxtConsultaResponse = productoVendidoTxtService.Consultar();
+            ProductoVendidoTxtConsultaResponse productoVendidoTxtConsultaResponse = productoVendidoTxtService.Consultar(rutasVendidos);
             if (productoVendidoTxtConsultaResponse.ProductoTxts.Count > 0)
             {
                 foreach (var item in productoVendidoTxtConsultaResponse.ProductoTxts)
@@ -114,11 +133,12 @@ namespace Presentacion
                 }
             }
         }
-        public void cargarArchivo(ProductoVendidoTxtService productoVendidoTxtService)
+        public void cargarArchivo(ProductoVendidoTxtService productoVendidoTxtService, string rutaDeVendido)
         {
-            ProductoVendidoTxtConsultaResponse productoVendidoTxtConsultaResponse = productoVendidoTxtService.Consultar();
+            ProductoVendidoTxtConsultaResponse productoVendidoTxtConsultaResponse = productoVendidoTxtService.Consultar(rutaDeVendido);
             if (productoVendidoTxtConsultaResponse.ProductoTxts.Count > 0)
             {
+                dataGridProductosVendidos.Rows.Clear();
                 foreach (var item in productoVendidoTxtConsultaResponse.ProductoTxts)
                 {
                     Deshacer.Image=Properties.Resources.Regresar;
@@ -130,7 +150,7 @@ namespace Presentacion
                     precioProducto = item.Precio;
                     dataGridProductosVendidos.Rows.Add(Deshacer.Image, fechaVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
                 }
-                textTotal.Text = productoVendidoTxtService.Totalizar();
+                textTotal.Text = productoVendidoTxtService.Totalizar(rutasVendidos);
             }
             else
             {
@@ -143,7 +163,7 @@ namespace Presentacion
         }
         private void ConsultarHistorial()
         {
-            ProductoVendidoTxtConsultaResponse productoTxtConsultaResponse = productoVendidoTxtService.Consultar();
+            ProductoVendidoTxtConsultaResponse productoTxtConsultaResponse = productoVendidoTxtService.Consultar(rutasVendidos);
             if (productoTxtConsultaResponse.Encontrado == true)
             {
                 foreach (var item in productoTxtConsultaResponse.ProductoTxts)
@@ -172,7 +192,7 @@ namespace Presentacion
             if (respuesta == DialogResult.Yes)
             {
                 ProductoFacturaTxt productoTxt = new ProductoFacturaTxt();
-                string mensaje = productoVendidoTxtService.EliminarHistorial();
+                string mensaje = productoVendidoTxtService.EliminarHistorial(rutasVendidos);
                 dataGridProductosVendidos.DataSource = null;
                 ConsultarHistorial();
             }
@@ -199,7 +219,7 @@ namespace Presentacion
                 respuesta.Producto.Cantidad = cantidadProductoBD + cantidad;
                 var producto = respuesta.Producto;
                 productoService.ModificarCantidad(producto);
-                productoVendidoTxtService.Eliminar(referencia);
+                productoVendidoTxtService.Eliminar(referencia, rutasVendidos);
                 dataGridProductosVendidos.Rows.Clear();
             }
         }
@@ -238,14 +258,14 @@ namespace Presentacion
         {
             if (comboFecha.Text == "Todos")
             {
-                cargarArchivo(productoVendidoTxtService);
+                cargarArchivo(productoVendidoTxtService, rutasVendidos);
             }
             else
             {
                 if (comboFecha.Text != "Todos")
                 {
                     string fecha = comboFecha.Text;
-                    ProductoVendidoTxtConsultaResponse productoVendidoTxtConsultaResponse = productoVendidoTxtService.ConsultarPorFechas(fecha);
+                    ProductoVendidoTxtConsultaResponse productoVendidoTxtConsultaResponse = productoVendidoTxtService.ConsultarPorFechas(fecha, rutasVendidos);
                     if (productoVendidoTxtConsultaResponse.ProductoTxts.Count > 0)
                     {
                         dataGridProductosVendidos.Rows.Clear();

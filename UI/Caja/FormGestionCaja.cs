@@ -26,6 +26,7 @@ namespace Presentacion
         Caja cajaRegistradora;
         FacturaService facturaService;
         DrogueriaService drogueriaService;
+        string rutasVendidos;
         string rutaTxtCierreDeCaja;
         string nombreFactura;
         string notExistingFileName;
@@ -227,6 +228,17 @@ namespace Presentacion
                 }
             }
         }
+        private void ObtenerRutaDeVendido()
+        {
+            RutasTxtConsultaResponse rutasTxtConsultaResponse = rutasTxtService.Consultar();
+            if (rutasTxtConsultaResponse.RutasTxts.Count > 0)
+            {
+                foreach (var item in rutasTxtConsultaResponse.RutasTxts)
+                {
+                    rutasVendidos = item.RutaFacturasVenta;
+                }
+            }
+        }
         private void ObtenerRutaDeGuardado()
         {
             RutasTxtConsultaResponse rutasTxtConsultaResponse = rutasTxtService.Consultar();
@@ -241,7 +253,7 @@ namespace Presentacion
         private void ProductosRegistradosEnCaja()
         {
             productoVendidoTxts = new List<ProductoVendidoTxt>();
-            ProductoVendidoTxtConsultaResponse productoTxtConsultaResponse = productoVendidoTxtService.Consultar();
+            ProductoVendidoTxtConsultaResponse productoTxtConsultaResponse = productoVendidoTxtService.Consultar(rutasVendidos);
             if (productoTxtConsultaResponse.ProductoTxts.Count > 0)
             {
                 foreach (var item in productoTxtConsultaResponse.ProductoTxts)
@@ -270,7 +282,7 @@ namespace Presentacion
         }
         private void EliminarProductosVendidos()
         {
-            string mensaje = productoVendidoTxtService.EliminarHistorial();
+            string mensaje = productoVendidoTxtService.EliminarHistorial(rutasVendidos);
         }
         private void FacturarProductosVendidosEnCaja()
         {
@@ -279,7 +291,7 @@ namespace Presentacion
         }
         private void ValidarDatosDeCaja(ProductoVendidoTxtService productoVendidoTxtService)
         {
-            ProductoVendidoTxtConsultaResponse productoVendidoTxtConsultaResponse = productoVendidoTxtService.Consultar();
+            ProductoVendidoTxtConsultaResponse productoVendidoTxtConsultaResponse = productoVendidoTxtService.Consultar(rutasVendidos);
             if (productoVendidoTxtConsultaResponse.ProductoTxts.Count >= 0)
             {
                 productoLeido = productoVendidoTxtConsultaResponse.ProductoTxts.Count;

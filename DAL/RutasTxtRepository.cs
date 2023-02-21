@@ -15,7 +15,7 @@ namespace DAL
         {
             FileStream file = new FileStream(ruta, FileMode.Append);
             StreamWriter escritor = new StreamWriter(file);
-            escritor.WriteLine($"{rutasTxt.RutaFacturasVenta};{rutasTxt.RutaCierreDeCaja}");
+            escritor.WriteLine($"{rutasTxt.RutaFacturasVenta};{rutasTxt.RutaCierreDeCaja};{rutasTxt.RutaProductosVendidos}");
             escritor.Close();
             file.Close();
         }
@@ -32,6 +32,7 @@ namespace DAL
                 {
                     RutaFacturasVenta = dato[0],
                     RutaCierreDeCaja = dato[1],
+                    RutaProductosVendidos=dato[2],
                 };
                 rutasTxts.Add(rutasTxt);
             }

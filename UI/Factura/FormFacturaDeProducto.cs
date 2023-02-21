@@ -37,6 +37,7 @@ namespace Presentacion
         List<ProductoFacturaTxt> productosFactura = new List<ProductoFacturaTxt>();
         IdEmpleadoTxtService idEmpleadoTxtService = new IdEmpleadoTxtService();
         string fechaDeVenta;
+        string rutasVendidos;
         string rutaTxtFacturaVenta;
         public string idEmpleado;
         string nombreFactura;
@@ -97,6 +98,7 @@ namespace Presentacion
             empleadoService = new EmpleadoService(ConfigConnection.ConnectionString);
             facturaService = new FacturaService(ConfigConnection.ConnectionString);
             InitializeComponent();
+            ObtenerRutaDeVendido();
             CargarArchivo(productoTxtService);
             ConsultarCajaAbierta();
             ConsultarDatosDrogueria();
@@ -118,6 +120,17 @@ namespace Presentacion
             {
                 btnSoloVender.Enabled = false;
                 btnImprimirFactura.Enabled = false;
+            }
+        }
+        private void ObtenerRutaDeVendido()
+        {
+            RutasTxtConsultaResponse rutasTxtConsultaResponse = rutasTxtService.Consultar();
+            if (rutasTxtConsultaResponse.RutasTxts.Count > 0)
+            {
+                foreach (var item in rutasTxtConsultaResponse.RutasTxts)
+                {
+                    rutasVendidos = item.RutaFacturasVenta;
+                }
             }
         }
         private void BuscarInformacionDeEmpleado()
@@ -163,7 +176,7 @@ namespace Presentacion
                 detalleProducto= respuesta.Producto.Detalle;
                 precioProducto= respuesta.Producto.PrecioDeVenta;
                 ProductoVendidoTxt productoVendidoTxt = new ProductoVendidoTxt(fechaDeVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
-                string mensaje = productoVendidoTxtService.Guardar(productoVendidoTxt);
+                string mensaje = productoVendidoTxtService.Guardar(productoVendidoTxt, rutasVendidos);
             }
         }
         private void ContarProductosVendidos()
@@ -732,7 +745,7 @@ namespace Presentacion
                 var producto = respuesta.Producto;
                 productoService.ModificarCantidad(producto);
                 productoTxtService.Eliminar(referencia);
-                productoVendidoTxtService.Eliminar(referencia);
+                productoVendidoTxtService.Eliminar(referencia, rutasVendidos);
                 dataGridFacturaProductos.Rows.Clear();
             }
         }

@@ -23,6 +23,7 @@ namespace Presentacion
         NeveraService neveraService;
         ProductoFacturaTxtService productoTxtService=new ProductoFacturaTxtService();
         ProductoVencidoTxtService productoVencidoTxtService = new ProductoVencidoTxtService();
+        RutasTxtService rutasTxtService = new RutasTxtService();
         List<Producto> productos;
         List<Estante> estantes;
         List<Drogueria> droguerias;
@@ -30,6 +31,7 @@ namespace Presentacion
         List<Nevera> neveras;
         Producto producto;
         CajaRegistradoraService cajaRegistradoraService;
+        string rutasVendidos;
         string referenciaBotonDatagrid;
         int TotalSeleccion;
         int cantidadDeRegistros=20;
@@ -463,8 +465,20 @@ namespace Presentacion
                 MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        private void ObtenerRutaDeGuardado()
+        {
+            RutasTxtConsultaResponse rutasTxtConsultaResponse = rutasTxtService.Consultar();
+            if (rutasTxtConsultaResponse.RutasTxts.Count > 0)
+            {
+                foreach (var item in rutasTxtConsultaResponse.RutasTxts)
+                {
+                    rutasVendidos = item.RutaFacturasVenta;
+                }
+            }
+        }
         private void MapearMedicamentosFactura(string referencia)
         {
+            ObtenerRutaDeGuardado();
             if (cantidad!=0)
             {
                 BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
@@ -688,6 +702,10 @@ namespace Presentacion
                     }
                 }
             }
+            else
+            {
+                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+            }
         }
 
         private void textSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -852,7 +870,7 @@ namespace Presentacion
                     referenciaBotonDatagrid = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Referencia"].Value.ToString());
                     nombre = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Nombre"].Value.ToString());
                     var respuesta = MessageBox.Show("Desea vender el producto "+nombre+"?", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (respuesta == DialogResult.OK)
+                    if (respuesta == DialogResult.Yes)
                     {
                         TotalSeleccion = 1;
                         cantidad = 1;
@@ -869,7 +887,7 @@ namespace Presentacion
                         referenciaBotonDatagrid = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Referencia"].Value.ToString());
                         nombre = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Nombre"].Value.ToString());
                         var respuesta = MessageBox.Show("Desea Sacar este producto de inventario " + nombre + "?", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                        if (respuesta == DialogResult.OK)
+                        if (respuesta == DialogResult.Yes)
                         {
                             busqueda = productoService.BuscarPorReferencia(referenciaBotonDatagrid);
                             if (busqueda.Producto != null)

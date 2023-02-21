@@ -16,11 +16,11 @@ namespace BLL
             productoTxtRepository = new ProductoVendidoTxtRepository();
         }
 
-        public string Guardar(ProductoVendidoTxt productoTxt)
+        public string Guardar(ProductoVendidoTxt productoTxt, string rutasVendidos)
         {
             try
             {
-                productoTxtRepository.Guardar(productoTxt);
+                productoTxtRepository.Guardar(productoTxt, rutasVendidos);
                 return "Producto en txt registro Satisfactoriamente";
             }
             catch (Exception e)
@@ -29,23 +29,23 @@ namespace BLL
             }
         }
 
-        public ProductoVendidoTxtConsultaResponse Consultar()
+        public ProductoVendidoTxtConsultaResponse Consultar(string rutasVendidos)
         {
             try
             {
-                return new ProductoVendidoTxtConsultaResponse(productoTxtRepository.Consultar());
+                return new ProductoVendidoTxtConsultaResponse(productoTxtRepository.Consultar(rutasVendidos));
             }
             catch (Exception e)
             {
                 return new ProductoVendidoTxtConsultaResponse("Error al Guardar:" + e.Message);
             }
         }
-        public bool FiltroIdentificaicon(string referencia)
+        public bool FiltroIdentificaicon(string referencia, string rutasVendidos)
         {
 
             try
             {
-                return (productoTxtRepository.FiltroIdentificaicon(referencia));
+                return (productoTxtRepository.FiltroIdentificaicon(referencia, rutasVendidos));
             }
             catch (Exception e)
             {
@@ -53,11 +53,11 @@ namespace BLL
             }
 
         }
-        public ProductoVendidoTxtConsultaResponse ConsultarPorFechas(string fecha)
+        public ProductoVendidoTxtConsultaResponse ConsultarPorFechas(string fecha, string rutasVendidos)
         {
             try
             {
-                return new ProductoVendidoTxtConsultaResponse(productoTxtRepository.ConsultarPorFechas(fecha));
+                return new ProductoVendidoTxtConsultaResponse(productoTxtRepository.ConsultarPorFechas(fecha, rutasVendidos));
             }
             catch (Exception e)
             {
@@ -65,11 +65,11 @@ namespace BLL
             }
 
         }
-        public string Modificar(ProductoVendidoTxt productoTxt, string referencia)
+        public string Modificar(ProductoVendidoTxt productoTxt, string referencia, string rutasVendidos)
         {
             try
             {
-                productoTxtRepository.Modificar(productoTxt, referencia);
+                productoTxtRepository.Modificar(productoTxt, referencia, rutasVendidos);
                 return "Producto Modificado Satisfactoriamente";
             }
             catch (Exception e)
@@ -77,11 +77,11 @@ namespace BLL
                 return "Error al Modificar:" + e.Message;
             }
         }
-        public string Eliminar(string referencia)
+        public string Eliminar(string referencia, string rutasVendidos)
         {
             try
             {
-                productoTxtRepository.Eliminar(referencia);
+                productoTxtRepository.Eliminar(referencia, rutasVendidos);
                 return "Producto Eliminada";
             }
             catch (Exception)
@@ -89,7 +89,7 @@ namespace BLL
                 return ("Error al Eliminar");
             }
         }
-        public string EliminarHistorial()
+        public string EliminarHistorial(string rutasVendidos)
         {
             try
             {
@@ -101,11 +101,11 @@ namespace BLL
                 return ("Error al Eliminar");
             }
         }
-        public string Totalizar()
+        public string Totalizar(string rutasVendidos)
         {
             try
             {
-                var Cuenta = productoTxtRepository.Totalizar().ToString();
+                var Cuenta = productoTxtRepository.Totalizar(rutasVendidos).ToString();
                 return Cuenta;
             }
             catch (Exception e)

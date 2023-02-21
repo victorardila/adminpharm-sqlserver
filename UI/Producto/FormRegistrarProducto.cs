@@ -101,6 +101,14 @@ namespace Presentacion
                     }
                 }
             }
+            else
+            {
+                if (respuesta.Producto == null)
+                {
+                    Producto producto = MapearProducto();
+                    productoService.Guardar(producto);
+                }
+            }
         }
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -336,15 +344,10 @@ namespace Presentacion
                 if (comboUbicacion.Text != "0")
                 {
                     BuscarReferencia(referencia);
-                    string mensaje = "Producto registrado correctamente";
-                    MessageBox.Show(mensaje, "Mensaje de Guardado", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                    if (mensaje == "Producto registrado correctamente")
-                    {
-                        Estante estante = MapearEstante();
-                        estanteService.Modificar(estante);
-                        string msg = "¡Se agrego el producto correctamente!";
-                        MessageBox.Show(msg, "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    Estante estante = MapearEstante();
+                    estanteService.Modificar(estante);
+                    string msg = "¡Se agrego el producto correctamente!";
+                    MessageBox.Show(msg, "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
                 else

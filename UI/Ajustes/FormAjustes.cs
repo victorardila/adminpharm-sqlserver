@@ -33,6 +33,7 @@ namespace Presentacion
         string segundaCadenaOriginal;
         string RutaFacturasVenta;
         string RutaCierreDeCaja;
+        string RutaProductosVendidos;
         public FormAjustes()
         {
             drogueriaService = new DrogueriaService(ConfigConnection.ConnectionString);
@@ -95,6 +96,7 @@ namespace Presentacion
                     textRutaFacturaVentas.Text = item.RutaFacturasVenta;
                     RutaCierreDeCaja = textRutaCierreDeCaja.Text;
                     RutaFacturasVenta = textRutaFacturaVentas.Text;
+                    RutaProductosVendidos = textRutaVendido.Text;
                 }
             }
             else
@@ -105,9 +107,11 @@ namespace Presentacion
                     {
                         RutaCierreDeCaja = textRutaCierreDeCaja.Text;
                         RutaFacturasVenta = textRutaFacturaVentas.Text;
+                        RutaProductosVendidos = textRutaVendido.Text;
                         rutasTxt.Referencia = 1;
                         rutasTxt.RutaCierreDeCaja = RutaCierreDeCaja;
                         rutasTxt.RutaFacturasVenta = RutaFacturasVenta;
+                        rutasTxt.RutaProductosVendidos = RutaProductosVendidos;
                         rutasTxtService.Guardar(rutasTxt);
                     }
                 }
@@ -187,6 +191,16 @@ namespace Presentacion
             {
                 string ruta = dialog.SelectedPath;
                 textCadenaConexion.Text = ruta;
+            }
+        }
+        private void btnBuscarRutaVendido_Click(object sender, EventArgs e)
+        {
+            var dialog = new FolderBrowserDialog();
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string ruta = dialog.SelectedPath;
+                textRutaVendido.Text = ruta;
             }
         }
         private void ModificarCadenaConexion()

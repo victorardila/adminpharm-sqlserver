@@ -10,17 +10,20 @@ namespace DAL
 {
     public class ProductoVendidoTxtRepository
     {
-        private string ruta = @"ProductosVendidos.txt";
-        public void Guardar(ProductoVendidoTxt productoTxt)
+        private string ruta;
+        private string NombreArchivo = @"ProductosVendidos.txt";
+        public void Guardar(ProductoVendidoTxt productoTxt, string rutasVendidos)
         {
+            ruta = @"" + rutasVendidos + "\\" + NombreArchivo;
             FileStream file = new FileStream(ruta, FileMode.Append);
             StreamWriter escritor = new StreamWriter(file);
             escritor.WriteLine($"{productoTxt.FechaDeVenta};{productoTxt.Cantidad};{productoTxt.Referencia};{productoTxt.Nombre};{productoTxt.Detalle};{productoTxt.Precio}");
             escritor.Close();
             file.Close();
         }
-        public List<ProductoVendidoTxt> Consultar()
+        public List<ProductoVendidoTxt> Consultar(string rutasVendidos)
         {
+            ruta = @"" + rutasVendidos + "\\" + NombreArchivo;
             List<ProductoVendidoTxt> productoTxts = new List<ProductoVendidoTxt>();
             FileStream file = new FileStream(ruta, FileMode.OpenOrCreate, FileAccess.Read);
             StreamReader lector = new StreamReader(ruta);
@@ -43,8 +46,9 @@ namespace DAL
             file.Close();
             return productoTxts;
         }
-        public bool FiltroIdentificaicon(string referencia)
+        public bool FiltroIdentificaicon(string referencia, string rutasVendidos )
         {
+            ruta = @"" + rutasVendidos + "\\" + NombreArchivo;
             List<ProductoVendidoTxt> productoTxts = new List<ProductoVendidoTxt>();
             FileStream file = new FileStream(ruta, FileMode.OpenOrCreate, FileAccess.Read);
             StreamReader lector = new StreamReader(ruta);
@@ -63,8 +67,9 @@ namespace DAL
             file.Close();
             return false;
         }
-        public List<ProductoVendidoTxt> ConsultarPorFechas(string referencia)
+        public List<ProductoVendidoTxt> ConsultarPorFechas(string referencia, string rutasVendidos)
         {
+            ruta = @"" + rutasVendidos + "\\" + NombreArchivo;
             List<ProductoVendidoTxt> productoTxts = new List<ProductoVendidoTxt>();
             FileStream file = new FileStream(ruta, FileMode.OpenOrCreate, FileAccess.Read);
             StreamReader lector = new StreamReader(ruta);
@@ -72,7 +77,7 @@ namespace DAL
             while ((linea = lector.ReadLine()) != null)
             {
                 string[] dato = linea.Split(';');
-                if (dato[1].Equals(referencia))
+                if (dato[0].Equals(referencia))
                 {
                     ProductoVendidoTxt productoTxt = new ProductoVendidoTxt()
                     {
@@ -94,21 +99,22 @@ namespace DAL
         {
             return referenciaRegistrada == referenciaBuscada;
         }
-        public void Modificar(ProductoVendidoTxt productoTxt, string referencia)
+        public void Modificar(ProductoVendidoTxt productoTxt, string referencia, string rutasVendidos)
         {
+            ruta = @"" + rutasVendidos + "\\" + NombreArchivo;
             List<ProductoVendidoTxt> productoTxts = new List<ProductoVendidoTxt>();
-            productoTxts = Consultar();
+            productoTxts = Consultar(rutasVendidos);
             FileStream file = new FileStream(ruta, FileMode.Create);
             file.Close();
             foreach (var item in productoTxts)
             {
                 if (!EsEncontrado(item.Referencia, referencia))
                 {
-                    Guardar(item);
+                    Guardar(item, rutasVendidos);
                 }
                 else
                 {
-                    Guardar(productoTxt);
+                    Guardar(productoTxt, rutasVendidos);
                 }
             }
         }
@@ -116,9 +122,10 @@ namespace DAL
         {
             File.Delete(ruta);
         }
-        public void Eliminar(string referencia)
+        public void Eliminar(string referencia, string rutasVendidos)
         {
-            List<ProductoVendidoTxt> productoTxts = Consultar();
+            ruta = @"" + rutasVendidos + "\\" + NombreArchivo;
+            List<ProductoVendidoTxt> productoTxts = Consultar(rutasVendidos);
             FileStream file = new FileStream(ruta, FileMode.Create);
             file.Close();
 
@@ -126,13 +133,13 @@ namespace DAL
             {
                 if (!item.Referencia.Equals(referencia))
                 {
-                    Guardar(item);
+                    Guardar(item, rutasVendidos);
                 }
             }
         }
-        public int Totalizar()
+        public int Totalizar(string rutasVendidos)
         {
-            return Consultar().Count();
+            return Consultar(rutasVendidos).Count();
         }
     }
 }

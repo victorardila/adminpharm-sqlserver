@@ -55,6 +55,10 @@ namespace Presentacion
             this.panelTituloRegistrarDatos = new System.Windows.Forms.Panel();
             this.labelTituloRegistrarDatos = new System.Windows.Forms.Label();
             this.panelConfigDeGuardado = new System.Windows.Forms.Panel();
+            this.pictureFolderRutaVendido = new System.Windows.Forms.PictureBox();
+            this.btnBuscarRutaVendido = new System.Windows.Forms.Button();
+            this.textRutaVendido = new System.Windows.Forms.TextBox();
+            this.labelRutaVendido = new System.Windows.Forms.Label();
             this.pictureFolderCierreCaja = new System.Windows.Forms.PictureBox();
             this.pictureFolderFacturaVenta = new System.Windows.Forms.PictureBox();
             this.btnBuscarRutaCierreCaja = new System.Windows.Forms.Button();
@@ -84,6 +88,7 @@ namespace Presentacion
             this.panelRegistrarDatos.SuspendLayout();
             this.panelTituloRegistrarDatos.SuspendLayout();
             this.panelConfigDeGuardado.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureFolderRutaVendido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureFolderCierreCaja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureFolderFacturaVenta)).BeginInit();
             this.panelTituloConfigDeGuardado.SuspendLayout();
@@ -347,6 +352,10 @@ namespace Presentacion
             // 
             this.panelConfigDeGuardado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelConfigDeGuardado.Controls.Add(this.pictureFolderRutaVendido);
+            this.panelConfigDeGuardado.Controls.Add(this.btnBuscarRutaVendido);
+            this.panelConfigDeGuardado.Controls.Add(this.textRutaVendido);
+            this.panelConfigDeGuardado.Controls.Add(this.labelRutaVendido);
             this.panelConfigDeGuardado.Controls.Add(this.pictureFolderCierreCaja);
             this.panelConfigDeGuardado.Controls.Add(this.pictureFolderFacturaVenta);
             this.panelConfigDeGuardado.Controls.Add(this.btnBuscarRutaCierreCaja);
@@ -358,8 +367,47 @@ namespace Presentacion
             this.panelConfigDeGuardado.Controls.Add(this.labelRutaCierreCaja);
             this.panelConfigDeGuardado.Location = new System.Drawing.Point(86, 326);
             this.panelConfigDeGuardado.Name = "panelConfigDeGuardado";
-            this.panelConfigDeGuardado.Size = new System.Drawing.Size(629, 119);
+            this.panelConfigDeGuardado.Size = new System.Drawing.Size(629, 172);
             this.panelConfigDeGuardado.TabIndex = 92;
+            // 
+            // pictureFolderRutaVendido
+            // 
+            this.pictureFolderRutaVendido.Image = global::Presentacion.Properties.Resources.folder;
+            this.pictureFolderRutaVendido.Location = new System.Drawing.Point(13, 116);
+            this.pictureFolderRutaVendido.Name = "pictureFolderRutaVendido";
+            this.pictureFolderRutaVendido.Size = new System.Drawing.Size(23, 26);
+            this.pictureFolderRutaVendido.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureFolderRutaVendido.TabIndex = 89;
+            this.pictureFolderRutaVendido.TabStop = false;
+            // 
+            // btnBuscarRutaVendido
+            // 
+            this.btnBuscarRutaVendido.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnBuscarRutaVendido.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBuscarRutaVendido.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarRutaVendido.Location = new System.Drawing.Point(362, 138);
+            this.btnBuscarRutaVendido.Name = "btnBuscarRutaVendido";
+            this.btnBuscarRutaVendido.Size = new System.Drawing.Size(37, 22);
+            this.btnBuscarRutaVendido.TabIndex = 88;
+            this.btnBuscarRutaVendido.Text = "...";
+            this.btnBuscarRutaVendido.UseVisualStyleBackColor = true;
+            this.btnBuscarRutaVendido.Click += new System.EventHandler(this.btnBuscarRutaVendido_Click);
+            // 
+            // textRutaVendido
+            // 
+            this.textRutaVendido.Location = new System.Drawing.Point(9, 140);
+            this.textRutaVendido.Name = "textRutaVendido";
+            this.textRutaVendido.Size = new System.Drawing.Size(347, 20);
+            this.textRutaVendido.TabIndex = 87;
+            // 
+            // labelRutaVendido
+            // 
+            this.labelRutaVendido.AutoSize = true;
+            this.labelRutaVendido.Location = new System.Drawing.Point(39, 124);
+            this.labelRutaVendido.Name = "labelRutaVendido";
+            this.labelRutaVendido.Size = new System.Drawing.Size(192, 13);
+            this.labelRutaVendido.TabIndex = 86;
+            this.labelRutaVendido.Text = "Ruta de guardado productos vendidos:";
             // 
             // pictureFolderCierreCaja
             // 
@@ -468,7 +516,7 @@ namespace Presentacion
             this.panelAvanzado.Controls.Add(this.panelTituloAvanzado);
             this.panelAvanzado.Controls.Add(this.textCadenaConexion);
             this.panelAvanzado.Controls.Add(this.labelCadenaConexion);
-            this.panelAvanzado.Location = new System.Drawing.Point(86, 444);
+            this.panelAvanzado.Location = new System.Drawing.Point(86, 495);
             this.panelAvanzado.Name = "panelAvanzado";
             this.panelAvanzado.Size = new System.Drawing.Size(630, 82);
             this.panelAvanzado.TabIndex = 93;
@@ -565,7 +613,7 @@ namespace Presentacion
             this.btnEliminarInfo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnEliminarInfo.IconSize = 30;
             this.btnEliminarInfo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarInfo.Location = new System.Drawing.Point(460, 534);
+            this.btnEliminarInfo.Location = new System.Drawing.Point(460, 589);
             this.btnEliminarInfo.Name = "btnEliminarInfo";
             this.btnEliminarInfo.Size = new System.Drawing.Size(123, 35);
             this.btnEliminarInfo.TabIndex = 77;
@@ -588,7 +636,7 @@ namespace Presentacion
             this.btnModificarInfo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnModificarInfo.IconSize = 30;
             this.btnModificarInfo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificarInfo.Location = new System.Drawing.Point(338, 534);
+            this.btnModificarInfo.Location = new System.Drawing.Point(338, 589);
             this.btnModificarInfo.Name = "btnModificarInfo";
             this.btnModificarInfo.Size = new System.Drawing.Size(123, 35);
             this.btnModificarInfo.TabIndex = 76;
@@ -611,7 +659,7 @@ namespace Presentacion
             this.btnRegistrarInfo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRegistrarInfo.IconSize = 30;
             this.btnRegistrarInfo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistrarInfo.Location = new System.Drawing.Point(216, 534);
+            this.btnRegistrarInfo.Location = new System.Drawing.Point(216, 589);
             this.btnRegistrarInfo.Name = "btnRegistrarInfo";
             this.btnRegistrarInfo.Size = new System.Drawing.Size(123, 35);
             this.btnRegistrarInfo.TabIndex = 75;
@@ -644,7 +692,7 @@ namespace Presentacion
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(798, 576);
+            this.ClientSize = new System.Drawing.Size(798, 632);
             this.Controls.Add(this.panelTituloDatos);
             this.Controls.Add(this.panelAvanzado);
             this.Controls.Add(this.panelConfigDeGuardado);
@@ -666,6 +714,7 @@ namespace Presentacion
             this.panelTituloRegistrarDatos.PerformLayout();
             this.panelConfigDeGuardado.ResumeLayout(false);
             this.panelConfigDeGuardado.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureFolderRutaVendido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureFolderCierreCaja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureFolderFacturaVenta)).EndInit();
             this.panelTituloConfigDeGuardado.ResumeLayout(false);
@@ -733,5 +782,9 @@ namespace Presentacion
         private System.Windows.Forms.Panel panelTituloDatos;
         private System.Windows.Forms.Label labelTituloDatos;
         private System.Windows.Forms.Label labelConnectionString;
+        private System.Windows.Forms.PictureBox pictureFolderRutaVendido;
+        private System.Windows.Forms.Button btnBuscarRutaVendido;
+        private System.Windows.Forms.TextBox textRutaVendido;
+        private System.Windows.Forms.Label labelRutaVendido;
     }
 }

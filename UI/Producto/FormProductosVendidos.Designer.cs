@@ -33,12 +33,6 @@ namespace Presentacion
             this.btnCerrar = new FontAwesome.Sharp.IconButton();
             this.panelConsultaDeProductos = new System.Windows.Forms.Panel();
             this.dataGridProductosVendidos = new System.Windows.Forms.DataGridView();
-            this.Deshacer = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Referencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
@@ -49,7 +43,15 @@ namespace Presentacion
             this.btnLimpiarHistorial = new FontAwesome.Sharp.IconButton();
             this.labelVentaDia = new System.Windows.Forms.Label();
             this.comboFecha = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelFiltroFecha = new System.Windows.Forms.Label();
+            this.Deshacer = new System.Windows.Forms.DataGridViewImageColumn();
+            this.FechaDeVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Referencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelFechaActual = new System.Windows.Forms.Label();
             this.menuTop.SuspendLayout();
             this.panelConsultaDeProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosVendidos)).BeginInit();
@@ -100,11 +102,12 @@ namespace Presentacion
             this.dataGridProductosVendidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProductosVendidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Deshacer,
+            this.FechaDeVenta,
             this.Cantidad,
             this.Referencia,
             this.Nombre,
             this.Detalle,
-            this.Precio});
+            this.Valor});
             this.dataGridProductosVendidos.Location = new System.Drawing.Point(0, 24);
             this.dataGridProductosVendidos.Name = "dataGridProductosVendidos";
             this.dataGridProductosVendidos.RowHeadersVisible = false;
@@ -112,50 +115,11 @@ namespace Presentacion
             this.dataGridProductosVendidos.TabIndex = 51;
             this.dataGridProductosVendidos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProductosVendidos_CellClick);
             // 
-            // Deshacer
-            // 
-            this.Deshacer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Deshacer.HeaderText = "Deshacer";
-            this.Deshacer.Image = global::Presentacion.Properties.Resources.Regresar;
-            this.Deshacer.Name = "Deshacer";
-            this.Deshacer.ReadOnly = true;
-            this.Deshacer.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Deshacer.Width = 59;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.Width = 80;
-            // 
-            // Referencia
-            // 
-            this.Referencia.HeaderText = "Referencia";
-            this.Referencia.Name = "Referencia";
-            this.Referencia.Width = 150;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.Width = 200;
-            // 
-            // Detalle
-            // 
-            this.Detalle.HeaderText = "Detalle";
-            this.Detalle.Name = "Detalle";
-            this.Detalle.Width = 180;
-            // 
-            // Precio
-            // 
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.Width = 108;
-            // 
             // panelTituloDataGridFarmacos
             // 
             this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTituloDataGridFarmacos.Controls.Add(this.label1);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.labelFechaActual);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.labelFiltroFecha);
             this.panelTituloDataGridFarmacos.Controls.Add(this.comboFecha);
             this.panelTituloDataGridFarmacos.Controls.Add(this.labelVentaDia);
             this.panelTituloDataGridFarmacos.Controls.Add(this.label4);
@@ -182,9 +146,9 @@ namespace Presentacion
             this.panelSubDataGridFarmacos.Controls.Add(this.labelAdvertencia);
             this.panelSubDataGridFarmacos.Controls.Add(this.textTotal);
             this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalFarmacos);
-            this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(15, 480);
+            this.panelSubDataGridFarmacos.Location = new System.Drawing.Point(18, 478);
             this.panelSubDataGridFarmacos.Name = "panelSubDataGridFarmacos";
-            this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(778, 26);
+            this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(775, 26);
             this.panelSubDataGridFarmacos.TabIndex = 53;
             // 
             // labelAdvertencia
@@ -270,14 +234,69 @@ namespace Presentacion
             this.comboFecha.Text = "Todos";
             this.comboFecha.SelectedIndexChanged += new System.EventHandler(this.comboFecha_SelectedIndexChanged);
             // 
-            // label1
+            // labelFiltroFecha
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(561, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 13);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "labelFiltroFecha:";
+            this.labelFiltroFecha.AutoSize = true;
+            this.labelFiltroFecha.Location = new System.Drawing.Point(578, 4);
+            this.labelFiltroFecha.Name = "labelFiltroFecha";
+            this.labelFiltroFecha.Size = new System.Drawing.Size(65, 13);
+            this.labelFiltroFecha.TabIndex = 54;
+            this.labelFiltroFecha.Text = "Filtro Fecha:";
+            // 
+            // Deshacer
+            // 
+            this.Deshacer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Deshacer.HeaderText = "Deshacer";
+            this.Deshacer.Image = global::Presentacion.Properties.Resources.Regresar;
+            this.Deshacer.Name = "Deshacer";
+            this.Deshacer.ReadOnly = true;
+            this.Deshacer.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Deshacer.Width = 59;
+            // 
+            // FechaDeVenta
+            // 
+            this.FechaDeVenta.HeaderText = "FechaDeVenta";
+            this.FechaDeVenta.Name = "FechaDeVenta";
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 80;
+            // 
+            // Referencia
+            // 
+            this.Referencia.HeaderText = "Referencia";
+            this.Referencia.Name = "Referencia";
+            this.Referencia.Width = 120;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.Width = 160;
+            // 
+            // Detalle
+            // 
+            this.Detalle.HeaderText = "Detalle";
+            this.Detalle.Name = "Detalle";
+            this.Detalle.Width = 150;
+            // 
+            // Valor
+            // 
+            this.Valor.HeaderText = "Valor";
+            this.Valor.Name = "Valor";
+            // 
+            // labelFechaActual
+            // 
+            this.labelFechaActual.AutoSize = true;
+            this.labelFechaActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFechaActual.ForeColor = System.Drawing.Color.Green;
+            this.labelFechaActual.Location = new System.Drawing.Point(309, 3);
+            this.labelFechaActual.Name = "labelFechaActual";
+            this.labelFechaActual.Size = new System.Drawing.Size(98, 16);
+            this.labelFechaActual.TabIndex = 55;
+            this.labelFechaActual.Text = "Fecha Actual";
             // 
             // FormProductosVendidos
             // 
@@ -318,14 +337,16 @@ namespace Presentacion
         private System.Windows.Forms.Label labelTotalFarmacos;
         private System.Windows.Forms.DataGridView dataGridProductosVendidos;
         private FontAwesome.Sharp.IconButton btnLimpiarHistorial;
+        private System.Windows.Forms.Label labelVentaDia;
+        private System.Windows.Forms.ComboBox comboFecha;
+        private System.Windows.Forms.Label labelFiltroFecha;
         private System.Windows.Forms.DataGridViewImageColumn Deshacer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaDeVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Referencia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
-        private System.Windows.Forms.Label labelVentaDia;
-        private System.Windows.Forms.ComboBox comboFecha;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
+        private System.Windows.Forms.Label labelFechaActual;
     }
 }
