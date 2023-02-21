@@ -53,6 +53,18 @@ namespace BLL
             }
 
         }
+        public ProductoVendidoTxtConsultaResponse ConsultarPorFechas(string fecha)
+        {
+            try
+            {
+                return new ProductoVendidoTxtConsultaResponse(productoTxtRepository.ConsultarPorFechas(fecha));
+            }
+            catch (Exception e)
+            {
+                return new ProductoVendidoTxtConsultaResponse("Error al Guardar:" + e.Message);
+            }
+
+        }
         public string Modificar(ProductoVendidoTxt productoTxt, string referencia)
         {
             try

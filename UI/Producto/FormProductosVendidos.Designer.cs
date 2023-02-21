@@ -47,6 +47,9 @@ namespace Presentacion
             this.labelTotalFarmacos = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnLimpiarHistorial = new FontAwesome.Sharp.IconButton();
+            this.labelVentaDia = new System.Windows.Forms.Label();
+            this.comboFecha = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuTop.SuspendLayout();
             this.panelConsultaDeProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosVendidos)).BeginInit();
@@ -152,6 +155,9 @@ namespace Presentacion
             // panelTituloDataGridFarmacos
             // 
             this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTituloDataGridFarmacos.Controls.Add(this.label1);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.comboFecha);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.labelVentaDia);
             this.panelTituloDataGridFarmacos.Controls.Add(this.label4);
             this.panelTituloDataGridFarmacos.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTituloDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
@@ -239,6 +245,40 @@ namespace Presentacion
             this.btnLimpiarHistorial.UseVisualStyleBackColor = false;
             this.btnLimpiarHistorial.Click += new System.EventHandler(this.btnLimpiarHistorial_Click);
             // 
+            // labelVentaDia
+            // 
+            this.labelVentaDia.AutoSize = true;
+            this.labelVentaDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVentaDia.ForeColor = System.Drawing.Color.Green;
+            this.labelVentaDia.Location = new System.Drawing.Point(161, 4);
+            this.labelVentaDia.Name = "labelVentaDia";
+            this.labelVentaDia.Size = new System.Drawing.Size(14, 16);
+            this.labelVentaDia.TabIndex = 52;
+            this.labelVentaDia.Text = "*";
+            // 
+            // comboFecha
+            // 
+            this.comboFecha.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboFecha.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboFecha.FormattingEnabled = true;
+            this.comboFecha.Items.AddRange(new object[] {
+            "Todos"});
+            this.comboFecha.Location = new System.Drawing.Point(646, 0);
+            this.comboFecha.Name = "comboFecha";
+            this.comboFecha.Size = new System.Drawing.Size(121, 21);
+            this.comboFecha.TabIndex = 53;
+            this.comboFecha.Text = "Todos";
+            this.comboFecha.SelectedIndexChanged += new System.EventHandler(this.comboFecha_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(561, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "labelFiltroFecha:";
+            // 
             // FormProductosVendidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,5 +324,8 @@ namespace Presentacion
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.Label labelVentaDia;
+        private System.Windows.Forms.ComboBox comboFecha;
+        private System.Windows.Forms.Label label1;
     }
 }

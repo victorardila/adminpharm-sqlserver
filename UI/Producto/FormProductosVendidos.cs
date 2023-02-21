@@ -30,12 +30,16 @@ namespace Presentacion
         double precio;
         double precioProducto;
         double MontoActualizado;
+        double montoBase;
+        double montoActual;
         public FormProductosVendidos()
         {
             productoService = new ProductoService(ConfigConnection.ConnectionString);
             cajaRegistradoraService = new CajaRegistradoraService(ConfigConnection.ConnectionString);
             InitializeComponent();
             cargarArchivo(productoVendidoTxtService);
+            CuadreDeventas();
+            LlenarComboFecha(productoVendidoTxtService);
         }
         //Drag Form
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -45,6 +49,45 @@ namespace Presentacion
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void LlenarComboFecha(ProductoVendidoTxtService productoVendidoTxtService)
+        {
+            ProductoVendidoTxtConsultaResponse productoVendidoTxtConsultaResponse = productoVendidoTxtService.Consultar();
+            if (productoVendidoTxtConsultaResponse.ProductoTxts.Count > 0)
+            {
+                foreach (var item in productoVendidoTxtConsultaResponse.ProductoTxts)
+                {
+                    fechaVenta = item.FechaDeVenta;
+                    comboFecha.Items.Add(fechaVenta);
+                    comboFecha.AutoCompleteCustomSource.Add(fechaVenta);
+                }
+            }
+            else
+            {
+                if (productoVendidoTxtConsultaResponse.ProductoTxts.Count == 0)
+                {
+                    comboFecha.Items.Clear();
+                }
+            }
+        }
+        private void CuadreDeventas()
+        {
+            BusquedaCajaRegistradoraRespuesta respuesta = new BusquedaCajaRegistradoraRespuesta();
+            string estado = "Abierta";
+            respuesta = cajaRegistradoraService.BuscarPorEstado(estado);
+            if (respuesta.CajaRegistradora != null)
+            {
+                montoActual = respuesta.CajaRegistradora.MontoFinal;
+                montoBase = respuesta.CajaRegistradora.MontoInicial;
+                labelVentaDia.Text = (montoActual - montoBase).ToString();
+            }
+            else
+            {
+                if (respuesta.CajaRegistradora == null)
+                {
+                    labelVentaDia.Text = "Sin definir";
+                }
+            }
         }
         private void ModificarCaja(string referencia, int cantidad)
         {
@@ -188,6 +231,43 @@ namespace Presentacion
                 {
                     string msg = "No hay registros disponibles";
                     MessageBox.Show(msg, "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+        private void comboFecha_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboFecha.Text == "Todos")
+            {
+                cargarArchivo(productoVendidoTxtService);
+            }
+            else
+            {
+                if (comboFecha.Text != "Todos")
+                {
+                    string fecha = comboFecha.Text;
+                    ProductoVendidoTxtConsultaResponse productoVendidoTxtConsultaResponse = productoVendidoTxtService.ConsultarPorFechas(fecha);
+                    if (productoVendidoTxtConsultaResponse.ProductoTxts.Count > 0)
+                    {
+                        dataGridProductosVendidos.Rows.Clear();
+                        foreach (var item in productoVendidoTxtConsultaResponse.ProductoTxts)
+                        {
+                            Deshacer.Image = Properties.Resources.Regresar;
+                            fechaVenta = item.FechaDeVenta;
+                            cantidadProducto = item.Cantidad;
+                            referenciaProducto = item.Referencia;
+                            nombreProducto = item.Nombre;
+                            detalleProducto = item.Detalle;
+                            precioProducto = item.Precio;
+                            dataGridProductosVendidos.Rows.Add(Deshacer.Image, fechaVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
+                        }
+                    }
+                    else
+                    {
+                        if (productoVendidoTxtConsultaResponse.ProductoTxts.Count == 0)
+                        {
+                            dataGridProductosVendidos.Rows.Clear();
+                        }
+                    }
                 }
             }
         }

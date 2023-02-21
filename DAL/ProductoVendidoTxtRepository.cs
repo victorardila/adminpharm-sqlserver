@@ -63,6 +63,33 @@ namespace DAL
             file.Close();
             return false;
         }
+        public List<ProductoVendidoTxt> ConsultarPorFechas(string referencia)
+        {
+            List<ProductoVendidoTxt> productoTxts = new List<ProductoVendidoTxt>();
+            FileStream file = new FileStream(ruta, FileMode.OpenOrCreate, FileAccess.Read);
+            StreamReader lector = new StreamReader(ruta);
+            var linea = "";
+            while ((linea = lector.ReadLine()) != null)
+            {
+                string[] dato = linea.Split(';');
+                if (dato[1].Equals(referencia))
+                {
+                    ProductoVendidoTxt productoTxt = new ProductoVendidoTxt()
+                    {
+                        FechaDeVenta = dato[0],
+                        Cantidad = int.Parse(dato[1]),
+                        Referencia = dato[2],
+                        Nombre = dato[3],
+                        Detalle = dato[4],
+                        Precio = int.Parse(dato[5]),
+                    };
+                    productoTxts.Add(productoTxt);
+                }
+            }
+            lector.Close();
+            file.Close();
+            return productoTxts;
+        }
         private bool EsEncontrado(string referenciaRegistrada, string referenciaBuscada)
         {
             return referenciaRegistrada == referenciaBuscada;
