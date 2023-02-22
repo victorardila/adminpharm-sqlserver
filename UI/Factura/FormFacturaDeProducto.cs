@@ -40,8 +40,8 @@ namespace Presentacion
         string rutasVendidos;
         string rutaTxtFacturaVenta;
         public string idEmpleado;
-        string nombreFactura;
-        string notExistingFileName;
+        string nombreDeFactura;
+        string notExistFileName;
         int cantidadProductoBD;
         //Variables de drogueria
         string idDrogueria = "#Drog";
@@ -129,7 +129,7 @@ namespace Presentacion
             {
                 foreach (var item in rutasTxtConsultaResponse.RutasTxts)
                 {
-                    rutasVendidos = item.RutaFacturasVenta;
+                    rutasVendidos = item.RutaProductosVendidos;
                 }
             }
         }
@@ -364,15 +364,10 @@ namespace Presentacion
         }
         private void ModificarCashCaja()
         {
-            var respuesta = MessageBox.Show("¿Está seguro que quieres vender estos productos?", "Mensaje de venta", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (respuesta == DialogResult.Yes)
-            {
-                Caja cajaRegistradora = MapearCashCaja();
-                string mensaje = cajaRegistradoraService.ModificarCash(cajaRegistradora);
-                MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                labelCash.Text = "Sin definir";
-                labelBase.Text = "Sin definir";
-            }
+            Caja cajaRegistradora = MapearCashCaja();
+            cajaRegistradoraService.ModificarCash(cajaRegistradora);
+            labelCash.Text = "Sin definir";
+            labelBase.Text = "Sin definir";
         }
         private void ConsultarDatosDrogueria()
         {
@@ -437,8 +432,10 @@ namespace Presentacion
         {
             //Proceso de impresion
             string nombreFactura = id_factura + ".pdf";
+            nombreDeFactura = nombreFactura;
             string existingPathName = rutaTxtFacturaVenta;
-            string notExistingFileName = rutaTxtFacturaVenta + nombreFactura;
+            string notExistingFileName = rutaTxtFacturaVenta+"\\"+ nombreFactura;
+            notExistFileName = notExistingFileName;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {
@@ -459,8 +456,10 @@ namespace Presentacion
         {
             //Proceso de impresion
             string nombreFactura = id_factura+".pdf";
+            nombreDeFactura = nombreFactura;
             string existingPathName = rutaTxtFacturaVenta;
             string notExistingFileName = rutaTxtFacturaVenta +"\\"+ nombreFactura;
+            notExistFileName = notExistingFileName;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {
@@ -627,20 +626,17 @@ namespace Presentacion
                 int i = 0;
                 foreach (DataGridViewCell celda in fila.Cells)
                 {
-                    e.Graphics.DrawString("    "+Convert.ToString(fila.Cells[i].Value) + " " + Convert.ToString(fila.Cells[i+2].Value) +" "+  Convert.ToString(fila.Cells[i+3].Value) +" "+  Convert.ToString(fila.Cells[i+4].Value), font, Brushes.Black, new RectangleF(0, y + j, ancho, 14));
+                    e.Graphics.DrawString("    "+Convert.ToString(fila.Cells[i+1].Value) + " " + Convert.ToString(fila.Cells[i+3].Value) +" "+  Convert.ToString(fila.Cells[i+4].Value) +" "+  Convert.ToString(fila.Cells[i+5].Value), font, Brushes.Black, new RectangleF(0, y + j, ancho, 14));
                     j = j + 14;
                     int x = y + j;
                     r = x;
                     break;
                 }
             }
-            e.Graphics.DrawString("Total sin redondeo: " + totalSinRedondeo, font, Brushes.Black, new RectangleF(-30, r + 30, ancho, 14), stringFormatRight);
-            e.Graphics.DrawString("Total con redondeo: " + totalConRedondeo, font, Brushes.Black, new RectangleF(-30, r + 44, ancho, 14), stringFormatRight);
-            e.Graphics.DrawString("Valor de redondeo: " + valorDeRedondeo, font, Brushes.Black, new RectangleF(-30, r + 58, ancho, 14), stringFormatRight);
-            e.Graphics.DrawString("Forma de pago: " + formaDePago, font, Brushes.Black, new RectangleF(-30, r + 72, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Valor Total: " + totalFactura, font, Brushes.Black, new RectangleF(-30, r + 30, ancho, 14), stringFormatRight);
 
-            e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(-20, r + 98, ancho, 14), stringFormatCenter);
-            e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(-20, r + 112, ancho, 14), stringFormatCenter);
+            e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(-20, r + 56, ancho, 14), stringFormatCenter);
+            e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(-20, r + 14, ancho, 14), stringFormatCenter);
         }
 //*************************************************Botones*****************************************************
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -691,8 +687,8 @@ namespace Presentacion
             GuardarFactura();
             EliminarFactura();
             FormVisorDeFactura frm = new FormVisorDeFactura();
-            frm.nombreDeArchivo = nombreFactura;
-            frm.rutaDeGuardado = notExistingFileName;
+            frm.nombreDeArchivo = nombreDeFactura;
+            frm.rutaDeGuardado = notExistFileName;
             frm.ShowDialog();
             this.Close();
         }

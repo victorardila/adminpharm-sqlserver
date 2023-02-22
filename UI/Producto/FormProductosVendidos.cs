@@ -65,7 +65,7 @@ namespace Presentacion
             {
                 foreach (var item in rutasTxtConsultaResponse.RutasTxts)
                 {
-                    rutasVendidos = item.RutaFacturasVenta;
+                    rutasVendidos = item.RutaProductosVendidos;
                 }
             }
         }
@@ -235,11 +235,12 @@ namespace Presentacion
                     referencia = Convert.ToString(dataGridProductosVendidos.CurrentRow.Cells["Referencia"].Value.ToString());
                     cantidad = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Cantidad"].Value.ToString());
                     nombre = Convert.ToString(dataGridProductosVendidos.CurrentRow.Cells["Nombre"].Value.ToString());
-                    precio = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Precio"].Value.ToString());
+                    precio = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Valor"].Value.ToString());
                     string msg = "Desea deshacer la venta de este producto " + nombre + "?";
                     var respuesta = MessageBox.Show(msg, "Deshacer", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (respuesta == DialogResult.OK)
                     {
+                        CuadreDeventas();
                         ModificarCaja(referencia, cantidad);
                         ConsultarHistorial();
                     }
