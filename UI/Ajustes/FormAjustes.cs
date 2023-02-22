@@ -94,6 +94,7 @@ namespace Presentacion
                 {
                     textRutaCierreDeCaja.Text = item.RutaCierreDeCaja;
                     textRutaFacturaVentas.Text = item.RutaFacturasVenta;
+                    textRutaVendido.Text=item.RutaProductosVendidos;
                     RutaCierreDeCaja = textRutaCierreDeCaja.Text;
                     RutaFacturasVenta = textRutaFacturaVentas.Text;
                     RutaProductosVendidos = textRutaVendido.Text;

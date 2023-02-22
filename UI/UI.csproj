@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>G:\Instalador version 3\</PublishUrl>
+    <PublishUrl>E:\Proyectos\Instalador AdminPharm\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -27,7 +27,7 @@
     <ErrorReportUrl>https://www.facebook.com/profile.php%3fid=100070327928352</ErrorReportUrl>
     <ProductName>AdminPharm</ProductName>
     <PublisherName>Victor Ardila</PublisherName>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -76,6 +76,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>UI_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FontAwesome.Sharp, Version=6.1.1.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
@@ -171,6 +174,12 @@
     </Compile>
     <Compile Include="Ajustes\FormAjustarServidor.Designer.cs">
       <DependentUpon>FormAjustarServidor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormActivador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormActivador.Designer.cs">
+      <DependentUpon>FormActivador.cs</DependentUpon>
     </Compile>
     <Compile Include="Vitrina\FormGestionarVitrina.cs">
       <SubType>Form</SubType>
@@ -297,6 +306,9 @@
     <EmbeddedResource Include="Ajustes\FormAjustarServidor.resx">
       <DependentUpon>FormAjustarServidor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormActivador.resx">
+      <DependentUpon>FormActivador.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vitrina\FormGestionarVitrina.resx">
       <DependentUpon>FormGestionarVitrina.cs</DependentUpon>
     </EmbeddedResource>
@@ -416,6 +428,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="faticon.ico" />
+    <None Include="Resources\Licencia.png" />
     <None Include="Resources\conexion.png" />
     <None Include="Resources\folder.png" />
     <None Include="Resources\SacarDeInventario.png" />

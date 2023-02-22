@@ -31,6 +31,7 @@ namespace Presentacion
         List<Nevera> neveras;
         Producto producto;
         CajaRegistradoraService cajaRegistradoraService;
+        string[] ReferenciasProductosAVender=new string[100]; 
         string rutasVendidos;
         string referenciaBotonDatagrid;
         int TotalSeleccion;
@@ -394,9 +395,9 @@ namespace Presentacion
                 if (dataGridFarmacos.Columns[e.ColumnIndex].Name == "Eliminar")
                 {
                     referencia = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Referencia"].Value.ToString());
-                    string msg = "Desea eliminar este registro " + referencia + "?";
-                    var respuesta = MessageBox.Show(msg, "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (respuesta == DialogResult.OK)
+                    string nombre = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Nombre"].Value.ToString());
+                    var respuesta = MessageBox.Show("Desea eliminar el producto " + nombre + "?", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (respuesta == DialogResult.Yes)
                     {
                         EliminarProducto(referencia);
                         ConsultarYLlenarGridDeProductos(paginaSeleccionada);
