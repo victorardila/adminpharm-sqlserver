@@ -29,7 +29,7 @@ namespace Presentacion
         {
             labelFileName.Text = nombreDeArchivo;
             labelURL.Text = rutaDeGuardado;
-            string pdfDoc = rutaDeGuardado;
+            string pdfDoc = rutaDeGuardado+"\\"+nombreDeArchivo;
             if (File.Exists(pdfDoc))
             {
                 this.lectorDePDF.LoadFromFile(pdfDoc);

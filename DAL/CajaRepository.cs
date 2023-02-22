@@ -20,8 +20,8 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Insert Into CAJA(Id_Caja, Fecha_De_Apertura, Fecha_De_Cierre, Estado, Monto_Inicial, Monto_Final) " +
-                    "Values (@Id_Caja, @Fecha_De_Apertura, @Fecha_De_Cierre, @Estado, @Monto_Inicial, @Monto_Final)";
+                command.CommandText = "Insert Into CAJA(Id_Caja, Fecha_De_Apertura, Fecha_De_Cierre, Estado, Monto_Inicial, Monto_Final, Venta_Del_Dia) " +
+                    "Values (@Id_Caja, @Fecha_De_Apertura, @Fecha_De_Cierre, @Estado, @Monto_Inicial, @Monto_Final, @Venta_Del_Dia)";
                 //command.Parameters.Add("@Id", SqlDbType.VarChar).Value = persona.Identificacion;
                 command.Parameters.AddWithValue("@Id_Caja", caja.IdCaja);
                 command.Parameters.AddWithValue("@Fecha_De_Apertura", caja.FechaDeApertura);
@@ -29,6 +29,7 @@ namespace DAL
                 command.Parameters.AddWithValue("@Estado", caja.Estado);
                 command.Parameters.AddWithValue("@Monto_Inicial", caja.MontoInicial);
                 command.Parameters.AddWithValue("@Monto_Final", caja.MontoFinal);
+                command.Parameters.AddWithValue("@Venta_Del_Dia", caja.VentaDelDia);
                 command.ExecuteNonQuery();
 
             }
@@ -37,8 +38,8 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"Insert Into CAJA (Id_Caja, Fecha_De_Apertura, Hora_De_Apertura, Fecha_De_Cierre, Hora_De_Cierre, Estado, Monto_Inicial, Monto_Final) 
-                                        values (@Id_Caja, @Fecha_De_Apertura, @Hora_De_Apertura, @Fecha_De_Cierre, @Hora_De_Cierre, @Estado, @Monto_Inicial, @Monto_Final)";
+                command.CommandText = @"Insert Into CAJA (Id_Caja, Fecha_De_Apertura, Hora_De_Apertura, Fecha_De_Cierre, Hora_De_Cierre, Estado, Monto_Inicial, Monto_Final, Venta_Del_Dia) 
+                                        values (@Id_Caja, @Fecha_De_Apertura, @Hora_De_Apertura, @Fecha_De_Cierre, @Hora_De_Cierre, @Estado, @Monto_Inicial, @Monto_Final, @Venta_Del_Dia)";
                 command.Parameters.AddWithValue("@Id_Caja", caja.IdCaja);
                 command.Parameters.AddWithValue("@Fecha_De_Apertura", caja.FechaDeApertura);
                 command.Parameters.AddWithValue("@Hora_De_Apertura", caja.HoraDeApertura);
@@ -47,6 +48,7 @@ namespace DAL
                 command.Parameters.AddWithValue("@Estado", caja.Estado);
                 command.Parameters.AddWithValue("@Monto_Inicial", caja.MontoInicial);
                 command.Parameters.AddWithValue("@Monto_Final", caja.MontoFinal);
+                command.Parameters.AddWithValue("@Venta_Del_Dia", caja.VentaDelDia);
                 var filas = command.ExecuteNonQuery();
             }
         }
@@ -83,7 +85,7 @@ namespace DAL
             List<Caja> cajas = new List<Caja>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select Id_Caja, Fecha_De_Apertura, Hora_De_Apertura, Fecha_De_Cierre, Hora_De_Cierre, Estado, Monto_Inicial, Monto_Final  from CAJA";
+                command.CommandText = "Select Id_Caja, Fecha_De_Apertura, Hora_De_Apertura, Fecha_De_Cierre, Hora_De_Cierre, Estado, Monto_Inicial, Monto_Final, Venta_Del_Dia  from CAJA";
                 var dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -162,10 +164,11 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"update CAJA set Monto_Final=@Monto_Final
+                command.CommandText = @"update CAJA set Monto_Final=@Monto_Final, Venta_Del_Dia=@Venta_Del_Dia
                                         where Id_Caja=@Id_Caja";
                 command.Parameters.AddWithValue("@Id_Caja", caja.IdCaja);
                 command.Parameters.AddWithValue("@Monto_Final", caja.MontoFinal);
+                command.Parameters.AddWithValue("@Venta_Del_Dia", caja.VentaDelDia);
                 var filas = command.ExecuteNonQuery();
             }
         }
@@ -173,7 +176,7 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"update CAJA set Fecha_De_Apertura=@Fecha_De_Apertura, Hora_De_Apertura=@Hora_De_Apertura, Fecha_De_Cierre=@Fecha_De_Cierre, Hora_De_Cierre=@Hora_De_Cierre, Estado=@Estado, Monto_Inicial=@Monto_Inicial, Monto_Final=@Monto_Final
+                command.CommandText = @"update CAJA set Fecha_De_Apertura=@Fecha_De_Apertura, Hora_De_Apertura=@Hora_De_Apertura, Fecha_De_Cierre=@Fecha_De_Cierre, Hora_De_Cierre=@Hora_De_Cierre, Estado=@Estado, Monto_Inicial=@Monto_Inicial, Monto_Final=@Monto_Final, Venta_Del_Dia=@Venta_Del_Dia
                                         where Id_Caja=@Id_Caja";
                 command.Parameters.AddWithValue("@Id_Caja", caja.IdCaja);
                 command.Parameters.AddWithValue("@Fecha_De_Apertura", caja.FechaDeApertura);
@@ -183,6 +186,7 @@ namespace DAL
                 command.Parameters.AddWithValue("@Estado", caja.Estado);
                 command.Parameters.AddWithValue("@Monto_Inicial", caja.MontoInicial);
                 command.Parameters.AddWithValue("@Monto_Final", caja.MontoFinal);
+                command.Parameters.AddWithValue("@Venta_Del_Dia", caja.VentaDelDia);
                 var filas = command.ExecuteNonQuery();
             }
         }
@@ -198,6 +202,7 @@ namespace DAL
             caja.Estado = (string)dataReader["Estado"];
             caja.MontoInicial = (int)dataReader["Monto_Inicial"];
             caja.MontoFinal = (int)dataReader["Monto_Final"];
+            caja.VentaDelDia = (int)dataReader["Venta_Del_Dia"];
             return caja;
         }
         public int Totalizar()

@@ -147,7 +147,7 @@ namespace Presentacion
             if (respuesta.CajaRegistradora != null)
             {
                 var cajasRegistradoras = new List<Caja> { respuesta.CajaRegistradora };
-                labelCash.Text = respuesta.CajaRegistradora.MontoFinal.ToString();
+                labelCash.Text = respuesta.CajaRegistradora.VentaDelDia.ToString();
                 labelBase.Text = respuesta.CajaRegistradora.MontoInicial.ToString();
                 cajaAbierta = true;
             }

@@ -59,6 +59,7 @@ namespace Presentacion
         double totalFactura = 0;
         string idCajaAbierta;
         double montoActualCaja;
+        double montoActualVenta;
         //Variables de productos
         string[] referencias = new string[1000];
         string referenciaProducto;
@@ -170,7 +171,7 @@ namespace Presentacion
             {
                 var productos = new List<Producto> { respuesta.Producto };
                 DateTime fechaActual = DateTime.Now;
-                fechaDeVenta = fechaActual.ToString("dd/mm/yyyy");
+                fechaDeVenta = fechaActual.ToString("dd/MM/yyyy");
                 referenciaProducto = respuesta.Producto.Referencia;
                 nombreProducto= respuesta.Producto.Nombre;
                 detalleProducto= respuesta.Producto.Detalle;
@@ -259,10 +260,11 @@ namespace Presentacion
             if (respuesta.CajaRegistradora != null)
             {
                 var cajasRegistradoras = new List<Caja> { respuesta.CajaRegistradora };
-                labelCash.Text = respuesta.CajaRegistradora.MontoFinal.ToString();
+                labelCash.Text = respuesta.CajaRegistradora.VentaDelDia.ToString();
                 labelBase.Text = respuesta.CajaRegistradora.MontoInicial.ToString();
                 idCajaAbierta = respuesta.CajaRegistradora.IdCaja;
                 montoActualCaja = respuesta.CajaRegistradora.MontoFinal;
+                montoActualVenta = respuesta.CajaRegistradora.VentaDelDia;
             }
             else
             {
@@ -358,6 +360,7 @@ namespace Presentacion
         {
             cajaRegistradora = new Caja();
             cajaRegistradora.IdCaja = idCajaAbierta;
+            cajaRegistradora.VentaDelDia = montoActualVenta+totalFactura;
             double totalMonto = montoActualCaja+totalFactura;
             cajaRegistradora.MontoFinal = totalMonto;
             return cajaRegistradora;

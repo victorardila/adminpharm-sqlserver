@@ -8,7 +8,7 @@ namespace Entity
 {
     public class Caja
     {
-        public Caja(string idCaja, string fechaDeApertura, string horaDeApertura, string fechaDeCierre, string horaDeCierre, string estado, double montoInicial, double montoFinal)
+        public Caja(string idCaja, string fechaDeApertura, string horaDeApertura, string fechaDeCierre, string horaDeCierre, string estado, double montoInicial, double montoFinal, double ventaDelDia)
         {
             IdCaja = idCaja;
             FechaDeApertura = fechaDeApertura;
@@ -18,6 +18,7 @@ namespace Entity
             Estado = estado;
             MontoInicial = montoInicial;
             MontoFinal = montoFinal;
+            VentaDelDia = ventaDelDia;
         }
 
         public Caja()
@@ -32,6 +33,8 @@ namespace Entity
         public string Estado { get; set; }
         public double MontoInicial { get; set; }
         public double MontoFinal { get; set; }
+        public double VentaDelDia { get; set; }
+
         //Metodos de la clase
         string dateNullFormat = "--/--/----";
         string timeNullFormat = "--:--";

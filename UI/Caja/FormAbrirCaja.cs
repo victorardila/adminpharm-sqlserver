@@ -63,6 +63,7 @@ namespace Presentacion
         private Caja MapearCajaRegistradora()
         {
             cajaRegistradora = new Caja();
+            cajaRegistradora.VentaDelDia = 0;
             cajaRegistradora.MontoFinal = int.Parse(textMonto.Text);
             cajaRegistradora.MontoInicial = int.Parse(textMonto.Text);
             return cajaRegistradora;
@@ -70,8 +71,7 @@ namespace Presentacion
         private void btnAbrirCaja_Click(object sender, EventArgs e)
         {
             Caja cajaRegistradora = MapearCajaRegistradora();
-            string mensaje = cajaRegistradoraService.Guardar(cajaRegistradora);
-            MessageBox.Show(mensaje, "Mensaje de Guardado", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            cajaRegistradoraService.Guardar(cajaRegistradora);
             btnAbrirCaja.Enabled = false;
             this.Close();
         }

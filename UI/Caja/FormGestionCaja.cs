@@ -28,8 +28,8 @@ namespace Presentacion
         DrogueriaService drogueriaService;
         string rutasVendidos;
         string rutaTxtCierreDeCaja;
-        string nombreFactura;
-        string notExistingFileName;
+        string nombreDeFactura;
+        string notExistFileName;
         //Variables de caja
         string idCajaAbierta;
         string fechaDeApertura;
@@ -71,6 +71,8 @@ namespace Presentacion
             facturaService = new FacturaService(ConfigConnection.ConnectionString);
             cajaRegistradoraService = new CajaRegistradoraService(ConfigConnection.ConnectionString);
             InitializeComponent();
+            ObtenerRutaDeGuardado();
+            ObtenerRutaDeVendido();
             ConsultarYLlenarGridDeCajas();
             BuscararDrogueria();
             BuscarPorEstado();
@@ -90,7 +92,7 @@ namespace Presentacion
                 textTotalCajasCerradas.Enabled = true;
                 dataGridFarmacos.DataSource = null;
                 respuesta = cajaRegistradoraService.ConsultarTodos();
-                @cajasRegistradoras = respuesta.CajasRegistradoras.ToList();
+                cajasRegistradoras = respuesta.CajasRegistradoras.ToList();
                 if (respuesta.CajasRegistradoras.Count != 0 && respuesta.CajasRegistradoras!=null)
                 {
                     dataGridFarmacos.DataSource = respuesta.CajasRegistradoras;
@@ -121,14 +123,14 @@ namespace Presentacion
             if (respuesta.CajaRegistradora != null)
             {
                 var cajasRegistradoras = new List<Caja> { respuesta.CajaRegistradora };
-                labelCash.Text = respuesta.CajaRegistradora.MontoFinal.ToString();
+                labelCash.Text = respuesta.CajaRegistradora.VentaDelDia.ToString();
                 labelBase.Text = respuesta.CajaRegistradora.MontoInicial.ToString();
                 btnAbrirCaja.Enabled = false;
                 btnCerrarCaja.Enabled = true;
                 idCajaAbierta = respuesta.CajaRegistradora.IdCaja;
                 fechaDeApertura = respuesta.CajaRegistradora.FechaDeApertura;
                 horaDeApertura = respuesta.CajaRegistradora.HoraDeApertura;
-                montoCaja = respuesta.CajaRegistradora.MontoInicial;
+                montoCaja = respuesta.CajaRegistradora.MontoFinal;
                 ConsultarYLlenarGridDeCajas();
             }
             else
@@ -203,7 +205,9 @@ namespace Presentacion
             cajaRegistradora.IdCaja = idCajaAbierta;
             cajaRegistradora.FechaDeApertura = fechaDeApertura;
             cajaRegistradora.HoraDeApertura = horaDeApertura;
+            cajaRegistradora.MontoInicial = int.Parse(labelBase.Text);
             cajaRegistradora.MontoFinal = montoCaja;
+            cajaRegistradora.VentaDelDia = int.Parse(labelCash.Text);
             return cajaRegistradora;
         }
         private void BuscararDrogueria()
@@ -235,7 +239,7 @@ namespace Presentacion
             {
                 foreach (var item in rutasTxtConsultaResponse.RutasTxts)
                 {
-                    rutasVendidos = item.RutaFacturasVenta;
+                    rutasVendidos = item.RutaProductosVendidos;
                 }
             }
         }
@@ -295,26 +299,22 @@ namespace Presentacion
             if (productoVendidoTxtConsultaResponse.ProductoTxts.Count >= 0)
             {
                 productoLeido = productoVendidoTxtConsultaResponse.ProductoTxts.Count;
-                var respuesta = MessageBox.Show("Está seguro de Modificar la información", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (respuesta == DialogResult.Yes)
+                Caja cajaRegistradora = MapearCaja();
+                string mensaje = cajaRegistradoraService.Modificar(cajaRegistradora);
+                ProductosRegistradosEnCaja();
+                ConsultarYLlenarGridDeCajas();
+                btnAbrirCaja.Enabled = true;
+                btnCerrarCaja.Enabled = false;
+                btnHistorial.Enabled = true;
+                labelCash.Text = "Sin definir";
+                labelBase.Text = "Sin definir";
+                if (productoLeido > 0)
                 {
-                    Caja cajaRegistradora = MapearCaja();
-                    string mensaje = cajaRegistradoraService.Modificar(cajaRegistradora);
-                    MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                    ProductosRegistradosEnCaja();
-                    ConsultarYLlenarGridDeCajas();
-                    btnAbrirCaja.Enabled = true;
-                    btnCerrarCaja.Enabled = false;
-                    btnHistorial.Enabled = true;
-                    labelCash.Text = "Sin definir";
-                    if (productoLeido > 0)
-                    {
-                        GuardarFactura();
-                        FormVisorDeFactura frm = new FormVisorDeFactura();
-                        frm.nombreDeArchivo = nombreFactura;
-                        frm.rutaDeGuardado = rutaTxtCierreDeCaja;
-                        frm.ShowDialog();
-                    }
+                    GuardarFactura();
+                    FormVisorDeFactura frm = new FormVisorDeFactura();
+                    frm.nombreDeArchivo = nombreDeFactura;
+                    frm.rutaDeGuardado = rutaTxtCierreDeCaja;
+                    frm.ShowDialog();
                 }
             }
             else
@@ -328,8 +328,26 @@ namespace Presentacion
         }
         private void btnCerrarCaja_Click(object sender, EventArgs e)
         {
-            ObtenerRutaDeGuardado();
-            ValidarDatosDeCaja(productoVendidoTxtService);
+            if (rutasVendidos != null && rutaTxtCierreDeCaja != null)
+            {
+                ValidarDatosDeCaja(productoVendidoTxtService);
+            }
+            else
+            {
+                if (rutasVendidos == null)
+                {
+                    string mensaje = "Aun no ha dado una ruta de guardado de productos vendidos";
+                    MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    if (rutaTxtCierreDeCaja == null)
+                    {
+                        string mensaje = "Aun no ha dado una ruta de guardado de cierres de cajas";
+                        MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    }
+                }
+            }
         }
         private void btnHistorial_Click(object sender, EventArgs e)
         {
@@ -399,8 +417,10 @@ namespace Presentacion
         {
             //Proceso de impresion
             string nombreFactura = idCajaAbierta + "ProductosVendidos" + ".pdf";
+            nombreDeFactura = nombreFactura;
             string existingPathName = @"" + rutaTxtCierreDeCaja;
             string notExistingFileName = rutaTxtCierreDeCaja+"\\" + nombreFactura;
+            notExistFileName = notExistingFileName;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {
@@ -421,8 +441,10 @@ namespace Presentacion
         {
             //Proceso de impresion
             string nombreFactura = idCajaAbierta + "ProductosVendidos" + ".pdf";
+            nombreDeFactura = nombreFactura;
             string existingPathName = @""+rutaTxtCierreDeCaja;
             string notExistingFileName = rutaTxtCierreDeCaja+"\\"+ nombreFactura;
+            notExistFileName = notExistingFileName;
 
             if (Directory.Exists(existingPathName) && !File.Exists(notExistingFileName))
             {
@@ -478,13 +500,10 @@ namespace Presentacion
                 int x = y + j;
                 r = x;
             }
-            e.Graphics.DrawString("Total sin redondeo: " + precioProductos, font, Brushes.Black, new RectangleF(-30, r + 30, ancho, 14), stringFormatRight);
-            e.Graphics.DrawString("Total con redondeo: " + precioProductosRedondeado, font, Brushes.Black, new RectangleF(-30, r + 44, ancho, 14), stringFormatRight);
-            e.Graphics.DrawString("Valor de redondeo: " + valorDeRedondeo, font, Brushes.Black, new RectangleF(-30, r + 58, ancho, 14), stringFormatRight);
-            
+            e.Graphics.DrawString("Total Cierre: " + totalSinRedondeo, font, Brushes.Black, new RectangleF(-30, r + 30, ancho, 14), stringFormatRight);
 
-            e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(-20, r + 72, ancho, 14), stringFormatCenter);
-            e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(-20, r + 98, ancho, 14), stringFormatCenter);
+            e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(-20, r + 56, ancho, 14), stringFormatCenter);
+            e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(-20, r + 70, ancho, 14), stringFormatCenter);
         }
     }
 }

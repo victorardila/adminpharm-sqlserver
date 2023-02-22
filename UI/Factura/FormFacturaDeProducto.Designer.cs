@@ -926,9 +926,9 @@ namespace Presentacion
             this.labelTextFondo.ForeColor = System.Drawing.Color.Black;
             this.labelTextFondo.Location = new System.Drawing.Point(559, 33);
             this.labelTextFondo.Name = "labelTextFondo";
-            this.labelTextFondo.Size = new System.Drawing.Size(45, 12);
+            this.labelTextFondo.Size = new System.Drawing.Size(42, 12);
             this.labelTextFondo.TabIndex = 83;
-            this.labelTextFondo.Text = "MONTO";
+            this.labelTextFondo.Text = "VENTA";
             // 
             // iconCash
             // 

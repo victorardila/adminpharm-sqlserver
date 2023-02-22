@@ -42,7 +42,8 @@ Fecha_De_Cierre varchar(20) not null,
 Hora_De_Cierre varchar(15)not null,
 Estado varchar(10) not null,
 Monto_Inicial int,
-Monto_Final int
+Monto_Final int,
+Venta_Del_Dia int
 );
 create table CLIENTE(
 Id varchar(12) primary key not null,
