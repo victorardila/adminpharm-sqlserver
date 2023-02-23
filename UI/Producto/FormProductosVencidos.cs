@@ -114,6 +114,7 @@ namespace Presentacion
                 ProductoFacturaTxt productoTxt = new ProductoFacturaTxt();
                 string mensaje = productoVencidoTxtService.EliminarHistorial();
                 dataGridProductosVencidos.DataSource = null;
+                dataGridProductosVencidos.Rows.Clear();
                 ConsultarHistorial();
             }
         }
@@ -142,6 +143,12 @@ namespace Presentacion
                 productoVencidoTxtService.Eliminar(referencia);
                 dataGridProductosVencidos.Rows.Clear();
             }
+            else
+            {
+                dataGridProductosVencidos.Rows.Clear();
+                string msg = "Este producto no se puede regresar al inventario puesto que ya no existe en el inventario";
+                MessageBox.Show(msg, "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private void dataGridProductosVencidos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -156,8 +163,8 @@ namespace Presentacion
                     cantidad = Convert.ToInt32(dataGridProductosVencidos.CurrentRow.Cells["Cantidad"].Value.ToString());
                     nombre = Convert.ToString(dataGridProductosVencidos.CurrentRow.Cells["Nombre"].Value.ToString());
                     string msg = "Desea deshacer la venta de este producto " + nombre + "?";
-                    var respuesta = MessageBox.Show(msg, "Deshacer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (respuesta == DialogResult.OK)
+                    var respuesta = MessageBox.Show(msg, "Devolver al inventario", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (respuesta == DialogResult.Yes)
                     {
                         DevolverAlInventario(referencia, cantidad);
                         ConsultarHistorial();

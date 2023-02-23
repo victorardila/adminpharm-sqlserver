@@ -40,7 +40,7 @@ namespace BLL
                 return new ProductoVendidoTxtConsultaResponse("Error al Guardar:" + e.Message);
             }
         }
-        public bool FiltroIdentificaicon(string referencia, string rutasVendidos)
+        public bool FiltroReferencia(string referencia, string rutasVendidos)
         {
 
             try

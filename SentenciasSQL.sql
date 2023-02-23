@@ -149,6 +149,7 @@ INSERT INTO ESTANTE VALUES ('#Est0032','Estante 7',0,'Vacio')
 INSERT INTO ESTANTE VALUES ('#Est0002','Estante 8',0,'Vacio')
 INSERT INTO ESTANTE VALUES ('#Est0012','Estante 9',0,'Vacio')
 INSERT INTO ESTANTE VALUES ('#Est0312','Estante 10',0,'Vacio')
+INSERT INTO ESTANTE VALUES ('#Est2312','Estante 11',0,'Vacio')
 --Insercion de datos tabla VITRINA
 --Datos
 INSERT INTO VITRINA VALUES ('#Vitr0431','Vitrina 1',0,'Vacio')

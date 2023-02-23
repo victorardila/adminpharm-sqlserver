@@ -77,8 +77,13 @@ namespace Presentacion
                 foreach (var item in productoVendidoTxtConsultaResponse.ProductoTxts)
                 {
                     fechaVenta = item.FechaDeVenta;
-                    comboFecha.Items.Add(fechaVenta);
-                    comboFecha.AutoCompleteCustomSource.Add(fechaVenta);
+                    for(int i=0;i< productoVendidoTxtConsultaResponse.ProductoTxts.Count; i++)
+                    {
+                        if(comboFecha.SelectedIndex.Equals(fechaVenta)){
+                            comboFecha.Items.Add(fechaVenta);
+                            comboFecha.AutoCompleteCustomSource.Add(fechaVenta);
+                        }
+                    }
                 }
             }
             else
@@ -193,7 +198,7 @@ namespace Presentacion
             {
                 ProductoFacturaTxt productoTxt = new ProductoFacturaTxt();
                 string mensaje = productoVendidoTxtService.EliminarHistorial(rutasVendidos);
-                dataGridProductosVendidos.DataSource = null;
+                dataGridProductosVendidos.Rows.Clear();
                 ConsultarHistorial();
             }
         }
@@ -236,9 +241,9 @@ namespace Presentacion
                     cantidad = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Cantidad"].Value.ToString());
                     nombre = Convert.ToString(dataGridProductosVendidos.CurrentRow.Cells["Nombre"].Value.ToString());
                     precio = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Valor"].Value.ToString());
-                    string msg = "Desea deshacer la venta de este producto " + nombre + "?";
-                    var respuesta = MessageBox.Show(msg, "Deshacer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (respuesta == DialogResult.OK)
+                    string msg = "¿Desea deshacer esta venta?";
+                    var respuesta = MessageBox.Show(msg, "Devolver al inventario", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (respuesta == DialogResult.Yes)
                     {
                         CuadreDeventas();
                         ModificarCaja(referencia, cantidad);

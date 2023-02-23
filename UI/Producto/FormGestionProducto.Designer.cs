@@ -581,6 +581,7 @@ namespace Presentacion
             this.dataGridFarmacos.Size = new System.Drawing.Size(763, 422);
             this.dataGridFarmacos.TabIndex = 50;
             this.dataGridFarmacos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridFarmacos_CellClick);
+            this.dataGridFarmacos.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridFarmacos_CellEndEdit);
             this.dataGridFarmacos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridFarmacos_CellFormatting);
             this.dataGridFarmacos.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridFarmacos_CellMouseClick);
             // 

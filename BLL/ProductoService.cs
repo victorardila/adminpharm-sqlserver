@@ -84,7 +84,7 @@ namespace BLL
                 }
                 else
                 {
-                    return $"Lo sentimos, el cliente con Identificación {productoAntiguo.Referencia} no se encuentra registrado.";
+                    return $"Lo sentimos, el producto con Identificación {productoAntiguo.Referencia} no se encuentra registrado.";
                 }
             }
             catch (Exception e)

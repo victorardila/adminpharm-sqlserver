@@ -336,12 +336,12 @@ namespace Presentacion
                 foreach (var item in productoTxtConsultaResponse.ProductoTxts)
                 {
                     Deshacer.Image = Properties.Resources.Regresar;
-                    string referencia = item.Referencia;
                     int cantidad = item.Cantidad;
+                    string referencia = item.Referencia;
                     string nombre = item.Nombre;
                     string detalle = item.Detalle;
                     double precio = item.Precio;
-                    dataGridFacturaProductos.Rows.Add(Deshacer.Image, referencia, cantidad, nombre, detalle, precio);
+                    dataGridFacturaProductos.Rows.Add(Deshacer.Image, cantidad, referencia, nombre, detalle, precio);
                 }
             }
             else

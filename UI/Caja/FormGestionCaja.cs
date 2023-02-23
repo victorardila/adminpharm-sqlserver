@@ -35,6 +35,7 @@ namespace Presentacion
         string fechaDeApertura;
         string horaDeApertura;
         double montoCaja;
+        double ventaDia;
         //Variables de producto
         string referenciaProducto;
         int cantidadARestar;
@@ -195,9 +196,28 @@ namespace Presentacion
         }
         private void btnAbrirCaja_Click(object sender, EventArgs e)
         {
-            FormAbrirCaja frm = new FormAbrirCaja();
-            frm.ShowDialog();
-            BuscarPorEstado();
+            if (rutasVendidos != null && rutaTxtCierreDeCaja != null)
+            {
+                FormAbrirCaja frm = new FormAbrirCaja();
+                frm.ShowDialog();
+                BuscarPorEstado();
+            }
+            else
+            {
+                if (rutasVendidos == null)
+                {
+                    string mensaje = "Aun no ha dado una ruta de guardado de productos vendidos";
+                    MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    if (rutaTxtCierreDeCaja == null)
+                    {
+                        string mensaje = "Aun no ha dado una ruta de guardado de cierres de cajas";
+                        MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    }
+                }
+            }
         }
         private Caja MapearCaja()
         {
@@ -208,6 +228,7 @@ namespace Presentacion
             cajaRegistradora.MontoInicial = int.Parse(labelBase.Text);
             cajaRegistradora.MontoFinal = montoCaja;
             cajaRegistradora.VentaDelDia = int.Parse(labelCash.Text);
+            ventaDia= int.Parse(labelCash.Text);
             return cajaRegistradora;
         }
         private void BuscararDrogueria()
@@ -463,7 +484,6 @@ namespace Presentacion
         }
         private void Imprimir(object sender, PrintPageEventArgs e)
         {
-            EliminarProductosVendidos();
             Font font = new Font("Arial Narrow", 10);
             int ancho = 220;
             int y = 20;
@@ -500,7 +520,7 @@ namespace Presentacion
                 int x = y + j;
                 r = x;
             }
-            e.Graphics.DrawString("Total Cierre: " + totalSinRedondeo, font, Brushes.Black, new RectangleF(-30, r + 30, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Total Cierre: " + ventaDia, font, Brushes.Black, new RectangleF(-30, r + 30, ancho, 14), stringFormatRight);
 
             e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(-20, r + 56, ancho, 14), stringFormatCenter);
             e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(-20, r + 70, ancho, 14), stringFormatCenter);

@@ -40,7 +40,7 @@ namespace BLL
                 return new ProductoFacturaTxtConsultaResponse("Error al Guardar:" + e.Message);
             }
         }
-        public bool FiltroIdentificaicon(string referencia)
+        public bool FiltroReferencia(string referencia)
         {
 
             try

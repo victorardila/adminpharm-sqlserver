@@ -324,15 +324,28 @@ namespace Presentacion
         }
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
             if (cantidadEstantes > 0)
             {
-                var respuesta = MessageBox.Show("Está seguro de Modificar el producto", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (respuesta == DialogResult.Yes)
+                var opc = MessageBox.Show("Está seguro de Modificar el producto", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (opc == DialogResult.Yes)
                 {
-                    Producto producto = MapearProducto();
-                    string mensaje = productoService.Modificar(producto);
-                    MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                    this.Close();
+                    string referencia= textReferencia.Text;
+                    respuesta = productoService.BuscarPorReferencia(referencia);
+                    if (respuesta.Producto != null)
+                    {
+                        string mensaje = "No puede modificar la referencia de un producto";
+                        MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    }
+                    {
+                        if (respuesta.Producto == null)
+                        {
+                            Producto producto = MapearProducto();
+                            string mensaje = productoService.Modificar(producto);
+                            MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                            this.Close();
+                        }
+                    }
                 }
             }
         }

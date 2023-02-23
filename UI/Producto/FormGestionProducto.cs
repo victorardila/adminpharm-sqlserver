@@ -31,10 +31,12 @@ namespace Presentacion
         List<Nevera> neveras;
         Producto producto;
         CajaRegistradoraService cajaRegistradoraService;
-        string[] ReferenciasProductosAVender=new string[100]; 
+        string[] ReferenciasProductosAVender=new string[100];
+        int[] CantidadesProductosAVender = new int[100];
+        string referencia;
         string rutasVendidos;
         string referenciaBotonDatagrid;
-        int TotalSeleccion;
+        int TotalSeleccion=1;
         int cantidadDeRegistros=20;
         int totalRegistros;
         int paginaSeleccionada=0;
@@ -65,6 +67,9 @@ namespace Presentacion
         int cantidad;
         object sender;
         EventArgs e;
+        int x;
+        int i=0;
+
         public FormGestionProducto()
         {
             cajaRegistradoraService = new CajaRegistradoraService(ConfigConnection.ConnectionString);
@@ -379,6 +384,9 @@ namespace Presentacion
         {
             textSearch.Visible = true;
             btnClose.Visible = true;
+            cantidadDeRegistros = int.Parse(textTotal.Text);
+            totalPaginas = 0;
+            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -413,11 +421,9 @@ namespace Presentacion
                 }
             }
         }
-
-        private void btnVenderProducto_Click(object sender, EventArgs e)
+        private void GestionVender()
         {
             TotalSeleccion = dataGridFarmacos.Rows.Cast<DataGridViewRow>().Where(p => Convert.ToBoolean(p.Cells["Column1"].Value)).Count();
-            string referencia;
             if (cantidadDrogueria == 1)
             {
                 if (cantidadEstante > 0)
@@ -426,18 +432,16 @@ namespace Presentacion
                     {
                         if (TotalSeleccion >= 0)
                         {
+                            //Obtener referencias de productos
                             foreach (DataGridViewRow row in dataGridFarmacos.Rows)
                             {
-                                if (Convert.ToBoolean(row.Cells["Column1"].Value) == true)
+                                if (Convert.ToBoolean(row.Cells["Column1"].Value))
                                 {
-                                    referencia = Convert.ToString(row.Cells["Referencia"].Value);
-                                    cantidad = Convert.ToInt32(row.Cells["CantidadVenta"].Value);
-                                    MapearMedicamentosFactura(referencia);
+                                    ReferenciasProductosAVender[i] = Convert.ToString(row.Cells["Referencia"].Value);
+                                    CantidadesProductosAVender[i] = Convert.ToInt32(row.Cells["CantidadVenta"].Value);
+                                    i = i + 1;
                                 }
                             }
-                            FormFacturaDeProducto frm = new FormFacturaDeProducto();
-                            frm.ShowDialog();
-                            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
                         }
                         else
                         {
@@ -466,6 +470,22 @@ namespace Presentacion
                 MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        private void btnVenderProducto_Click(object sender, EventArgs e)
+        {
+            MapearMedicamentosFactura();
+            FormFacturaDeProducto frm = new FormFacturaDeProducto();
+            frm.ShowDialog();
+            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+            VaciarArreglos();
+        }
+        private void VaciarArreglos()
+        {
+            for(int i = 0; i < 100; i++)
+            {
+                ReferenciasProductosAVender[i] = "";
+                CantidadesProductosAVender[i] = 0;
+            }
+        }
         private void ObtenerRutaDeGuardado()
         {
             RutasTxtConsultaResponse rutasTxtConsultaResponse = rutasTxtService.Consultar();
@@ -477,52 +497,62 @@ namespace Presentacion
                 }
             }
         }
-        private void MapearMedicamentosFactura(string referencia)
+        private void MapearMedicamentosFactura()
         {
             ObtenerRutaDeGuardado();
-            if (cantidad!=0)
+            string referenciaARrecorrer;
+            int cantidadARecorrer;
+            BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
+            for (int i = 0; i <= 100; i++)
             {
-                BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
-                respuesta = productoService.BuscarPorReferencia(referencia);
-                if (respuesta.Producto != null)
+                referenciaARrecorrer = ReferenciasProductosAVender[i];
+                cantidadARecorrer = CantidadesProductosAVender[i];
+                bool exixtencia = productoTxtService.FiltroReferencia(referenciaARrecorrer);
+                if (exixtencia == false)
                 {
-                    if (cantidad <= respuesta.Producto.Cantidad)
+                    cantidad = cantidadARecorrer;
+                    if (referenciaARrecorrer != null && cantidadARecorrer != 0)
                     {
-                        var productos = new List<Producto> { respuesta.Producto };
-                        referenciaProducto = respuesta.Producto.Referencia;
-                        cantidadProducto = respuesta.Producto.Cantidad;
-                        cantidadARestar = cantidad;
-                        nombreProducto = respuesta.Producto.Nombre;
-                        detalleProducto = respuesta.Producto.Detalle;
-                        precioProducto = respuesta.Producto.PrecioDeVenta;
-                        laboratorioProducto = respuesta.Producto.Laboratorio;
-                        fechaDeRegistro = respuesta.Producto.FechaDeRegistro;
-                        fechaDeVencimiento = respuesta.Producto.FechaDeVencimiento;
-                        loteProducto = respuesta.Producto.Lote;
-                        viaProducto = respuesta.Producto.Via;
-                        tipoProducto = respuesta.Producto.Tipo;
-                        precioDeNegocio = respuesta.Producto.PrecioDeNegocio;
-                        porcentajeDeVenta = respuesta.Producto.PorcentajeDeVenta;
-                        ProductoFacturaTxt productoTxt = new ProductoFacturaTxt(cantidadARestar, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
-                        string mensaje = productoTxtService.Guardar(productoTxt);
+                        respuesta = productoService.BuscarPorReferencia(referenciaARrecorrer);
+                        if (cantidadARecorrer <= respuesta.Producto.Cantidad)
+                        {
+                            var productos = new List<Producto> { respuesta.Producto };
+                            referenciaProducto = respuesta.Producto.Referencia;
+                            cantidadProducto = respuesta.Producto.Cantidad;
+                            cantidadARestar = cantidad;
+                            nombreProducto = respuesta.Producto.Nombre;
+                            detalleProducto = respuesta.Producto.Detalle;
+                            precioProducto = respuesta.Producto.PrecioDeVenta;
+                            laboratorioProducto = respuesta.Producto.Laboratorio;
+                            fechaDeRegistro = respuesta.Producto.FechaDeRegistro;
+                            fechaDeVencimiento = respuesta.Producto.FechaDeVencimiento;
+                            loteProducto = respuesta.Producto.Lote;
+                            viaProducto = respuesta.Producto.Via;
+                            tipoProducto = respuesta.Producto.Tipo;
+                            precioDeNegocio = respuesta.Producto.PrecioDeNegocio;
+                            porcentajeDeVenta = respuesta.Producto.PorcentajeDeVenta;
+                            ProductoFacturaTxt productoTxt = new ProductoFacturaTxt(cantidadARestar, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
+                            string mensaje = productoTxtService.Guardar(productoTxt);
 
-                        Producto producto = CalculosDefactura();
-                        mensaje = productoService.ModificarCantidad(producto);
+                            Producto producto = CalculosDefactura();
+                            mensaje = productoService.ModificarCantidad(producto);
+                        }
+                        else
+                        {
+                            if (cantidad > respuesta.Producto.Cantidad)
+                            {
+                                string mensaje = "La cantidad de " + respuesta.Producto.Nombre + " en inventario no es suficiente vuelva a ingresarlo";
+                                MessageBox.Show(mensaje, "Cantidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+                            }
+                        }
                     }
                     else
                     {
-                        if (cantidad > respuesta.Producto.Cantidad)
+                        if (referenciaARrecorrer == null || cantidadARecorrer == 0)
                         {
-                            string mensaje = "La cantidad del inventario no es suficiente para realizar la venta";
-                            MessageBox.Show(mensaje, "Cantidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            break;
                         }
-                    }
-                }
-                else
-                {
-                    if (respuesta.Producto == null)
-                    {
-                        labelAdvertencia.Text = "***";
                     }
                 }
             }
@@ -663,10 +693,6 @@ namespace Presentacion
             if(textSearch.Text=="Buscar medicamento")
             {
                 textSearch.Text = "";
-                cantidadDeRegistros = int.Parse(textTotal.Text);
-                totalPaginas = 0;
-                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-                CalculoDeEstadoAutomatico();
             }
         }
         private void textSearch_TextChanged(object sender, EventArgs e)
@@ -702,10 +728,6 @@ namespace Presentacion
                         i = i + 1;
                     }
                 }
-            }
-            else
-            {
-                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
             }
         }
 
@@ -874,8 +896,9 @@ namespace Presentacion
                     if (respuesta == DialogResult.Yes)
                     {
                         TotalSeleccion = 1;
-                        cantidad = 1;
-                        MapearMedicamentosFactura(referenciaBotonDatagrid);
+                        CantidadesProductosAVender[0] = 1;
+                        ReferenciasProductosAVender[0] = referenciaBotonDatagrid;
+                        MapearMedicamentosFactura();
                         btnVenderProducto_Click(sender, e);
                         ConsultarYLlenarGridDeProductos(paginaSeleccionada);
                     }
@@ -947,6 +970,18 @@ namespace Presentacion
             cantidadDeRegistros = 20;
             CalculoDeEstadoAutomatico();
             ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+        }
+
+        private void dataGridFarmacos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int valor = Convert.ToInt32(dataGridFarmacos.CurrentRow.Cells["CantidadVenta"].Value);
+            if (valor!=0)
+            {
+                if (dataGridFarmacos.Columns[e.ColumnIndex].Name == "CantidadVenta")
+                {
+                    GestionVender();
+                }
+            }
         }
     }
 }
