@@ -39,16 +39,15 @@ namespace BLL
                 return new ProductoVencidoTxtConsultaResponse("Error al Guardar:" + e.Message);
             }
         }
-        public bool FiltroIdentificaicon(string referencia)
+        public ProductoVencidoTxtConsultaResponse ConsultarPorReferencias(string referencia)
         {
-
             try
             {
-                return (productoTxtRepository.FiltroIdentificaicon(referencia));
+                return new ProductoVencidoTxtConsultaResponse(productoTxtRepository.ConsultarPorReferencias(referencia));
             }
             catch (Exception e)
             {
-                return false;
+                return new ProductoVencidoTxtConsultaResponse("Error al Guardar:" + e.Message);
             }
 
         }

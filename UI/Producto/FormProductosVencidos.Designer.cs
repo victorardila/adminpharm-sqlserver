@@ -44,7 +44,6 @@ namespace Presentacion
             this.textTotal = new System.Windows.Forms.TextBox();
             this.labelTotalFarmacos = new System.Windows.Forms.Label();
             this.btnLimpiarHistorial = new FontAwesome.Sharp.IconButton();
-            this.Deshacer = new System.Windows.Forms.DataGridViewImageColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Referencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,7 +107,6 @@ namespace Presentacion
             this.dataGridProductosVencidos.AllowUserToAddRows = false;
             this.dataGridProductosVencidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProductosVencidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Deshacer,
             this.Cantidad,
             this.Referencia,
             this.Nombre,
@@ -251,12 +249,6 @@ namespace Presentacion
             this.btnLimpiarHistorial.UseVisualStyleBackColor = false;
             this.btnLimpiarHistorial.Click += new System.EventHandler(this.btnLimpiarHistorial_Click);
             // 
-            // Deshacer
-            // 
-            this.Deshacer.HeaderText = "Deshacer";
-            this.Deshacer.Image = global::Presentacion.Properties.Resources.Regresar;
-            this.Deshacer.Name = "Deshacer";
-            // 
             // Cantidad
             // 
             this.Cantidad.HeaderText = "Cantidad";
@@ -369,7 +361,6 @@ namespace Presentacion
         private System.Windows.Forms.TextBox textTotal;
         private System.Windows.Forms.Label labelTotalFarmacos;
         private FontAwesome.Sharp.IconButton btnLimpiarHistorial;
-        private System.Windows.Forms.DataGridViewImageColumn Deshacer;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Referencia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;

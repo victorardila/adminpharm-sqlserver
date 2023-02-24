@@ -43,7 +43,7 @@ namespace Presentacion
             {
                 foreach (var item in productoVencidoTxtConsultaResponse.ProductoTxts)
                 {
-                    Deshacer.Image = Properties.Resources.Regresar;
+                    //Deshacer.Image = Properties.Resources.Regresar;
                     int Cantidad = item.Cantidad;
                     string Referencia = item.Referencia;
                     string Nombre = item.Nombre;
@@ -58,7 +58,7 @@ namespace Presentacion
                     double PrecioDeNegocio = item.PrecioDeNegocio;
                     double PrecioDeVenta = item.PrecioDeVenta;
                     double GananciaPorProducto = item.GananciaPorProducto;
-                    dataGridProductosVencidos.Rows.Add(Deshacer.Image, Cantidad, Referencia, Nombre, Detalle, FechaDeRegistro, 
+                    dataGridProductosVencidos.Rows.Add(/*Deshacer.Image,*/ Cantidad, Referencia, Nombre, Detalle, FechaDeRegistro, 
                         FechaDeVencimiento, Lote, Laboratorio, Estado, Tipo, Via, PrecioDeNegocio, PrecioDeVenta, GananciaPorProducto);
                 }
                 textTotal.Text = productoVencidoTxtService.Totalizar();
@@ -81,7 +81,7 @@ namespace Presentacion
             {
                 foreach (var item in productoTxtConsultaResponse.ProductoTxts)
                 {
-                    Deshacer.Image = Properties.Resources.Regresar;
+                    //Deshacer.Image = Properties.Resources.Regresar;
                     int Cantidad = item.Cantidad;
                     string Referencia = item.Referencia;
                     string Nombre = item.Nombre;
@@ -96,7 +96,7 @@ namespace Presentacion
                     double PrecioDeNegocio = item.PrecioDeNegocio;
                     double PrecioDeVenta = item.PrecioDeVenta;
                     double GananciaPorProducto = item.GananciaPorProducto;
-                    dataGridProductosVencidos.Rows.Add(Deshacer.Image, Cantidad, Referencia, Nombre, Detalle, FechaDeRegistro,
+                    dataGridProductosVencidos.Rows.Add(/*Deshacer.Image,*/ Cantidad, Referencia, Nombre, Detalle, FechaDeRegistro,
                         FechaDeVencimiento, Lote, Laboratorio, Estado, Tipo, Via, PrecioDeNegocio, PrecioDeVenta, GananciaPorProducto);
                 }
             }
@@ -134,20 +134,21 @@ namespace Presentacion
         {
             BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
             respuesta = productoService.BuscarPorReferencia(referencia);
+            var productoTxt = productoVencidoTxtService.ConsultarPorReferencias(referencia);
             if (respuesta.Producto != null)
             {
-                cantidadProductoBD = respuesta.Producto.Cantidad;
-                respuesta.Producto.Cantidad = cantidadProductoBD + cantidad;
-                var producto = respuesta.Producto;
-                productoService.ModificarCantidad(producto);
-                productoVencidoTxtService.Eliminar(referencia);
-                dataGridProductosVencidos.Rows.Clear();
+                string msg = "Este producto no se puede regresar al inventario puesto que ya no existe en el inventario";
+                MessageBox.Show(msg, "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                dataGridProductosVencidos.Rows.Clear();
-                string msg = "Este producto no se puede regresar al inventario puesto que ya no existe en el inventario";
-                MessageBox.Show(msg, "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (respuesta.Producto == null)
+                {
+                    foreach(var item in productoTxt.ProductoTxts)
+                    {
+                        
+                    }
+                }
             }
         }
         private void dataGridProductosVencidos_CellClick(object sender, DataGridViewCellEventArgs e)

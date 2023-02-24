@@ -79,7 +79,8 @@ namespace Presentacion
                     fechaVenta = item.FechaDeVenta;
                     for(int i=0;i< productoVendidoTxtConsultaResponse.ProductoTxts.Count; i++)
                     {
-                        if(comboFecha.SelectedIndex.Equals(fechaVenta)){
+                        if (comboFecha.Items.Contains(fechaVenta)==false)
+                        {
                             comboFecha.Items.Add(fechaVenta);
                             comboFecha.AutoCompleteCustomSource.Add(fechaVenta);
                         }

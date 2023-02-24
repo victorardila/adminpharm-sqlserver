@@ -52,7 +52,7 @@ namespace DAL
             file.Close();
             return productoTxts;
         }
-        public bool FiltroIdentificaicon(string referencia)
+        public List<ProductoVencidoTxt> ConsultarPorReferencias(string referencia)
         {
             List<ProductoVencidoTxt> productoTxts = new List<ProductoVencidoTxt>();
             FileStream file = new FileStream(ruta, FileMode.OpenOrCreate, FileAccess.Read);
@@ -63,14 +63,29 @@ namespace DAL
                 string[] dato = linea.Split(';');
                 if (dato[1].Equals(referencia))
                 {
-                    lector.Close();
-                    file.Close();
-                    return true;
+                    ProductoVencidoTxt productoTxt = new ProductoVencidoTxt()
+                    {
+                        Cantidad = int.Parse(dato[0]),
+                        Referencia = dato[1],
+                        Nombre = dato[2],
+                        Detalle = dato[3],
+                        FechaDeRegistro = DateTime.Parse(dato[4]),
+                        FechaDeVencimiento = DateTime.Parse(dato[5]),
+                        Lote = dato[6],
+                        Laboratorio = dato[7],
+                        Estado = dato[8],
+                        Tipo = dato[9],
+                        Via = dato[10],
+                        PrecioDeNegocio = int.Parse(dato[11]),
+                        PrecioDeVenta = int.Parse(dato[12]),
+                        GananciaPorProducto = int.Parse(dato[13]),
+                    };
+                    productoTxts.Add(productoTxt);
                 }
             }
             lector.Close();
             file.Close();
-            return false;
+            return productoTxts;
         }
         private bool EsEncontrado(string referenciaRegistrada, string referenciaBuscada)
         {

@@ -421,7 +421,7 @@ namespace Presentacion
                 }
             }
         }
-        private void GestionVender()
+        private void GestionVender(string referencia, int cantidad)
         {
             TotalSeleccion = dataGridFarmacos.Rows.Cast<DataGridViewRow>().Where(p => Convert.ToBoolean(p.Cells["Column1"].Value)).Count();
             if (cantidadDrogueria == 1)
@@ -437,8 +437,8 @@ namespace Presentacion
                             {
                                 if (Convert.ToBoolean(row.Cells["Column1"].Value))
                                 {
-                                    ReferenciasProductosAVender[i] = Convert.ToString(row.Cells["Referencia"].Value);
-                                    CantidadesProductosAVender[i] = Convert.ToInt32(row.Cells["CantidadVenta"].Value);
+                                    ReferenciasProductosAVender[i] = referencia;
+                                    CantidadesProductosAVender[i] = cantidad;
                                     i = i + 1;
                                 }
                             }
@@ -477,12 +477,13 @@ namespace Presentacion
             frm.ShowDialog();
             ConsultarYLlenarGridDeProductos(paginaSeleccionada);
             VaciarArreglos();
+            i = 0;
         }
         private void VaciarArreglos()
         {
             for(int i = 0; i < 100; i++)
             {
-                ReferenciasProductosAVender[i] = "";
+                ReferenciasProductosAVender[i] = null;
                 CantidadesProductosAVender[i] = 0;
             }
         }
@@ -975,11 +976,12 @@ namespace Presentacion
         private void dataGridFarmacos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             int valor = Convert.ToInt32(dataGridFarmacos.CurrentRow.Cells["CantidadVenta"].Value);
+            string referencia = Convert.ToString(dataGridFarmacos.CurrentRow.Cells["Referencia"].Value);
             if (valor!=0)
             {
                 if (dataGridFarmacos.Columns[e.ColumnIndex].Name == "CantidadVenta")
                 {
-                    GestionVender();
+                    GestionVender(referencia, valor);
                 }
             }
         }
