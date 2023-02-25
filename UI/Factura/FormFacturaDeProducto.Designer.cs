@@ -251,11 +251,11 @@ namespace Presentacion
             // labelVueltos
             // 
             this.labelVueltos.AutoSize = true;
-            this.labelVueltos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVueltos.ForeColor = System.Drawing.Color.DarkRed;
-            this.labelVueltos.Location = new System.Drawing.Point(326, 1);
+            this.labelVueltos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVueltos.ForeColor = System.Drawing.Color.Red;
+            this.labelVueltos.Location = new System.Drawing.Point(326, 3);
             this.labelVueltos.Name = "labelVueltos";
-            this.labelVueltos.Size = new System.Drawing.Size(85, 20);
+            this.labelVueltos.Size = new System.Drawing.Size(72, 16);
             this.labelVueltos.TabIndex = 63;
             this.labelVueltos.Text = "Vueltos $";
             // 
@@ -263,8 +263,8 @@ namespace Presentacion
             // 
             this.labelVueltosGenerado.AutoSize = true;
             this.labelVueltosGenerado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVueltosGenerado.ForeColor = System.Drawing.Color.DarkRed;
-            this.labelVueltosGenerado.Location = new System.Drawing.Point(408, 2);
+            this.labelVueltosGenerado.ForeColor = System.Drawing.Color.Red;
+            this.labelVueltosGenerado.Location = new System.Drawing.Point(393, 3);
             this.labelVueltosGenerado.Name = "labelVueltosGenerado";
             this.labelVueltosGenerado.Size = new System.Drawing.Size(40, 18);
             this.labelVueltosGenerado.TabIndex = 65;

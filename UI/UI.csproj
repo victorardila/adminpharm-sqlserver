@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>E:\Proyectos\Instalador AdminPharm\</PublishUrl>
+    <PublishUrl>G:\Instalador version 3\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -27,7 +27,7 @@
     <ErrorReportUrl>https://www.facebook.com/profile.php%3fid=100070327928352</ErrorReportUrl>
     <ProductName>AdminPharm</ProductName>
     <PublisherName>Victor Ardila</PublisherName>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

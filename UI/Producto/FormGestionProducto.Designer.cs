@@ -572,7 +572,7 @@ namespace Presentacion
             this.Vencido,
             this.CantidadVenta});
             this.dataGridFarmacos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dataGridFarmacos.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridFarmacos.GridColor = System.Drawing.Color.WhiteSmoke;
             this.dataGridFarmacos.Location = new System.Drawing.Point(0, 24);
             this.dataGridFarmacos.Name = "dataGridFarmacos";
             this.dataGridFarmacos.RightToLeft = System.Windows.Forms.RightToLeft.No;

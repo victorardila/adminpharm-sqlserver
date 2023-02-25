@@ -436,7 +436,7 @@ namespace Presentacion
             //Proceso de impresion
             string nombreFactura = id_factura + ".pdf";
             nombreDeFactura = nombreFactura;
-            string existingPathName = rutaTxtFacturaVenta;
+            string existingPathName = @""+rutaTxtFacturaVenta;
             string notExistingFileName = rutaTxtFacturaVenta+"\\"+ nombreFactura;
             notExistFileName = notExistingFileName;
 
@@ -460,7 +460,7 @@ namespace Presentacion
             //Proceso de impresion
             string nombreFactura = id_factura+".pdf";
             nombreDeFactura = nombreFactura;
-            string existingPathName = rutaTxtFacturaVenta;
+            string existingPathName = @""+rutaTxtFacturaVenta;
             string notExistingFileName = rutaTxtFacturaVenta +"\\"+ nombreFactura;
             notExistFileName = notExistingFileName;
 
@@ -637,9 +637,11 @@ namespace Presentacion
                 }
             }
             e.Graphics.DrawString("Valor Total: " + totalFactura, font, Brushes.Black, new RectangleF(-30, r + 30, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Vueltos: " + labelVueltos.Text, font, Brushes.Black, new RectangleF(-30, r + 44, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Forma de pago: " + comboFormaDePago.Text, font, Brushes.Black, new RectangleF(-30, r + 58, ancho, 14), stringFormatRight);
 
-            e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(-20, r + 56, ancho, 14), stringFormatCenter);
-            e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(-20, r + 14, ancho, 14), stringFormatCenter);
+            e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(-20, r + 84, ancho, 14), stringFormatCenter);
+            e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(-20, r + 98, ancho, 14), stringFormatCenter);
         }
 //*************************************************Botones*****************************************************
         private void btnCerrar_Click(object sender, EventArgs e)

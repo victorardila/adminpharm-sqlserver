@@ -31,6 +31,7 @@ namespace Presentacion
         double precio;
         double precioProducto;
         double MontoActualizado;
+        double VentaDeDiaActualizado;
         double montoBase;
         double montoActual;
         string rutasVendidos;
@@ -56,7 +57,8 @@ namespace Presentacion
         }
         private void Inicializar()
         {
-            labelFechaActual.Text = "Hoy " + fechaVenta;
+            DateTime fechaActual = DateTime.Now;
+            labelFechaActual.Text = "Hoy " + fechaActual.ToString("dd/MM/yyyy");
         }
         private void ObtenerRutaDeVendido()
         {
@@ -118,15 +120,22 @@ namespace Presentacion
         {
             BusquedaCajaRegistradoraRespuesta respuesta = new BusquedaCajaRegistradoraRespuesta();
             string estado = "Abierta";
-            double MontoDeCaja;
+            double MontoDeCajaFinal;
+            double VentaDelDia;
             respuesta = cajaRegistradoraService.BuscarPorEstado(estado);
             if (respuesta.CajaRegistradora != null)
             {
-                MontoDeCaja=respuesta.CajaRegistradora.MontoFinal;
-                MontoDeCaja= MontoDeCaja - precio;
-                MontoActualizado = MontoDeCaja;
+                //Monto final
+                MontoDeCajaFinal = respuesta.CajaRegistradora.MontoFinal;
+                MontoDeCajaFinal = MontoDeCajaFinal - precio;
+                MontoActualizado = MontoDeCajaFinal;
+                //Monto venta del dia
+                VentaDelDia= respuesta.CajaRegistradora.VentaDelDia;
+                VentaDelDia = VentaDelDia - precio;
+                VentaDeDiaActualizado = VentaDelDia;
                 Caja caja = respuesta.CajaRegistradora;
                 caja.MontoFinal = MontoActualizado;
+                caja.VentaDelDia = VentaDeDiaActualizado;
                 cajaRegistradoraService.ModificarCash(caja);
                 DevolverAlInventario(referencia, cantidad);
             }

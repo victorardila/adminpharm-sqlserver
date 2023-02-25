@@ -439,7 +439,9 @@ namespace Presentacion
                                 {
                                     ReferenciasProductosAVender[i] = referencia;
                                     CantidadesProductosAVender[i] = cantidad;
+                                    dataGridFarmacos.CurrentRow.DefaultCellStyle.BackColor = Color.CadetBlue;
                                     i = i + 1;
+
                                 }
                             }
                         }

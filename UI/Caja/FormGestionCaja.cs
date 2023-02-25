@@ -281,18 +281,24 @@ namespace Presentacion
             ProductoVendidoTxtConsultaResponse productoTxtConsultaResponse = productoVendidoTxtService.Consultar(rutasVendidos);
             if (productoTxtConsultaResponse.ProductoTxts.Count > 0)
             {
+                string fecha;
+                DateTime fechaActual = DateTime.Now;
+                fecha = fechaActual.ToString("dd/MM/yyyy");
                 foreach (var item in productoTxtConsultaResponse.ProductoTxts)
                 {
-                    productoVendidoTxt = new ProductoVendidoTxt();
-                    productoVendidoTxt.Cantidad = item.Cantidad;
-                    productoVendidoTxt.Referencia = item.Referencia;
-                    productoVendidoTxt.Nombre = item.Nombre;
-                    productoVendidoTxt.Detalle = item.Detalle;
-                    productoVendidoTxt.Precio = item.Precio;
-                    precioProductos = precioProductos+item.Precio;
-                    precioProductosRedondeado = Math.Ceiling(precioProductos);
-                    valorDeRedondeo = precioProductosRedondeado - precioProductos;
-                    productoVendidoTxts.Add(productoVendidoTxt);
+                    if(item.FechaDeVenta == fecha)
+                    {
+                        productoVendidoTxt = new ProductoVendidoTxt();
+                        productoVendidoTxt.Cantidad = item.Cantidad;
+                        productoVendidoTxt.Referencia = item.Referencia;
+                        productoVendidoTxt.Nombre = item.Nombre;
+                        productoVendidoTxt.Detalle = item.Detalle;
+                        productoVendidoTxt.Precio = item.Precio;
+                        precioProductos = precioProductos + item.Precio;
+                        precioProductosRedondeado = Math.Ceiling(precioProductos);
+                        valorDeRedondeo = precioProductosRedondeado - precioProductos;
+                        productoVendidoTxts.Add(productoVendidoTxt);
+                    }
                 }
                 FacturarProductosVendidosEnCaja();
             }
@@ -323,6 +329,7 @@ namespace Presentacion
                 Caja cajaRegistradora = MapearCaja();
                 string mensaje = cajaRegistradoraService.Modificar(cajaRegistradora);
                 ProductosRegistradosEnCaja();
+                GuardarFactura();
                 ConsultarYLlenarGridDeCajas();
                 btnAbrirCaja.Enabled = true;
                 btnCerrarCaja.Enabled = false;
@@ -331,10 +338,9 @@ namespace Presentacion
                 labelBase.Text = "Sin definir";
                 if (productoLeido > 0)
                 {
-                    GuardarFactura();
                     FormVisorDeFactura frm = new FormVisorDeFactura();
                     frm.nombreDeArchivo = nombreDeFactura;
-                    frm.rutaDeGuardado = rutaTxtCierreDeCaja;
+                    frm.rutaDeGuardado = notExistFileName;
                     frm.ShowDialog();
                 }
             }
@@ -520,7 +526,7 @@ namespace Presentacion
                 int x = y + j;
                 r = x;
             }
-            e.Graphics.DrawString("Total Cierre: " + ventaDia, font, Brushes.Black, new RectangleF(-30, r + 30, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Total Cierre: " + labelCash.Text, font, Brushes.Black, new RectangleF(-30, r + 30, ancho, 14), stringFormatRight);
 
             e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(-20, r + 56, ancho, 14), stringFormatCenter);
             e.Graphics.DrawString("     Vuelva pronto     ", font, Brushes.Black, new RectangleF(-20, r + 70, ancho, 14), stringFormatCenter);
