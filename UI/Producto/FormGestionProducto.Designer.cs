@@ -90,6 +90,8 @@ namespace Presentacion
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnRespaldarInventario = new FontAwesome.Sharp.IconButton();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -627,6 +629,8 @@ namespace Presentacion
             this.panelSubDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelSubDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSubDataGridFarmacos.Controls.Add(this.label9);
+            this.panelSubDataGridFarmacos.Controls.Add(this.btnRespaldarInventario);
             this.panelSubDataGridFarmacos.Controls.Add(this.textVencido);
             this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalVencido);
             this.panelSubDataGridFarmacos.Controls.Add(this.textNumeroPagina);
@@ -958,6 +962,31 @@ namespace Presentacion
             this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
             this.dataGridViewImageColumn3.Width = 30;
             // 
+            // btnRespaldarInventario
+            // 
+            this.btnRespaldarInventario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRespaldarInventario.IconChar = FontAwesome.Sharp.IconChar.FileDownload;
+            this.btnRespaldarInventario.IconColor = System.Drawing.Color.DarkGreen;
+            this.btnRespaldarInventario.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnRespaldarInventario.IconSize = 18;
+            this.btnRespaldarInventario.Location = new System.Drawing.Point(638, 1);
+            this.btnRespaldarInventario.Name = "btnRespaldarInventario";
+            this.btnRespaldarInventario.Size = new System.Drawing.Size(22, 23);
+            this.btnRespaldarInventario.TabIndex = 63;
+            this.btnRespaldarInventario.UseVisualStyleBackColor = true;
+            this.btnRespaldarInventario.Visible = false;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(590, 5);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(49, 13);
+            this.label9.TabIndex = 52;
+            this.label9.Text = "Exportar:";
+            this.label9.Visible = false;
+            // 
             // FormGestionProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1057,6 +1086,8 @@ namespace Presentacion
         private System.Windows.Forms.Label labelCash;
         private System.Windows.Forms.Label labelTextFondo;
         private FontAwesome.Sharp.IconPictureBox iconCash;
+        private FontAwesome.Sharp.IconButton btnRespaldarInventario;
+        private System.Windows.Forms.Label label9;
     }
 }
 

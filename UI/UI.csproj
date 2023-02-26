@@ -82,6 +82,9 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ColorCode.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51464a653cf063b3, processorArchitecture=MSIL">
+      <HintPath>..\packages\ColorCode.Core.2.0.14\lib\netstandard2.0\ColorCode.Core.dll</HintPath>
+    </Reference>
     <Reference Include="FontAwesome.Sharp, Version=6.1.1.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.1.1\lib\net472\FontAwesome.Sharp.dll</HintPath>
     </Reference>
@@ -182,6 +185,7 @@
     <Compile Include="FormActivador.Designer.cs">
       <DependentUpon>FormActivador.cs</DependentUpon>
     </Compile>
+    <Compile Include="Temas.cs" />
     <Compile Include="Vitrina\FormGestionarVitrina.cs">
       <SubType>Form</SubType>
     </Compile>

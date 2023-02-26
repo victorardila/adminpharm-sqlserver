@@ -395,5 +395,11 @@ namespace Presentacion
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+
+        private void btnVerLicencia_Click(object sender, EventArgs e)
+        {
+            FormActivador formActivador = new FormActivador();
+            formActivador.ShowDialog();
+        }
     }
 }
