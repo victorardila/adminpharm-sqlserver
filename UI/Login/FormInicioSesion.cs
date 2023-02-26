@@ -12,18 +12,25 @@ using BLL;
 using Entity;
 //se importa la libreria para arrastrar formulario
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Presentacion
 {
     public partial class FormInicioSesion : Form
     {
+        SoftwareService softwareService;
         EmpleadoService empleadoService;
+        Software software;
+        bool estadoCliente;
         string nombreDeUsuario;
         string contraseña;
         string Id_Empleado;
         bool UsuarioValido;
+        object sender;
+        EventArgs e;
         public FormInicioSesion()
         {
+            softwareService = new SoftwareService(ConfigConnection.ConnectionString);
             empleadoService = new EmpleadoService(ConfigConnection.ConnectionString);
             InitializeComponent();
             UbicacionesPorDefault();
@@ -37,7 +44,26 @@ namespace Presentacion
         {
             Application.Exit();
         }
-
+        public void VerificarEstadoDeLicencia()
+        {
+            ConsultaSoftwareRespuesta respuesta = new ConsultaSoftwareRespuesta();
+            respuesta = softwareService.ConsultarTodos();
+            if (respuesta.Softwares.Count == 0 || respuesta.Softwares == null)
+            {
+                FormActivador formActivador = new FormActivador();
+                formActivador.Show();
+                this.Hide();
+                this.Visible = false;
+            }
+            else
+            {
+                if (respuesta.Softwares.Count != 0 && respuesta.Softwares != null)
+                {
+                    this.Visible = true;
+                    this.Enabled = true;
+                }
+            }
+        }
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;

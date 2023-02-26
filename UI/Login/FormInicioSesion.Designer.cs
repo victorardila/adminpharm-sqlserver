@@ -332,7 +332,7 @@ namespace Presentacion
             this.btnAjustarServidor.IconColor = System.Drawing.Color.Black;
             this.btnAjustarServidor.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAjustarServidor.IconSize = 20;
-            this.btnAjustarServidor.Location = new System.Drawing.Point(340, 166);
+            this.btnAjustarServidor.Location = new System.Drawing.Point(342, 161);
             this.btnAjustarServidor.Name = "btnAjustarServidor";
             this.btnAjustarServidor.Size = new System.Drawing.Size(30, 22);
             this.btnAjustarServidor.TabIndex = 15;

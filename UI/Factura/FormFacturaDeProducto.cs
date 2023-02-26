@@ -68,6 +68,7 @@ namespace Presentacion
         string nombreProducto;
         string detalleProducto;
         double precioProducto;
+        double totalProducto;
         string loteProducto;
         string laboratorioProducto;
         string estadoProducto;
@@ -176,7 +177,8 @@ namespace Presentacion
                 nombreProducto= respuesta.Producto.Nombre;
                 detalleProducto= respuesta.Producto.Detalle;
                 precioProducto= respuesta.Producto.PrecioDeVenta;
-                ProductoVendidoTxt productoVendidoTxt = new ProductoVendidoTxt(fechaDeVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
+                totalProducto = (cantidadProducto * precioProducto);
+                ProductoVendidoTxt productoVendidoTxt = new ProductoVendidoTxt(fechaDeVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto, totalProducto);
                 string mensaje = productoVendidoTxtService.Guardar(productoVendidoTxt, rutasVendidos);
             }
         }
@@ -637,7 +639,7 @@ namespace Presentacion
                 }
             }
             e.Graphics.DrawString("Valor Total: " + totalFactura, font, Brushes.Black, new RectangleF(-30, r + 30, ancho, 14), stringFormatRight);
-            e.Graphics.DrawString("Vueltos: " + labelVueltos.Text, font, Brushes.Black, new RectangleF(-30, r + 44, ancho, 14), stringFormatRight);
+            e.Graphics.DrawString("Vueltos: " + labelVueltosGenerado.Text, font, Brushes.Black, new RectangleF(-30, r + 44, ancho, 14), stringFormatRight);
             e.Graphics.DrawString("Forma de pago: " + comboFormaDePago.Text, font, Brushes.Black, new RectangleF(-30, r + 58, ancho, 14), stringFormatRight);
 
             e.Graphics.DrawString("!Gracias por su compra! ", font, Brushes.Black, new RectangleF(-20, r + 84, ancho, 14), stringFormatCenter);

@@ -145,6 +145,9 @@
   <data name="conexion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\conexion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="licencia_true" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\licencia_true.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Fondo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Fondo2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -160,6 +163,9 @@
   <data name="SacarDeInventario" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SacarDeInventario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="licencia_false" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\licencia_false.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Progreso" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Progreso.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -168,5 +174,8 @@
   </data>
   <data name="Licencia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Licencia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LlavesLicencia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LlavesLicencia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

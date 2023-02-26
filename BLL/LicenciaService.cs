@@ -8,28 +8,26 @@ using DAL;
 
 namespace BLL
 {
-    public class ClienteService
+    public class LicenciaService
     {
         private readonly ConnectionManager conexion;
-        private readonly ClienteRepository repositorio;
-        public ClienteService(string connectionString)
+        private readonly LicenciaRepository repositorio;
+        public LicenciaService(string connectionString)
         {
             conexion = new ConnectionManager(connectionString);
-            repositorio = new ClienteRepository(conexion);
+            repositorio = new LicenciaRepository(conexion);
         }
-        public string Guardar(Cliente cliente)
+        public string Guardar(Licencia licencia)
         {
             try
             {
-                cliente.GenerarCodigoCliente();
-                cliente.CalcularEdad();
                 conexion.Open();
-                if (repositorio.BuscarPorIdentificacion(cliente.Identificacion) == null)
+                if (repositorio.BuscarPorLicencia(licencia.LicenciaSoftware) == null)
                 {
-                    repositorio.Guardar(cliente);
-                    return $"Cliente registrado correctamente";
+                    repositorio.Guardar(licencia);
+                    return $"Licencia registrado correctamente";
                 }
-                return $"Esta id de cliente ya existe";
+                return $"Esta id de licencia ya existe";
             }
             catch (Exception e)
             {
@@ -37,39 +35,16 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
-        public ConsultaClienteRespuesta ConsultarTodos()
+        public ConsultaLicenciaRespuesta ConsultaTodasLicencias(string licenciaSoftware)
         {
-            ConsultaClienteRespuesta respuesta = new ConsultaClienteRespuesta();
+            ConsultaLicenciaRespuesta respuesta = new ConsultaLicenciaRespuesta();
             try
             {
 
                 conexion.Open();
-                respuesta.Clientes = repositorio.ConsultarTodos();
+                respuesta.Licencias = repositorio.BuscarPorLicencias(licenciaSoftware);
                 conexion.Close();
-                respuesta.Error = false;
-                respuesta.Mensaje = (respuesta.Clientes.Count > 0) ? "Se consultan los Datos" : "No hay datos para consultar";
-                return respuesta;
-            }
-            catch (Exception e)
-            {
-                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
-                respuesta.Error = true;
-                return respuesta;
-            }
-            finally { conexion.Close(); }
-
-        }
-
-        public ConsultaClienteRespuesta BuscarPorSexo(string sexo)
-        {
-            ConsultaClienteRespuesta respuesta = new ConsultaClienteRespuesta();
-            try
-            {
-
-                conexion.Open();
-                respuesta.Clientes = repositorio.BuscarPorSexo(sexo);
-                conexion.Close();
-                respuesta.Mensaje = (respuesta.Clientes != null) ? "Se consulto el sexo buscado" : "el sexo consultado no existe";
+                respuesta.Mensaje = (respuesta.Licencias != null) ? "Se consulto el estante buscado" : "el estante consultado no existe";
                 respuesta.Error = false;
                 return respuesta;
             }
@@ -81,16 +56,16 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
-        public BusquedaClienteRespuesta BuscarPorIdentificacion(string identificacion)
+        public BusquedaLicenciaRespuesta BuscarPorLicencia(string identificacion)
         {
-            BusquedaClienteRespuesta respuesta = new BusquedaClienteRespuesta();
+            BusquedaLicenciaRespuesta respuesta = new BusquedaLicenciaRespuesta();
             try
             {
 
                 conexion.Open();
-                respuesta.Cliente = repositorio.BuscarPorIdentificacion(identificacion);
+                respuesta.Licencia = repositorio.BuscarPorLicencia(identificacion);
                 conexion.Close();
-                respuesta.Mensaje = (respuesta.Cliente != null) ? "Se encontró la id de cliente buscado" : "la id de cliente buscada no existe";
+                respuesta.Mensaje = (respuesta.Licencia != null) ? "Se encontró la id de licencia buscado" : "la id de licencia buscada no existe";
                 respuesta.Error = false;
                 return respuesta;
             }
@@ -102,19 +77,19 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
-        public string Eliminar(string identificacion)
+        public string Eliminar(string licenciaSoftware)
         {
             try
             {
                 conexion.Open();
-                var cliente = repositorio.BuscarPorIdentificacion(identificacion);
-                if (cliente != null)
+                var licencia = repositorio.BuscarPorLicencia(licenciaSoftware);
+                if (licencia != null)
                 {
-                    repositorio.Eliminar(cliente);
+                    repositorio.Eliminar(licencia);
                     conexion.Close();
-                    return ($"El registro {cliente.Identificacion} se ha eliminado satisfactoriamente.");
+                    return ($"La licencia {licencia.LicenciaSoftware} se ha eliminado satisfactoriamente.");
                 }
-                return ($"Lo sentimos, {identificacion} no se encuentra registrada.");
+                return ($"Lo sentimos la licencia, {licenciaSoftware} no es valida.");
             }
             catch (Exception e)
             {
@@ -124,22 +99,20 @@ namespace BLL
             finally { conexion.Close(); }
 
         }
-        public string Modificar(Cliente clienteNuevo)
+        public string Modificar(Licencia licenciaNuevo)
         {
             try
             {
-                clienteNuevo.GenerarCodigoCliente();
-                clienteNuevo.CalcularEdad();
                 conexion.Open();
-                var cliente = repositorio.BuscarPorIdentificacion(clienteNuevo.Identificacion);
-                if (cliente != null)
+                var licencia = repositorio.BuscarPorLicencia(licenciaNuevo.LicenciaSoftware);
+                if (licencia != null)
                 {
-                    repositorio.Modificar(clienteNuevo);
-                    return ($"El registro de {clienteNuevo.Identificacion} se ha modificado satisfactoriamente.");
+                    repositorio.Modificar(licenciaNuevo);
+                    return ($"La licencia {licencia.LicenciaSoftware} se ha modificado satisfactoriamente.");
                 }
                 else
                 {
-                    return ($"Lo sentimos, el cliente con Id {clienteNuevo.Identificacion} no se encuentra registrada.");
+                    return ($"Lo sentimos, el licencia con Id {licenciaNuevo.LicenciaSoftware} no se encuentra registrada.");
                 }
             }
             catch (Exception e)
@@ -149,9 +122,9 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
-        public ConteoCajaRegistradoraRespuesta Totalizar()
+        public ConteoLicenciaRespuesta Totalizar()
         {
-            ConteoCajaRegistradoraRespuesta respuesta = new ConteoCajaRegistradoraRespuesta();
+            ConteoLicenciaRespuesta respuesta = new ConteoLicenciaRespuesta();
             try
             {
 
@@ -171,9 +144,9 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
-        public ConteoCajaRegistradoraRespuesta TotalizarTipo(string tipo)
+        public ConteoLicenciaRespuesta TotalizarTipo(string tipo)
         {
-            ConteoCajaRegistradoraRespuesta respuesta = new ConteoCajaRegistradoraRespuesta();
+            ConteoLicenciaRespuesta respuesta = new ConteoLicenciaRespuesta();
             try
             {
 
@@ -194,19 +167,19 @@ namespace BLL
             finally { conexion.Close(); }
         }
     }
-    public class ConsultaClienteRespuesta
+    public class ConsultaLicenciaRespuesta
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }
-        public IList<Cliente> Clientes { get; set; }
+        public IList<Licencia> Licencias { get; set; }
     }
-    public class BusquedaClienteRespuesta
+    public class BusquedaLicenciaRespuesta
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }
-        public Cliente Cliente { get; set; }
+        public Licencia Licencia { get; set; }
     }
-    public class ConteoClienteRespuesta
+    public class ConteoLicenciaRespuesta
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }

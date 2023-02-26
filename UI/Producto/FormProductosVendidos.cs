@@ -29,6 +29,7 @@ namespace Presentacion
         string nombreProducto;
         string detalleProducto;
         double precio;
+        double totalProducto;
         double precioProducto;
         double MontoActualizado;
         double VentaDeDiaActualizado;
@@ -127,11 +128,11 @@ namespace Presentacion
             {
                 //Monto final
                 MontoDeCajaFinal = respuesta.CajaRegistradora.MontoFinal;
-                MontoDeCajaFinal = MontoDeCajaFinal - precio;
+                MontoDeCajaFinal = MontoDeCajaFinal - totalProducto;
                 MontoActualizado = MontoDeCajaFinal;
                 //Monto venta del dia
                 VentaDelDia= respuesta.CajaRegistradora.VentaDelDia;
-                VentaDelDia = VentaDelDia - precio;
+                VentaDelDia = VentaDelDia - totalProducto;
                 VentaDeDiaActualizado = VentaDelDia;
                 Caja caja = respuesta.CajaRegistradora;
                 caja.MontoFinal = MontoActualizado;
@@ -163,7 +164,8 @@ namespace Presentacion
                     nombreProducto = item.Nombre;
                     detalleProducto = item.Detalle;
                     precioProducto = item.Precio;
-                    dataGridProductosVendidos.Rows.Add(Deshacer.Image, fechaVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
+                    totalProducto = item.Total;
+                    dataGridProductosVendidos.Rows.Add(Deshacer.Image, fechaVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto, totalProducto);
                 }
                 textTotal.Text = productoVendidoTxtService.Totalizar(rutasVendidos);
             }
@@ -190,7 +192,8 @@ namespace Presentacion
                     string nombre = item.Nombre;
                     string detalle = item.Detalle;
                     double precio = item.Precio;
-                    dataGridProductosVendidos.Rows.Add(Deshacer.Image, fecha, cantidad, referencia, nombre, detalle, precio);
+                    double total = item.Total;
+                    dataGridProductosVendidos.Rows.Add(Deshacer.Image, fecha, cantidad, referencia, nombre, detalle, precio, total);
                 }
             }
             else
@@ -250,7 +253,7 @@ namespace Presentacion
                     referencia = Convert.ToString(dataGridProductosVendidos.CurrentRow.Cells["Referencia"].Value.ToString());
                     cantidad = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Cantidad"].Value.ToString());
                     nombre = Convert.ToString(dataGridProductosVendidos.CurrentRow.Cells["Nombre"].Value.ToString());
-                    precio = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Valor"].Value.ToString());
+                    precio = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Unidad"].Value.ToString());
                     string msg = "¿Desea deshacer esta venta?";
                     var respuesta = MessageBox.Show(msg, "Devolver al inventario", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (respuesta == DialogResult.Yes)
@@ -294,7 +297,8 @@ namespace Presentacion
                             nombreProducto = item.Nombre;
                             detalleProducto = item.Detalle;
                             precioProducto = item.Precio;
-                            dataGridProductosVendidos.Rows.Add(Deshacer.Image, fechaVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto);
+                            totalProducto = item.Total;
+                            dataGridProductosVendidos.Rows.Add(Deshacer.Image, fechaVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto, totalProducto);
                         }
                     }
                     else

@@ -51,6 +51,7 @@
     <Compile Include="EstanteRepository.cs" />
     <Compile Include="FacturaRepository.cs" />
     <Compile Include="IdEmpleadoTxtRepository.cs" />
+    <Compile Include="LicenciaRepository.cs" />
     <Compile Include="NeveraRepository.cs" />
     <Compile Include="ProductoRepository.cs" />
     <Compile Include="ProductoFacturaTxtRepository.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="ProductoVendidoTxtRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RutasTxtRepository.cs" />
+    <Compile Include="SoftwareRepository.cs" />
     <Compile Include="VitrinaRepository.cs" />
   </ItemGroup>
   <ItemGroup>

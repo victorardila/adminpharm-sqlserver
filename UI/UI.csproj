@@ -428,7 +428,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="faticon.ico" />
+    <None Include="Resources\LlavesLicencia.png" />
     <None Include="Resources\Licencia.png" />
+    <None Include="Resources\Llaves.png" />
+    <None Include="Resources\licencia_true1.png" />
+    <None Include="Resources\licencia_false.png" />
+    <None Include="Resources\licencia_true.png" />
     <None Include="Resources\conexion.png" />
     <None Include="Resources\folder.png" />
     <None Include="Resources\SacarDeInventario.png" />

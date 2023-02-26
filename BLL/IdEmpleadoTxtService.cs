@@ -42,7 +42,6 @@ namespace BLL
         }
         public bool FiltroIdentificaicon(string referencia)
         {
-
             try
             {
                 return (idEmpleadoTxtRepository.FiltroIdentificaicon(referencia));

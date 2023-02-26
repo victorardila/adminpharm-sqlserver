@@ -8,7 +8,7 @@ namespace Entity
 {
     public class ProductoVendidoTxt
     {
-        public ProductoVendidoTxt(string fechaDeVenta, int cantidad, string referencia, string nombre, string detalle, double precio)
+        public ProductoVendidoTxt(string fechaDeVenta, int cantidad, string referencia, string nombre, string detalle, double precio, double total)
         {
             FechaDeVenta = fechaDeVenta;
             Cantidad = cantidad;
@@ -16,6 +16,7 @@ namespace Entity
             Nombre = nombre;
             Detalle = detalle;
             Precio = precio;
+            Total = total;
         }
         //Constructor Sobrecargado
         public ProductoVendidoTxt()
@@ -29,6 +30,7 @@ namespace Entity
         public string Nombre { get; set; }
         public string Detalle { get; set; }
         public double Precio { get; set; }
+        public double Total { get; set; }
         public override string ToString()
         {
             return $"\n" +

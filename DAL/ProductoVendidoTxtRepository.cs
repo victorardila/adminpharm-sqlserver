@@ -17,7 +17,7 @@ namespace DAL
             ruta = @"" + rutasVendidos + "\\" + NombreArchivo;
             FileStream file = new FileStream(ruta, FileMode.Append);
             StreamWriter escritor = new StreamWriter(file);
-            escritor.WriteLine($"{productoTxt.FechaDeVenta};{productoTxt.Cantidad};{productoTxt.Referencia};{productoTxt.Nombre};{productoTxt.Detalle};{productoTxt.Precio}");
+            escritor.WriteLine($"{productoTxt.FechaDeVenta};{productoTxt.Cantidad};{productoTxt.Referencia};{productoTxt.Nombre};{productoTxt.Detalle};{productoTxt.Precio};{productoTxt.Total}");
             escritor.Close();
             file.Close();
         }
@@ -39,6 +39,7 @@ namespace DAL
                     Nombre = dato[3],
                     Detalle = dato[4],
                     Precio = int.Parse(dato[5]),
+                    Total=int.Parse(dato[6])
                 };
                 productoTxts.Add(productoTxt);
             }
@@ -87,6 +88,7 @@ namespace DAL
                         Nombre = dato[3],
                         Detalle = dato[4],
                         Precio = int.Parse(dato[5]),
+                        Total= int.Parse(dato[6]),
                     };
                     productoTxts.Add(productoTxt);
                 }

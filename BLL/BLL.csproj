@@ -51,6 +51,7 @@
     <Compile Include="FacturaService.cs" />
     <Compile Include="IdEmpleadoTxtConsultaResponse.cs" />
     <Compile Include="IdEmpleadoTxtService.cs" />
+    <Compile Include="LicenciaService.cs" />
     <Compile Include="NeveraService.cs" />
     <Compile Include="ProductoService.cs" />
     <Compile Include="ProductoFacturaTxtConsultaResponse.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RutasTxtConsultaResponse.cs" />
     <Compile Include="RutasTxtService.cs" />
+    <Compile Include="SoftwareService.cs" />
     <Compile Include="VitrinaService.cs" />
   </ItemGroup>
   <ItemGroup>

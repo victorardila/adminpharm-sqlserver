@@ -8,28 +8,29 @@ using DAL;
 
 namespace BLL
 {
-    public class ClienteService
+    public class SoftwareService
     {
         private readonly ConnectionManager conexion;
-        private readonly ClienteRepository repositorio;
-        public ClienteService(string connectionString)
+        private readonly SoftwareRepository repositorio;
+        public SoftwareService(string connectionString)
         {
             conexion = new ConnectionManager(connectionString);
-            repositorio = new ClienteRepository(conexion);
+            repositorio = new SoftwareRepository(conexion);
         }
-        public string Guardar(Cliente cliente)
+        public string Guardar(Software software)
         {
             try
             {
-                cliente.GenerarCodigoCliente();
-                cliente.CalcularEdad();
+                software.ObtenerFechaDeActivacion();
+                software.ObtenerFechaDeCaducidad();
+                software.ValidarEStadoLicencia();
                 conexion.Open();
-                if (repositorio.BuscarPorIdentificacion(cliente.Identificacion) == null)
+                if (repositorio.BuscarPorNombreDeSoftware(software.NombreDeSoftware) == null)
                 {
-                    repositorio.Guardar(cliente);
-                    return $"Cliente registrado correctamente";
+                    repositorio.Guardar(software);
+                    return $"Software registrado correctamente";
                 }
-                return $"Esta id de cliente ya existe";
+                return $"Esta id de software ya existe";
             }
             catch (Exception e)
             {
@@ -37,17 +38,17 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
-        public ConsultaClienteRespuesta ConsultarTodos()
+        public ConsultaSoftwareRespuesta ConsultarTodos()
         {
-            ConsultaClienteRespuesta respuesta = new ConsultaClienteRespuesta();
+            ConsultaSoftwareRespuesta respuesta = new ConsultaSoftwareRespuesta();
             try
             {
 
                 conexion.Open();
-                respuesta.Clientes = repositorio.ConsultarTodos();
+                respuesta.Softwares = repositorio.ConsultarTodos();
                 conexion.Close();
                 respuesta.Error = false;
-                respuesta.Mensaje = (respuesta.Clientes.Count > 0) ? "Se consultan los Datos" : "No hay datos para consultar";
+                respuesta.Mensaje = (respuesta.Softwares.Count > 0) ? "Se consultan los Datos" : "No hay datos para consultar";
                 return respuesta;
             }
             catch (Exception e)
@@ -60,16 +61,16 @@ namespace BLL
 
         }
 
-        public ConsultaClienteRespuesta BuscarPorSexo(string sexo)
+        public BusquedaSoftwareRespuesta BuscarPorNombreDeSoftware(string nombre)
         {
-            ConsultaClienteRespuesta respuesta = new ConsultaClienteRespuesta();
+            BusquedaSoftwareRespuesta respuesta = new BusquedaSoftwareRespuesta();
             try
             {
 
                 conexion.Open();
-                respuesta.Clientes = repositorio.BuscarPorSexo(sexo);
+                respuesta.Software = repositorio.BuscarPorNombreDeSoftware(nombre);
                 conexion.Close();
-                respuesta.Mensaje = (respuesta.Clientes != null) ? "Se consulto el sexo buscado" : "el sexo consultado no existe";
+                respuesta.Mensaje = (respuesta.Software != null) ? "Se consulto el sexo buscado" : "el sexo consultado no existe";
                 respuesta.Error = false;
                 return respuesta;
             }
@@ -81,16 +82,16 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
-        public BusquedaClienteRespuesta BuscarPorIdentificacion(string identificacion)
+        public ConsultaSoftwareRespuesta ConsultarPorNombreDeSoftware(string nombre)
         {
-            BusquedaClienteRespuesta respuesta = new BusquedaClienteRespuesta();
+            ConsultaSoftwareRespuesta respuesta = new ConsultaSoftwareRespuesta();
             try
             {
 
                 conexion.Open();
-                respuesta.Cliente = repositorio.BuscarPorIdentificacion(identificacion);
+                respuesta.Softwares = repositorio.ConsultarPorNombreDeSoftware(nombre);
                 conexion.Close();
-                respuesta.Mensaje = (respuesta.Cliente != null) ? "Se encontró la id de cliente buscado" : "la id de cliente buscada no existe";
+                respuesta.Mensaje = (respuesta.Softwares != null) ? "Se encontró la id de software buscado" : "la id de software buscada no existe";
                 respuesta.Error = false;
                 return respuesta;
             }
@@ -102,19 +103,19 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
-        public string Eliminar(string identificacion)
+        public string Eliminar(string nombre)
         {
             try
             {
                 conexion.Open();
-                var cliente = repositorio.BuscarPorIdentificacion(identificacion);
-                if (cliente != null)
+                var software = repositorio.BuscarPorNombreDeSoftware(nombre);
+                if (software != null)
                 {
-                    repositorio.Eliminar(cliente);
+                    repositorio.Eliminar(software);
                     conexion.Close();
-                    return ($"El registro {cliente.Identificacion} se ha eliminado satisfactoriamente.");
+                    return ($"El registro {software.NombreDeSoftware} se ha eliminado satisfactoriamente.");
                 }
-                return ($"Lo sentimos, {identificacion} no se encuentra registrada.");
+                return ($"Lo sentimos, {nombre} no se encuentra registrada.");
             }
             catch (Exception e)
             {
@@ -124,22 +125,21 @@ namespace BLL
             finally { conexion.Close(); }
 
         }
-        public string Modificar(Cliente clienteNuevo)
+        public string Modificar(Software softwareNuevo)
         {
             try
             {
-                clienteNuevo.GenerarCodigoCliente();
-                clienteNuevo.CalcularEdad();
+                softwareNuevo.ValidarEStadoLicencia();
                 conexion.Open();
-                var cliente = repositorio.BuscarPorIdentificacion(clienteNuevo.Identificacion);
-                if (cliente != null)
+                var software = repositorio.BuscarPorNombreDeSoftware(softwareNuevo.NombreDeSoftware);
+                if (software != null)
                 {
-                    repositorio.Modificar(clienteNuevo);
-                    return ($"El registro de {clienteNuevo.Identificacion} se ha modificado satisfactoriamente.");
+                    repositorio.Modificar(softwareNuevo);
+                    return ($"El registro de {softwareNuevo.NombreDeSoftware} se ha modificado satisfactoriamente.");
                 }
                 else
                 {
-                    return ($"Lo sentimos, el cliente con Id {clienteNuevo.Identificacion} no se encuentra registrada.");
+                    return ($"Lo sentimos, el software con Id {softwareNuevo.NombreDeSoftware} no se encuentra registrada.");
                 }
             }
             catch (Exception e)
@@ -149,9 +149,9 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
-        public ConteoCajaRegistradoraRespuesta Totalizar()
+        public ConteoSoftwareRespuesta Totalizar()
         {
-            ConteoCajaRegistradoraRespuesta respuesta = new ConteoCajaRegistradoraRespuesta();
+            ConteoSoftwareRespuesta respuesta = new ConteoSoftwareRespuesta();
             try
             {
 
@@ -171,9 +171,9 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
-        public ConteoCajaRegistradoraRespuesta TotalizarTipo(string tipo)
+        public ConteoSoftwareRespuesta TotalizarTipo(string tipo)
         {
-            ConteoCajaRegistradoraRespuesta respuesta = new ConteoCajaRegistradoraRespuesta();
+            ConteoSoftwareRespuesta respuesta = new ConteoSoftwareRespuesta();
             try
             {
 
@@ -194,19 +194,19 @@ namespace BLL
             finally { conexion.Close(); }
         }
     }
-    public class ConsultaClienteRespuesta
+    public class ConsultaSoftwareRespuesta
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }
-        public IList<Cliente> Clientes { get; set; }
+        public IList<Software> Softwares { get; set; }
     }
-    public class BusquedaClienteRespuesta
+    public class BusquedaSoftwareRespuesta
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }
-        public Cliente Cliente { get; set; }
+        public Software Software { get; set; }
     }
-    public class ConteoClienteRespuesta
+    public class ConteoSoftwareRespuesta
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }

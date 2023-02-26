@@ -56,7 +56,7 @@ namespace Presentacion
         //Variables Factura
         int productoLeido = 0;
         string id_factura;
-        int secuenciaDeFactura = 0;
+        int secuenciaDeFactura=0;
         DateTime fechaFactura;
         string nombreEmpleado;
         string ciudad;

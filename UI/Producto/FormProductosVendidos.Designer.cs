@@ -34,6 +34,10 @@ namespace Presentacion
             this.panelConsultaDeProductos = new System.Windows.Forms.Panel();
             this.dataGridProductosVendidos = new System.Windows.Forms.DataGridView();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
+            this.labelFechaActual = new System.Windows.Forms.Label();
+            this.labelFiltroFecha = new System.Windows.Forms.Label();
+            this.comboFecha = new System.Windows.Forms.ComboBox();
+            this.labelVentaDia = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
             this.labelAdvertencia = new System.Windows.Forms.Label();
@@ -41,17 +45,14 @@ namespace Presentacion
             this.labelTotalFarmacos = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnLimpiarHistorial = new FontAwesome.Sharp.IconButton();
-            this.labelVentaDia = new System.Windows.Forms.Label();
-            this.comboFecha = new System.Windows.Forms.ComboBox();
-            this.labelFiltroFecha = new System.Windows.Forms.Label();
             this.Deshacer = new System.Windows.Forms.DataGridViewImageColumn();
             this.FechaDeVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Referencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labelFechaActual = new System.Windows.Forms.Label();
+            this.Unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuTop.SuspendLayout();
             this.panelConsultaDeProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosVendidos)).BeginInit();
@@ -107,7 +108,8 @@ namespace Presentacion
             this.Referencia,
             this.Nombre,
             this.Detalle,
-            this.Valor});
+            this.Unidad,
+            this.Total});
             this.dataGridProductosVendidos.Location = new System.Drawing.Point(0, 24);
             this.dataGridProductosVendidos.Name = "dataGridProductosVendidos";
             this.dataGridProductosVendidos.RowHeadersVisible = false;
@@ -128,6 +130,51 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Name = "panelTituloDataGridFarmacos";
             this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(772, 24);
             this.panelTituloDataGridFarmacos.TabIndex = 49;
+            // 
+            // labelFechaActual
+            // 
+            this.labelFechaActual.AutoSize = true;
+            this.labelFechaActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFechaActual.ForeColor = System.Drawing.Color.Green;
+            this.labelFechaActual.Location = new System.Drawing.Point(309, 3);
+            this.labelFechaActual.Name = "labelFechaActual";
+            this.labelFechaActual.Size = new System.Drawing.Size(98, 16);
+            this.labelFechaActual.TabIndex = 55;
+            this.labelFechaActual.Text = "Fecha Actual";
+            // 
+            // labelFiltroFecha
+            // 
+            this.labelFiltroFecha.AutoSize = true;
+            this.labelFiltroFecha.Location = new System.Drawing.Point(578, 4);
+            this.labelFiltroFecha.Name = "labelFiltroFecha";
+            this.labelFiltroFecha.Size = new System.Drawing.Size(65, 13);
+            this.labelFiltroFecha.TabIndex = 54;
+            this.labelFiltroFecha.Text = "Filtro Fecha:";
+            // 
+            // comboFecha
+            // 
+            this.comboFecha.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboFecha.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboFecha.FormattingEnabled = true;
+            this.comboFecha.Items.AddRange(new object[] {
+            "Todos"});
+            this.comboFecha.Location = new System.Drawing.Point(646, 0);
+            this.comboFecha.Name = "comboFecha";
+            this.comboFecha.Size = new System.Drawing.Size(121, 21);
+            this.comboFecha.TabIndex = 53;
+            this.comboFecha.Text = "Todos";
+            this.comboFecha.SelectedIndexChanged += new System.EventHandler(this.comboFecha_SelectedIndexChanged);
+            // 
+            // labelVentaDia
+            // 
+            this.labelVentaDia.AutoSize = true;
+            this.labelVentaDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVentaDia.ForeColor = System.Drawing.Color.Green;
+            this.labelVentaDia.Location = new System.Drawing.Point(161, 4);
+            this.labelVentaDia.Name = "labelVentaDia";
+            this.labelVentaDia.Size = new System.Drawing.Size(14, 16);
+            this.labelVentaDia.TabIndex = 52;
+            this.labelVentaDia.Text = "*";
             // 
             // label4
             // 
@@ -209,40 +256,6 @@ namespace Presentacion
             this.btnLimpiarHistorial.UseVisualStyleBackColor = false;
             this.btnLimpiarHistorial.Click += new System.EventHandler(this.btnLimpiarHistorial_Click);
             // 
-            // labelVentaDia
-            // 
-            this.labelVentaDia.AutoSize = true;
-            this.labelVentaDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVentaDia.ForeColor = System.Drawing.Color.Green;
-            this.labelVentaDia.Location = new System.Drawing.Point(161, 4);
-            this.labelVentaDia.Name = "labelVentaDia";
-            this.labelVentaDia.Size = new System.Drawing.Size(14, 16);
-            this.labelVentaDia.TabIndex = 52;
-            this.labelVentaDia.Text = "*";
-            // 
-            // comboFecha
-            // 
-            this.comboFecha.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboFecha.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboFecha.FormattingEnabled = true;
-            this.comboFecha.Items.AddRange(new object[] {
-            "Todos"});
-            this.comboFecha.Location = new System.Drawing.Point(646, 0);
-            this.comboFecha.Name = "comboFecha";
-            this.comboFecha.Size = new System.Drawing.Size(121, 21);
-            this.comboFecha.TabIndex = 53;
-            this.comboFecha.Text = "Todos";
-            this.comboFecha.SelectedIndexChanged += new System.EventHandler(this.comboFecha_SelectedIndexChanged);
-            // 
-            // labelFiltroFecha
-            // 
-            this.labelFiltroFecha.AutoSize = true;
-            this.labelFiltroFecha.Location = new System.Drawing.Point(578, 4);
-            this.labelFiltroFecha.Name = "labelFiltroFecha";
-            this.labelFiltroFecha.Size = new System.Drawing.Size(65, 13);
-            this.labelFiltroFecha.TabIndex = 54;
-            this.labelFiltroFecha.Text = "Filtro Fecha:";
-            // 
             // Deshacer
             // 
             this.Deshacer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -262,7 +275,7 @@ namespace Presentacion
             // 
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
-            this.Cantidad.Width = 80;
+            this.Cantidad.Width = 50;
             // 
             // Referencia
             // 
@@ -282,21 +295,16 @@ namespace Presentacion
             this.Detalle.Name = "Detalle";
             this.Detalle.Width = 150;
             // 
-            // Valor
+            // Unidad
             // 
-            this.Valor.HeaderText = "Valor";
-            this.Valor.Name = "Valor";
+            this.Unidad.HeaderText = "Unidad";
+            this.Unidad.Name = "Unidad";
+            this.Unidad.Width = 80;
             // 
-            // labelFechaActual
+            // Total
             // 
-            this.labelFechaActual.AutoSize = true;
-            this.labelFechaActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFechaActual.ForeColor = System.Drawing.Color.Green;
-            this.labelFechaActual.Location = new System.Drawing.Point(309, 3);
-            this.labelFechaActual.Name = "labelFechaActual";
-            this.labelFechaActual.Size = new System.Drawing.Size(98, 16);
-            this.labelFechaActual.TabIndex = 55;
-            this.labelFechaActual.Text = "Fecha Actual";
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
             // 
             // FormProductosVendidos
             // 
@@ -340,13 +348,14 @@ namespace Presentacion
         private System.Windows.Forms.Label labelVentaDia;
         private System.Windows.Forms.ComboBox comboFecha;
         private System.Windows.Forms.Label labelFiltroFecha;
+        private System.Windows.Forms.Label labelFechaActual;
         private System.Windows.Forms.DataGridViewImageColumn Deshacer;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaDeVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Referencia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
-        private System.Windows.Forms.Label labelFechaActual;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Unidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
     }
 }
