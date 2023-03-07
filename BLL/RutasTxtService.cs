@@ -66,6 +66,18 @@ namespace BLL
             }
 
         }
+        public string ModificarRutasTxt(RutasTxt rutasTxt, string referencia)
+        {
+            try
+            {
+                rutasTxtRepository.ModificarRutasTxt(rutasTxt, referencia);
+                return "Producto Modificado Satisfactoriamente";
+            }
+            catch (Exception e)
+            {
+                return "Error al Modificar:" + e.Message;
+            }
+        }
         public string ModificarFacturaCierreDeCajas(RutasTxt rutasTxt, string referencia)
         {
             try

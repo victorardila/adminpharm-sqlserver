@@ -69,7 +69,7 @@ namespace Presentacion
         {
             if (textCadenaConexion.Text != "")
             {
-                primeraCadena = "        <add name=" + '"' + "conexion" + '"' + " connectionString=" + '"';
+                primeraCadena = "    <add name=" + '"' + "conexion" + '"' + " connectionString=" + '"';
                 segundaCadenaModificada = "Server=" + newServer + ";Database=AdminPharm;Trusted_Connection = True; MultipleActiveResultSets = true" + '"' + " />";
                 segundaCadenaOriginal = Server + '"' + " />";
 

@@ -22,7 +22,7 @@ namespace DAL
             escritor.Close();
             file.Close();
         }
-        public void Modificar(CadenaConexionXML cadenaConexion, string newServer)
+        public void Modificar(CadenaConexionXML cadenaConexion, string oldServer)
         {
             List<CadenaConexionXML> cadenaConexions = new List<CadenaConexionXML>();
             cadenaConexions = Consultar();
@@ -30,7 +30,7 @@ namespace DAL
             file.Close();
             foreach (var item in cadenaConexions)
             {
-                if (!EsEncontrado(item.Cadena, newServer))
+                if (!EsEncontrado(item.Cadena, oldServer))
                 {
                     Guardar(item);
                 }
@@ -51,7 +51,7 @@ namespace DAL
                 string[] dato = linea.Split('>');
                 CadenaConexionXML cadenaConexion = new CadenaConexionXML()
                 {
-                    Cadena = dato[0]+">",
+                    Cadena = dato[0] + ">",
                 };
                 cadenaConexions.Add(cadenaConexion);
             }

@@ -114,7 +114,28 @@ namespace Entity
         }
         public void calcularPrecioDeVenta()
         {
-            PrecioDeVenta = ValorPorUnidad;
+            if (ValorPorUnidad != 0)
+            {
+                PrecioDeVenta = ValorPorUnidad;
+            }
+            else
+            {
+                if (ValorPorBlister != 0)
+                {
+                    PrecioDeVenta = ValorPorBlister;
+                }
+                else
+                {
+                    if (ValorPorPaquete != 0)
+                    {
+                        PrecioDeVenta = ValorPorPaquete;
+                    }
+                    else
+                    {
+                        PrecioDeVenta = 0;
+                    }
+                }
+            }
         }
         public void calcularGanancia()
         {

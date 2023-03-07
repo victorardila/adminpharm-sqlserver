@@ -102,6 +102,24 @@ namespace DAL
                 }
             }
         }
+        public void ModificarRutasTxt(RutasTxt rutasTxt, string referencia)
+        {
+            List<RutasTxt> rutasTxts = new List<RutasTxt>();
+            rutasTxts = Consultar();
+            FileStream file = new FileStream(ruta, FileMode.Create);
+            file.Close();
+            foreach (var item in rutasTxts)
+            {
+                if (!EsEncontrado(item.Referencia.ToString(), referencia))
+                {
+                    Guardar(item);
+                }
+                else
+                {
+                    Guardar(rutasTxt);
+                }
+            }
+        }
         public void ModificarFacturaDeVentas(RutasTxt rutasTxt, string referencia)
         {
             List<RutasTxt> rutasTxts = new List<RutasTxt>();

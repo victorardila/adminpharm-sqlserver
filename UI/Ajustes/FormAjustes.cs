@@ -85,6 +85,36 @@ namespace Presentacion
             textDireccion.Text = "";
             textTelefono.Text = "";
         }
+        private void ModificarCarpetasRaiz(RutasTxtService rutasTxtService)
+        {
+            RutasTxtConsultaResponse rutasTxtConsultaResponse = rutasTxtService.Consultar();
+            if (rutasTxtConsultaResponse.RutasTxts.Count > 0)
+            {
+                foreach (var item in rutasTxtConsultaResponse.RutasTxts)
+                {
+                    string referencia = item.Referencia.ToString();                    
+                    rutasTxt.Referencia = item.Referencia;
+                    rutasTxt.RutaCierreDeCaja = textRutaCierreDeCaja.Text;
+                    rutasTxt.RutaFacturasVenta = textRutaFacturaVentas.Text;
+                    rutasTxt.RutaProductosVendidos = textRutaVendido.Text;
+                    rutasTxtService.ModificarRutasTxt(rutasTxt, referencia);
+                }
+            }
+            else
+            {
+                if (rutasTxtConsultaResponse.RutasTxts.Count == 0)
+                {
+                    RutaCierreDeCaja = textRutaCierreDeCaja.Text;
+                    RutaFacturasVenta = textRutaFacturaVentas.Text;
+                    RutaProductosVendidos = textRutaVendido.Text;
+                    rutasTxt.Referencia = 1;
+                    rutasTxt.RutaCierreDeCaja = RutaCierreDeCaja;
+                    rutasTxt.RutaFacturasVenta = RutaFacturasVenta;
+                    rutasTxt.RutaProductosVendidos = RutaProductosVendidos;
+                    rutasTxtService.Guardar(rutasTxt);
+                }
+            }
+        }
         private void EstablecerCarpetasRaiz(RutasTxtService rutasTxtService)
         {
             RutasTxtConsultaResponse rutasTxtConsultaResponse = rutasTxtService.Consultar();
@@ -158,7 +188,7 @@ namespace Presentacion
                 MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 BuscarPorId();
                 ModificarCadenaConexion();
-                EstablecerCarpetasRaiz(rutasTxtService);
+                ModificarCarpetasRaiz(rutasTxtService);
             }
         }
 

@@ -334,8 +334,28 @@ namespace Presentacion
                     respuesta = productoService.BuscarPorReferencia(referencia);
                     if (respuesta.Producto != null)
                     {
-                        string mensaje = "No puede modificar la referencia de un producto";
+                        Producto producto = new Producto();
+                        producto.Referencia = respuesta.Producto.Referencia;
+                        producto.Cantidad = int.Parse(textCantidad.Text);
+                        producto.Nombre = textNombreFarmaceutico.Text;
+                        producto.Detalle = textDetalle.Text;
+                        producto.FechaDeRegistro = respuesta.Producto.FechaDeRegistro;
+                        producto.FechaDeVencimiento = respuesta.Producto.FechaDeVencimiento;
+                        producto.Lote = respuesta.Producto.Lote;
+                        producto.Laboratorio = comboLaboratorio.Text;
+                        producto.Estado = respuesta.Producto.Estado;
+                        producto.Tipo = respuesta.Producto.Tipo;
+                        producto.Via = respuesta.Producto.Via;
+                        producto.ValorPorUnidad = int.Parse(textPrecioUnidad.Text);
+                        producto.ValorPorBlister = int.Parse(textPrecioBlister.Text);
+                        producto.ValorPorPaquete = int.Parse(textPrecioCaja.Text);
+                        producto.PorcentajeDeVenta = respuesta.Producto.PorcentajeDeVenta;
+                        producto.PrecioDeNegocio = respuesta.Producto.PrecioDeNegocio;
+                        producto.PrecioDeVenta = respuesta.Producto.GananciaPorProducto;
+                        producto.Ubicacion = comboUbicacion.Text;
+                        string mensaje = productoService.Modificar(producto);
                         MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        this.Close();
                     }
                     {
                         if (respuesta.Producto == null)

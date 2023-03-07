@@ -171,13 +171,13 @@ namespace Presentacion
             if (respuesta.Producto != null)
             {
                 var productos = new List<Producto> { respuesta.Producto };
+                referenciaProducto = respuesta.Producto.Referencia;
                 DateTime fechaActual = DateTime.Now;
                 fechaDeVenta = fechaActual.ToString("dd/MM/yyyy");
-                referenciaProducto = respuesta.Producto.Referencia;
                 nombreProducto= respuesta.Producto.Nombre;
                 detalleProducto= respuesta.Producto.Detalle;
                 precioProducto= respuesta.Producto.PrecioDeVenta;
-                totalProducto = (cantidadProducto * precioProducto);
+                totalProducto = int.Parse(textTotalFacturaGenerada.Text);
                 ProductoVendidoTxt productoVendidoTxt = new ProductoVendidoTxt(fechaDeVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto, totalProducto);
                 string mensaje = productoVendidoTxtService.Guardar(productoVendidoTxt, rutasVendidos);
             }
@@ -198,7 +198,7 @@ namespace Presentacion
                         if (i == 2)
                         {
                             referencias[i] = Convert.ToString(fila.Cells[i].Value);
-                            string referencia = referencias[i];
+                            referencia = referencias[i];
                             MapearProductosVendidos(referencia);
                             break;
                         }
