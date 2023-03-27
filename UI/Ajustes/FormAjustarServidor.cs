@@ -81,9 +81,7 @@ namespace Presentacion
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            FormInicioSesion login = new FormInicioSesion();
-            login.Show();
-            this.Hide();
+            Application.Exit();
         }
 
         private void btnMinimizar_Click(object sender, EventArgs e)

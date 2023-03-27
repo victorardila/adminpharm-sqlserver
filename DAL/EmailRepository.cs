@@ -8,46 +8,48 @@ using System.IO;
 
 namespace DAL
 {
-    public class IdEmpleadoTxtRepository
+    public class EmailRepository
     {
-        private string ruta = @"IdEmpleadoSesion.config";
-        public void Guardar(IdEmpleadoTxt idEmpleadoTxt)
+        private string ruta = @"SesionBackup.config";
+        public void Guardar(Email Email)
         {
             FileStream file = new FileStream(ruta, FileMode.Append);
             StreamWriter escritor = new StreamWriter(file);
-            escritor.WriteLine($"{idEmpleadoTxt.Identificacion}");
+            escritor.WriteLine($"{Email.CorreoElectronicoOrigen};{Email.CorreoElectronicoDestino};{Email.Contraseña}");
             escritor.Close();
             file.Close();
         }
-        public List<IdEmpleadoTxt> Consultar()
+        public List<Email> Consultar()
         {
-            List<IdEmpleadoTxt> idEmpleadoTxts = new List<IdEmpleadoTxt>();
+            List<Email> Emails = new List<Email>();
             FileStream file = new FileStream(ruta, FileMode.OpenOrCreate, FileAccess.Read);
             StreamReader lector = new StreamReader(ruta);
             var linea = "";
             while ((linea = lector.ReadLine()) != null)
             {
                 string[] dato = linea.Split(';');
-                IdEmpleadoTxt idEmpleadoTxt = new IdEmpleadoTxt()
+                Email Email = new Email()
                 {
-                    Identificacion = dato[0],
+                    CorreoElectronicoOrigen = dato[0],
+                    CorreoElectronicoDestino = dato[1],
+                    Contraseña = dato[2],
                 };
-                idEmpleadoTxts.Add(idEmpleadoTxt);
+                Emails.Add(Email);
             }
             lector.Close();
             file.Close();
-            return idEmpleadoTxts;
+            return Emails;
         }
-        public bool FiltroIdentificaicon(string referencia)
+        public bool FiltroCorreo(string correo)
         {
-            List<IdEmpleadoTxt> idEmpleadoTxts = new List<IdEmpleadoTxt>();
+            List<Email> Emails = new List<Email>();
             FileStream file = new FileStream(ruta, FileMode.OpenOrCreate, FileAccess.Read);
             StreamReader lector = new StreamReader(ruta);
             var linea = "";
             while ((linea = lector.ReadLine()) != null)
             {
                 string[] dato = linea.Split(';');
-                if (dato[1].Equals(referencia))
+                if (dato[1].Equals(correo))
                 {
                     lector.Close();
                     file.Close();
@@ -58,25 +60,25 @@ namespace DAL
             file.Close();
             return false;
         }
-        private bool EsEncontrado(string referenciaRegistrada, string referenciaBuscada)
+        private bool EsEncontrado(string correoRegistrado, string correoBuscado)
         {
-            return referenciaRegistrada == referenciaBuscada;
+            return correoRegistrado == correoBuscado;
         }
-        public void Modificar(IdEmpleadoTxt idEmpleadoTxt, string referencia)
+        public void Modificar(Email Email, string referencia)
         {
-            List<IdEmpleadoTxt> idEmpleadoTxts = new List<IdEmpleadoTxt>();
-            idEmpleadoTxts = Consultar();
+            List<Email> Emails = new List<Email>();
+            Emails = Consultar();
             FileStream file = new FileStream(ruta, FileMode.Create);
             file.Close();
-            foreach (var item in idEmpleadoTxts)
+            foreach (var item in Emails)
             {
-                if (!EsEncontrado(item.Identificacion, referencia))
+                if (!EsEncontrado(item.CorreoElectronicoOrigen, referencia))
                 {
                     Guardar(item);
                 }
                 else
                 {
-                    Guardar(idEmpleadoTxt);
+                    Guardar(Email);
                 }
             }
         }
@@ -84,15 +86,15 @@ namespace DAL
         {
             File.Delete(ruta);
         }
-        public void Eliminar(string referencia)
+        public void Eliminar(string correo)
         {
-            List<IdEmpleadoTxt> idEmpleadoTxts = Consultar();
+            List<Email> Emails = Consultar();
             FileStream file = new FileStream(ruta, FileMode.Create);
             file.Close();
 
-            foreach (var item in idEmpleadoTxts)
+            foreach (var item in Emails)
             {
-                if (!item.Identificacion.Equals(referencia))
+                if (!item.CorreoElectronicoOrigen.Equals(correo))
                 {
                     Guardar(item);
                 }

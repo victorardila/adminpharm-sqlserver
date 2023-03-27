@@ -13,6 +13,7 @@ using Entity;
 //se importa la libreria para arrastrar formulario
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Presentacion
 {
@@ -44,6 +45,7 @@ namespace Presentacion
         {
             Application.Exit();
         }
+
         public void VerificarEstadoDeLicencia()
         {
             ConsultaSoftwareRespuesta respuesta = new ConsultaSoftwareRespuesta();
@@ -181,6 +183,7 @@ namespace Presentacion
         }
         private void UbicacionesPorDefault()
         {
+
             linkLabelRegistrarUsuario.Location = linkLabelRestaurarContraseña.Location;
             linkLabelRestaurarContraseña.Location = iconAdvertencia.Location;
         }

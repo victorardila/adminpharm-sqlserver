@@ -5,42 +5,44 @@ using System.Text;
 using System.Threading.Tasks;
 using Entity;
 using System.IO;
-
 namespace DAL
 {
-    public class IdEmpleadoTxtRepository
+    public class ArchivoRespaldoRepository
     {
-        private string ruta = @"IdEmpleadoSesion.config";
-        public void Guardar(IdEmpleadoTxt idEmpleadoTxt)
+        private DateTime fechaActual = DateTime.Now;
+        private string fecha { get; set; }
+        private string ruta { get; set; }
+
+        public void Guardar(ArchivoRespaldo archivoRespaldo)
         {
             FileStream file = new FileStream(ruta, FileMode.Append);
             StreamWriter escritor = new StreamWriter(file);
-            escritor.WriteLine($"{idEmpleadoTxt.Identificacion}");
+            escritor.WriteLine($"{archivoRespaldo.NombreDeArchivo}");
             escritor.Close();
             file.Close();
         }
-        public List<IdEmpleadoTxt> Consultar()
+        public List<ArchivoRespaldo> Consultar()
         {
-            List<IdEmpleadoTxt> idEmpleadoTxts = new List<IdEmpleadoTxt>();
+            List<ArchivoRespaldo> archivoRespaldos = new List<ArchivoRespaldo>();
             FileStream file = new FileStream(ruta, FileMode.OpenOrCreate, FileAccess.Read);
             StreamReader lector = new StreamReader(ruta);
             var linea = "";
             while ((linea = lector.ReadLine()) != null)
             {
                 string[] dato = linea.Split(';');
-                IdEmpleadoTxt idEmpleadoTxt = new IdEmpleadoTxt()
+                ArchivoRespaldo archivoRespaldo = new ArchivoRespaldo()
                 {
-                    Identificacion = dato[0],
+                    NombreDeArchivo = dato[0],
                 };
-                idEmpleadoTxts.Add(idEmpleadoTxt);
+                archivoRespaldos.Add(archivoRespaldo);
             }
             lector.Close();
             file.Close();
-            return idEmpleadoTxts;
+            return archivoRespaldos;
         }
         public bool FiltroIdentificaicon(string referencia)
         {
-            List<IdEmpleadoTxt> idEmpleadoTxts = new List<IdEmpleadoTxt>();
+            List<ArchivoRespaldo> archivoRespaldos = new List<ArchivoRespaldo>();
             FileStream file = new FileStream(ruta, FileMode.OpenOrCreate, FileAccess.Read);
             StreamReader lector = new StreamReader(ruta);
             var linea = "";
@@ -62,37 +64,39 @@ namespace DAL
         {
             return referenciaRegistrada == referenciaBuscada;
         }
-        public void Modificar(IdEmpleadoTxt idEmpleadoTxt, string referencia)
+        public void Modificar(ArchivoRespaldo archivoRespaldo, string referencia)
         {
-            List<IdEmpleadoTxt> idEmpleadoTxts = new List<IdEmpleadoTxt>();
-            idEmpleadoTxts = Consultar();
+            List<ArchivoRespaldo> archivoRespaldos = new List<ArchivoRespaldo>();
+            archivoRespaldos = Consultar();
             FileStream file = new FileStream(ruta, FileMode.Create);
             file.Close();
-            foreach (var item in idEmpleadoTxts)
+            foreach (var item in archivoRespaldos)
             {
-                if (!EsEncontrado(item.Identificacion, referencia))
+                if (!EsEncontrado(item.NombreDeArchivo, referencia))
                 {
                     Guardar(item);
                 }
                 else
                 {
-                    Guardar(idEmpleadoTxt);
+                    Guardar(archivoRespaldo);
                 }
             }
         }
         public void EliminarTodo()
         {
+            fecha = fechaActual.ToString("dd-MM-yyyy");
+            ruta = @"BackupDB " + fecha + ".xlsx";
             File.Delete(ruta);
         }
         public void Eliminar(string referencia)
         {
-            List<IdEmpleadoTxt> idEmpleadoTxts = Consultar();
+            List<ArchivoRespaldo> archivoRespaldos = Consultar();
             FileStream file = new FileStream(ruta, FileMode.Create);
             file.Close();
 
-            foreach (var item in idEmpleadoTxts)
+            foreach (var item in archivoRespaldos)
             {
-                if (!item.Identificacion.Equals(referencia))
+                if (!item.NombreDeArchivo.Equals(referencia))
                 {
                     Guardar(item);
                 }

@@ -42,6 +42,35 @@ namespace DAL
             file.Close();
             return productoTxts;
         }
+        public ProductoFacturaTxt FiltroPorProducto(string referencia)
+        {
+            List<ProductoFacturaTxt> productoTxts = new List<ProductoFacturaTxt>();
+            FileStream file = new FileStream(ruta, FileMode.OpenOrCreate, FileAccess.Read);
+            StreamReader lector = new StreamReader(ruta);
+            var linea = "";
+            while ((linea = lector.ReadLine()) != null)
+            {
+                string[] dato = linea.Split(';');
+                if (dato[1].Equals(referencia))
+                {
+                    dato = linea.Split(';');
+                    ProductoFacturaTxt productoTxt = new ProductoFacturaTxt()
+                    {
+                        Cantidad = int.Parse(dato[0]),
+                        Referencia = dato[1],
+                        Nombre = dato[2],
+                        Detalle = dato[3],
+                        Precio = int.Parse(dato[4]),
+                    };
+                    lector.Close();
+                    file.Close();
+                    return productoTxt;
+                }
+            }
+            lector.Close();
+            file.Close();
+            return null;
+        }
         public bool FiltroIdentificaicon(string referencia)
         {
             List<ProductoFacturaTxt> productoTxts = new List<ProductoFacturaTxt>();
@@ -93,7 +122,6 @@ namespace DAL
             List<ProductoFacturaTxt> productoTxts = Consultar();
             FileStream file = new FileStream(ruta, FileMode.Create);
             file.Close();
-
             foreach (var item in productoTxts)
             {
                 if (!item.Referencia.Equals(referencia))

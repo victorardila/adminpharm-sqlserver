@@ -67,6 +67,8 @@ namespace Presentacion
             this.Vencido = new System.Windows.Forms.DataGridViewImageColumn();
             this.CantidadVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelSubDataGridFarmacos = new System.Windows.Forms.Panel();
+            this.labelExportar = new System.Windows.Forms.Label();
+            this.btnRespaldarInventario = new FontAwesome.Sharp.IconButton();
             this.textVencido = new System.Windows.Forms.TextBox();
             this.labelTotalVencido = new System.Windows.Forms.Label();
             this.textNumeroPagina = new System.Windows.Forms.TextBox();
@@ -90,8 +92,6 @@ namespace Presentacion
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnRespaldarInventario = new FontAwesome.Sharp.IconButton();
-            this.label9 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -629,7 +629,7 @@ namespace Presentacion
             this.panelSubDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelSubDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelSubDataGridFarmacos.Controls.Add(this.label9);
+            this.panelSubDataGridFarmacos.Controls.Add(this.labelExportar);
             this.panelSubDataGridFarmacos.Controls.Add(this.btnRespaldarInventario);
             this.panelSubDataGridFarmacos.Controls.Add(this.textVencido);
             this.panelSubDataGridFarmacos.Controls.Add(this.labelTotalVencido);
@@ -648,12 +648,38 @@ namespace Presentacion
             this.panelSubDataGridFarmacos.Size = new System.Drawing.Size(763, 24);
             this.panelSubDataGridFarmacos.TabIndex = 51;
             // 
+            // labelExportar
+            // 
+            this.labelExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelExportar.AutoSize = true;
+            this.labelExportar.Location = new System.Drawing.Point(592, 5);
+            this.labelExportar.Name = "labelExportar";
+            this.labelExportar.Size = new System.Drawing.Size(49, 13);
+            this.labelExportar.TabIndex = 52;
+            this.labelExportar.Text = "Exportar:";
+            this.labelExportar.Visible = false;
+            // 
+            // btnRespaldarInventario
+            // 
+            this.btnRespaldarInventario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRespaldarInventario.IconChar = FontAwesome.Sharp.IconChar.FileDownload;
+            this.btnRespaldarInventario.IconColor = System.Drawing.Color.DarkGreen;
+            this.btnRespaldarInventario.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnRespaldarInventario.IconSize = 18;
+            this.btnRespaldarInventario.Location = new System.Drawing.Point(640, 1);
+            this.btnRespaldarInventario.Name = "btnRespaldarInventario";
+            this.btnRespaldarInventario.Size = new System.Drawing.Size(22, 23);
+            this.btnRespaldarInventario.TabIndex = 63;
+            this.btnRespaldarInventario.UseVisualStyleBackColor = true;
+            this.btnRespaldarInventario.Visible = false;
+            this.btnRespaldarInventario.Click += new System.EventHandler(this.btnRespaldarInventario_Click);
+            // 
             // textVencido
             // 
             this.textVencido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textVencido.Location = new System.Drawing.Point(538, 1);
+            this.textVencido.Location = new System.Drawing.Point(515, 1);
             this.textVencido.Name = "textVencido";
-            this.textVencido.Size = new System.Drawing.Size(47, 20);
+            this.textVencido.Size = new System.Drawing.Size(40, 20);
             this.textVencido.TabIndex = 62;
             this.textVencido.Text = "0";
             // 
@@ -661,7 +687,7 @@ namespace Presentacion
             // 
             this.labelTotalVencido.AutoSize = true;
             this.labelTotalVencido.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalVencido.Location = new System.Drawing.Point(449, 5);
+            this.labelTotalVencido.Location = new System.Drawing.Point(427, 4);
             this.labelTotalVencido.Name = "labelTotalVencido";
             this.labelTotalVencido.Size = new System.Drawing.Size(90, 13);
             this.labelTotalVencido.TabIndex = 61;
@@ -729,9 +755,9 @@ namespace Presentacion
             // textCuarentena
             // 
             this.textCuarentena.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textCuarentena.Location = new System.Drawing.Point(398, 1);
+            this.textCuarentena.Location = new System.Drawing.Point(385, 1);
             this.textCuarentena.Name = "textCuarentena";
-            this.textCuarentena.Size = new System.Drawing.Size(47, 20);
+            this.textCuarentena.Size = new System.Drawing.Size(42, 20);
             this.textCuarentena.TabIndex = 53;
             this.textCuarentena.Text = "0";
             // 
@@ -739,7 +765,7 @@ namespace Presentacion
             // 
             this.labelCuarentena.AutoSize = true;
             this.labelCuarentena.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCuarentena.Location = new System.Drawing.Point(291, 5);
+            this.labelCuarentena.Location = new System.Drawing.Point(279, 5);
             this.labelCuarentena.Name = "labelCuarentena";
             this.labelCuarentena.Size = new System.Drawing.Size(109, 13);
             this.labelCuarentena.TabIndex = 52;
@@ -748,9 +774,9 @@ namespace Presentacion
             // textVigentes
             // 
             this.textVigentes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textVigentes.Location = new System.Drawing.Point(244, 1);
+            this.textVigentes.Location = new System.Drawing.Point(238, 1);
             this.textVigentes.Name = "textVigentes";
-            this.textVigentes.Size = new System.Drawing.Size(47, 20);
+            this.textVigentes.Size = new System.Drawing.Size(41, 20);
             this.textVigentes.TabIndex = 50;
             this.textVigentes.Text = "0";
             // 
@@ -758,7 +784,7 @@ namespace Presentacion
             // 
             this.labelVigentes.AutoSize = true;
             this.labelVigentes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVigentes.Location = new System.Drawing.Point(155, 5);
+            this.labelVigentes.Location = new System.Drawing.Point(147, 5);
             this.labelVigentes.Name = "labelVigentes";
             this.labelVigentes.Size = new System.Drawing.Size(93, 13);
             this.labelVigentes.TabIndex = 51;
@@ -767,9 +793,9 @@ namespace Presentacion
             // textTotal
             // 
             this.textTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textTotal.Location = new System.Drawing.Point(108, 1);
+            this.textTotal.Location = new System.Drawing.Point(106, 1);
             this.textTotal.Name = "textTotal";
-            this.textTotal.Size = new System.Drawing.Size(47, 20);
+            this.textTotal.Size = new System.Drawing.Size(41, 20);
             this.textTotal.TabIndex = 49;
             this.textTotal.Text = "0";
             // 
@@ -777,7 +803,7 @@ namespace Presentacion
             // 
             this.labelTotalFarmacos.AutoSize = true;
             this.labelTotalFarmacos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalFarmacos.Location = new System.Drawing.Point(-3, 5);
+            this.labelTotalFarmacos.Location = new System.Drawing.Point(-4, 5);
             this.labelTotalFarmacos.Name = "labelTotalFarmacos";
             this.labelTotalFarmacos.Size = new System.Drawing.Size(111, 13);
             this.labelTotalFarmacos.TabIndex = 49;
@@ -962,31 +988,6 @@ namespace Presentacion
             this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
             this.dataGridViewImageColumn3.Width = 30;
             // 
-            // btnRespaldarInventario
-            // 
-            this.btnRespaldarInventario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRespaldarInventario.IconChar = FontAwesome.Sharp.IconChar.FileDownload;
-            this.btnRespaldarInventario.IconColor = System.Drawing.Color.DarkGreen;
-            this.btnRespaldarInventario.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnRespaldarInventario.IconSize = 18;
-            this.btnRespaldarInventario.Location = new System.Drawing.Point(638, 1);
-            this.btnRespaldarInventario.Name = "btnRespaldarInventario";
-            this.btnRespaldarInventario.Size = new System.Drawing.Size(22, 23);
-            this.btnRespaldarInventario.TabIndex = 63;
-            this.btnRespaldarInventario.UseVisualStyleBackColor = true;
-            this.btnRespaldarInventario.Visible = false;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(590, 5);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(49, 13);
-            this.label9.TabIndex = 52;
-            this.label9.Text = "Exportar:";
-            this.label9.Visible = false;
-            // 
             // FormGestionProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1087,7 +1088,7 @@ namespace Presentacion
         private System.Windows.Forms.Label labelTextFondo;
         private FontAwesome.Sharp.IconPictureBox iconCash;
         private FontAwesome.Sharp.IconButton btnRespaldarInventario;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label labelExportar;
     }
 }
 

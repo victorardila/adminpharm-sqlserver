@@ -165,7 +165,9 @@ namespace Presentacion
             this.dataGridFacturaProductos.RowHeadersVisible = false;
             this.dataGridFacturaProductos.Size = new System.Drawing.Size(617, 140);
             this.dataGridFacturaProductos.TabIndex = 6;
+            this.dataGridFacturaProductos.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridFacturaProductos_CellBeginEdit);
             this.dataGridFacturaProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridFacturaProductos_CellClick);
+            this.dataGridFacturaProductos.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridFacturaProductos_CellEndEdit);
             // 
             // Deshacer
             // 

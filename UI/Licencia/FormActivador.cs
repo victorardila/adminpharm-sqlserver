@@ -27,6 +27,7 @@ namespace Presentacion
         string horaDeExpiracion;
         string fechaDeActivacion;
         string horaDeActivacion;
+        public string ModoDeEntrada;
         public FormActivador()
         {
             softwareService = new SoftwareService(ConfigConnection.ConnectionString);
@@ -35,11 +36,31 @@ namespace Presentacion
             Inicializar();
             ConsultarEstado();
         }
-        private void Inicializar()
+        public void Inicializar()
         {
             btnActivarProducto.Focus();
             labelText1.Text = "Por favor ingrese la clave de licencia para la activacion del producto AdminPharm ";
             labelText2.Text = "sino tiene la clave de licencia, pongase en contacto con su proveedor de servicios";
+            if (ModoDeEntrada == "Principal")
+            {
+                labelText1.Visible = false;
+                labelText2.Visible = false;
+                pictureLlaveLicencia.Visible = false;
+                textLicencia.Visible = false;
+                pictureLicenciaActivada.Visible = true;
+                labelTextLicencia1.Visible = true;
+                labelCantidadDiasLicencia.Visible = true;
+                labelTextLicencia2.Visible = true;
+                labelTituloActivador.Text = "Producto Activo";
+                btnActivarProducto.Text = "Aceptar";
+            }
+            else
+            {
+                if (ModoDeEntrada == "Login")
+                {
+
+                }
+            }
         }
         private Licencia MapearLicencia()
         {
@@ -85,9 +106,9 @@ namespace Presentacion
                 ValidarEstadoLicencia();
                 if (estadoCliente == true)
                 {
-                    this.Visible = false;
-                    Application.Exit();
-                    Application.Run(new FormInicioSesion());
+                    //this.Visible = false;
+                    //Application.Exit();
+                    //Application.Run(new FormInicioSesion());
                 }
             }
         }
@@ -135,7 +156,17 @@ namespace Presentacion
         }
         private void btnActivarProducto_Click(object sender, EventArgs e)
         {
-            ValidarLicencia();
+            if (btnActivarProducto.Text != "Aceptar")
+            {
+                ValidarLicencia();
+            }
+            else
+            {
+                if (btnActivarProducto.Text == "Aceptar")
+                {
+                    this.Close();
+                }
+            }
         }
         private void textLicencia_Enter(object sender, EventArgs e)
         {

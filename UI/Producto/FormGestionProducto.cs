@@ -11,6 +11,10 @@ using System.Data.SqlClient;
 using System.Threading;
 using BLL;
 using Entity;
+using SpreadsheetLight;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
 
 namespace Presentacion
 {
@@ -21,8 +25,11 @@ namespace Presentacion
         EstanteService estanteService;
         VitrinaService vitrinaService;
         NeveraService neveraService;
+        ArchivoRespaldoService archivoRespaldoService = new ArchivoRespaldoService();
         ProductoFacturaTxtService productoTxtService=new ProductoFacturaTxtService();
         ProductoVencidoTxtService productoVencidoTxtService = new ProductoVencidoTxtService();
+        IdEmpleadoTxtService idEmpleadoTxtService = new IdEmpleadoTxtService();
+        EmailService emailService = new EmailService();
         RutasTxtService rutasTxtService = new RutasTxtService();
         List<Producto> productos;
         List<Estante> estantes;
@@ -31,6 +38,8 @@ namespace Presentacion
         List<Nevera> neveras;
         Producto producto;
         CajaRegistradoraService cajaRegistradoraService;
+        public string idEmpleado;
+
         string[] ReferenciasProductosAVender=new string[100];
         int[] CantidadesProductosAVender = new int[100];
         string referencia;
@@ -87,6 +96,12 @@ namespace Presentacion
         }
         private void IniciarOperaciones()
         {
+            var idEmpleado = idEmpleadoTxtService.Consultar();
+            if (idEmpleado.IdEmpleadoTxts[0].Identificacion=="1003377848")
+            {
+                btnRespaldarInventario.Visible = true;
+                labelExportar.Visible = true;
+            }
             ConsultarYLlenarGridDeProductos(paginaSeleccionada);
             Thread calcularEstadoAutomatico = new Thread(CalculoDeEstadoAutomatico);
             calcularEstadoAutomatico.Start();
@@ -974,7 +989,6 @@ namespace Presentacion
             CalculoDeEstadoAutomatico();
             ConsultarYLlenarGridDeProductos(paginaSeleccionada);
         }
-
         private void dataGridFarmacos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             int valor = Convert.ToInt32(dataGridFarmacos.CurrentRow.Cells["CantidadVenta"].Value);
@@ -984,6 +998,143 @@ namespace Presentacion
                 if (dataGridFarmacos.Columns[e.ColumnIndex].Name == "CantidadVenta")
                 {
                     GestionVender(referencia, valor);
+                }
+            }
+        }
+        private void EliminarArchivo()
+        {
+            archivoRespaldoService.EliminarHistorial();
+        }
+        //Cargar Backup al correo
+        private void CargarAlCorreo()
+        {
+            EmailConsultaResponse emailConsultaResponse = emailService.Consultar();
+            if (emailConsultaResponse.Emails.Count > 0)
+            {
+                DateTime fechaActual = DateTime.Now;
+                string fecha = fechaActual.ToString("dd-MM-yyyy");
+                foreach (var item in emailConsultaResponse.Emails)
+                {
+                    String servidor= "smtp.gmail.com";
+                    int puerto = 587;
+                    String user = item.CorreoElectronicoOrigen;
+                    String password = item.Contraseña;
+                    MimeMessage message = new MimeMessage();
+                    message.From.Add(new MailboxAddress("Backup", user));
+                    message.To.Add(new MailboxAddress("Destino", user));
+                    message.Subject = "Backup AdminPharm";
+                    BodyBuilder messageBody = new BodyBuilder();
+                    messageBody.Attachments.Add(@"BackupDB " + fecha + ".xlsx");
+                    messageBody.HtmlBody = "<b></b>";
+                    message.Body = messageBody.ToMessageBody();
+
+                    SmtpClient smtpClient = new SmtpClient();
+                    smtpClient.CheckCertificateRevocation = false;
+
+                    smtpClient.Connect(servidor,puerto, MailKit.Security.SecureSocketOptions.StartTls);
+                    smtpClient.Authenticate(user,password);
+                    
+                    smtpClient.Send(message);
+                    smtpClient.Disconnect(true);
+                }
+            }
+            EliminarArchivo();
+        }
+        //Copia de seguridad
+        private void btnRespaldarInventario_Click(object sender, EventArgs e)
+        {
+            ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
+            EmailConsultaResponse emailConsultaResponse = emailService.Consultar();
+            if (emailConsultaResponse.Emails.Count > 0)
+            {
+                DateTime fechaActual = DateTime.Now;
+                string fecha = fechaActual.ToString("dd-MM-yyyy");
+                SLDocument sl = new SLDocument();
+                int cabezera = 1;
+                sl.RenameWorksheet(SLDocument.DefaultFirstSheetName, "Productos");
+                sl.SetCellValue("A" + cabezera, "Cantidad");
+                sl.SetCellValue("B" + cabezera, "Referencia");
+                sl.SetCellValue("C" + cabezera, "Nombre");
+                sl.SetCellValue("D" + cabezera, "Detalle");
+                sl.SetCellValue("E" + cabezera, "Fecha_De_Registro");
+                sl.SetCellValue("F" + cabezera, "Fecha_De_Vencimiento");
+                sl.SetCellValue("G" + cabezera, "Lote");
+                sl.SetCellValue("H" + cabezera, "Laboratorio");
+                sl.SetCellValue("I" + cabezera, "Estado");
+                sl.SetCellValue("J" + cabezera, "Tipo");
+                sl.SetCellValue("K" + cabezera, "Via");
+                sl.SetCellValue("L" + cabezera, "Unidad");
+                sl.SetCellValue("M" + cabezera, "Blister");
+                sl.SetCellValue("N" + cabezera, "Caja");
+                sl.SetCellValue("O" + cabezera, "Porcentaje_De_Venta");
+                sl.SetCellValue("P" + cabezera, "Precio_De_Negocio");
+                sl.SetCellValue("Q" + cabezera, "Precio_De_Venta");
+                sl.SetCellValue("R" + cabezera, "Ganancia_Por_Producto");
+                sl.SetCellValue("S" + cabezera, "Ubicacion");
+                respuesta = productoService.BuscarPorEstado("Cuarentena");
+                if (respuesta.Productos != null && respuesta.Productos.Count != 0)
+                {
+                    var productos = new List<Producto>();
+                    for (int i = 0; i < respuesta.Productos.Count; i++)
+                    {
+                        productos.Add(respuesta.Productos[i]);
+                    }
+                    respuesta = productoService.BuscarPorEstado("Vigente");
+                    if (respuesta.Productos != null && respuesta.Productos.Count != 0)
+                    {
+                        for (int i = 0; i < respuesta.Productos.Count; i++)
+                        {
+                            productos.Add(respuesta.Productos[i]);
+                        }
+                    }
+                    BusquedaProductoRespuesta respuestaBusqueda = new BusquedaProductoRespuesta();
+                    cabezera = 2;
+                    for (int i = 0; i < productos.Count; i++)
+                    {
+                        var celda = productos[i];
+                        foreach (var j in celda.Referencia)
+                        {
+                            int indice = cabezera;
+                            SLStyle estiloFecha = new SLStyle();
+                            SLStyle estiloEntero = new SLStyle();
+                            estiloFecha.FormatCode = "dd/MM/yyyy";
+                            estiloEntero.FormatCode = "####";
+                            sl.SetColumnStyle(5, 6, estiloFecha);
+                            sl.SetColumnStyle(2, estiloEntero);
+                            respuestaBusqueda = productoService.BuscarPorReferencia(celda.Referencia);
+                            if (respuestaBusqueda.Producto != null)
+                            {
+                                sl.SetCellValue("A" + indice, respuestaBusqueda.Producto.Cantidad);
+                                sl.SetCellValue("B" + indice, respuestaBusqueda.Producto.Referencia);
+                                sl.SetCellValue("C" + indice, respuestaBusqueda.Producto.Nombre);
+                                sl.SetCellValue("D" + indice, respuestaBusqueda.Producto.Detalle);
+                                sl.SetCellValue("E" + indice, respuestaBusqueda.Producto.FechaDeRegistro);
+                                sl.SetCellValue("F" + indice, respuestaBusqueda.Producto.FechaDeVencimiento);
+                                sl.SetCellValue("G" + indice, respuestaBusqueda.Producto.Lote);
+                                sl.SetCellValue("H" + indice, respuestaBusqueda.Producto.Laboratorio);
+                                sl.SetCellValue("I" + indice, respuestaBusqueda.Producto.Estado);
+                                sl.SetCellValue("J" + indice, respuestaBusqueda.Producto.Tipo);
+                                sl.SetCellValue("K" + indice, respuestaBusqueda.Producto.Via);
+                                sl.SetCellValue("L" + indice, respuestaBusqueda.Producto.ValorPorUnidad);
+                                sl.SetCellValue("M" + indice, respuestaBusqueda.Producto.ValorPorBlister);
+                                sl.SetCellValue("N" + indice, respuestaBusqueda.Producto.ValorPorPaquete);
+                                sl.SetCellValue("O" + indice, respuestaBusqueda.Producto.PorcentajeDeVenta);
+                                sl.SetCellValue("P" + indice, respuestaBusqueda.Producto.PrecioDeNegocio);
+                                sl.SetCellValue("Q" + indice, respuestaBusqueda.Producto.PrecioDeVenta);
+                                sl.SetCellValue("R" + indice, respuestaBusqueda.Producto.GananciaPorProducto);
+                                sl.SetCellValue("S" + indice, respuestaBusqueda.Producto.Ubicacion);
+                                indice = indice + 1;
+                            }
+                        }
+                        cabezera = cabezera + 1;
+                    }
+                    sl.SaveAs("BackupDB " + fecha + ".xlsx");
+                    CargarAlCorreo();
+                }
+                else
+                {
+                    string mensaje = "Aun no ha dado una correo de guardado para backups";
+                    MessageBox.Show(mensaje, "Registrar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

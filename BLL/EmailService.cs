@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entity;
 using DAL;
+using Entity;
 
 namespace BLL
 {
-    public class ProductoFacturaTxtService
+    public class EmailService
     {
-        private readonly ProductoFacturaTxtRepository productoTxtRepository;
-        public ProductoFacturaTxtService()
+        private readonly EmailRepository EmailRepository;
+        public EmailService()
         {
-            productoTxtRepository = new ProductoFacturaTxtRepository();
+            EmailRepository = new EmailRepository();
         }
 
-        public string Guardar(ProductoFacturaTxt productoTxt)
+        public string Guardar(Email email)
         {
             try
             {
-                productoTxtRepository.Guardar(productoTxt);
+                EmailRepository.Guardar(email);
                 return "Producto en txt registro Satisfactoriamente";
             }
             catch (Exception e)
@@ -28,34 +28,24 @@ namespace BLL
                 return "Error al Guardar:" + e.Message;
             }
         }
-        public ProductoFacturaTxtConsultaResponse Consultar()
-        {
-            try
-            {
-                return new ProductoFacturaTxtConsultaResponse(productoTxtRepository.Consultar());
-            }
-            catch (Exception e)
-            {
-                return new ProductoFacturaTxtConsultaResponse("Error al Guardar:" + e.Message);
-            }
-        }
-        public ProductoFacturaTxt FiltroProducto(string referencia)
-        {
-            try
-            {
-                return (productoTxtRepository.FiltroPorProducto(referencia));
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
 
-        }
-        public bool FiltroReferencia(string referencia)
+        public EmailConsultaResponse Consultar()
         {
             try
             {
-                return (productoTxtRepository.FiltroIdentificaicon(referencia));
+                return new EmailConsultaResponse(EmailRepository.Consultar());
+            }
+            catch (Exception e)
+            {
+                return new EmailConsultaResponse("Error al Guardar:" + e.Message);
+            }
+        }
+
+        public bool FiltroCorreo(string referencia)
+        {
+            try
+            {
+                return (EmailRepository.FiltroCorreo(referencia));
             }
             catch (Exception e)
             {
@@ -63,11 +53,11 @@ namespace BLL
             }
 
         }
-        public string Modificar(ProductoFacturaTxt productoTxt, string referencia)
+        public string ModificarEmail(Email Email, string correo)
         {
             try
             {
-                productoTxtRepository.Modificar(productoTxt, referencia);
+                EmailRepository.Modificar(Email, correo);
                 return "Producto Modificado Satisfactoriamente";
             }
             catch (Exception e)
@@ -79,7 +69,7 @@ namespace BLL
         {
             try
             {
-                productoTxtRepository.Eliminar(referencia);
+                EmailRepository.Eliminar(referencia);
                 return "Producto Eliminada";
             }
             catch (Exception)
@@ -91,7 +81,7 @@ namespace BLL
         {
             try
             {
-                productoTxtRepository.EliminarTodo();
+                EmailRepository.EliminarTodo();
                 return "Productos de factura Eliminados";
             }
             catch (Exception)

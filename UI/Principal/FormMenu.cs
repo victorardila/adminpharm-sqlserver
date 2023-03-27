@@ -31,6 +31,7 @@ namespace Presentacion
         {
             empleadoService = new EmpleadoService(ConfigConnection.ConnectionString);
             InitializeComponent();
+            EliminarIdSesionDeUsuario();
             customizeDesign();
             AbrirFormulario<FormGestionCaja>();
             this.Text = string.Empty;
@@ -75,6 +76,15 @@ namespace Presentacion
         {
             IdEmpleadoTxt idEmpleadoTxt = new IdEmpleadoTxt(idEmpleado);
             string mensaje = idEmpleadoTxtService.Guardar(idEmpleadoTxt);
+            if (idEmpleadoTxt.Identificacion == "1003377848")
+            {
+                labelTiempoLicencia.Visible = true;
+                btnVerLicencia.Visible = true;
+                textTiempoLicencia.Visible = true;
+                labelTheme.Visible = true;
+                btnModeLight.Visible = true;
+                iconThemeSun.Visible = true;
+            }
         }
         private void AbrirSumadorDelSistema()
         {
@@ -399,6 +409,8 @@ namespace Presentacion
         private void btnVerLicencia_Click(object sender, EventArgs e)
         {
             FormActivador formActivador = new FormActivador();
+            formActivador.ModoDeEntrada = "Principal";
+            formActivador.Inicializar();
             formActivador.ShowDialog();
         }
     }

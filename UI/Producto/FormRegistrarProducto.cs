@@ -340,7 +340,7 @@ namespace Presentacion
                         producto.Nombre = textNombreFarmaceutico.Text;
                         producto.Detalle = textDetalle.Text;
                         producto.FechaDeRegistro = respuesta.Producto.FechaDeRegistro;
-                        producto.FechaDeVencimiento = respuesta.Producto.FechaDeVencimiento;
+                        producto.FechaDeVencimiento = dateTimeFechaVencimiento.Value;
                         producto.Lote = respuesta.Producto.Lote;
                         producto.Laboratorio = comboLaboratorio.Text;
                         producto.Estado = respuesta.Producto.Estado;

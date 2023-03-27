@@ -30,7 +30,7 @@ namespace Presentacion
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormActivador));
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelTituloActivador = new System.Windows.Forms.Label();
             this.labelText1 = new System.Windows.Forms.Label();
             this.labelText2 = new System.Windows.Forms.Label();
             this.textLicencia = new System.Windows.Forms.TextBox();
@@ -39,21 +39,24 @@ namespace Presentacion
             this.pictureLicenciaExpirada = new System.Windows.Forms.PictureBox();
             this.pictureLicenciaActivada = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelTextLicencia1 = new System.Windows.Forms.Label();
+            this.labelCantidadDiasLicencia = new System.Windows.Forms.Label();
+            this.labelTextLicencia2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLlaveLicencia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLicenciaExpirada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLicenciaActivada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // labelTituloActivador
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(140, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(225, 24);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Activacion de producto";
+            this.labelTituloActivador.AutoSize = true;
+            this.labelTituloActivador.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTituloActivador.Location = new System.Drawing.Point(140, 38);
+            this.labelTituloActivador.Name = "labelTituloActivador";
+            this.labelTituloActivador.Size = new System.Drawing.Size(225, 24);
+            this.labelTituloActivador.TabIndex = 1;
+            this.labelTituloActivador.Text = "Activacion de producto";
             // 
             // labelText1
             // 
@@ -142,11 +145,47 @@ namespace Presentacion
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // labelTextLicencia1
+            // 
+            this.labelTextLicencia1.AutoSize = true;
+            this.labelTextLicencia1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTextLicencia1.Location = new System.Drawing.Point(19, 125);
+            this.labelTextLicencia1.Name = "labelTextLicencia1";
+            this.labelTextLicencia1.Size = new System.Drawing.Size(115, 24);
+            this.labelTextLicencia1.TabIndex = 9;
+            this.labelTextLicencia1.Text = "Usted tiene";
+            this.labelTextLicencia1.Visible = false;
+            // 
+            // labelCantidadDiasLicencia
+            // 
+            this.labelCantidadDiasLicencia.AutoSize = true;
+            this.labelCantidadDiasLicencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCantidadDiasLicencia.Location = new System.Drawing.Point(128, 126);
+            this.labelCantidadDiasLicencia.Name = "labelCantidadDiasLicencia";
+            this.labelCantidadDiasLicencia.Size = new System.Drawing.Size(43, 24);
+            this.labelCantidadDiasLicencia.TabIndex = 10;
+            this.labelCantidadDiasLicencia.Text = "300";
+            this.labelCantidadDiasLicencia.Visible = false;
+            // 
+            // labelTextLicencia2
+            // 
+            this.labelTextLicencia2.AutoSize = true;
+            this.labelTextLicencia2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTextLicencia2.Location = new System.Drawing.Point(165, 126);
+            this.labelTextLicencia2.Name = "labelTextLicencia2";
+            this.labelTextLicencia2.Size = new System.Drawing.Size(321, 24);
+            this.labelTextLicencia2.TabIndex = 11;
+            this.labelTextLicencia2.Text = "de licencia de producto restantes";
+            this.labelTextLicencia2.Visible = false;
+            // 
             // FormActivador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(504, 224);
+            this.Controls.Add(this.labelTextLicencia2);
+            this.Controls.Add(this.labelCantidadDiasLicencia);
+            this.Controls.Add(this.labelTextLicencia1);
             this.Controls.Add(this.btnActivarProducto);
             this.Controls.Add(this.textLicencia);
             this.Controls.Add(this.pictureLlaveLicencia);
@@ -154,7 +193,7 @@ namespace Presentacion
             this.Controls.Add(this.pictureLicenciaActivada);
             this.Controls.Add(this.labelText2);
             this.Controls.Add(this.labelText1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelTituloActivador);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormActivador";
@@ -169,7 +208,7 @@ namespace Presentacion
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelTituloActivador;
         private System.Windows.Forms.Label labelText1;
         private System.Windows.Forms.Label labelText2;
         private System.Windows.Forms.PictureBox pictureLicenciaActivada;
@@ -178,5 +217,8 @@ namespace Presentacion
         private System.Windows.Forms.TextBox textLicencia;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnActivarProducto;
+        private System.Windows.Forms.Label labelTextLicencia1;
+        private System.Windows.Forms.Label labelCantidadDiasLicencia;
+        private System.Windows.Forms.Label labelTextLicencia2;
     }
 }

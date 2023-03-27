@@ -506,7 +506,7 @@ namespace Presentacion
             e.Graphics.DrawString("NIT: " + nitDrogueria, font, Brushes.Black, new RectangleF(0, y + 40, ancho, 13), stringFormatCenter);
             e.Graphics.DrawString(fraseDistintiva, font, Brushes.Black, new RectangleF(0, y + 53, ancho, 13), stringFormatCenter);
             e.Graphics.DrawString("PBX: " + pbx, font, Brushes.Black, new RectangleF(0, y + 66, ancho, 13), stringFormatCenter);
-            e.Graphics.DrawString("Regimen: " + regimen, font, Brushes.Black, new RectangleF(0, y + 79, ancho, 13), stringFormatCenter);
+            //e.Graphics.DrawString("Regimen: " + regimen, font, Brushes.Black, new RectangleF(0, y + 79, ancho, 13), stringFormatCenter);
             e.Graphics.DrawString("Direccion: " + direccion, font, Brushes.Black, new RectangleF(0, y + 92, ancho, 13), stringFormatCenter);
             e.Graphics.DrawString("Telefono: " + telefono, font, Brushes.Black, new RectangleF(0, y + 105, ancho, 13), stringFormatCenter);
 

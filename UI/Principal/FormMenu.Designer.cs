@@ -64,20 +64,20 @@ namespace Presentacion
             this.labelLogoName = new System.Windows.Forms.Label();
             this.pictureLogo = new System.Windows.Forms.PictureBox();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.textTiempoLicencia = new System.Windows.Forms.TextBox();
+            this.labelTiempoLicencia = new System.Windows.Forms.Label();
+            this.btnVerLicencia = new FontAwesome.Sharp.IconButton();
             this.labelAvsio = new System.Windows.Forms.Label();
             this.labelHeaderRuta = new System.Windows.Forms.Label();
             this.iconThemeSun = new FontAwesome.Sharp.IconPictureBox();
             this.iconThemeMoon = new FontAwesome.Sharp.IconPictureBox();
-            this.labelHeaderTheme = new System.Windows.Forms.Label();
+            this.labelTheme = new System.Windows.Forms.Label();
             this.btnModeLight = new FontAwesome.Sharp.IconPictureBox();
             this.btnModeDark = new FontAwesome.Sharp.IconPictureBox();
             this.panelContenedorInterno = new System.Windows.Forms.Panel();
             this.panelProgressBar = new System.Windows.Forms.Panel();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.pictureProgress = new System.Windows.Forms.PictureBox();
-            this.btnVerLicencia = new FontAwesome.Sharp.IconButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelHeaderbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnWindowMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnWindowRestore)).BeginInit();
@@ -650,14 +650,14 @@ namespace Presentacion
             // 
             // panelHeader
             // 
-            this.panelHeader.Controls.Add(this.textBox1);
-            this.panelHeader.Controls.Add(this.label1);
+            this.panelHeader.Controls.Add(this.textTiempoLicencia);
+            this.panelHeader.Controls.Add(this.labelTiempoLicencia);
             this.panelHeader.Controls.Add(this.btnVerLicencia);
             this.panelHeader.Controls.Add(this.labelAvsio);
             this.panelHeader.Controls.Add(this.labelHeaderRuta);
             this.panelHeader.Controls.Add(this.iconThemeSun);
             this.panelHeader.Controls.Add(this.iconThemeMoon);
-            this.panelHeader.Controls.Add(this.labelHeaderTheme);
+            this.panelHeader.Controls.Add(this.labelTheme);
             this.panelHeader.Controls.Add(this.btnModeLight);
             this.panelHeader.Controls.Add(this.btnModeDark);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -666,6 +666,42 @@ namespace Presentacion
             this.panelHeader.Size = new System.Drawing.Size(794, 25);
             this.panelHeader.TabIndex = 3;
             this.panelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelHeader_MouseDown);
+            // 
+            // textTiempoLicencia
+            // 
+            this.textTiempoLicencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textTiempoLicencia.Location = new System.Drawing.Point(643, 3);
+            this.textTiempoLicencia.Name = "textTiempoLicencia";
+            this.textTiempoLicencia.Size = new System.Drawing.Size(35, 20);
+            this.textTiempoLicencia.TabIndex = 54;
+            this.textTiempoLicencia.Visible = false;
+            // 
+            // labelTiempoLicencia
+            // 
+            this.labelTiempoLicencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTiempoLicencia.AutoSize = true;
+            this.labelTiempoLicencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTiempoLicencia.Location = new System.Drawing.Point(496, 4);
+            this.labelTiempoLicencia.Name = "labelTiempoLicencia";
+            this.labelTiempoLicencia.Size = new System.Drawing.Size(116, 16);
+            this.labelTiempoLicencia.TabIndex = 13;
+            this.labelTiempoLicencia.Text = "Tiempo de uso:";
+            this.labelTiempoLicencia.Visible = false;
+            // 
+            // btnVerLicencia
+            // 
+            this.btnVerLicencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVerLicencia.IconChar = FontAwesome.Sharp.IconChar.FileContract;
+            this.btnVerLicencia.IconColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnVerLicencia.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVerLicencia.IconSize = 20;
+            this.btnVerLicencia.Location = new System.Drawing.Point(611, -1);
+            this.btnVerLicencia.Name = "btnVerLicencia";
+            this.btnVerLicencia.Size = new System.Drawing.Size(32, 26);
+            this.btnVerLicencia.TabIndex = 12;
+            this.btnVerLicencia.UseVisualStyleBackColor = true;
+            this.btnVerLicencia.Visible = false;
+            this.btnVerLicencia.Click += new System.EventHandler(this.btnVerLicencia_Click);
             // 
             // labelAvsio
             // 
@@ -702,6 +738,7 @@ namespace Presentacion
             this.iconThemeSun.Size = new System.Drawing.Size(24, 25);
             this.iconThemeSun.TabIndex = 9;
             this.iconThemeSun.TabStop = false;
+            this.iconThemeSun.Visible = false;
             // 
             // iconThemeMoon
             // 
@@ -718,16 +755,17 @@ namespace Presentacion
             this.iconThemeMoon.TabIndex = 8;
             this.iconThemeMoon.TabStop = false;
             // 
-            // labelHeaderTheme
+            // labelTheme
             // 
-            this.labelHeaderTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelHeaderTheme.AutoSize = true;
-            this.labelHeaderTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHeaderTheme.Location = new System.Drawing.Point(678, 4);
-            this.labelHeaderTheme.Name = "labelHeaderTheme";
-            this.labelHeaderTheme.Size = new System.Drawing.Size(60, 16);
-            this.labelHeaderTheme.TabIndex = 6;
-            this.labelHeaderTheme.Text = "Theme:";
+            this.labelTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTheme.AutoSize = true;
+            this.labelTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTheme.Location = new System.Drawing.Point(678, 4);
+            this.labelTheme.Name = "labelTheme";
+            this.labelTheme.Size = new System.Drawing.Size(60, 16);
+            this.labelTheme.TabIndex = 6;
+            this.labelTheme.Text = "Theme:";
+            this.labelTheme.Visible = false;
             // 
             // btnModeLight
             // 
@@ -743,6 +781,7 @@ namespace Presentacion
             this.btnModeLight.Size = new System.Drawing.Size(24, 25);
             this.btnModeLight.TabIndex = 6;
             this.btnModeLight.TabStop = false;
+            this.btnModeLight.Visible = false;
             this.btnModeLight.Click += new System.EventHandler(this.btnLightMode_Click);
             // 
             // btnModeDark
@@ -798,42 +837,6 @@ namespace Presentacion
             this.pictureProgress.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureProgress.TabIndex = 4;
             this.pictureProgress.TabStop = false;
-            // 
-            // btnVerLicencia
-            // 
-            this.btnVerLicencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVerLicencia.IconChar = FontAwesome.Sharp.IconChar.FileContract;
-            this.btnVerLicencia.IconColor = System.Drawing.Color.DarkGoldenrod;
-            this.btnVerLicencia.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnVerLicencia.IconSize = 20;
-            this.btnVerLicencia.Location = new System.Drawing.Point(611, -1);
-            this.btnVerLicencia.Name = "btnVerLicencia";
-            this.btnVerLicencia.Size = new System.Drawing.Size(32, 26);
-            this.btnVerLicencia.TabIndex = 12;
-            this.btnVerLicencia.UseVisualStyleBackColor = true;
-            this.btnVerLicencia.Visible = false;
-            this.btnVerLicencia.Click += new System.EventHandler(this.btnVerLicencia_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(496, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 16);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Tiempo de uso:";
-            this.label1.Visible = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(643, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(35, 20);
-            this.textBox1.TabIndex = 54;
-            this.textBox1.Visible = false;
             // 
             // FormMenu
             // 
@@ -901,7 +904,7 @@ namespace Presentacion
         private System.Windows.Forms.Panel panelHeader;
         private FontAwesome.Sharp.IconPictureBox iconThemeSun;
         private FontAwesome.Sharp.IconPictureBox iconThemeMoon;
-        private System.Windows.Forms.Label labelHeaderTheme;
+        private System.Windows.Forms.Label labelTheme;
         private FontAwesome.Sharp.IconPictureBox btnModeLight;
         private FontAwesome.Sharp.IconPictureBox btnModeDark;
         private System.Windows.Forms.Panel panelContenedorInterno;
@@ -926,8 +929,8 @@ namespace Presentacion
         private System.Windows.Forms.Panel panelProgressBar;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.PictureBox pictureProgress;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelTiempoLicencia;
         private FontAwesome.Sharp.IconButton btnVerLicencia;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textTiempoLicencia;
     }
 }

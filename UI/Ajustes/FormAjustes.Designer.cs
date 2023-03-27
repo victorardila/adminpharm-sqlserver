@@ -78,11 +78,22 @@ namespace Presentacion
             this.labelTituloAvanzado = new System.Windows.Forms.Label();
             this.textCadenaConexion = new System.Windows.Forms.TextBox();
             this.labelCadenaConexion = new System.Windows.Forms.Label();
+            this.panelTituloDatos = new System.Windows.Forms.Panel();
+            this.labelTituloDatos = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textContraseña = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textCorreo = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnEliminarInfo = new FontAwesome.Sharp.IconButton();
             this.btnModificarInfo = new FontAwesome.Sharp.IconButton();
             this.btnRegistrarInfo = new FontAwesome.Sharp.IconButton();
-            this.panelTituloDatos = new System.Windows.Forms.Panel();
-            this.labelTituloDatos = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfoDrogueria)).BeginInit();
             this.panel1.SuspendLayout();
             this.panelRegistrarDatos.SuspendLayout();
@@ -96,6 +107,9 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.pictureCadenaConexion)).BeginInit();
             this.panelTituloAvanzado.SuspendLayout();
             this.panelTituloDatos.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -148,7 +162,7 @@ namespace Presentacion
             this.dataGridInfoDrogueria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridInfoDrogueria.Location = new System.Drawing.Point(86, 82);
             this.dataGridInfoDrogueria.Name = "dataGridInfoDrogueria";
-            this.dataGridInfoDrogueria.Size = new System.Drawing.Size(630, 67);
+            this.dataGridInfoDrogueria.Size = new System.Drawing.Size(630, 60);
             this.dataGridInfoDrogueria.TabIndex = 78;
             // 
             // labelAdvertencia
@@ -239,7 +253,7 @@ namespace Presentacion
             this.panelRegistrarDatos.Controls.Add(this.textCamaraDeComercio);
             this.panelRegistrarDatos.Controls.Add(this.textNIT);
             this.panelRegistrarDatos.Controls.Add(this.labelCamaraComercio);
-            this.panelRegistrarDatos.Location = new System.Drawing.Point(86, 148);
+            this.panelRegistrarDatos.Location = new System.Drawing.Point(86, 142);
             this.panelRegistrarDatos.Name = "panelRegistrarDatos";
             this.panelRegistrarDatos.Size = new System.Drawing.Size(630, 177);
             this.panelRegistrarDatos.TabIndex = 83;
@@ -365,7 +379,7 @@ namespace Presentacion
             this.panelConfigDeGuardado.Controls.Add(this.labelRutaFacturaVentas);
             this.panelConfigDeGuardado.Controls.Add(this.textRutaCierreDeCaja);
             this.panelConfigDeGuardado.Controls.Add(this.labelRutaCierreCaja);
-            this.panelConfigDeGuardado.Location = new System.Drawing.Point(86, 326);
+            this.panelConfigDeGuardado.Location = new System.Drawing.Point(86, 318);
             this.panelConfigDeGuardado.Name = "panelConfigDeGuardado";
             this.panelConfigDeGuardado.Size = new System.Drawing.Size(629, 172);
             this.panelConfigDeGuardado.TabIndex = 92;
@@ -516,7 +530,7 @@ namespace Presentacion
             this.panelAvanzado.Controls.Add(this.panelTituloAvanzado);
             this.panelAvanzado.Controls.Add(this.textCadenaConexion);
             this.panelAvanzado.Controls.Add(this.labelCadenaConexion);
-            this.panelAvanzado.Location = new System.Drawing.Point(86, 495);
+            this.panelAvanzado.Location = new System.Drawing.Point(86, 565);
             this.panelAvanzado.Name = "panelAvanzado";
             this.panelAvanzado.Size = new System.Drawing.Size(630, 82);
             this.panelAvanzado.TabIndex = 93;
@@ -599,6 +613,131 @@ namespace Presentacion
             this.labelCadenaConexion.TabIndex = 60;
             this.labelCadenaConexion.Text = "Modificar Conexion BD:";
             // 
+            // panelTituloDatos
+            // 
+            this.panelTituloDatos.Controls.Add(this.labelTituloDatos);
+            this.panelTituloDatos.Controls.Add(this.labelAdvertencia);
+            this.panelTituloDatos.Location = new System.Drawing.Point(86, 58);
+            this.panelTituloDatos.Name = "panelTituloDatos";
+            this.panelTituloDatos.Size = new System.Drawing.Size(630, 25);
+            this.panelTituloDatos.TabIndex = 85;
+            // 
+            // labelTituloDatos
+            // 
+            this.labelTituloDatos.AutoSize = true;
+            this.labelTituloDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTituloDatos.Location = new System.Drawing.Point(5, 4);
+            this.labelTituloDatos.Name = "labelTituloDatos";
+            this.labelTituloDatos.Size = new System.Drawing.Size(49, 16);
+            this.labelTituloDatos.TabIndex = 84;
+            this.labelTituloDatos.Text = "Datos";
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.textContraseña);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.textCorreo);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Location = new System.Drawing.Point(85, 484);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(630, 82);
+            this.panel2.TabIndex = 94;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 57);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 90;
+            this.label7.Text = "Email:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(316, 56);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 13);
+            this.label6.TabIndex = 89;
+            this.label6.Text = "Contraseña:";
+            // 
+            // textContraseña
+            // 
+            this.textContraseña.Location = new System.Drawing.Point(382, 52);
+            this.textContraseña.Name = "textContraseña";
+            this.textContraseña.Size = new System.Drawing.Size(232, 20);
+            this.textContraseña.TabIndex = 88;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(190, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(11, 13);
+            this.label2.TabIndex = 87;
+            this.label2.Text = "*";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Presentacion.Properties.Resources.gmail;
+            this.pictureBox1.Location = new System.Drawing.Point(17, 26);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 86;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(630, 25);
+            this.panel4.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(116, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(131, 13);
+            this.label3.TabIndex = 87;
+            this.label3.Text = "(Solo para programadores)";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(5, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(111, 16);
+            this.label4.TabIndex = 84;
+            this.label4.Text = "Correo Backup";
+            // 
+            // textCorreo
+            // 
+            this.textCorreo.Location = new System.Drawing.Point(51, 52);
+            this.textCorreo.Name = "textCorreo";
+            this.textCorreo.Size = new System.Drawing.Size(253, 20);
+            this.textCorreo.TabIndex = 61;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(43, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(147, 13);
+            this.label5.TabIndex = 60;
+            this.label5.Text = "Correo para archivos backup:";
+            // 
             // btnEliminarInfo
             // 
             this.btnEliminarInfo.BackColor = System.Drawing.Color.DarkRed;
@@ -613,7 +752,7 @@ namespace Presentacion
             this.btnEliminarInfo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnEliminarInfo.IconSize = 30;
             this.btnEliminarInfo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarInfo.Location = new System.Drawing.Point(460, 589);
+            this.btnEliminarInfo.Location = new System.Drawing.Point(460, 659);
             this.btnEliminarInfo.Name = "btnEliminarInfo";
             this.btnEliminarInfo.Size = new System.Drawing.Size(123, 35);
             this.btnEliminarInfo.TabIndex = 77;
@@ -636,7 +775,7 @@ namespace Presentacion
             this.btnModificarInfo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnModificarInfo.IconSize = 30;
             this.btnModificarInfo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificarInfo.Location = new System.Drawing.Point(338, 589);
+            this.btnModificarInfo.Location = new System.Drawing.Point(338, 659);
             this.btnModificarInfo.Name = "btnModificarInfo";
             this.btnModificarInfo.Size = new System.Drawing.Size(123, 35);
             this.btnModificarInfo.TabIndex = 76;
@@ -659,7 +798,7 @@ namespace Presentacion
             this.btnRegistrarInfo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRegistrarInfo.IconSize = 30;
             this.btnRegistrarInfo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistrarInfo.Location = new System.Drawing.Point(216, 589);
+            this.btnRegistrarInfo.Location = new System.Drawing.Point(216, 659);
             this.btnRegistrarInfo.Name = "btnRegistrarInfo";
             this.btnRegistrarInfo.Size = new System.Drawing.Size(123, 35);
             this.btnRegistrarInfo.TabIndex = 75;
@@ -668,31 +807,13 @@ namespace Presentacion
             this.btnRegistrarInfo.UseVisualStyleBackColor = false;
             this.btnRegistrarInfo.Click += new System.EventHandler(this.btnRegistrarInfo_Click);
             // 
-            // panelTituloDatos
-            // 
-            this.panelTituloDatos.Controls.Add(this.labelTituloDatos);
-            this.panelTituloDatos.Controls.Add(this.labelAdvertencia);
-            this.panelTituloDatos.Location = new System.Drawing.Point(86, 58);
-            this.panelTituloDatos.Name = "panelTituloDatos";
-            this.panelTituloDatos.Size = new System.Drawing.Size(630, 25);
-            this.panelTituloDatos.TabIndex = 85;
-            // 
-            // labelTituloDatos
-            // 
-            this.labelTituloDatos.AutoSize = true;
-            this.labelTituloDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTituloDatos.Location = new System.Drawing.Point(5, 4);
-            this.labelTituloDatos.Name = "labelTituloDatos";
-            this.labelTituloDatos.Size = new System.Drawing.Size(49, 16);
-            this.labelTituloDatos.TabIndex = 84;
-            this.labelTituloDatos.Text = "Datos";
-            // 
             // FormAjustes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(798, 632);
+            this.ClientSize = new System.Drawing.Size(798, 700);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelTituloDatos);
             this.Controls.Add(this.panelAvanzado);
             this.Controls.Add(this.panelConfigDeGuardado);
@@ -726,6 +847,11 @@ namespace Presentacion
             this.panelTituloAvanzado.PerformLayout();
             this.panelTituloDatos.ResumeLayout(false);
             this.panelTituloDatos.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -786,5 +912,16 @@ namespace Presentacion
         private System.Windows.Forms.Button btnBuscarRutaVendido;
         private System.Windows.Forms.TextBox textRutaVendido;
         private System.Windows.Forms.Label labelRutaVendido;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textCorreo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textContraseña;
     }
 }

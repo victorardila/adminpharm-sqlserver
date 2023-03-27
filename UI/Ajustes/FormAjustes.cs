@@ -16,8 +16,10 @@ namespace Presentacion
 {
     public partial class FormAjustes : Form
     {
+        EmailService emailService = new EmailService();
         CadenaConexionXMLService cadenaConexionService = new CadenaConexionXMLService();
         RutasTxtService rutasTxtService = new RutasTxtService();
+        Email email = new Email();
         RutasTxt rutasTxt = new RutasTxt();
         CadenaConexionXML cadenaConexion = new CadenaConexionXML();
         DrogueriaService drogueriaService;
@@ -41,6 +43,7 @@ namespace Presentacion
             BuscarPorId();
             EncontrarCadenaDeConexion();
             EstablecerCarpetasRaiz(rutasTxtService);
+            EstablecerCorreo();
         }
         private void btnVolver_Click(object sender, EventArgs e)
         {
@@ -85,6 +88,31 @@ namespace Presentacion
             textDireccion.Text = "";
             textTelefono.Text = "";
         }
+        private void ModificarCorreo()
+        {
+            EmailConsultaResponse emailConsultaResponse = emailService.Consultar();
+            if (emailConsultaResponse.Emails.Count > 0)
+            {
+                foreach (var item in emailConsultaResponse.Emails)
+                {
+                    string correoOrigen = item.CorreoElectronicoOrigen.ToString();
+                    email.CorreoElectronicoOrigen = textCorreo.Text;
+                    email.CorreoElectronicoDestino = textCorreo.Text;
+                    email.Contraseña = textContraseña.Text;
+                    emailService.ModificarEmail(email, correoOrigen);
+                }
+            }
+            else
+            {
+                if (emailConsultaResponse.Emails.Count == 0)
+                {
+                    email.CorreoElectronicoOrigen = textCorreo.Text;
+                    email.CorreoElectronicoDestino = textCorreo.Text;
+                    email.Contraseña = textContraseña.Text;
+                    emailService.Guardar(email);
+                }
+            }
+        }
         private void ModificarCarpetasRaiz(RutasTxtService rutasTxtService)
         {
             RutasTxtConsultaResponse rutasTxtConsultaResponse = rutasTxtService.Consultar();
@@ -112,6 +140,27 @@ namespace Presentacion
                     rutasTxt.RutaFacturasVenta = RutaFacturasVenta;
                     rutasTxt.RutaProductosVendidos = RutaProductosVendidos;
                     rutasTxtService.Guardar(rutasTxt);
+                }
+            }
+        }
+        private void EstablecerCorreo()
+        {
+            EmailConsultaResponse emailConsultaResponse = emailService.Consultar();
+            if (emailConsultaResponse.Emails.Count > 0)
+            {
+                foreach (var item in emailConsultaResponse.Emails)
+                {
+                    textCorreo.Text = item.CorreoElectronicoOrigen;
+                    textContraseña.Text = item.Contraseña;
+                }
+            }
+            else
+            {
+                if (emailConsultaResponse.Emails.Count == 0)
+                {
+                    email.CorreoElectronicoOrigen = textCorreo.Text;
+                    email.Contraseña = textContraseña.Text;
+                    email.CorreoElectronicoDestino = textCorreo.Text;
                 }
             }
         }
@@ -171,6 +220,7 @@ namespace Presentacion
             BuscarPorId();
             ModificarCadenaConexion();
             EstablecerCarpetasRaiz(rutasTxtService);
+            EstablecerCorreo();
         }
         private void btnEliminarInfo_Click(object sender, EventArgs e)
         {
@@ -189,6 +239,7 @@ namespace Presentacion
                 BuscarPorId();
                 ModificarCadenaConexion();
                 ModificarCarpetasRaiz(rutasTxtService);
+                ModificarCorreo();
             }
         }
 

@@ -334,8 +334,8 @@ namespace BLL
 
                 return $"Error de la Aplicación: {e.Message}";
             }
-            finally { conexion.Close(); }
-
+            finally { conexion.Close(); 
+            }
         }
         public ConteoProductoRespuesta Totalizar()
         {

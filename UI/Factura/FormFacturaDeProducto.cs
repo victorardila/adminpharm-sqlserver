@@ -43,6 +43,7 @@ namespace Presentacion
         string nombreDeFactura;
         string notExistFileName;
         int cantidadProductoBD;
+        int contadorProductosVendidos;
         //Variables de drogueria
         string idDrogueria = "#Drog";
         string nombreDrogueria;
@@ -90,7 +91,9 @@ namespace Presentacion
         double totalSinRedondeo;
         double totalConRedondeo;
         double valorDeRedondeo;
-        string formaDePago; 
+        string formaDePago;
+        int i=0;
+        int j = 0;
         public FormFacturaDeProducto()
         {
             cajaRegistradoraService = new CajaRegistradoraService(ConfigConnection.ConnectionString);
@@ -104,7 +107,7 @@ namespace Presentacion
             CargarArchivo(productoTxtService);
             ConsultarCajaAbierta();
             ConsultarDatosDrogueria();
-            SumtoriaDeFactura();
+            SumatoriaDeFactura();
             BuscararDrogueria();
             BuscarInformacionDeEmpleado();
             BuscarSesionDeUsuario();
@@ -171,19 +174,47 @@ namespace Presentacion
             if (respuesta.Producto != null)
             {
                 var productos = new List<Producto> { respuesta.Producto };
-                referenciaProducto = respuesta.Producto.Referencia;
-                DateTime fechaActual = DateTime.Now;
-                fechaDeVenta = fechaActual.ToString("dd/MM/yyyy");
-                nombreProducto= respuesta.Producto.Nombre;
-                detalleProducto= respuesta.Producto.Detalle;
-                precioProducto= respuesta.Producto.PrecioDeVenta;
-                totalProducto = int.Parse(textTotalFacturaGenerada.Text);
-                ProductoVendidoTxt productoVendidoTxt = new ProductoVendidoTxt(fechaDeVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto, totalProducto);
-                string mensaje = productoVendidoTxtService.Guardar(productoVendidoTxt, rutasVendidos);
+                if (contadorProductosVendidos == 1)
+                {
+                    referenciaProducto = respuesta.Producto.Referencia;
+                    DateTime fechaActual = DateTime.Now;
+                    fechaDeVenta = fechaActual.ToString("dd/MM/yyyy");
+                    nombreProducto = respuesta.Producto.Nombre;
+                    detalleProducto = respuesta.Producto.Detalle;
+                    precioProducto = respuesta.Producto.PrecioDeVenta;
+                    totalProducto = int.Parse(textTotalFacturaGenerada.Text);
+                    ProductoVendidoTxt productoVendidoTxt = new ProductoVendidoTxt(fechaDeVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto, totalProducto);
+                    string mensaje = productoVendidoTxtService.Guardar(productoVendidoTxt, rutasVendidos);
+                }
+                else
+                {
+                    if (contadorProductosVendidos > 1)
+                    {
+                        referenciaProducto = respuesta.Producto.Referencia;
+                        DateTime fechaActual = DateTime.Now;
+                        fechaDeVenta = fechaActual.ToString("dd/MM/yyyy");
+                        nombreProducto = respuesta.Producto.Nombre;
+                        detalleProducto = respuesta.Producto.Detalle;
+                        var producto = productoTxtService.FiltroProducto(referenciaProducto);
+                        precioProducto = producto.Precio;
+                        totalProducto = cantidadProducto * precioProducto;
+                        ProductoVendidoTxt productoVendidoTxt = new ProductoVendidoTxt(fechaDeVenta, cantidadProducto, referenciaProducto, nombreProducto, detalleProducto, precioProducto, totalProducto);
+                        string mensaje = productoVendidoTxtService.Guardar(productoVendidoTxt, rutasVendidos);
+                    }
+                }
             }
         }
         private void ContarProductosVendidos()
         {
+            contadorProductosVendidos = 0;
+            foreach (DataGridViewRow fila in dataGridFacturaProductos.Rows)
+            {
+                contadorProductosVendidos = contadorProductosVendidos + 1;
+            }
+        }
+        private void ContarCantidadesProductosVendidos()
+        {
+            ContarProductosVendidos();
             foreach (DataGridViewRow fila in dataGridFacturaProductos.Rows)
             {
                 int i = 0;
@@ -222,10 +253,11 @@ namespace Presentacion
             valorDeRedondeo = factura.ValorDeRedondeo;
             formaDePago = factura.FormaDePago;
         }
-        private void SumtoriaDeFactura()
+        private void SumatoriaDeFactura()
         {
             if (dataGridFacturaProductos !=null)
             {
+                totalFactura = 0;
                 foreach (DataGridViewRow fila in dataGridFacturaProductos.Rows)
                 {
                     int i = 0;
@@ -608,7 +640,7 @@ namespace Presentacion
             e.Graphics.DrawString("Actividad economica: " + codigoCamara, font, Brushes.Black, new RectangleF(0, y + 53, ancho, 13), stringFormatCenter);
             e.Graphics.DrawString(fraseDistintiva, font, Brushes.Black, new RectangleF(0, y+66, ancho, 13), stringFormatCenter);
             e.Graphics.DrawString("PBX: "+pbx, font, Brushes.Black, new RectangleF(0, y+79, ancho, 13), stringFormatCenter);
-            e.Graphics.DrawString("Regimen: " + regimen, font, Brushes.Black, new RectangleF(0, y + 92, ancho, 13), stringFormatCenter);
+            //e.Graphics.DrawString("Regimen: " + regimen, font, Brushes.Black, new RectangleF(0, y + 92, ancho, 13), stringFormatCenter);
             e.Graphics.DrawString("Direccion: "+direccion, font, Brushes.Black, new RectangleF(0, y+ 105, ancho, 13), stringFormatCenter);
             e.Graphics.DrawString("Telefono: "+telefono, font, Brushes.Black, new RectangleF(0, y+118, ancho, 13), stringFormatCenter);
 
@@ -688,7 +720,7 @@ namespace Presentacion
             Factura factura = MapearFactura();
             MapearDatosActualesDeFactura(factura);
             facturaService.Guardar(factura);
-            ContarProductosVendidos();
+            ContarCantidadesProductosVendidos();
             ModificarCashCaja();
             ConsultarCajaAbierta();
             GuardarFactura();
@@ -704,7 +736,7 @@ namespace Presentacion
             Factura factura = MapearFactura();
             MapearDatosActualesDeFactura(factura);
             facturaService.Guardar(factura);
-            ContarProductosVendidos();
+            ContarCantidadesProductosVendidos();
             ModificarCashCaja();
             ConsultarCajaAbierta();
             EliminarFactura();
@@ -770,6 +802,25 @@ namespace Presentacion
                     ConsultarHistorial();
                 }
             }
+        }
+
+        private void dataGridFacturaProductos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            ContarProductosVendidos();
+            int valor = Convert.ToInt32(dataGridFacturaProductos.CurrentRow.Cells["Precio"].Value);
+            string referencia = Convert.ToString(dataGridFacturaProductos.CurrentRow.Cells["ReferenciaP"].Value);
+            var productoMapeado = productoTxtService.FiltroProducto(referencia);
+            if (productoMapeado != null)
+            {
+                productoMapeado.Precio = valor;
+                productoTxtService.Modificar(productoMapeado, referencia);
+            }
+            SumatoriaDeFactura();
+        }
+
+        private void dataGridFacturaProductos_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            //empezo
         }
     }
 }

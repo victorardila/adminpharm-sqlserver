@@ -10,7 +10,7 @@ namespace DAL
 {
     public class RutasTxtRepository
     {
-        private string ruta = @"RutasDeGuardado.txt";
+        private string ruta = @"RutasDeGuardado.config";
         public void Guardar(RutasTxt rutasTxt)
         {
             FileStream file = new FileStream(ruta, FileMode.Append);
