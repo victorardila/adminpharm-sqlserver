@@ -81,7 +81,7 @@ namespace BLL
             try
             {
                 archivoRespaldoRepository.EliminarTodo();
-                return "Productos de factura Eliminados";
+                return "Archivo eliminado satisfactoriamente";
             }
             catch (Exception)
             {

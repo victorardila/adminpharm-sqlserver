@@ -1003,7 +1003,12 @@ namespace Presentacion
         }
         private void EliminarArchivo()
         {
-            archivoRespaldoService.EliminarHistorial();
+            string mensaje=archivoRespaldoService.EliminarHistorial();
+            if(mensaje == "Archivo eliminado satisfactoriamente")
+            {
+                string msg = "Backup de la base de datos completada";
+                MessageBox.Show(msg, "Registrar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         //Cargar Backup al correo
         private void CargarAlCorreo()
