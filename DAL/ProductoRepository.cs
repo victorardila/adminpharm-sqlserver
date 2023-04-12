@@ -20,11 +20,12 @@ namespace DAL
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"Insert Into PRODUCTO (Cantidad, Referencia, Nombre, Detalle, Fecha_De_Registro, Fecha_De_Vencimiento, Lote, Laboratorio, Estado, Tipo, Via, Valor_Por_Unidad, Valor_Por_Blister, Valor_Por_Caja, Porcentaje_De_Venta, Precio_De_Negocio, Precio_De_Venta, Ganancia_Por_Producto, Ubicacion) 
-                                        values (@Cantidad, @Referencia, @Nombre, @Detalle, @Fecha_De_Registro, @Fecha_De_Vencimiento, @Lote, @Laboratorio, @Estado, @Tipo, @Via, @Valor_Por_Unidad, @Valor_Por_Blister, @Valor_Por_Caja, @Porcentaje_De_Venta, @Precio_De_Negocio, @Precio_De_Venta, @Ganancia_Por_Producto, @Ubicacion)";
+                command.CommandText = @"Insert Into PRODUCTO (Cantidad, Referencia, Precio_De_Venta, Nombre, Detalle, Fecha_De_Registro, Fecha_De_Vencimiento, Lote, Laboratorio, Estado, Tipo, Via, Valor_Por_Unidad, Valor_Por_Blister, Valor_Por_Caja, Porcentaje_De_Venta, Precio_De_Negocio, Ganancia_Por_Producto, Ubicacion) 
+                                        values (@Cantidad, @Referencia, @Precio_De_Venta, @Nombre, @Detalle, @Fecha_De_Registro, @Fecha_De_Vencimiento, @Lote, @Laboratorio, @Estado, @Tipo, @Via, @Valor_Por_Unidad, @Valor_Por_Blister, @Valor_Por_Caja, @Porcentaje_De_Venta, @Precio_De_Negocio, @Ganancia_Por_Producto, @Ubicacion)";
                 command.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
                 command.Parameters.AddWithValue("@Referencia", producto.Referencia);
                 command.Parameters.AddWithValue("@Nombre", producto.Nombre);
+                command.Parameters.AddWithValue("@Precio_De_Venta", producto.PrecioDeVenta);
                 command.Parameters.AddWithValue("@Detalle", producto.Detalle);
                 command.Parameters.AddWithValue("@Fecha_De_Registro", producto.FechaDeRegistro);
                 command.Parameters.AddWithValue("@Fecha_De_Vencimiento", producto.FechaDeVencimiento);
@@ -38,7 +39,6 @@ namespace DAL
                 command.Parameters.AddWithValue("@Valor_Por_Caja", producto.ValorPorPaquete);
                 command.Parameters.AddWithValue("@Porcentaje_De_Venta", producto.PorcentajeDeVenta);
                 command.Parameters.AddWithValue("@Precio_De_Negocio", producto.PrecioDeNegocio);
-                command.Parameters.AddWithValue("@Precio_De_Venta", producto.PrecioDeVenta);
                 command.Parameters.AddWithValue("@Ganancia_Por_Producto", producto.GananciaPorProducto);
                 command.Parameters.AddWithValue("@Ubicacion", producto.Ubicacion);
                 var filas = command.ExecuteNonQuery();
@@ -95,7 +95,7 @@ namespace DAL
             List<Producto> productos = new List<Producto>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select Cantidad, Referencia, Nombre, Detalle, Fecha_De_Registro, Fecha_De_Vencimiento, Lote, Laboratorio, Estado, Tipo, Via, Valor_Por_Unidad, Valor_Por_Blister, Valor_Por_Caja, Porcentaje_De_Venta, Precio_De_Negocio, Precio_De_Venta, Ganancia_Por_Producto, Ubicacion from PRODUCTO";
+                command.CommandText = "Select Cantidad, Referencia, Precio_De_Venta, Nombre, Detalle, Fecha_De_Registro, Fecha_De_Vencimiento, Lote, Laboratorio, Estado, Tipo, Via, Valor_Por_Unidad, Valor_Por_Blister, Valor_Por_Caja, Porcentaje_De_Venta, Precio_De_Negocio, Ganancia_Por_Producto, Ubicacion from PRODUCTO";
                 var dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -264,6 +264,7 @@ namespace DAL
             Producto producto = new Producto();
             producto.Cantidad = (int)dataReader["Cantidad"];
             producto.Referencia = (string)dataReader["Referencia"];
+            producto.PrecioDeVenta = (int)dataReader["Precio_De_Venta"];
             producto.Nombre = (string)dataReader["Nombre"];
             producto.Detalle = (string)dataReader["Detalle"];
             producto.FechaDeRegistro = (DateTime)dataReader["Fecha_De_Registro"];
@@ -278,7 +279,6 @@ namespace DAL
             producto.ValorPorPaquete = (int)dataReader["Valor_Por_Caja"];
             producto.PorcentajeDeVenta = (int)dataReader["Porcentaje_De_Venta"];
             producto.PrecioDeNegocio = (int)dataReader["Precio_De_Negocio"];
-            producto.PrecioDeVenta = (int)dataReader["Precio_De_Venta"];
             producto.GananciaPorProducto = (int)dataReader["Ganancia_Por_Producto"];
             producto.Ubicacion = (string)dataReader["Ubicacion"];
             return producto;

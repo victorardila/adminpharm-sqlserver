@@ -9,10 +9,11 @@ namespace Entity
     public class Producto
     {
         //Constructor
-        public Producto(int cantidad, string referencia, string nombre, string detalle, DateTime fechaDeRegistro, DateTime fechaDeVencimiento, string lote, string laboratorio, string estado, string tipo, string via, double valorPorUnidad, double valorPorBlister, double valorPorPaquete, double precioDeVenta, double precioDeNegocio, double gananciaPorProducto, string ubicacion)
+        public Producto(int cantidad, string referencia, double precioDeVenta, string nombre, string detalle, DateTime fechaDeRegistro, DateTime fechaDeVencimiento, string lote, string laboratorio, string estado, string tipo, string via, double valorPorUnidad, double valorPorBlister, double valorPorPaquete, double precioDeNegocio, double gananciaPorProducto, string ubicacion)
         {
             Cantidad = cantidad;
             Referencia = referencia;
+            PrecioDeVenta = precioDeVenta;
             Nombre = nombre;
             Detalle = detalle;
             FechaDeRegistro = fechaDeRegistro;
@@ -26,7 +27,6 @@ namespace Entity
             ValorPorBlister = valorPorBlister;
             ValorPorPaquete = valorPorPaquete;
             PrecioDeNegocio = precioDeNegocio;
-            PrecioDeVenta = precioDeVenta;
             GananciaPorProducto = gananciaPorProducto;
             Ubicacion = ubicacion;
         }
@@ -38,6 +38,7 @@ namespace Entity
         /*Atributos de la clase*/
         public int Cantidad { get; set; }
         public string Referencia { get; set; }
+        public double PrecioDeVenta { get; set; }
         public string Nombre { get; set; }
         public string Detalle { get; set; }
         public DateTime FechaDeRegistro { get; set; }
@@ -52,7 +53,6 @@ namespace Entity
         public double ValorPorPaquete { get; set; }
         public double PorcentajeDeVenta { get; set; }
         public double PrecioDeNegocio { get; set; }
-        public double PrecioDeVenta { get; set; }
         public double GananciaPorProducto { get; set; }
         public string Ubicacion { get; set; }
         /*Metodos de la clase*/

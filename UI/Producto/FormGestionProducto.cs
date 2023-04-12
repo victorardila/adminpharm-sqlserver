@@ -78,7 +78,7 @@ namespace Presentacion
         EventArgs e;
         int x;
         int i=0;
-
+        bool encontrado = false;
         public FormGestionProducto()
         {
             cajaRegistradoraService = new CajaRegistradoraService(ConfigConnection.ConnectionString);
@@ -317,18 +317,15 @@ namespace Presentacion
             dataGridFarmacos.DataSource = null;
             if (respuesta.Producto != null)
             {
-                dataGridFarmacos.DataSource = respuesta.Producto;
+                var productos = new List<Producto> { respuesta.Producto };
+                dataGridFarmacos.DataSource = productos;
+                encontrado = true;
             }
             else
             {
                 if (respuesta.Producto == null)
                 {
-                    labelAdvertencia.Enabled = true;
-                    labelAdvertencia.Text = "No hay medicametos de este tipo";
-                    textSearch.Text = "";
-                    string msg = "¡No se encontró medicamentos asociados!";
-                    MessageBox.Show(msg, "Filtro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    IniciarOperaciones();
+                    ConsultarYLlenarGridDeProductos(paginaSeleccionada);
                 }
             }
         }
@@ -394,21 +391,6 @@ namespace Presentacion
                     comboFiltroTipo.Text = "Todos";
                 }
             }
-        }
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            textSearch.Visible = true;
-            btnClose.Visible = true;
-            cantidadDeRegistros = int.Parse(textTotal.Text);
-            totalPaginas = 0;
-            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-        }
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            textSearch.Visible = false;
-            textSearch.Text = "Buscar medicamento";
-            btnClose.Visible = false;
-            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
         }
         private void dataGridFarmacos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -706,6 +688,22 @@ namespace Presentacion
                 }
             }
         }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            //BuscarPorReferencia();
+            textSearch.Visible = true;
+            btnClose.Visible = true;
+            cantidadDeRegistros = int.Parse(textTotal.Text);
+            totalPaginas = 0;
+            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            textSearch.Visible = false;
+            btnClose.Visible = false;
+            textSearch.Text = "Buscar medicamento";
+            ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+        }
         private void textSearch_Enter(object sender, EventArgs e)
         {
             if(textSearch.Text=="Buscar medicamento")
@@ -713,47 +711,54 @@ namespace Presentacion
                 textSearch.Text = "";
             }
         }
+        private void VaciarFilas()
+        {
+            foreach (DataGridViewRow fila in dataGridFarmacos.Rows)
+            {
+                fila.Visible = false;
+            }
+        }
         private void textSearch_TextChanged(object sender, EventArgs e)
         {
             if (textSearch.Text != "")
             {
-                dataGridFarmacos.CurrentCell = null;
-                foreach(DataGridViewRow fila in dataGridFarmacos.Rows)
+                BuscarPorReferencia();
+                if (encontrado == false)
                 {
-                    fila.Visible = false;
-                }
-                foreach(DataGridViewRow fila in dataGridFarmacos.Rows)
-                {
-                    int i = 0;
-                    foreach (DataGridViewCell celda in fila.Cells)
+                    dataGridFarmacos.CurrentCell = null;
+                    VaciarFilas();
+                    foreach (DataGridViewRow fila in dataGridFarmacos.Rows)
                     {
-                        if (i >= 6)
+                        int i = 0;
+                        foreach (DataGridViewCell celda in fila.Cells)
                         {
-                            if ((celda.Value.ToString().ToUpper()).IndexOf(textSearch.Text.ToUpper()) == 0)
+                            if (i == 6 || i == 8)
                             {
-                                fila.Visible = true;
-                                break;
-                            }
-                            else
-                            {
-                                if ((celda.Value.ToString()==(textSearch.Text.ToUpper())))
+                                if ((celda.Value.ToString().ToUpper()).IndexOf(textSearch.Text.ToUpper()) == 0)
                                 {
                                     fila.Visible = true;
                                     break;
                                 }
+                                else
+                                {
+                                    if ((celda.Value.ToString() == (textSearch.Text.ToUpper())))
+                                    {
+                                        fila.Visible = true;
+                                        break;
+                                    }
+                                }
                             }
+                            i = i + 1;
                         }
-                        i = i + 1;
                     }
                 }
             }
-        }
-
-        private void textSearch_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
+            else
             {
-                BuscarPorReferencia();
+                if(textSearch.Text == "")
+                {
+                    ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                }
             }
         }
 
@@ -1141,6 +1146,14 @@ namespace Presentacion
                     string mensaje = "Aun no ha dado una correo de guardado para backups";
                     MessageBox.Show(mensaje, "Registrar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+        }
+
+        private void textSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                BuscarPorReferencia();
             }
         }
     }
