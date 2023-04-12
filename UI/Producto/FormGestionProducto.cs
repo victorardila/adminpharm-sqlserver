@@ -314,9 +314,9 @@ namespace Presentacion
             BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
             string referencia = textSearch.Text;
             respuesta = productoService.BuscarPorReferencia(referencia);
-            dataGridFarmacos.DataSource = null;
             if (respuesta.Producto != null)
             {
+                dataGridFarmacos.DataSource = null;
                 var productos = new List<Producto> { respuesta.Producto };
                 dataGridFarmacos.DataSource = productos;
                 encontrado = true;
@@ -325,7 +325,7 @@ namespace Presentacion
             {
                 if (respuesta.Producto == null)
                 {
-                    ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                    //ConsultarYLlenarGridDeProductos(paginaSeleccionada);
                 }
             }
         }
@@ -711,13 +711,6 @@ namespace Presentacion
                 textSearch.Text = "";
             }
         }
-        private void VaciarFilas()
-        {
-            foreach (DataGridViewRow fila in dataGridFarmacos.Rows)
-            {
-                fila.Visible = false;
-            }
-        }
         private void textSearch_TextChanged(object sender, EventArgs e)
         {
             if (textSearch.Text != "")
@@ -726,13 +719,16 @@ namespace Presentacion
                 if (encontrado == false)
                 {
                     dataGridFarmacos.CurrentCell = null;
-                    VaciarFilas();
+                    foreach (DataGridViewRow fila in dataGridFarmacos.Rows)
+                    {
+                        fila.Visible = false;
+                    };
                     foreach (DataGridViewRow fila in dataGridFarmacos.Rows)
                     {
                         int i = 0;
                         foreach (DataGridViewCell celda in fila.Cells)
                         {
-                            if (i == 6 || i == 8)
+                            if (i == 8)
                             {
                                 if ((celda.Value.ToString().ToUpper()).IndexOf(textSearch.Text.ToUpper()) == 0)
                                 {
