@@ -81,7 +81,7 @@ namespace Presentacion
             this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
             this.btnCerrar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCerrar.IconChar = FontAwesome.Sharp.IconChar.XmarkSquare;
+            this.btnCerrar.IconChar = FontAwesome.Sharp.IconChar.TimesSquare;
             this.btnCerrar.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnCerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCerrar.IconSize = 20;
@@ -110,7 +110,6 @@ namespace Presentacion
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.labelInicioSesion);
             this.panel2.Controls.Add(this.pictureLogo);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -126,7 +125,7 @@ namespace Presentacion
             this.labelInicioSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInicioSesion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.labelInicioSesion.Image = global::Presentacion.Properties.Resources.Fondo;
-            this.labelInicioSesion.Location = new System.Drawing.Point(129, 102);
+            this.labelInicioSesion.Location = new System.Drawing.Point(130, 161);
             this.labelInicioSesion.Name = "labelInicioSesion";
             this.labelInicioSesion.Size = new System.Drawing.Size(115, 20);
             this.labelInicioSesion.TabIndex = 1;
@@ -137,10 +136,11 @@ namespace Presentacion
             this.pictureLogo.BackColor = System.Drawing.Color.Transparent;
             this.pictureLogo.BackgroundImage = global::Presentacion.Properties.Resources.Fondo;
             this.pictureLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureLogo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureLogo.Image")));
-            this.pictureLogo.Location = new System.Drawing.Point(131, 15);
+            this.pictureLogo.Location = new System.Drawing.Point(0, 0);
             this.pictureLogo.Name = "pictureLogo";
-            this.pictureLogo.Size = new System.Drawing.Size(110, 84);
+            this.pictureLogo.Size = new System.Drawing.Size(375, 133);
             this.pictureLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureLogo.TabIndex = 0;
             this.pictureLogo.TabStop = false;
@@ -161,7 +161,7 @@ namespace Presentacion
             this.labelUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelUser.Location = new System.Drawing.Point(58, 209);
             this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(66, 16);
+            this.labelUser.Size = new System.Drawing.Size(65, 16);
             this.labelUser.TabIndex = 2;
             this.labelUser.Text = "Usuario:";
             // 
@@ -171,7 +171,7 @@ namespace Presentacion
             this.labelPasword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPasword.Location = new System.Drawing.Point(58, 237);
             this.labelPasword.Name = "labelPasword";
-            this.labelPasword.Size = new System.Drawing.Size(91, 16);
+            this.labelPasword.Size = new System.Drawing.Size(90, 16);
             this.labelPasword.TabIndex = 3;
             this.labelPasword.Text = "Contraseña:";
             // 
@@ -328,7 +328,7 @@ namespace Presentacion
             // 
             // btnAjustarServidor
             // 
-            this.btnAjustarServidor.IconChar = FontAwesome.Sharp.IconChar.Cog;
+            this.btnAjustarServidor.IconChar = FontAwesome.Sharp.IconChar.Gear;
             this.btnAjustarServidor.IconColor = System.Drawing.Color.Black;
             this.btnAjustarServidor.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAjustarServidor.IconSize = 20;
@@ -345,6 +345,7 @@ namespace Presentacion
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(375, 375);
+            this.Controls.Add(this.labelInicioSesion);
             this.Controls.Add(this.btnAjustarServidor);
             this.Controls.Add(this.labelAdvertencia);
             this.Controls.Add(this.iconAdvertencia);
@@ -372,7 +373,6 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).EndInit();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconAdvertencia)).EndInit();
