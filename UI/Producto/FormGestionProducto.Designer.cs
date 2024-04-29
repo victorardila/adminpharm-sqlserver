@@ -47,7 +47,6 @@ namespace Presentacion
             this.iconCash = new FontAwesome.Sharp.IconPictureBox();
             this.btnVolver = new FontAwesome.Sharp.IconButton();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
-            this.labelRefresh = new System.Windows.Forms.Label();
             this.btnRefresh = new FontAwesome.Sharp.IconButton();
             this.comboUbicacion = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -123,7 +122,7 @@ namespace Presentacion
             // panelBarraVolver
             // 
             this.panelBarraVolver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
-            this.panelBarraVolver.Location = new System.Drawing.Point(8, 0);
+            this.panelBarraVolver.Location = new System.Drawing.Point(8, 1);
             this.panelBarraVolver.Name = "panelBarraVolver";
             this.panelBarraVolver.Size = new System.Drawing.Size(7, 35);
             this.panelBarraVolver.TabIndex = 30;
@@ -177,7 +176,7 @@ namespace Presentacion
             this.labelMedicamentosAgotados.ForeColor = System.Drawing.Color.Red;
             this.labelMedicamentosAgotados.Location = new System.Drawing.Point(311, 10);
             this.labelMedicamentosAgotados.Name = "labelMedicamentosAgotados";
-            this.labelMedicamentosAgotados.Size = new System.Drawing.Size(225, 16);
+            this.labelMedicamentosAgotados.Size = new System.Drawing.Size(224, 16);
             this.labelMedicamentosAgotados.TabIndex = 55;
             this.labelMedicamentosAgotados.Text = "No hay productos registrados!!!";
             this.labelMedicamentosAgotados.Visible = false;
@@ -201,7 +200,7 @@ namespace Presentacion
             this.panel3.Controls.Add(this.label1);
             this.panel3.Location = new System.Drawing.Point(0, 9);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(795, 36);
+            this.panel3.Size = new System.Drawing.Size(795, 38);
             this.panel3.TabIndex = 63;
             // 
             // label6
@@ -212,7 +211,7 @@ namespace Presentacion
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(709, 17);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(16, 16);
+            this.label6.Size = new System.Drawing.Size(15, 16);
             this.label6.TabIndex = 72;
             this.label6.Text = "$";
             // 
@@ -236,7 +235,7 @@ namespace Presentacion
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(586, 16);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(16, 16);
+            this.label7.Size = new System.Drawing.Size(15, 16);
             this.label7.TabIndex = 70;
             this.label7.Text = "$";
             // 
@@ -274,7 +273,7 @@ namespace Presentacion
             this.labelCash.ForeColor = System.Drawing.Color.White;
             this.labelCash.Location = new System.Drawing.Point(726, 18);
             this.labelCash.Name = "labelCash";
-            this.labelCash.Size = new System.Drawing.Size(14, 16);
+            this.labelCash.Size = new System.Drawing.Size(13, 16);
             this.labelCash.TabIndex = 66;
             this.labelCash.Text = "*";
             // 
@@ -315,7 +314,7 @@ namespace Presentacion
             this.btnVolver.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVolver.IconSize = 30;
             this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(18, 0);
+            this.btnVolver.Location = new System.Drawing.Point(18, 1);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(31, 35);
             this.btnVolver.TabIndex = 31;
@@ -328,7 +327,6 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTituloDataGridFarmacos.Controls.Add(this.labelRefresh);
             this.panelTituloDataGridFarmacos.Controls.Add(this.btnRefresh);
             this.panelTituloDataGridFarmacos.Controls.Add(this.comboUbicacion);
             this.panelTituloDataGridFarmacos.Controls.Add(this.label5);
@@ -346,18 +344,6 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(763, 24);
             this.panelTituloDataGridFarmacos.TabIndex = 49;
             // 
-            // labelRefresh
-            // 
-            this.labelRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelRefresh.AutoSize = true;
-            this.labelRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRefresh.ForeColor = System.Drawing.Color.Black;
-            this.labelRefresh.Location = new System.Drawing.Point(505, 2);
-            this.labelRefresh.Name = "labelRefresh";
-            this.labelRefresh.Size = new System.Drawing.Size(67, 16);
-            this.labelRefresh.TabIndex = 63;
-            this.labelRefresh.Text = "Refrescar";
-            // 
             // btnRefresh
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -372,7 +358,7 @@ namespace Presentacion
             this.btnRefresh.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnRefresh.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnRefresh.IconSize = 26;
-            this.btnRefresh.Location = new System.Drawing.Point(574, -2);
+            this.btnRefresh.Location = new System.Drawing.Point(553, -2);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(26, 25);
             this.btnRefresh.TabIndex = 62;
@@ -436,9 +422,11 @@ namespace Presentacion
             // textSearch
             // 
             this.textSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textSearch.Location = new System.Drawing.Point(611, 1);
+            this.textSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textSearch.Location = new System.Drawing.Point(585, 0);
             this.textSearch.Name = "textSearch";
-            this.textSearch.Size = new System.Drawing.Size(109, 20);
+            this.textSearch.Size = new System.Drawing.Size(130, 22);
             this.textSearch.TabIndex = 54;
             this.textSearch.Text = "Buscar medicamento";
             this.textSearch.Visible = false;
@@ -452,7 +440,7 @@ namespace Presentacion
             this.btnSearch.BackColor = System.Drawing.SystemColors.Control;
             this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSearch.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.btnSearch.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
             this.btnSearch.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSearch.IconSize = 20;
@@ -554,7 +542,7 @@ namespace Presentacion
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(3, 4);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(147, 16);
+            this.label4.Size = new System.Drawing.Size(146, 16);
             this.label4.TabIndex = 51;
             this.label4.Text = "Consultar Productos";
             // 
@@ -652,7 +640,7 @@ namespace Presentacion
             // 
             this.labelExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelExportar.AutoSize = true;
-            this.labelExportar.Location = new System.Drawing.Point(592, 5);
+            this.labelExportar.Location = new System.Drawing.Point(586, 5);
             this.labelExportar.Name = "labelExportar";
             this.labelExportar.Size = new System.Drawing.Size(49, 13);
             this.labelExportar.TabIndex = 52;
@@ -662,15 +650,16 @@ namespace Presentacion
             // btnRespaldarInventario
             // 
             this.btnRespaldarInventario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRespaldarInventario.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnRespaldarInventario.IconChar = FontAwesome.Sharp.IconChar.FileDownload;
             this.btnRespaldarInventario.IconColor = System.Drawing.Color.DarkGreen;
             this.btnRespaldarInventario.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRespaldarInventario.IconSize = 18;
-            this.btnRespaldarInventario.Location = new System.Drawing.Point(640, 1);
+            this.btnRespaldarInventario.Location = new System.Drawing.Point(636, -1);
             this.btnRespaldarInventario.Name = "btnRespaldarInventario";
-            this.btnRespaldarInventario.Size = new System.Drawing.Size(22, 23);
+            this.btnRespaldarInventario.Size = new System.Drawing.Size(27, 25);
             this.btnRespaldarInventario.TabIndex = 63;
-            this.btnRespaldarInventario.UseVisualStyleBackColor = true;
+            this.btnRespaldarInventario.UseVisualStyleBackColor = false;
             this.btnRespaldarInventario.Visible = false;
             this.btnRespaldarInventario.Click += new System.EventHandler(this.btnRespaldarInventario_Click);
             // 
@@ -1071,7 +1060,6 @@ namespace Presentacion
         private System.Windows.Forms.ComboBox comboUbicacion;
         private System.Windows.Forms.Label label5;
         private FontAwesome.Sharp.IconButton btnRefresh;
-        private System.Windows.Forms.Label labelRefresh;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
         private System.Windows.Forms.DataGridViewImageColumn Eliminar;
         private System.Windows.Forms.DataGridViewImageColumn Cash;

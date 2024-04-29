@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using BLL;
 using Entity;
 using System.Xml;
+using System.IO;
 
 namespace Presentacion
 {
@@ -40,10 +41,96 @@ namespace Presentacion
         {
             drogueriaService = new DrogueriaService(ConfigConnection.ConnectionString);
             InitializeComponent();
+            LoadApiKeys();
             BuscarPorId();
             EncontrarCadenaDeConexion();
             EstablecerCarpetasRaiz(rutasTxtService);
             EstablecerCorreo();
+        }
+        public class ApiKeySecretConfig
+        {
+            public string User { get; set; }
+            public string SecretKey { get; set; }
+        }
+        private void LoadApiKeys()
+        {
+            try
+            {
+
+                // Load API keys from Api_key_secret.config using custom file handling
+                ApiKeySecretConfig apiKeySecretConfig = LoadApiKeySecretConfig();
+                string user = apiKeySecretConfig.User;
+                string secretKey = apiKeySecretConfig.SecretKey;
+
+                textUser.Text = user;
+                textToken.Text = secretKey;
+            }
+            catch (ConfigurationErrorsException ex)
+            {
+                MessageBox.Show($"Error reading API keys from config file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private ApiKeySecretConfig LoadApiKeySecretConfig()
+        {
+            ApiKeySecretConfig config = new ApiKeySecretConfig();
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Api_key_secret.config"); // Assuming the file is in the same directory
+
+            try
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(filePath);
+
+                // Get the value of the USER key
+                XmlNode userNode = xmlDoc.SelectSingleNode("/configuration/appSettings/add[@key='USER']");
+                if (userNode != null)
+                {
+                    config.User = userNode.Attributes["value"].Value;
+                }
+
+                // Get the value of the SECRET_KEY key
+                XmlNode secretKeyNode = xmlDoc.SelectSingleNode("/configuration/appSettings/add[@key='SECRET_KEY']");
+                if (secretKeyNode != null)
+                {
+                    config.SecretKey = secretKeyNode.Attributes["value"].Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error reading Api_key_secret.config: {ex.Message}");
+            }
+
+            return config;
+        }
+        public void UpdateConfig(string user, string secretKey)
+        {
+            ApiKeySecretConfig config = new ApiKeySecretConfig();
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Api_key_secret.config"); // Assuming the file is in the same directory
+            try
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(filePath);
+
+                // Update the value of the USER key
+                XmlNode userNode = xmlDoc.SelectSingleNode("/configuration/appSettings/add[@key='USER']");
+                if (userNode != null)
+                {
+                    userNode.Attributes["value"].Value = user;
+                }
+
+                // Update the value of the SECRET_KEY key
+                XmlNode secretKeyNode = xmlDoc.SelectSingleNode("/configuration/appSettings/add[@key='SECRET_KEY']");
+                if (secretKeyNode != null)
+                {
+                    secretKeyNode.Attributes["value"].Value = secretKey;
+                }
+
+                // Save the changes back to the file
+                xmlDoc.Save(filePath);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error updating Api_key_secret.config: {ex.Message}");
+            }
         }
         private void btnVolver_Click(object sender, EventArgs e)
         {
@@ -96,9 +183,9 @@ namespace Presentacion
                 foreach (var item in emailConsultaResponse.Emails)
                 {
                     string correoOrigen = item.CorreoElectronicoOrigen.ToString();
-                    email.CorreoElectronicoOrigen = textCorreo.Text;
-                    email.CorreoElectronicoDestino = textCorreo.Text;
-                    email.Contraseña = textContraseña.Text;
+                    email.CorreoElectronicoOrigen = textUser.Text;
+                    email.CorreoElectronicoDestino = textUser.Text;
+                    email.Contraseña = textToken.Text;
                     emailService.ModificarEmail(email, correoOrigen);
                 }
             }
@@ -106,9 +193,9 @@ namespace Presentacion
             {
                 if (emailConsultaResponse.Emails.Count == 0)
                 {
-                    email.CorreoElectronicoOrigen = textCorreo.Text;
-                    email.CorreoElectronicoDestino = textCorreo.Text;
-                    email.Contraseña = textContraseña.Text;
+                    email.CorreoElectronicoOrigen = textUser.Text;
+                    email.CorreoElectronicoDestino = textUser.Text;
+                    email.Contraseña = textToken.Text;
                     emailService.Guardar(email);
                 }
             }
@@ -150,17 +237,17 @@ namespace Presentacion
             {
                 foreach (var item in emailConsultaResponse.Emails)
                 {
-                    textCorreo.Text = item.CorreoElectronicoOrigen;
-                    textContraseña.Text = item.Contraseña;
+                    textUser.Text = item.CorreoElectronicoOrigen;
+                    textToken.Text = item.Contraseña;
                 }
             }
             else
             {
                 if (emailConsultaResponse.Emails.Count == 0)
                 {
-                    email.CorreoElectronicoOrigen = textCorreo.Text;
-                    email.Contraseña = textContraseña.Text;
-                    email.CorreoElectronicoDestino = textCorreo.Text;
+                    email.CorreoElectronicoOrigen = textUser.Text;
+                    email.Contraseña = textToken.Text;
+                    email.CorreoElectronicoDestino = textUser.Text;
                 }
             }
         }
@@ -214,6 +301,7 @@ namespace Presentacion
 
         private void btnRegistrarInfo_Click(object sender, EventArgs e)
         {
+            UpdateConfig(textUser.Text, textToken.Text);
             Drogueria drogueria = MapearDrogueria();
             string mensaje = drogueriaService.Guardar(drogueria);
             MessageBox.Show(mensaje, "Mensaje de Guardado", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
@@ -233,6 +321,7 @@ namespace Presentacion
             var respuesta = MessageBox.Show("Está seguro de Modificar la información", "Mensaje de Modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (respuesta == DialogResult.Yes)
             {
+                UpdateConfig(textUser.Text, textToken.Text);
                 Drogueria drogueria = MapearDrogueria();
                 string mensaje = drogueriaService.Modificar(drogueria);
                 MessageBox.Show(mensaje, "Mensaje de campos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);

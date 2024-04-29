@@ -114,7 +114,7 @@ namespace Presentacion
             this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCerrar.FlatAppearance.BorderSize = 0;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.IconChar = FontAwesome.Sharp.IconChar.RectangleXmark;
+            this.btnCerrar.IconChar = FontAwesome.Sharp.IconChar.TimesRectangle;
             this.btnCerrar.IconColor = System.Drawing.Color.Black;
             this.btnCerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCerrar.IconSize = 28;
@@ -247,9 +247,10 @@ namespace Presentacion
             // 
             // textPrecioNegocio
             // 
-            this.textPrecioNegocio.Location = new System.Drawing.Point(275, 5);
+            this.textPrecioNegocio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textPrecioNegocio.Location = new System.Drawing.Point(304, 2);
             this.textPrecioNegocio.Name = "textPrecioNegocio";
-            this.textPrecioNegocio.Size = new System.Drawing.Size(89, 20);
+            this.textPrecioNegocio.Size = new System.Drawing.Size(89, 26);
             this.textPrecioNegocio.TabIndex = 74;
             this.textPrecioNegocio.Text = "0";
             this.textPrecioNegocio.Enter += new System.EventHandler(this.textPrecioNegocio_Enter);
@@ -258,11 +259,11 @@ namespace Presentacion
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.LimeGreen;
             this.label4.Location = new System.Drawing.Point(138, 8);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 13);
+            this.label4.Size = new System.Drawing.Size(164, 16);
             this.label4.TabIndex = 73;
             this.label4.Text = "Precio para negocio: $";
             // 
@@ -325,12 +326,13 @@ namespace Presentacion
             // 
             // comboUbicacion
             // 
+            this.comboUbicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboUbicacion.FormattingEnabled = true;
             this.comboUbicacion.Items.AddRange(new object[] {
             "0"});
-            this.comboUbicacion.Location = new System.Drawing.Point(421, 4);
+            this.comboUbicacion.Location = new System.Drawing.Point(421, 1);
             this.comboUbicacion.Name = "comboUbicacion";
-            this.comboUbicacion.Size = new System.Drawing.Size(85, 21);
+            this.comboUbicacion.Size = new System.Drawing.Size(85, 28);
             this.comboUbicacion.TabIndex = 60;
             this.comboUbicacion.Text = "0";
             this.comboUbicacion.SelectedIndexChanged += new System.EventHandler(this.comboNumeroEstante_SelectedIndexChanged);
@@ -372,7 +374,7 @@ namespace Presentacion
             this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
             this.labelAdvertencia.Location = new System.Drawing.Point(165, 31);
             this.labelAdvertencia.Name = "labelAdvertencia";
-            this.labelAdvertencia.Size = new System.Drawing.Size(184, 16);
+            this.labelAdvertencia.Size = new System.Drawing.Size(183, 16);
             this.labelAdvertencia.TabIndex = 60;
             this.labelAdvertencia.Text = "No existe este producto!!!";
             this.labelAdvertencia.Visible = false;
@@ -419,7 +421,7 @@ namespace Presentacion
             "Anti-histamínico",
             "Antipirético",
             "Relajante muscular"});
-            this.comboTipo.Location = new System.Drawing.Point(342, 247);
+            this.comboTipo.Location = new System.Drawing.Point(350, 247);
             this.comboTipo.Name = "comboTipo";
             this.comboTipo.Size = new System.Drawing.Size(178, 21);
             this.comboTipo.TabIndex = 64;
@@ -428,7 +430,7 @@ namespace Presentacion
             // labelTipo
             // 
             this.labelTipo.AutoSize = true;
-            this.labelTipo.Location = new System.Drawing.Point(309, 250);
+            this.labelTipo.Location = new System.Drawing.Point(320, 251);
             this.labelTipo.Name = "labelTipo";
             this.labelTipo.Size = new System.Drawing.Size(31, 13);
             this.labelTipo.TabIndex = 63;
@@ -445,9 +447,10 @@ namespace Presentacion
             // 
             // textCantidad
             // 
+            this.textCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textCantidad.Location = new System.Drawing.Point(123, 148);
             this.textCantidad.Name = "textCantidad";
-            this.textCantidad.Size = new System.Drawing.Size(144, 20);
+            this.textCantidad.Size = new System.Drawing.Size(144, 22);
             this.textCantidad.TabIndex = 61;
             this.textCantidad.Text = "0";
             this.textCantidad.Enter += new System.EventHandler(this.textCantidad_Enter);
@@ -459,11 +462,10 @@ namespace Presentacion
             this.btnModificar.Enabled = false;
             this.btnModificar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnModificar.IconChar = FontAwesome.Sharp.IconChar.Pen;
-            this.btnModificar.IconColor = System.Drawing.Color.Indigo;
+            this.btnModificar.IconColor = System.Drawing.Color.Black;
             this.btnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnModificar.IconSize = 30;
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -481,11 +483,10 @@ namespace Presentacion
             this.btnRegistrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(178)))), ((int)(((byte)(191)))));
             this.btnRegistrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnRegistrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnRegistrar.IconChar = FontAwesome.Sharp.IconChar.HouseMedical;
-            this.btnRegistrar.IconColor = System.Drawing.Color.Navy;
+            this.btnRegistrar.IconColor = System.Drawing.Color.Black;
             this.btnRegistrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRegistrar.IconSize = 30;
             this.btnRegistrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -532,7 +533,7 @@ namespace Presentacion
             "Nebulizantes",
             "Cutanea",
             "Transdérmica"});
-            this.comboVia.Location = new System.Drawing.Point(418, 275);
+            this.comboVia.Location = new System.Drawing.Point(426, 275);
             this.comboVia.Name = "comboVia";
             this.comboVia.Size = new System.Drawing.Size(102, 21);
             this.comboVia.TabIndex = 56;
@@ -584,7 +585,7 @@ namespace Presentacion
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearch.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.btnSearch.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
             this.btnSearch.IconColor = System.Drawing.Color.White;
             this.btnSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSearch.IconSize = 20;
@@ -602,7 +603,7 @@ namespace Presentacion
             this.labelTitle.ForeColor = System.Drawing.Color.White;
             this.labelTitle.Location = new System.Drawing.Point(4, 4);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(138, 16);
+            this.labelTitle.Size = new System.Drawing.Size(137, 16);
             this.labelTitle.TabIndex = 50;
             this.labelTitle.Text = "Registrar Producto";
             // 
@@ -653,13 +654,13 @@ namespace Presentacion
             this.dateTimeFechaRegistro.Enabled = false;
             this.dateTimeFechaRegistro.Location = new System.Drawing.Point(101, 248);
             this.dateTimeFechaRegistro.Name = "dateTimeFechaRegistro";
-            this.dateTimeFechaRegistro.Size = new System.Drawing.Size(191, 20);
+            this.dateTimeFechaRegistro.Size = new System.Drawing.Size(213, 20);
             this.dateTimeFechaRegistro.TabIndex = 37;
             // 
             // labelVia
             // 
             this.labelVia.AutoSize = true;
-            this.labelVia.Location = new System.Drawing.Point(326, 279);
+            this.labelVia.Location = new System.Drawing.Point(335, 279);
             this.labelVia.Name = "labelVia";
             this.labelVia.Size = new System.Drawing.Size(91, 13);
             this.labelVia.TabIndex = 42;
@@ -685,7 +686,7 @@ namespace Presentacion
             // 
             this.dateTimeFechaVencimiento.Location = new System.Drawing.Point(123, 277);
             this.dateTimeFechaVencimiento.Name = "dateTimeFechaVencimiento";
-            this.dateTimeFechaVencimiento.Size = new System.Drawing.Size(200, 20);
+            this.dateTimeFechaVencimiento.Size = new System.Drawing.Size(212, 20);
             this.dateTimeFechaVencimiento.TabIndex = 39;
             // 
             // labelLote
@@ -734,9 +735,10 @@ namespace Presentacion
             // 
             // textPrecioCaja
             // 
-            this.textPrecioCaja.Location = new System.Drawing.Point(450, 5);
+            this.textPrecioCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textPrecioCaja.Location = new System.Drawing.Point(450, 2);
             this.textPrecioCaja.Name = "textPrecioCaja";
-            this.textPrecioCaja.Size = new System.Drawing.Size(88, 20);
+            this.textPrecioCaja.Size = new System.Drawing.Size(88, 26);
             this.textPrecioCaja.TabIndex = 70;
             this.textPrecioCaja.Text = "0";
             this.textPrecioCaja.Enter += new System.EventHandler(this.textPrecioCaja_Enter);
@@ -744,9 +746,10 @@ namespace Presentacion
             // 
             // textPrecioUnidad
             // 
-            this.textPrecioUnidad.Location = new System.Drawing.Point(91, 5);
+            this.textPrecioUnidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textPrecioUnidad.Location = new System.Drawing.Point(91, 2);
             this.textPrecioUnidad.Name = "textPrecioUnidad";
-            this.textPrecioUnidad.Size = new System.Drawing.Size(89, 20);
+            this.textPrecioUnidad.Size = new System.Drawing.Size(89, 26);
             this.textPrecioUnidad.TabIndex = 45;
             this.textPrecioUnidad.Text = "0";
             this.textPrecioUnidad.Enter += new System.EventHandler(this.textPrecioUnidad_Enter);
@@ -754,9 +757,10 @@ namespace Presentacion
             // 
             // textPrecioBlister
             // 
-            this.textPrecioBlister.Location = new System.Drawing.Point(279, 5);
+            this.textPrecioBlister.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textPrecioBlister.Location = new System.Drawing.Point(279, 2);
             this.textPrecioBlister.Name = "textPrecioBlister";
-            this.textPrecioBlister.Size = new System.Drawing.Size(88, 20);
+            this.textPrecioBlister.Size = new System.Drawing.Size(88, 26);
             this.textPrecioBlister.TabIndex = 46;
             this.textPrecioBlister.Text = "0";
             this.textPrecioBlister.Enter += new System.EventHandler(this.textPrecioBlister_Enter);

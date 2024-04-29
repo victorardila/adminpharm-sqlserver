@@ -211,19 +211,6 @@ namespace Presentacion
         {
             nombreDeUsuario = textBoxUser.Text;
         }
-        private void btnIngresar_Click(object sender, EventArgs e)
-        {
-            MapearDatos();
-            BuscarPorNombreDeUsuario();
-            if (UsuarioValido == true)
-            {
-                FormMenu mainMenu = new FormMenu();
-                mainMenu.idEmpleado = Id_Empleado;
-                mainMenu.ValidarUsuario();
-                mainMenu.Show();
-                this.Hide();
-            }
-        }
 
         private void textBoxUser_TextChanged(object sender, EventArgs e)
         {
@@ -261,6 +248,20 @@ namespace Presentacion
             FormAjustarServidor formAjustarServidor = new FormAjustarServidor();
             formAjustarServidor.Show();
             this.Hide();
+        }
+
+        private void btnIngresar_Click(object sender, EventArgs e)
+        {
+            MapearDatos();
+            BuscarPorNombreDeUsuario();
+            if (UsuarioValido == true)
+            {
+                FormMenu mainMenu = new FormMenu();
+                mainMenu.idEmpleado = Id_Empleado;
+                mainMenu.ValidarUsuario();
+                mainMenu.Show();
+                this.Hide();
+            }
         }
     }
 }

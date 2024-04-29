@@ -149,7 +149,7 @@ namespace Entity
                 if (PrecioDeNegocio == 0)
                 {
                     GananciaPorProducto = 0;
-                    PorcentajeDeVenta =0;
+                    PorcentajeDeVenta = 0;
                 }
             }
         }

@@ -57,6 +57,12 @@ namespace Presentacion
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private string GenerarUID()
+        {
+            Guid uid = Guid.NewGuid();
+            string uidString = uid.ToString();
+            return uidString;
+        }
         private Producto MapearProducto()
         {
             producto = new Producto();
@@ -81,34 +87,40 @@ namespace Presentacion
             producto.Ubicacion = comboUbicacion.Text;
             return producto;
         }
-        private void BuscarReferencia(string referencia)
+        private Producto VerificarExistencia(string referencia)
         {
             BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
             respuesta = productoService.BuscarPorReferencia(referencia);
+            Producto producto = new Producto();
             if (respuesta.Producto != null)
             {
-                for(int i = 2; i < 1000; i++)
+                // Producto ya existe
+                int i = 2;
+                bool flag = true;
+                while (flag)
                 {
-                    string newReferencia = respuesta.Producto.Referencia + "-"+i;
-                    respuesta = productoService.BuscarPorReferencia(newReferencia);
+                    string nuevaReferencia = $"{respuesta.Producto.Referencia}-{i}";
+                    respuesta = productoService.BuscarPorReferencia(nuevaReferencia);
                     if (respuesta.Producto == null)
                     {
-                        textReferencia.Text = newReferencia;
-                        Producto producto = MapearProducto();
-                        producto.Referencia = newReferencia;
-                        productoService.Guardar(producto);
-                        break;
+                        textReferencia.Text = nuevaReferencia;
+                        producto.Referencia = nuevaReferencia;
+                        producto = MapearProducto();
+                        flag = false;
                     }
+                    i++;
                 }
+
             }
             else
             {
+                // Producto no existe
                 if (respuesta.Producto == null)
                 {
-                    Producto producto = MapearProducto();
-                    productoService.Guardar(producto);
+                    producto = MapearProducto();
                 }
             }
+            return producto;
         }
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -376,7 +388,8 @@ namespace Presentacion
             {
                 if (comboUbicacion.Text != "0")
                 {
-                    BuscarReferencia(referencia);
+                    Producto producto = VerificarExistencia(referencia);
+                    productoService.Guardar(producto);
                     Estante estante = MapearEstante();
                     estanteService.Modificar(estante);
                     string msg = "¡Se agrego el producto correctamente!";

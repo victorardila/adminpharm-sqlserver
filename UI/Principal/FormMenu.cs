@@ -86,6 +86,35 @@ namespace Presentacion
                 iconThemeSun.Visible = true;
             }
         }
+        private void EliminarIdSesionDeUsuario()
+        {
+            string mensaje = idEmpleadoTxtService.EliminarHistorial();
+        }
+//********************************CONTROLES DEL FORMULARIO******************************************     
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+            EliminarIdSesionDeUsuario();
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+            btnWindowMaximize.Visible = false;
+            btnWindowRestore.Visible = true;
+        }
+
+        private void btnRestaurar_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Normal;
+            btnWindowRestore.Visible = false;
+            btnWindowMaximize.Visible = true;
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
         private void AbrirSumadorDelSistema()
         {
             labelHeaderRuta.Text = "Inicio";
@@ -118,35 +147,6 @@ namespace Presentacion
             btnAjustes.Text = "";
             panelSidebarClose.Visible = true;
         }
-        private void EliminarIdSesionDeUsuario()
-        {
-            string mensaje = idEmpleadoTxtService.EliminarHistorial();
-        }
-        private void btnCerrar_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-            EliminarIdSesionDeUsuario();
-        }
-
-        private void btnMaximizar_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Maximized;
-            btnWindowMaximize.Visible = false;
-            btnWindowRestore.Visible = true;
-        }
-
-        private void btnRestaurar_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Normal;
-            btnWindowRestore.Visible = false;
-            btnWindowMaximize.Visible = true;
-        }
-
-        private void btnMinimizar_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
         private void customizeDesign()
         {
             subMenuProductos.Visible = false;
@@ -177,125 +177,6 @@ namespace Presentacion
                 }
             }
         }
-//**********************************************GESTION DE CAJA*********************************************************
-        
-        private void btnGestionCaja_Click(object sender, EventArgs e)
-        {
-            labelHeaderRuta.Text = "Inicio > Gestion Caja Registradora";
-            panelSelectionCaja.Location = btnGestionCaja.Location;
-            panelSelectionCaja.Visible = true;
-            panelSelectionAjustes.Visible = false;
-            panelSelectionProducto.Visible = false;
-            panelSelectionUsuarios.Visible = false;
-            panelSelectionFactura.Visible = false;
-            CerrarFormulariosCiclo();
-            AbrirFormulario<FormGestionCaja>();
-        }
-
-//**********************************************GESTION DE PRODUCTOS****************************************************
-        
-        private void btnGestionProductos_Click(object sender, EventArgs e)
-        {
-            labelHeaderRuta.Text = "Inicio > Gestion Productos";
-            showSubMenu(subMenuProductos);
-            panelSelectionProducto.Location = btnGestionProductos.Location;
-            panelSelectionCaja.Visible = false;
-            panelSelectionAjustes.Visible = false;
-            panelSelectionProducto.Visible = true;
-            panelSelectionUsuarios.Visible = false;
-            panelSelectionFactura.Visible = false;
-        }
-        private void ProgresCargarDatos()
-        {
-            
-        }
-        private void btnProductos_Click(object sender, EventArgs e)
-        {
-            Thread cargarDatosProductos = new Thread(ProgresCargarDatos);
-            cargarDatosProductos.Start();
-            cargarDatosProductos.Join();
-            labelHeaderRuta.Text = "Inicio > Gestion Productos > Productos";
-            CerrarFormulariosCiclo();
-            AbrirFormulario<FormGestionProducto>();
-        }
-        private void btnEstantes_Click(object sender, EventArgs e)
-        {
-            labelHeaderRuta.Text = "Inicio > Gestion Productos > Estantes";
-            CerrarFormulariosCiclo();
-            AbrirFormulario<FormGestionDeEstantes>();
-        }
-        private void btnNevera_Click(object sender, EventArgs e)
-        {
-            labelHeaderRuta.Text = "Inicio > Gestion Productos > Estantes";
-            CerrarFormulariosCiclo();
-            AbrirFormulario<FormGestionarNevera>();
-        }
-
-        private void btnVitrina_Click(object sender, EventArgs e)
-        {
-            labelHeaderRuta.Text = "Inicio > Gestion Productos > Estantes";
-            CerrarFormulariosCiclo();
-            AbrirFormulario<FormGestionarVitrina>();
-        }
-
-        private void btnBodega_Click(object sender, EventArgs e)
-        {
-            labelHeaderRuta.Text = "Inicio > Gestion Productos > Estantes";
-            CerrarFormulariosCiclo();
-            AbrirFormulario<FormGestionBodega>();
-        }
-        //**********************************************GESTION DE USUARIOS*****************************************************
-
-        private void btnGestionUsuarios_Click(object sender, EventArgs e)
-        {
-            labelHeaderRuta.Text = "Inicio > Gestion Usuarios";
-            showSubMenu(subMenuUsuarios);
-            panelSelectionUsuarios.Location = btnGestionUsuarios.Location;
-            panelSelectionCaja.Visible = false;
-            panelSelectionAjustes.Visible = false;
-            panelSelectionProducto.Visible = false;
-            panelSelectionUsuarios.Visible = true;
-            panelSelectionFactura.Visible = false;
-        }
-        private void btnClientes_Click(object sender, EventArgs e)
-        {
-            labelHeaderRuta.Text = "Inicio > Gestion Usuarios > Clientes";
-            CerrarFormulariosCiclo();
-            AbrirFormulario<FormGestionClientes>();
-        }
-        private void btnEmpleados_Click(object sender, EventArgs e)
-        {
-            labelHeaderRuta.Text = "Inicio > Gestion Usuarios > Empleados";
-            CerrarFormulariosCiclo();
-            AbrirFormulario<FormGestionarEmpleados>();
-        }
-//**********************************************GESTION DE FACTURA******************************************************
-        private void btnGestionFactura_Click(object sender, EventArgs e)
-        {
-            labelHeaderRuta.Text = "Inicio > Gestion Factura";
-            panelSelectionFactura.Location = btnGestionFactura.Location;
-            panelSelectionFactura.Visible = true;
-            panelSelectionCaja.Visible = false;
-            panelSelectionProducto.Visible = false;
-            panelSelectionUsuarios.Visible = false;
-            panelSelectionAjustes.Visible = false;
-            CerrarFormulariosCiclo();
-            AbrirFormulario<FormGestionFacturas>();
-        }
-//**********************************************GESTION DE AJUSTES******************************************************
-        private void btnAjustes_Click(object sender, EventArgs e)
-        {
-            labelHeaderRuta.Text = "Inicio > Ajustes";
-            panelSelectionAjustes.Location = btnAjustes.Location;
-            panelSelectionAjustes.Visible = true;
-            panelSelectionCaja.Visible = false;
-            panelSelectionProducto.Visible = false;
-            panelSelectionUsuarios.Visible = false;
-            panelSelectionFactura.Visible = false;
-            CerrarFormulariosCiclo();
-            AbrirFormulario<FormAjustes>();
-        }
-//**********************************************************************************************************************
         private void btnDarkMode_Click(object sender, EventArgs e)
         {
             btnModeDark.Visible = false;
@@ -412,6 +293,124 @@ namespace Presentacion
             formActivador.ModoDeEntrada = "Principal";
             formActivador.Inicializar();
             formActivador.ShowDialog();
+        }
+        //**********************************************GESTION DE CAJA*********************************************************
+
+        private void btnGestionCaja_Click(object sender, EventArgs e)
+        {
+            labelHeaderRuta.Text = "Inicio > Gestion Caja Registradora";
+            panelSelectionCaja.Location = btnGestionCaja.Location;
+            panelSelectionCaja.Visible = true;
+            panelSelectionAjustes.Visible = false;
+            panelSelectionProducto.Visible = false;
+            panelSelectionUsuarios.Visible = false;
+            panelSelectionFactura.Visible = false;
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionCaja>();
+        }
+
+//**********************************************GESTION DE PRODUCTOS****************************************************
+        
+        private void btnGestionProductos_Click(object sender, EventArgs e)
+        {
+            labelHeaderRuta.Text = "Inicio > Gestion Productos";
+            showSubMenu(subMenuProductos);
+            panelSelectionProducto.Location = btnGestionProductos.Location;
+            panelSelectionCaja.Visible = false;
+            panelSelectionAjustes.Visible = false;
+            panelSelectionProducto.Visible = true;
+            panelSelectionUsuarios.Visible = false;
+            panelSelectionFactura.Visible = false;
+        }
+        private void ProgresCargarDatos()
+        {
+            
+        }
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+            Thread cargarDatosProductos = new Thread(ProgresCargarDatos);
+            cargarDatosProductos.Start();
+            cargarDatosProductos.Join();
+            labelHeaderRuta.Text = "Inicio > Gestion Productos > Productos";
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionProducto>();
+        }
+        private void btnEstantes_Click(object sender, EventArgs e)
+        {
+            labelHeaderRuta.Text = "Inicio > Gestion Productos > Estantes";
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionDeEstantes>();
+        }
+        private void btnNevera_Click(object sender, EventArgs e)
+        {
+            labelHeaderRuta.Text = "Inicio > Gestion Productos > Estantes";
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionarNevera>();
+        }
+
+        private void btnVitrina_Click(object sender, EventArgs e)
+        {
+            labelHeaderRuta.Text = "Inicio > Gestion Productos > Estantes";
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionarVitrina>();
+        }
+
+        private void btnBodega_Click(object sender, EventArgs e)
+        {
+            labelHeaderRuta.Text = "Inicio > Gestion Productos > Estantes";
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionBodega>();
+        }
+//**********************************************GESTION DE USUARIOS*****************************************************
+
+        private void btnGestionUsuarios_Click(object sender, EventArgs e)
+        {
+            labelHeaderRuta.Text = "Inicio > Gestion Usuarios";
+            showSubMenu(subMenuUsuarios);
+            panelSelectionUsuarios.Location = btnGestionUsuarios.Location;
+            panelSelectionCaja.Visible = false;
+            panelSelectionAjustes.Visible = false;
+            panelSelectionProducto.Visible = false;
+            panelSelectionUsuarios.Visible = true;
+            panelSelectionFactura.Visible = false;
+        }
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            labelHeaderRuta.Text = "Inicio > Gestion Usuarios > Clientes";
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionClientes>();
+        }
+        private void btnEmpleados_Click(object sender, EventArgs e)
+        {
+            labelHeaderRuta.Text = "Inicio > Gestion Usuarios > Empleados";
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionarEmpleados>();
+        }
+//**********************************************GESTION DE FACTURA******************************************************
+        private void btnGestionFactura_Click(object sender, EventArgs e)
+        {
+            labelHeaderRuta.Text = "Inicio > Gestion Factura";
+            panelSelectionFactura.Location = btnGestionFactura.Location;
+            panelSelectionFactura.Visible = true;
+            panelSelectionCaja.Visible = false;
+            panelSelectionProducto.Visible = false;
+            panelSelectionUsuarios.Visible = false;
+            panelSelectionAjustes.Visible = false;
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormGestionFacturas>();
+        }
+//**********************************************GESTION DE AJUSTES******************************************************
+        private void btnAjustes_Click(object sender, EventArgs e)
+        {
+            labelHeaderRuta.Text = "Inicio > Ajustes";
+            panelSelectionAjustes.Location = btnAjustes.Location;
+            panelSelectionAjustes.Visible = true;
+            panelSelectionCaja.Visible = false;
+            panelSelectionProducto.Visible = false;
+            panelSelectionUsuarios.Visible = false;
+            panelSelectionFactura.Visible = false;
+            CerrarFormulariosCiclo();
+            AbrirFormulario<FormAjustes>();
         }
     }
 }

@@ -83,13 +83,13 @@ namespace Presentacion
             this.panel2 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textContraseña = new System.Windows.Forms.TextBox();
+            this.textToken = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textCorreo = new System.Windows.Forms.TextBox();
+            this.textUser = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnEliminarInfo = new FontAwesome.Sharp.IconButton();
             this.btnModificarInfo = new FontAwesome.Sharp.IconButton();
@@ -172,7 +172,7 @@ namespace Presentacion
             this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
             this.labelAdvertencia.Location = new System.Drawing.Point(193, 4);
             this.labelAdvertencia.Name = "labelAdvertencia";
-            this.labelAdvertencia.Size = new System.Drawing.Size(225, 16);
+            this.labelAdvertencia.Size = new System.Drawing.Size(224, 16);
             this.labelAdvertencia.TabIndex = 79;
             this.labelAdvertencia.Text = "No hay productos registrados!!!";
             // 
@@ -358,7 +358,7 @@ namespace Presentacion
             this.labelTituloRegistrarDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTituloRegistrarDatos.Location = new System.Drawing.Point(5, 4);
             this.labelTituloRegistrarDatos.Name = "labelTituloRegistrarDatos";
-            this.labelTituloRegistrarDatos.Size = new System.Drawing.Size(208, 16);
+            this.labelTituloRegistrarDatos.Size = new System.Drawing.Size(207, 16);
             this.labelTituloRegistrarDatos.TabIndex = 84;
             this.labelTituloRegistrarDatos.Text = "Registrar datos de drogueria";
             // 
@@ -484,7 +484,7 @@ namespace Presentacion
             this.labelTituloConfigDeGuardado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTituloConfigDeGuardado.Location = new System.Drawing.Point(5, 4);
             this.labelTituloConfigDeGuardado.Name = "labelTituloConfigDeGuardado";
-            this.labelTituloConfigDeGuardado.Size = new System.Drawing.Size(196, 16);
+            this.labelTituloConfigDeGuardado.Size = new System.Drawing.Size(195, 16);
             this.labelTituloConfigDeGuardado.TabIndex = 84;
             this.labelTituloConfigDeGuardado.Text = "Configuracion de guardado";
             // 
@@ -592,7 +592,7 @@ namespace Presentacion
             this.labelTituloAvanzado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTituloAvanzado.Location = new System.Drawing.Point(5, 4);
             this.labelTituloAvanzado.Name = "labelTituloAvanzado";
-            this.labelTituloAvanzado.Size = new System.Drawing.Size(77, 16);
+            this.labelTituloAvanzado.Size = new System.Drawing.Size(76, 16);
             this.labelTituloAvanzado.TabIndex = 84;
             this.labelTituloAvanzado.Text = "Avanzado";
             // 
@@ -628,7 +628,7 @@ namespace Presentacion
             this.labelTituloDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTituloDatos.Location = new System.Drawing.Point(5, 4);
             this.labelTituloDatos.Name = "labelTituloDatos";
-            this.labelTituloDatos.Size = new System.Drawing.Size(49, 16);
+            this.labelTituloDatos.Size = new System.Drawing.Size(48, 16);
             this.labelTituloDatos.TabIndex = 84;
             this.labelTituloDatos.Text = "Datos";
             // 
@@ -638,11 +638,11 @@ namespace Presentacion
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.textContraseña);
+            this.panel2.Controls.Add(this.textToken);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.textCorreo);
+            this.panel2.Controls.Add(this.textUser);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Location = new System.Drawing.Point(85, 484);
             this.panel2.Name = "panel2";
@@ -654,25 +654,25 @@ namespace Presentacion
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(16, 57);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 90;
-            this.label7.Text = "Email:";
+            this.label7.Text = "User:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(316, 56);
+            this.label6.Location = new System.Drawing.Point(343, 56);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 13);
+            this.label6.Size = new System.Drawing.Size(41, 13);
             this.label6.TabIndex = 89;
-            this.label6.Text = "Contraseña:";
+            this.label6.Text = "Token:";
             // 
-            // textContraseña
+            // textToken
             // 
-            this.textContraseña.Location = new System.Drawing.Point(382, 52);
-            this.textContraseña.Name = "textContraseña";
-            this.textContraseña.Size = new System.Drawing.Size(232, 20);
-            this.textContraseña.TabIndex = 88;
+            this.textToken.Location = new System.Drawing.Point(382, 52);
+            this.textToken.Name = "textToken";
+            this.textToken.Size = new System.Drawing.Size(232, 20);
+            this.textToken.TabIndex = 88;
             // 
             // label2
             // 
@@ -718,16 +718,16 @@ namespace Presentacion
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(5, 4);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(111, 16);
+            this.label4.Size = new System.Drawing.Size(110, 16);
             this.label4.TabIndex = 84;
             this.label4.Text = "Correo Backup";
             // 
-            // textCorreo
+            // textUser
             // 
-            this.textCorreo.Location = new System.Drawing.Point(51, 52);
-            this.textCorreo.Name = "textCorreo";
-            this.textCorreo.Size = new System.Drawing.Size(253, 20);
-            this.textCorreo.TabIndex = 61;
+            this.textUser.Location = new System.Drawing.Point(51, 52);
+            this.textUser.Name = "textUser";
+            this.textUser.Size = new System.Drawing.Size(253, 20);
+            this.textUser.TabIndex = 61;
             // 
             // label5
             // 
@@ -918,10 +918,10 @@ namespace Presentacion
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textCorreo;
+        private System.Windows.Forms.TextBox textUser;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textContraseña;
+        private System.Windows.Forms.TextBox textToken;
     }
 }
