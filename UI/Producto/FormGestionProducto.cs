@@ -222,9 +222,8 @@ namespace Presentacion
             paginaSeleccionada = paginaSelecciona;
             BuscarPorEstado();
             ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
-            string via = comboFiltroVia.Text;
-            string tipo = comboFiltroTipo.Text;
-            if (via == "Todos" && tipo == "Todos")
+            string tipo = comboFiltroEstado.Text;
+            if (tipo == "Todos")
             {
                 textTotal.Enabled = true;
                 textCuarentena.Enabled = true;
@@ -244,7 +243,7 @@ namespace Presentacion
                     textVigentes.Text = productoService.TotalizarTipo("Vigente").Cuenta.ToString();
                     textCuarentena.Text = productoService.TotalizarTipo("Cuarentena").Cuenta.ToString();
                     textVencido.Text= productoService.TotalizarTipo("Vencido").Cuenta.ToString();
-                    labelAdvertencia.Visible = false;
+                    labelMedicamentosAgotados.Visible = false;
                 }
                 else
                 {
@@ -252,7 +251,7 @@ namespace Presentacion
                     {
                         MostrarAviso();
                         Eliminar.Visible = false;
-                        labelAdvertencia.Visible = true;
+                        labelMedicamentosAgotados.Visible = true;
                     }
                 }
             }
@@ -307,7 +306,27 @@ namespace Presentacion
         }
         private void MostrarAviso()
         {
-            labelAdvertencia.Visible = true;
+            labelMedicamentosAgotados.Visible = true;
+        }
+        private void BuscarPorNombre()
+        {
+            BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
+            string nombre = textSearch.Text;
+            respuesta = productoService.BuscarPorNombre(nombre);
+            if (respuesta.Producto != null)
+            {
+                dataGridFarmacos.DataSource = null;
+                var productos = new List<Producto> { respuesta.Producto };
+                dataGridFarmacos.DataSource = productos;
+                encontrado = true;
+            }
+            else
+            {
+                if (respuesta.Producto == null)
+                {
+                    //ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                }
+            }
         }
         private void BuscarPorReferencia()
         {
@@ -329,27 +348,6 @@ namespace Presentacion
                 }
             }
         }
-        private void BuscarPorVia()
-        {
-            ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
-            string via = comboFiltroVia.Text;
-            respuesta = productoService.BuscarPorViaAdminitracion(via);
-            if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
-            {
-                dataGridFarmacos.DataSource = respuesta.Productos;
-            }
-            else
-            {
-                if (respuesta.Productos == null || respuesta.Productos.Count == 0)
-                {
-                    labelAdvertencia.Enabled = true;
-                    labelAdvertencia.Text = "No hay medicametos de este tipo";
-                    string msg = "¡No se encontró medicamentos asociados!";
-                    MessageBox.Show(msg, "Filtro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    comboFiltroVia.Text = "Todos";
-                }
-            }
-        }
         private void BuscarPorUbicacion()
         {
             ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
@@ -363,18 +361,17 @@ namespace Presentacion
             {
                 if (respuesta.Productos == null || respuesta.Productos.Count == 0)
                 {
-                    labelAdvertencia.Enabled = true;
-                    labelAdvertencia.Text = "No hay medicametos de este tipo";
+                    labelMedicamentosAgotados.Enabled = true;
+                    labelMedicamentosAgotados.Text = "No hay medicametos de este tipo";
                     string msg = "¡No se encontró medicamentos asociados!";
                     MessageBox.Show(msg, "Filtro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    comboFiltroVia.Text = "Todos";
                 }
             }
         }
         private void BuscarPorTipo()
         {
             ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
-            string tipo = comboFiltroTipo.Text;
+            string tipo = comboFiltroEstado.Text;
             respuesta = productoService.BuscarPorTipo(tipo);
             if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
             {
@@ -384,11 +381,11 @@ namespace Presentacion
             {
                 if (respuesta.Productos == null || respuesta.Productos.Count == 0)
                 {
-                    labelAdvertencia.Enabled = true;
-                    labelAdvertencia.Text = "No hay medicametos de este tipo";
+                    labelMedicamentosAgotados.Enabled = true;
+                    labelMedicamentosAgotados.Text = "No hay medicametos de este tipo";
                     string msg = "¡No se encontró medicamentos asociados!";
                     MessageBox.Show(msg, "Filtro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    comboFiltroTipo.Text = "Todos";
+                    comboFiltroEstado.Text = "Todos";
                 }
             }
         }
@@ -626,68 +623,6 @@ namespace Presentacion
             FormRegistrarProducto frm = new FormRegistrarProducto();
             frm.ShowDialog();
         }
-        private void comboFiltroVia_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string via = comboFiltroVia.Text;
-            if (via != "Todos")
-            {
-                ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
-                respuesta = productoService.BuscarPorViaAdminitracion(via);
-                productos = respuesta.Productos.ToList();
-                dataGridFarmacos.DataSource = null;
-                if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
-                {
-                    dataGridFarmacos.DataSource = respuesta.Productos;
-                }
-                else
-                {
-                    if (respuesta.Productos == null || respuesta.Productos.Count == 0)
-                    {
-                        MostrarAviso();
-                        Eliminar.Visible = false;
-                        labelAdvertencia.Visible = true;
-                    }
-                }
-            }
-            else
-            {
-                if (via == "Todos")
-                {
-                    ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-                }
-            }
-        }
-        private void comboFiltroTipo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string Tipo = comboFiltroTipo.Text;
-            if (Tipo != "Todos")
-            {
-                ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
-                respuesta = productoService.BuscarPorTipo(Tipo);
-                productos = respuesta.Productos.ToList();
-                dataGridFarmacos.DataSource = null;
-                if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
-                {
-                    dataGridFarmacos.DataSource = respuesta.Productos;
-                }
-                else
-                {
-                    if (respuesta.Productos == null || respuesta.Productos.Count == 0)
-                    {
-                        MostrarAviso();
-                        Eliminar.Visible = false;
-                        labelAdvertencia.Visible = true;
-                    }
-                }
-            }
-            else
-            {
-                if (Tipo == "Todos")
-                {
-                    ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-                }
-            }
-        }
         private void btnSearch_Click(object sender, EventArgs e)
         {
             //BuscarPorReferencia();
@@ -713,48 +648,34 @@ namespace Presentacion
         }
         private void textSearch_TextChanged(object sender, EventArgs e)
         {
-            if (textSearch.Text != "")
+            string searchText = textSearch.Text.Trim().ToUpper();
+
+            if (!string.IsNullOrEmpty(searchText))
             {
                 BuscarPorReferencia();
-                if (encontrado == false)
+                BuscarPorNombre();
+                if (encontrado!=false)
                 {
                     dataGridFarmacos.CurrentCell = null;
+
                     foreach (DataGridViewRow fila in dataGridFarmacos.Rows)
                     {
-                        fila.Visible = false;
-                    };
-                    foreach (DataGridViewRow fila in dataGridFarmacos.Rows)
-                    {
-                        int i = 0;
+                        bool found = false;
                         foreach (DataGridViewCell celda in fila.Cells)
                         {
-                            if (i == 8)
+                            if (celda.Value != null && (celda.Value.ToString().ToUpper().Contains(searchText)))
                             {
-                                if ((celda.Value.ToString().ToUpper()).IndexOf(textSearch.Text.ToUpper()) == 0)
-                                {
-                                    fila.Visible = true;
-                                    break;
-                                }
-                                else
-                                {
-                                    if ((celda.Value.ToString() == (textSearch.Text.ToUpper())))
-                                    {
-                                        fila.Visible = true;
-                                        break;
-                                    }
-                                }
+                                found = true;
+                                break;
                             }
-                            i = i + 1;
                         }
+                        fila.Visible = found;
                     }
                 }
             }
             else
             {
-                if(textSearch.Text == "")
-                {
-                    ConsultarYLlenarGridDeProductos(paginaSeleccionada);
-                }
+                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
             }
         }
 
@@ -779,6 +700,7 @@ namespace Presentacion
                 if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
                 {
                     dataGridFarmacos.DataSource = respuesta.Productos;
+                    labelMedicamentosAgotados.Visible = false;
                 }
                 else
                 {
@@ -786,7 +708,7 @@ namespace Presentacion
                     {
                         MostrarAviso();
                         Eliminar.Visible = false;
-                        labelAdvertencia.Visible = true;
+                        labelMedicamentosAgotados.Visible = true;
                     }
                 }
             }
@@ -1150,6 +1072,39 @@ namespace Presentacion
             if (e.KeyChar == (char)Keys.Enter)
             {
                 BuscarPorReferencia();
+            }
+        }
+
+        private void comboFiltroEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string Estado = comboFiltroEstado.Text;
+            if (Estado != "Todos")
+            {
+                ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();
+                respuesta = productoService.BuscarPorEstado(Estado);
+                productos = respuesta.Productos.ToList();
+                dataGridFarmacos.DataSource = null;
+                if (respuesta.Productos.Count != 0 && respuesta.Productos != null)
+                {
+                    dataGridFarmacos.DataSource = respuesta.Productos;
+                    labelMedicamentosAgotados.Visible = false;
+                }
+                else
+                {
+                    if (respuesta.Productos == null || respuesta.Productos.Count == 0)
+                    {
+                        MostrarAviso();
+                        Eliminar.Visible = false;
+                        labelMedicamentosAgotados.Visible = true;
+                    }
+                }
+            }
+            else
+            {
+                if (Estado == "Todos")
+                {
+                    ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                }
             }
         }
     }

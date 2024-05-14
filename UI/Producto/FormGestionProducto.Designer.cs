@@ -47,17 +47,14 @@ namespace Presentacion
             this.iconCash = new FontAwesome.Sharp.IconPictureBox();
             this.btnVolver = new FontAwesome.Sharp.IconButton();
             this.panelTituloDataGridFarmacos = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
             this.btnRefresh = new FontAwesome.Sharp.IconButton();
             this.comboUbicacion = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.labelAdvertencia = new System.Windows.Forms.Label();
             this.btnClose = new FontAwesome.Sharp.IconPictureBox();
             this.textSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new FontAwesome.Sharp.IconPictureBox();
-            this.comboFiltroTipo = new System.Windows.Forms.ComboBox();
-            this.labelFiltroTipo = new System.Windows.Forms.Label();
-            this.comboFiltroVia = new System.Windows.Forms.ComboBox();
-            this.labelFiltroVia = new System.Windows.Forms.Label();
+            this.comboFiltroEstado = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridFarmacos = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -327,22 +324,28 @@ namespace Presentacion
             this.panelTituloDataGridFarmacos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTituloDataGridFarmacos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTituloDataGridFarmacos.Controls.Add(this.label9);
             this.panelTituloDataGridFarmacos.Controls.Add(this.btnRefresh);
             this.panelTituloDataGridFarmacos.Controls.Add(this.comboUbicacion);
             this.panelTituloDataGridFarmacos.Controls.Add(this.label5);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.labelAdvertencia);
             this.panelTituloDataGridFarmacos.Controls.Add(this.btnClose);
             this.panelTituloDataGridFarmacos.Controls.Add(this.textSearch);
             this.panelTituloDataGridFarmacos.Controls.Add(this.btnSearch);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.comboFiltroTipo);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.labelFiltroTipo);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.comboFiltroVia);
-            this.panelTituloDataGridFarmacos.Controls.Add(this.labelFiltroVia);
+            this.panelTituloDataGridFarmacos.Controls.Add(this.comboFiltroEstado);
             this.panelTituloDataGridFarmacos.Controls.Add(this.label4);
             this.panelTituloDataGridFarmacos.Location = new System.Drawing.Point(0, 0);
             this.panelTituloDataGridFarmacos.Name = "panelTituloDataGridFarmacos";
             this.panelTituloDataGridFarmacos.Size = new System.Drawing.Size(763, 24);
             this.panelTituloDataGridFarmacos.TabIndex = 49;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(336, 5);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 13);
+            this.label9.TabIndex = 63;
+            this.label9.Text = "Estado:";
             // 
             // btnRefresh
             // 
@@ -358,7 +361,7 @@ namespace Presentacion
             this.btnRefresh.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnRefresh.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnRefresh.IconSize = 26;
-            this.btnRefresh.Location = new System.Drawing.Point(553, -2);
+            this.btnRefresh.Location = new System.Drawing.Point(498, -1);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(26, 25);
             this.btnRefresh.TabIndex = 62;
@@ -374,7 +377,7 @@ namespace Presentacion
             this.comboUbicacion.FormattingEnabled = true;
             this.comboUbicacion.Items.AddRange(new object[] {
             "Todos"});
-            this.comboUbicacion.Location = new System.Drawing.Point(207, 0);
+            this.comboUbicacion.Location = new System.Drawing.Point(216, 1);
             this.comboUbicacion.Name = "comboUbicacion";
             this.comboUbicacion.Size = new System.Drawing.Size(105, 21);
             this.comboUbicacion.TabIndex = 58;
@@ -384,22 +387,11 @@ namespace Presentacion
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(149, 4);
+            this.label5.Location = new System.Drawing.Point(160, 5);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 57;
             this.label5.Text = "Ubicacion:";
-            // 
-            // labelAdvertencia
-            // 
-            this.labelAdvertencia.AutoSize = true;
-            this.labelAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdvertencia.ForeColor = System.Drawing.Color.DarkRed;
-            this.labelAdvertencia.Location = new System.Drawing.Point(317, 4);
-            this.labelAdvertencia.Name = "labelAdvertencia";
-            this.labelAdvertencia.Size = new System.Drawing.Size(185, 13);
-            this.labelAdvertencia.TabIndex = 54;
-            this.labelAdvertencia.Text = "No hay productos registrados!!!";
             // 
             // btnClose
             // 
@@ -423,10 +415,10 @@ namespace Presentacion
             // 
             this.textSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textSearch.Location = new System.Drawing.Point(585, 0);
+            this.textSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textSearch.Location = new System.Drawing.Point(530, -1);
             this.textSearch.Name = "textSearch";
-            this.textSearch.Size = new System.Drawing.Size(130, 22);
+            this.textSearch.Size = new System.Drawing.Size(185, 24);
             this.textSearch.TabIndex = 54;
             this.textSearch.Text = "Buscar medicamento";
             this.textSearch.Visible = false;
@@ -451,89 +443,24 @@ namespace Presentacion
             this.btnSearch.TabStop = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // comboFiltroTipo
+            // comboFiltroEstado
             // 
-            this.comboFiltroTipo.AutoCompleteCustomSource.AddRange(new string[] {
+            this.comboFiltroEstado.AutoCompleteCustomSource.AddRange(new string[] {
             "Todos",
             "Orales",
             "Intravenoso"});
-            this.comboFiltroTipo.FormattingEnabled = true;
-            this.comboFiltroTipo.Items.AddRange(new object[] {
+            this.comboFiltroEstado.FormattingEnabled = true;
+            this.comboFiltroEstado.Items.AddRange(new object[] {
             "Todos",
-            "Analgésico",
-            "Anestésico",
-            "Ansiolítico",
-            "Antibiótico",
-            "Anti-inflamatorio",
-            "Anticolinérgico",
-            "Anticonceptivo",
-            "Anticonvulsivo",
-            "Antidepresivo",
-            "Antidiabético",
-            "Antiemético",
-            "Anti-helmíntico",
-            "Anti-hipertensivo",
-            "Anti-histamínico",
-            "Antipirético",
-            "Relajante muscular"});
-            this.comboFiltroTipo.Location = new System.Drawing.Point(200, 1);
-            this.comboFiltroTipo.Name = "comboFiltroTipo";
-            this.comboFiltroTipo.Size = new System.Drawing.Size(77, 21);
-            this.comboFiltroTipo.TabIndex = 54;
-            this.comboFiltroTipo.Text = "Todos";
-            this.comboFiltroTipo.Visible = false;
-            this.comboFiltroTipo.SelectedIndexChanged += new System.EventHandler(this.comboFiltroTipo_SelectedIndexChanged);
-            // 
-            // labelFiltroTipo
-            // 
-            this.labelFiltroTipo.AutoSize = true;
-            this.labelFiltroTipo.Location = new System.Drawing.Point(169, 5);
-            this.labelFiltroTipo.Name = "labelFiltroTipo";
-            this.labelFiltroTipo.Size = new System.Drawing.Size(31, 13);
-            this.labelFiltroTipo.TabIndex = 53;
-            this.labelFiltroTipo.Text = "Tipo:";
-            this.labelFiltroTipo.Visible = false;
-            // 
-            // comboFiltroVia
-            // 
-            this.comboFiltroVia.AutoCompleteCustomSource.AddRange(new string[] {
-            "Todos",
-            "Jarabe",
-            "Comprimido",
-            "Capsula",
-            "Intramusculares",
-            "Intradermicos"});
-            this.comboFiltroVia.FormattingEnabled = true;
-            this.comboFiltroVia.Items.AddRange(new object[] {
-            "Todos",
-            "Oral",
-            "Inyectable",
-            "Rectal",
-            "Vaginal",
-            "Ocular",
-            "Ótica",
-            "Nasal",
-            "Inhalatoria",
-            "Nebulizantes",
-            "Cutanea",
-            "Transdérmica"});
-            this.comboFiltroVia.Location = new System.Drawing.Point(216, 1);
-            this.comboFiltroVia.Name = "comboFiltroVia";
-            this.comboFiltroVia.Size = new System.Drawing.Size(80, 21);
-            this.comboFiltroVia.TabIndex = 52;
-            this.comboFiltroVia.Text = "Todos";
-            this.comboFiltroVia.Visible = false;
-            this.comboFiltroVia.SelectedIndexChanged += new System.EventHandler(this.comboFiltroVia_SelectedIndexChanged);
-            // 
-            // labelFiltroVia
-            // 
-            this.labelFiltroVia.AutoSize = true;
-            this.labelFiltroVia.Location = new System.Drawing.Point(152, 5);
-            this.labelFiltroVia.Name = "labelFiltroVia";
-            this.labelFiltroVia.Size = new System.Drawing.Size(65, 13);
-            this.labelFiltroVia.TabIndex = 50;
-            this.labelFiltroVia.Text = "Via de admi:";
-            this.labelFiltroVia.Visible = false;
+            "Vencido",
+            "Cuarentena",
+            "Vigente"});
+            this.comboFiltroEstado.Location = new System.Drawing.Point(379, 1);
+            this.comboFiltroEstado.Name = "comboFiltroEstado";
+            this.comboFiltroEstado.Size = new System.Drawing.Size(97, 21);
+            this.comboFiltroEstado.TabIndex = 54;
+            this.comboFiltroEstado.Text = "Todos";
+            this.comboFiltroEstado.SelectedIndexChanged += new System.EventHandler(this.comboFiltroEstado_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -1037,13 +964,9 @@ namespace Presentacion
         private FontAwesome.Sharp.IconPictureBox btnClose;
         private System.Windows.Forms.TextBox textSearch;
         private FontAwesome.Sharp.IconPictureBox btnSearch;
-        private System.Windows.Forms.ComboBox comboFiltroTipo;
-        private System.Windows.Forms.Label labelFiltroTipo;
-        private System.Windows.Forms.ComboBox comboFiltroVia;
-        private System.Windows.Forms.Label labelFiltroVia;
+        private System.Windows.Forms.ComboBox comboFiltroEstado;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panelSubDataGridFarmacos;
-        private System.Windows.Forms.Label labelAdvertencia;
         private System.Windows.Forms.TextBox textCuarentena;
         private System.Windows.Forms.Label labelCuarentena;
         private System.Windows.Forms.TextBox textVigentes;
@@ -1077,6 +1000,7 @@ namespace Presentacion
         private FontAwesome.Sharp.IconPictureBox iconCash;
         private FontAwesome.Sharp.IconButton btnRespaldarInventario;
         private System.Windows.Forms.Label labelExportar;
+        private System.Windows.Forms.Label label9;
     }
 }
 

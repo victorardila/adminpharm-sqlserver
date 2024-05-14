@@ -95,7 +95,7 @@ namespace DAL
             List<Producto> productos = new List<Producto>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select Cantidad, Referencia, Precio_De_Venta, Nombre, Detalle, Fecha_De_Registro, Fecha_De_Vencimiento, Lote, Laboratorio, Estado, Tipo, Via, Valor_Por_Unidad, Valor_Por_Blister, Valor_Por_Caja, Porcentaje_De_Venta, Precio_De_Negocio, Ganancia_Por_Producto, Ubicacion from PRODUCTO";
+                command.CommandText = "Select Cantidad, Referencia, Precio_De_Venta, Nombre, Detalle, Fecha_De_Registro, Fecha_De_Vencimiento, Ubicacion, Estado, Laboratorio, Lote, Tipo, Via, Valor_Por_Unidad, Valor_Por_Blister, Valor_Por_Caja, Porcentaje_De_Venta, Precio_De_Negocio, Ganancia_Por_Producto from PRODUCTO";
                 var dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -132,6 +132,19 @@ namespace DAL
                 return DataReaderMapToProducto(dataReader);
             }
         }
+        public Producto BuscarPorNombre(string nombre)
+        {
+            SqlDataReader dataReader;
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from PRODUCTO where Nombre=@Nombre";
+                command.Parameters.AddWithValue("@Nombre", nombre);
+                dataReader = command.ExecuteReader();
+                dataReader.Read();
+                return DataReaderMapToProducto(dataReader);
+            }
+        }
+
         public void ModificarEstadoProducto(Producto producto)
         {
             using (var command = _connection.CreateCommand())

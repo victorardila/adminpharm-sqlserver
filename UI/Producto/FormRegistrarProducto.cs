@@ -362,7 +362,7 @@ namespace Presentacion
                         producto.ValorPorBlister = int.Parse(textPrecioBlister.Text);
                         producto.ValorPorPaquete = int.Parse(textPrecioCaja.Text);
                         producto.PorcentajeDeVenta = respuesta.Producto.PorcentajeDeVenta;
-                        producto.PrecioDeNegocio = respuesta.Producto.PrecioDeNegocio;
+                        producto.PrecioDeNegocio = int.Parse(textPrecioNegocio.Text);
                         producto.PrecioDeVenta = respuesta.Producto.GananciaPorProducto;
                         producto.Ubicacion = comboUbicacion.Text;
                         string mensaje = productoService.Modificar(producto);

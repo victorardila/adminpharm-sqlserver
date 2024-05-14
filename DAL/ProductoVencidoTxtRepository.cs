@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entity;
 using System.IO;
+using System.Globalization;
 
 namespace DAL
 {
@@ -35,8 +36,8 @@ namespace DAL
                     Referencia = dato[1],
                     Nombre = dato[2],
                     Detalle = dato[3],
-                    FechaDeRegistro = DateTime.Parse(dato[4]),
-                    FechaDeVencimiento = DateTime.Parse(dato[5]),
+                    FechaDeRegistro = DateTime.ParseExact(dato[4], "dd/MM/yyyy hh:mm:ss:tt", CultureInfo.InvariantCulture),
+                    FechaDeVencimiento = DateTime.ParseExact(dato[5], "dd/MM/yyyy hh:mm:ss:tt", CultureInfo.InvariantCulture),
                     Lote = dato[6],
                     Laboratorio = dato[7],
                     Estado = dato[8],

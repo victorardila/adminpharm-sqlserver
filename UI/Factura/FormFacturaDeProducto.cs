@@ -652,10 +652,10 @@ namespace Presentacion
             e.Graphics.DrawString("Cliente: " + nombreCliente, font, Brushes.Black, new RectangleF(0, y + 205, ancho, 13));
             e.Graphics.DrawString("IdDeCaja: " + idCajaAbierta, font, Brushes.Black, new RectangleF(0, y + 218, ancho, 13));
             
-            e.Graphics.DrawString("FACTURA DE VENTA", font, Brushes.Black, new RectangleF(0, y + 244, ancho, 14));
+            e.Graphics.DrawString("COMPROVANTE", font, Brushes.Black, new RectangleF(0, y + 244, ancho, 14));
             
             e.Graphics.DrawString("Lista de productos", font, Brushes.Black, new RectangleF(0, y + 270, ancho, 14));
-            e.Graphics.DrawString(" Cantidad "+" Nombre " + " Detalle "+" Precio ", font, Brushes.Black, new RectangleF(0, y + 284, ancho, 14));
+            e.Graphics.DrawString(" Cantidad "+" Nombre " + " Detalle "+" Unidad "+" Total ", font, Brushes.Black, new RectangleF(0, y + 284, ancho, 14));
             int r = 0;
             int j = 298;
             foreach (DataGridViewRow fila in dataGridFacturaProductos.Rows)
@@ -663,7 +663,9 @@ namespace Presentacion
                 int i = 0;
                 foreach (DataGridViewCell celda in fila.Cells)
                 {
-                    e.Graphics.DrawString("    "+Convert.ToString(fila.Cells[i+1].Value) + " " + Convert.ToString(fila.Cells[i+3].Value) +" "+  Convert.ToString(fila.Cells[i+4].Value) +" "+  Convert.ToString(fila.Cells[i+5].Value), font, Brushes.Black, new RectangleF(0, y + j, ancho, 14));
+                    int cantidad = int.Parse((string)fila.Cells[i + 1].Value);
+                    double unidad = double.Parse((string)fila.Cells[i + 5].Value);
+                    e.Graphics.DrawString("    "+ Convert.ToString(fila.Cells[i + 1].Value) + " " + Convert.ToString(fila.Cells[i + 3].Value) +" "+ Convert.ToString(fila.Cells[i + 4].Value) +" "+ Convert.ToString(fila.Cells[i + 5].Value)+" "+ Convert.ToString(cantidad*unidad), font, Brushes.Black, new RectangleF(0, y + j, ancho, 14));
                     j = j + 14;
                     int x = y + j;
                     r = x;

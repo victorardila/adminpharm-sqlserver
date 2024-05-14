@@ -137,7 +137,7 @@ namespace Presentacion
             this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCerrar.FlatAppearance.BorderSize = 0;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.IconChar = FontAwesome.Sharp.IconChar.RectangleXmark;
+            this.btnCerrar.IconChar = FontAwesome.Sharp.IconChar.TimesRectangle;
             this.btnCerrar.IconColor = System.Drawing.Color.Black;
             this.btnCerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCerrar.IconSize = 28;
@@ -246,7 +246,7 @@ namespace Presentacion
             this.labelPago.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.labelPago.Location = new System.Drawing.Point(172, 4);
             this.labelPago.Name = "labelPago";
-            this.labelPago.Size = new System.Drawing.Size(57, 16);
+            this.labelPago.Size = new System.Drawing.Size(56, 16);
             this.labelPago.TabIndex = 62;
             this.labelPago.Text = "Pago $";
             // 
@@ -257,7 +257,7 @@ namespace Presentacion
             this.labelVueltos.ForeColor = System.Drawing.Color.Red;
             this.labelVueltos.Location = new System.Drawing.Point(326, 3);
             this.labelVueltos.Name = "labelVueltos";
-            this.labelVueltos.Size = new System.Drawing.Size(72, 16);
+            this.labelVueltos.Size = new System.Drawing.Size(71, 16);
             this.labelVueltos.TabIndex = 63;
             this.labelVueltos.Text = "Vueltos $";
             // 
@@ -366,7 +366,7 @@ namespace Presentacion
             this.labelCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCliente.Location = new System.Drawing.Point(3, 3);
             this.labelCliente.Name = "labelCliente";
-            this.labelCliente.Size = new System.Drawing.Size(56, 16);
+            this.labelCliente.Size = new System.Drawing.Size(55, 16);
             this.labelCliente.TabIndex = 74;
             this.labelCliente.Text = "Cliente";
             // 
@@ -391,7 +391,7 @@ namespace Presentacion
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(140)))), ((int)(((byte)(128)))));
             this.label2.Location = new System.Drawing.Point(65, 2);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 16);
+            this.label2.Size = new System.Drawing.Size(69, 16);
             this.label2.TabIndex = 80;
             this.label2.Text = "Opcional";
             // 
@@ -402,7 +402,7 @@ namespace Presentacion
             this.labelAdvertenciaCliente.ForeColor = System.Drawing.Color.DarkRed;
             this.labelAdvertenciaCliente.Location = new System.Drawing.Point(241, 2);
             this.labelAdvertenciaCliente.Name = "labelAdvertenciaCliente";
-            this.labelAdvertenciaCliente.Size = new System.Drawing.Size(157, 16);
+            this.labelAdvertenciaCliente.Size = new System.Drawing.Size(156, 16);
             this.labelAdvertenciaCliente.TabIndex = 78;
             this.labelAdvertenciaCliente.Text = "No hay coincidencias";
             this.labelAdvertenciaCliente.Visible = false;
@@ -440,7 +440,7 @@ namespace Presentacion
             this.btnSearchCliente.BackColor = System.Drawing.SystemColors.Control;
             this.btnSearchCliente.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearchCliente.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSearchCliente.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.btnSearchCliente.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
             this.btnSearchCliente.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnSearchCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSearchCliente.IconSize = 20;
@@ -534,7 +534,7 @@ namespace Presentacion
             this.labelAdvertenciaEmpleado.ForeColor = System.Drawing.Color.DarkRed;
             this.labelAdvertenciaEmpleado.Location = new System.Drawing.Point(241, 2);
             this.labelAdvertenciaEmpleado.Name = "labelAdvertenciaEmpleado";
-            this.labelAdvertenciaEmpleado.Size = new System.Drawing.Size(157, 16);
+            this.labelAdvertenciaEmpleado.Size = new System.Drawing.Size(156, 16);
             this.labelAdvertenciaEmpleado.TabIndex = 78;
             this.labelAdvertenciaEmpleado.Text = "No hay coincidencias";
             this.labelAdvertenciaEmpleado.Visible = false;
@@ -572,7 +572,7 @@ namespace Presentacion
             this.btnSearchEmpleado.BackColor = System.Drawing.SystemColors.Control;
             this.btnSearchEmpleado.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearchEmpleado.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSearchEmpleado.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.btnSearchEmpleado.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
             this.btnSearchEmpleado.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnSearchEmpleado.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSearchEmpleado.IconSize = 20;
@@ -589,7 +589,7 @@ namespace Presentacion
             this.labelVendedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVendedor.Location = new System.Drawing.Point(3, 3);
             this.labelVendedor.Name = "labelVendedor";
-            this.labelVendedor.Size = new System.Drawing.Size(76, 16);
+            this.labelVendedor.Size = new System.Drawing.Size(75, 16);
             this.labelVendedor.TabIndex = 74;
             this.labelVendedor.Text = "Vendedor";
             // 
@@ -601,7 +601,7 @@ namespace Presentacion
             this.labelIdFactura.ForeColor = System.Drawing.Color.Black;
             this.labelIdFactura.Location = new System.Drawing.Point(0, 0);
             this.labelIdFactura.Name = "labelIdFactura";
-            this.labelIdFactura.Size = new System.Drawing.Size(100, 16);
+            this.labelIdFactura.Size = new System.Drawing.Size(99, 16);
             this.labelIdFactura.TabIndex = 77;
             this.labelIdFactura.Text = "ID de factura:";
             // 
@@ -612,7 +612,7 @@ namespace Presentacion
             this.labelIdGeneradoDeFactura.ForeColor = System.Drawing.Color.Black;
             this.labelIdGeneradoDeFactura.Location = new System.Drawing.Point(99, 0);
             this.labelIdGeneradoDeFactura.Name = "labelIdGeneradoDeFactura";
-            this.labelIdGeneradoDeFactura.Size = new System.Drawing.Size(16, 16);
+            this.labelIdGeneradoDeFactura.Size = new System.Drawing.Size(15, 16);
             this.labelIdGeneradoDeFactura.TabIndex = 78;
             this.labelIdGeneradoDeFactura.Text = "#";
             // 
@@ -854,7 +854,7 @@ namespace Presentacion
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(558, 48);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(16, 16);
+            this.label5.Size = new System.Drawing.Size(15, 16);
             this.label5.TabIndex = 88;
             this.label5.Text = "$";
             // 
@@ -878,7 +878,7 @@ namespace Presentacion
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(438, 47);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(16, 16);
+            this.label4.Size = new System.Drawing.Size(15, 16);
             this.label4.TabIndex = 86;
             this.label4.Text = "$";
             // 

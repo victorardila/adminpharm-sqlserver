@@ -228,6 +228,27 @@ namespace BLL
             finally { conexion.Close(); }
 
         }
+        public BusquedaProductoRespuesta BuscarPorNombre(string nombre)
+        {
+            BusquedaProductoRespuesta respuesta = new BusquedaProductoRespuesta();
+            try
+            {
+
+                conexion.Open();
+                respuesta.Producto = repositorio.BuscarPorNombre(nombre);
+                conexion.Close();
+                respuesta.Mensaje = (respuesta.Producto != null) ? "Se encontró el producto" : "El nombre de producto buscada no existe";
+                respuesta.Error = false;
+                return respuesta;
+            }
+            catch (Exception e)
+            {
+                respuesta.Mensaje = $"Error de la Aplicacion: {e.Message}";
+                respuesta.Error = true;
+                return respuesta;
+            }
+            finally { conexion.Close(); }
+        }
         public ConsultaProductoRespuesta BuscarPorViaAdminitracion(string via)
         {
             ConsultaProductoRespuesta respuesta = new ConsultaProductoRespuesta();

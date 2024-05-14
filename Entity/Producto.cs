@@ -9,7 +9,7 @@ namespace Entity
     public class Producto
     {
         //Constructor
-        public Producto(int cantidad, string referencia, double precioDeVenta, string nombre, string detalle, DateTime fechaDeRegistro, DateTime fechaDeVencimiento, string lote, string laboratorio, string estado, string tipo, string via, double valorPorUnidad, double valorPorBlister, double valorPorPaquete, double precioDeNegocio, double gananciaPorProducto, string ubicacion)
+        public Producto(int cantidad, string referencia, double precioDeVenta, string nombre, string detalle, DateTime fechaDeRegistro, DateTime fechaDeVencimiento, string ubicacion, string estado, string laboratorio, string lote, string tipo, string via, double valorPorUnidad, double valorPorBlister, double valorPorPaquete, double precioDeNegocio, double gananciaPorProducto)
         {
             Cantidad = cantidad;
             Referencia = referencia;
@@ -18,9 +18,10 @@ namespace Entity
             Detalle = detalle;
             FechaDeRegistro = fechaDeRegistro;
             FechaDeVencimiento = fechaDeVencimiento;
-            Lote = lote;
-            Laboratorio = laboratorio;
+            Ubicacion = ubicacion;
             Estado = estado;
+            Laboratorio = laboratorio;
+            Lote = lote;
             Tipo = tipo;
             Via = via;
             ValorPorUnidad = valorPorUnidad;
@@ -28,7 +29,6 @@ namespace Entity
             ValorPorPaquete = valorPorPaquete;
             PrecioDeNegocio = precioDeNegocio;
             GananciaPorProducto = gananciaPorProducto;
-            Ubicacion = ubicacion;
         }
         //Constructor Sobrecargado
         public Producto()
@@ -43,9 +43,10 @@ namespace Entity
         public string Detalle { get; set; }
         public DateTime FechaDeRegistro { get; set; }
         public DateTime FechaDeVencimiento { get; set; }
-        public string Lote { get; set; }
-        public string Laboratorio { get; set; }
+        public string Ubicacion { get; set; }
         public string Estado { get; set; }
+        public string Laboratorio { get; set; }
+        public string Lote { get; set; }
         public string Tipo { get; set; }
         public string Via { get; set; }
         public double ValorPorUnidad { get; set; }
@@ -54,7 +55,6 @@ namespace Entity
         public double PorcentajeDeVenta { get; set; }
         public double PrecioDeNegocio { get; set; }
         public double GananciaPorProducto { get; set; }
-        public string Ubicacion { get; set; }
         /*Metodos de la clase*/
         public void calcularEstado()
         {
