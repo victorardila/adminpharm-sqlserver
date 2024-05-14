@@ -663,8 +663,8 @@ namespace Presentacion
                 int i = 0;
                 foreach (DataGridViewCell celda in fila.Cells)
                 {
-                    int cantidad = int.Parse((string)fila.Cells[i + 1].Value);
-                    double unidad = double.Parse((string)fila.Cells[i + 5].Value);
+                    int cantidad = int.Parse(fila.Cells[i + 1].Value.ToString());
+                    double unidad = double.Parse(fila.Cells[i + 5].Value.ToString());
                     e.Graphics.DrawString("    "+ Convert.ToString(fila.Cells[i + 1].Value) + " " + Convert.ToString(fila.Cells[i + 3].Value) +" "+ Convert.ToString(fila.Cells[i + 4].Value) +" "+ Convert.ToString(fila.Cells[i + 5].Value)+" "+ Convert.ToString(cantidad*unidad), font, Brushes.Black, new RectangleF(0, y + j, ancho, 14));
                     j = j + 14;
                     int x = y + j;

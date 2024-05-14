@@ -196,6 +196,7 @@
     <Compile Include="Caja\FormAbrirCaja.Designer.cs">
       <DependentUpon>FormAbrirCaja.cs</DependentUpon>
     </Compile>
+    <Compile Include="FacturacionElectronica.cs" />
     <Compile Include="Factura\FormGestionFacturas.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -466,6 +466,11 @@ namespace Presentacion
                 MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        private void activarBusqueda()
+        {
+            textSearch.Text = "";
+            textSearch.Focus();
+        }
         private void btnVenderProducto_Click(object sender, EventArgs e)
         {
             MapearMedicamentosFactura();
@@ -474,6 +479,7 @@ namespace Presentacion
             ConsultarYLlenarGridDeProductos(paginaSeleccionada);
             VaciarArreglos();
             i = 0;
+            activarBusqueda();
         }
         private void VaciarArreglos()
         {
@@ -594,6 +600,7 @@ namespace Presentacion
             FormProductosVendidos frm = new FormProductosVendidos();
             frm.ShowDialog();
             ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+            activarBusqueda();
         }
         private void btnFarmacosVencidos_Click(object sender, EventArgs e)
         {
@@ -631,6 +638,7 @@ namespace Presentacion
             cantidadDeRegistros = int.Parse(textTotal.Text);
             totalPaginas = 0;
             ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+            activarBusqueda();
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -646,36 +654,54 @@ namespace Presentacion
                 textSearch.Text = "";
             }
         }
+        private void VaciarFilas()
+        {
+            foreach (DataGridViewRow fila in dataGridFarmacos.Rows)
+            {
+                fila.Visible = false;
+            }
+        }
         private void textSearch_TextChanged(object sender, EventArgs e)
         {
-            string searchText = textSearch.Text.Trim().ToUpper();
-
-            if (!string.IsNullOrEmpty(searchText))
+            if (textSearch.Text != "")
             {
                 BuscarPorReferencia();
-                BuscarPorNombre();
-                if (encontrado!=false)
+                if (encontrado == false)
                 {
                     dataGridFarmacos.CurrentCell = null;
-
+                    VaciarFilas();
                     foreach (DataGridViewRow fila in dataGridFarmacos.Rows)
                     {
-                        bool found = false;
+                        int i = 0;
                         foreach (DataGridViewCell celda in fila.Cells)
                         {
-                            if (celda.Value != null && (celda.Value.ToString().ToUpper().Contains(searchText)))
+                            if (i == 6 || i == 8)
                             {
-                                found = true;
-                                break;
+                                if ((celda.Value.ToString().ToUpper()).IndexOf(textSearch.Text.ToUpper()) == 0)
+                                {
+                                    fila.Visible = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    if ((celda.Value.ToString() == (textSearch.Text.ToUpper())))
+                                    {
+                                        fila.Visible = true;
+                                        break;
+                                    }
+                                }
                             }
+                            i = i + 1;
                         }
-                        fila.Visible = found;
                     }
                 }
             }
             else
             {
-                ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                if (textSearch.Text == "")
+                {
+                    ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                }
             }
         }
 
@@ -842,6 +868,7 @@ namespace Presentacion
                         MapearMedicamentosFactura();
                         btnVenderProducto_Click(sender, e);
                         ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                        activarBusqueda();
                     }
                 }
                 else
