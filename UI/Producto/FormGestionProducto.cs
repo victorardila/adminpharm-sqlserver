@@ -344,7 +344,7 @@ namespace Presentacion
             {
                 if (respuesta.Producto == null)
                 {
-                    //ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+                    encontrado = false;
                 }
             }
         }
@@ -607,6 +607,7 @@ namespace Presentacion
             FormProductosVencidos frm = new FormProductosVencidos();
             frm.ShowDialog();
             ConsultarYLlenarGridDeProductos(paginaSeleccionada);
+            activarBusqueda();
         }
         private Producto CalculosDefactura()
         {

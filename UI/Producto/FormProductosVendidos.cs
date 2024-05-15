@@ -121,15 +121,15 @@ namespace Presentacion
         {
             BusquedaCajaRegistradoraRespuesta respuesta = new BusquedaCajaRegistradoraRespuesta();
             string estado = "Abierta";
-            double MontoDeCajaFinal;
+            double MontoDeCajaActual;
             double VentaDelDia;
             respuesta = cajaRegistradoraService.BuscarPorEstado(estado);
             if (respuesta.CajaRegistradora != null)
             {
+                totalProducto = precio;
                 //Monto final
-                MontoDeCajaFinal = respuesta.CajaRegistradora.MontoFinal;
-                MontoDeCajaFinal = MontoDeCajaFinal - totalProducto;
-                MontoActualizado = MontoDeCajaFinal;
+                MontoDeCajaActual = respuesta.CajaRegistradora.MontoFinal;
+                MontoActualizado = MontoDeCajaActual - totalProducto;
                 //Monto venta del dia
                 VentaDelDia= respuesta.CajaRegistradora.VentaDelDia;
                 VentaDelDia = VentaDelDia - totalProducto;
@@ -253,7 +253,7 @@ namespace Presentacion
                     referencia = Convert.ToString(dataGridProductosVendidos.CurrentRow.Cells["Referencia"].Value.ToString());
                     cantidad = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Cantidad"].Value.ToString());
                     nombre = Convert.ToString(dataGridProductosVendidos.CurrentRow.Cells["Nombre"].Value.ToString());
-                    precio = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Unidad"].Value.ToString());
+                    precio = Convert.ToInt32(dataGridProductosVendidos.CurrentRow.Cells["Total"].Value.ToString());
                     string msg = "¿Desea deshacer esta venta?";
                     var respuesta = MessageBox.Show(msg, "Devolver al inventario", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (respuesta == DialogResult.Yes)
