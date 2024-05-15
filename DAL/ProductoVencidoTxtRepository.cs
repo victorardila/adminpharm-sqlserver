@@ -36,8 +36,8 @@ namespace DAL
                     Referencia = dato[1],
                     Nombre = dato[2],
                     Detalle = dato[3],
-                    FechaDeRegistro = DateTime.ParseExact(dato[4], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
-                    FechaDeVencimiento = DateTime.ParseExact(dato[5], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
+                    FechaDeRegistro = ParseDate(dato[4]),
+                    FechaDeVencimiento = ParseDate(dato[5]),
                     Lote = dato[6],
                     Laboratorio = dato[7],
                     Estado = dato[8],
@@ -53,6 +53,43 @@ namespace DAL
             file.Close();
             return productoTxts;
         }
+        private DateTime ParseDate(string dateStr)
+        {
+            string[] formats = {
+                "dd/MM/yyyy HH:mm:ss",
+                "MM/dd/yyyy HH:mm:ss",
+                "dd/MM/yyyy H:mm:ss",
+                "MM/dd/yyyy H:mm:ss",
+                "dd/MM/yyyy HH:mm",
+                "MM/dd/yyyy HH:mm",
+                "dd/MM/yyyy H:mm",
+                "MM/dd/yyyy H:mm",
+                "dd/MM/yyyy hh:mm tt",
+                "MM/dd/yyyy hh:mm tt",
+                "dd/MM/yyyy",
+                "MM/dd/yyyy",
+                "yyyy-MM-dd",
+                "yyyy-MM-dd HH:mm:ss",
+                "yyyy-MM-dd H:mm:ss",
+                "yyyy-MM-dd HH:mm",
+                "yyyy-MM-dd H:mm",
+                "yyyy/MM/dd",
+                "yyyy/MM/dd HH:mm:ss",
+                "yyyy/MM/dd H:mm:ss",
+                "yyyy/MM/dd HH:mm",
+                "yyyy/MM/dd H:mm"
+            };
+            DateTime date;
+            if (DateTime.TryParseExact(dateStr, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            {
+                return date;
+            }
+            else
+            {
+                throw new FormatException($"Formato de fecha no reconocido: {dateStr}");
+            }
+        }
+
         public List<ProductoVencidoTxt> ConsultarPorReferencias(string referencia)
         {
             List<ProductoVencidoTxt> productoTxts = new List<ProductoVencidoTxt>();

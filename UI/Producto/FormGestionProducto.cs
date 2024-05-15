@@ -909,6 +909,7 @@ namespace Presentacion
                                         porcentajeDeVenta, precioDeNegocio, precioProducto, gananciaDeProducto);
                                     productoVencidoTxtService.Guardar(productoTxt);
                                     productoService.Eliminar(referenciaProducto);
+                                    comboFiltroEstado.Text = "Todos";
                                 }
                                 else
                                 {
