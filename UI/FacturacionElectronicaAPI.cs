@@ -15,6 +15,19 @@ namespace Presentacion
         {
             _token = token;
         }
+        public async Task<string> ConsultarFacturaAsync(string facturaId)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_token}");
+
+                var response = await client.GetAsync($"{_baseUrl}/invoices/{facturaId}");
+
+                response.EnsureSuccessStatusCode();
+
+                return await response.Content.ReadAsStringAsync();
+            }
+        }
 
         public async Task<string> EnviarFacturaAsync(object factura)
         {
@@ -32,5 +45,38 @@ namespace Presentacion
                 return await response.Content.ReadAsStringAsync();
             }
         }
+
+        public async Task<string> EliminarFacturaAsync(string facturaId)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_token}");
+
+                var response = await client.DeleteAsync($"{_baseUrl}/invoices/{facturaId}");
+
+                response.EnsureSuccessStatusCode();
+
+                return await response.Content.ReadAsStringAsync();
+            }
+        }
+
+        public async Task<string> ActualizarFacturaAsync(string facturaId, object facturaActualizada)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_token}");
+
+                var json = JsonConvert.SerializeObject(facturaActualizada);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await client.PutAsync($"{_baseUrl}/invoices/{facturaId}", content);
+
+                response.EnsureSuccessStatusCode();
+
+                return await response.Content.ReadAsStringAsync();
+            }
+        }
+
+
     }
 }
